@@ -35,7 +35,7 @@ class Context extends Container {
 
     this.api.getCurrentUser()
       .then(user => {
-        this.setState({ user })
+        this.setState({ user, auth_token })
           .then(() => {
             if (!user.schedule) {
               this.api.createScheduleConfig(DEFAULT_SCHEDULE_CONFIG)
