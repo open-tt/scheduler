@@ -5,7 +5,8 @@ const ROOT = 'https://nameless-spire-32644.herokuapp.com'
 const ENDPOINTS = {
   REGISTER_USER: `${ROOT}/users/register`,
   AUTHENTICATE: `${ROOT}/authenticate`,
-  GET_CURRENT_USER: `${ROOT}/users/current_user_profile`
+  GET_CURRENT_USER: `${ROOT}/users/current_user_profile`,
+  SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`
 }
 
 class Api {
@@ -17,6 +18,15 @@ class Api {
 
   post = ({ data, url }) => axios({
     method: 'POST',
+    headers: {
+      Authorization: `Bearer ${this.auth_token}`
+    },
+    url,
+    data
+  }).then(res => res.data)
+
+  put = ({ data, url }) => axios({
+    method: 'PUT',
     headers: {
       Authorization: `Bearer ${this.auth_token}`
     },
@@ -36,6 +46,9 @@ class Api {
   registerUser = (data) => this.post({ data, url: ENDPOINTS.REGISTER_USER })
   authenticate = (data) => this.post({ data, url: ENDPOINTS.AUTHENTICATE })
   getCurrentUser = () => this.get({ url: ENDPOINTS.GET_CURRENT_USER }).then(res => res.user)
+  createScheduleConfig = (data) => this.post({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
+  getScheduleConfig = () => this.get({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
+  updateScheduleConfig = (data) => this.put({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
 }
 
 export default Api

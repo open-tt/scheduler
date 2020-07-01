@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import context from './lib/context';
 
 const now = Date.now()
 
@@ -12,17 +13,17 @@ const DayPicker = ({ start = now }) => {
     const nextMoment = moment(startMoment)
     return nextMoment.add(i, 'days')
   })
-  console.log(moments)
 
   return (
     <div>
-      <h3>Select a Day</h3>
+      <h3>Select a Day (lol) </h3>
       <div>
-        {moments.map(m => (
+        {context.state.user && JSON.stringify(context.state.user.schedule)}
+        {/* {moments.map(m => (
           <div>
             {m.format("dddd, MMMM Do YYYY")}
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   )

@@ -18,7 +18,6 @@ const Login = () => {
       email: 'test@test.com',
       password: 'test123',
     }).then(({ auth_token }) => {
-      console.log(auth_token)
       context.authenticate({ auth_token })
     })
   }

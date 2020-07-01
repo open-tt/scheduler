@@ -2,6 +2,7 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
+  Redirect,
   Route,
   Link
 } from 'react-router-dom'
@@ -9,7 +10,16 @@ import DayPicker from './DayPicker'
 import ReactDOM from 'react-dom'
 import Layout from './Layout'
 import Login from './Login'
-import { ContextProvider } from './lib/context';
+import Admin from './Admin'
+import context, { ContextProvider } from './lib/context'
+
+const AuthenticatedRoute = (props) => {
+  if (context.state.auth_token) {
+    return <Route {...props} />
+  }
+
+  return <Redirect to="/login" />
+}
 
 const App = () => {
   return (
@@ -18,6 +28,7 @@ const App = () => {
         <Layout>
           <Route exact path="/" component={DayPicker} />
           <Route exact path="/login" component={Login} />
+          <AuthenticatedRoute exact path="/admin" component={Admin} />
         </Layout>
       </Router>
     </ContextProvider>
