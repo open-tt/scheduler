@@ -15,6 +15,10 @@ import context, { ContextProvider } from './lib/context'
 
 const AuthenticatedRoute = (props) => {
   if (context.state.auth_token) {
+    if (!context.state.user) {
+      return <p>loading...</p>
+    }
+
     return <Route {...props} />
   }
 
@@ -26,7 +30,7 @@ const App = () => {
     <ContextProvider>
       <Router>
         <Layout>
-          <Route exact path="/" component={DayPicker} />
+          <AuthenticatedRoute exact path="/" component={DayPicker} />
           <Route exact path="/login" component={Login} />
           <AuthenticatedRoute exact path="/admin" component={Admin} />
         </Layout>
