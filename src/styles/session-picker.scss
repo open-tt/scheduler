@@ -1,0 +1,27 @@
+.day-picker {
+  display: flex;
+}
+
+.days {
+  margin-right: 20px;
+}
+
+.day {
+  cursor: pointer;
+  &[data-selected="true"] label {
+    background: yellow;
+  }
+}
+
+.sessions {
+
+}
+
+.session {
+  cursor: pointer;
+  margin: 2px 0;
+
+  &[data-selected="true"] {
+    background: yellow;
+  }
+}

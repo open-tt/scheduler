@@ -23,6 +23,29 @@
 .form-field {
   margin: 5px 0;
 }
+.day-picker {
+  display: flex;
+}
+
+.days {
+  margin-right: 20px;
+}
+
+.day {
+  cursor: pointer;
+}
+.day[data-selected=true] label {
+  background: yellow;
+}
+
+.session {
+  cursor: pointer;
+  margin: 2px 0;
+}
+.session[data-selected=true] {
+  background: yellow;
+}
+
 html {
   font-size: 4px;
 }
