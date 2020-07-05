@@ -46,6 +46,10 @@
   background: yellow;
 }
 
+.reservation {
+  margin: 5px 0;
+}
+
 html {
   font-size: 4px;
 }

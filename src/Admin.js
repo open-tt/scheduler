@@ -19,12 +19,12 @@ const FormField = ({ label, defaultValue, ...props }) => {
 const Admin = () => {
   const { api, user } = context
   const [scheduleConfig, setScheduleConfig] = useState()
-  console.log('render admin', user)
+
   useEffect(() => {
-    // api.getScheduleConfig().then(config => setScheduleConfig(config))
+    api.getScheduleConfig().then(config => setScheduleConfig(config))
   }, [])
 
-  const config = (user && user.schedule) || DEFAULT_SCHEDULE_CONFIG
+  const config = scheduleConfig || DEFAULT_SCHEDULE_CONFIG
 
   const onSubmit = (values) => {
     api.updateScheduleConfig({

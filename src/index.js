@@ -11,6 +11,7 @@ import ReactDOM from 'react-dom'
 import Layout from './Layout'
 import Login from './Login'
 import Admin from './Admin'
+import MyReservations from './MyReservations'
 import context, { ContextProvider } from './lib/context'
 
 const AuthenticatedRoute = (props) => {
@@ -33,6 +34,7 @@ const App = () => {
           <AuthenticatedRoute exact path="/" component={DayPicker} />
           <Route exact path="/login" component={Login} />
           <AuthenticatedRoute exact path="/admin" component={Admin} />
+          <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
         </Layout>
       </Router>
     </ContextProvider>

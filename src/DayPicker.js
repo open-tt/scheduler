@@ -17,7 +17,26 @@ const SessionPicker = ({ blocks, date }) => {
   const bookSessions = () => {
     const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
     console.log('booking')
-    console.log(selectedBlocks)
+
+    const promises = selectedBlocks.map(block => (
+      context.api.createReservation({
+        "start_date": toDatetime({ date, time: block.start }),
+        "end_date": toDatetime({ date, time: block.end }),
+        "size": 1,
+        "reservation_type": "play",
+      })
+    ))
+
+    Promise.all(promises).then(() => {
+      console.log('Success!')
+    })
+    .catch((err) => {
+      console.error('Some reservations were not completed:', err)
+    })
+    .finally(() => {
+      console.log('navigating away now')
+      setSessions({})
+    })
   }
 
   return (
@@ -25,12 +44,7 @@ const SessionPicker = ({ blocks, date }) => {
       {blocks.map((block, i) => {
         const isSelected = !!sessions[i]
         const toggleSession = () => {
-          const data = {
-            "start_date": toDatetime({ date, time: block.start }),
-            "end_date": toDatetime({ date, time: block.end }),
-            "size": 1,
-            "reservation_type": "play",
-          }
+
 
           const newSessions = { ...sessions, [i]: !sessions[i] }
           setSessions(newSessions)
@@ -63,19 +77,20 @@ const DayPicker = () => {
   }
 
   return (
-    <div className="day-picker">
-      <div className="days">
-        <h3>Select a Day</h3>
-        <br />
-        {schedule.map((d, i) => {
-          return (
-            <div key={i} className='day' data-selected={day === i} onClick={() => setDay(i)}>
-              <label>{d.name}, {d.date.month}-{d.date.day}</label>
-            </div>
-          )
-        })}
+    <div>
+      <h1>Book Table Time</h1>
+      <div className="day-picker">
+        <div className="days">
+          {schedule.map((d, i) => {
+            return (
+              <div key={i} className='day' data-selected={day === i} onClick={() => setDay(i)}>
+                <label>{d.name}, {d.date.month}-{d.date.day}</label>
+              </div>
+            )
+          })}
+        </div>
+        <SessionPicker key={day} {...selectedDay} />
       </div>
-      <SessionPicker key={day} {...selectedDay} />
     </div>
   )
 }
