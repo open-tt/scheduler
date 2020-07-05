@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import context from './lib/context';
 
@@ -10,12 +11,12 @@ const toDatetime = ({ date, time }) => {
   return m.format('YYYY-MM-DD HH:mm')
 }
 
-const SessionPicker = ({ blocks, date }) => {
+const SessionPicker = withRouter(({ blocks, date, history }) => {
   const [sessions, setSessions] = useState({})
   const { month, day, year } = date
+  const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
 
   const bookSessions = () => {
-    const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
     console.log('booking')
 
     const promises = selectedBlocks.map(block => (
@@ -36,6 +37,7 @@ const SessionPicker = ({ blocks, date }) => {
     .finally(() => {
       console.log('navigating away now')
       setSessions({})
+      history.push('/my-reservations')
     })
   }
 
@@ -44,8 +46,6 @@ const SessionPicker = ({ blocks, date }) => {
       {blocks.map((block, i) => {
         const isSelected = !!sessions[i]
         const toggleSession = () => {
-
-
           const newSessions = { ...sessions, [i]: !sessions[i] }
           setSessions(newSessions)
         }
@@ -57,10 +57,10 @@ const SessionPicker = ({ blocks, date }) => {
         )
       })}
 
-      <button onClick={bookSessions}>Book Sessions</button>
+      <button onClick={bookSessions} disabled={!selectedBlocks.length}>Book Sessions</button>
     </div>
   )
-}
+})
 
 const DayPicker = () => {
   const [day, setDay] = useState(0)

@@ -32,9 +32,10 @@
 }
 
 .day {
+  padding: 5px 10px;
   cursor: pointer;
 }
-.day[data-selected=true] label {
+.day[data-selected=true] {
   background: yellow;
 }
 

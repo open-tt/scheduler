@@ -7,8 +7,10 @@
 }
 
 .day {
+  padding: 5px 10px;
   cursor: pointer;
-  &[data-selected="true"] label {
+
+  &[data-selected="true"] {
     background: yellow;
   }
 }

@@ -5,7 +5,7 @@ const ROOT = 'https://nameless-spire-32644.herokuapp.com'
 const ENDPOINTS = {
   REGISTER_USER: `${ROOT}/users/register`,
   AUTHENTICATE: `${ROOT}/authenticate`,
-  GET_CURRENT_USER: `${ROOT}/users/current_user_profile`,
+  GET_CURRENT_USER: `${ROOT}/users/current_user`,
   SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`,
   USER_RESERVATIONS: `${ROOT}/current_user/reservations`
 }
