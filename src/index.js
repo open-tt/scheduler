@@ -32,6 +32,7 @@ const App = () => {
       <Router>
         <Layout>
           <Switch>
+            <AuthenticatedRoute exact path="/" component={MyReservations} />
             <AuthenticatedRoute path="/reserve/:club_id" component={DayPicker} />
             <Route exact path="/login" component={Login} />
             <AuthenticatedRoute exact path="/admin" component={Admin} />
