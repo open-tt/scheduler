@@ -42,7 +42,8 @@ const Admin = withRouter(({ history }) => {
   return (
     <div data-row>
       <div data-col="12">
-        <h1>Admin Dashboard for <em>{user.name}</em></h1>
+        <h3>{user.name}</h3>
+        <h1>Admin Dashboard</h1>
         <br />
 
         <Form
