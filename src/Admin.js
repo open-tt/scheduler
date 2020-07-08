@@ -1,20 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Field } from 'react-final-form'
+import FormField from './form/FormField'
 import context from 'lib/context'
 import { DEFAULT_SCHEDULE_CONFIG } from './lib/constants'
-
-const FormField = ({ label, defaultValue, ...props }) => {
-  return (
-    <div className="form-field">
-      <label>{label}</label>
-      <Field
-        component="input"
-        defaultValue={defaultValue}
-        {...props}
-      />
-    </div>
-  )
-}
 
 const Admin = () => {
   const { api, state: { user } } = context
@@ -34,8 +22,6 @@ const Admin = () => {
       availability_per_interval: values.availability_per_interval,
       price_per_participant: values.price_per_participant
     }).then(({ auth_token }) => {
-      // console.log(auth_token)
-      // context.authenticate({ auth_token })
     })
   }
 

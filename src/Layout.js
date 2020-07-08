@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import context from 'lib/context'
 
 const Layout = ({ children }) => {
-  console.log('rerender')
-  console.log(context.state)
-
   const loggedIn = !!context.state.user
 
   return (

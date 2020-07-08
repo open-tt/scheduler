@@ -29,22 +29,22 @@ class Context extends Container {
     }
   }
 
-  authenticate = ({ auth_token }) => {
+  authenticate = async ({ auth_token }) => {
     this.api.auth_token = auth_token
     window.localStorage.setItem('auth_token', auth_token)
 
-    this.api.getCurrentUser()
-      .then(user => {
-        this.setState({ user, auth_token })
-          .then(() => {
-            if (!user.schedule) {
-              this.api.createScheduleConfig(DEFAULT_SCHEDULE_CONFIG)
-            }
-          })
-      })
-      .catch(() => {
-        this.unauthenticate()
-      })
+    await this.setState({ auth_token })
+    console.log('DONE')
+
+    try {
+      const user = await this.api.getCurrentUser()
+      await this.setState({ user })
+      if (!user.schedule) {
+        return this.api.createScheduleConfig(DEFAULT_SCHEDULE_CONFIG)
+      }
+    } catch(err) {
+      this.unauthenticate()
+    }
   }
 
   unauthenticate = () => {
@@ -61,7 +61,6 @@ export const ContextProvider = ({ children }) => (
   <Provider inject={[context]}>
     <Subscribe to={[Context]}>
       {(context) => {
-        console.log('new context?', context)
         return React.cloneElement(children, { context, key: Date.now() })
       }}
     </Subscribe>

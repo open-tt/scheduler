@@ -21,8 +21,12 @@
   src: url("/assets/fonts/Rubik/Rubik-MediumItalic.ttf") format("truetype");
 }
 .form-field {
-  margin: 5px 0;
+  margin: 10px 0;
 }
+.form-field label {
+  display: block;
+}
+
 .day-picker {
   display: flex;
 }
@@ -103,10 +107,13 @@ header .links a {
 }
 
 label {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.08em;
+}
+label[data-error] {
+  color: red;
 }
 
 button {

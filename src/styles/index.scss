@@ -58,10 +58,14 @@ header {
 }
 
 label {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.08em;
+
+  &[data-error] {
+    color: red;
+  }
 }
 
 button {

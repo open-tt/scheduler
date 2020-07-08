@@ -21,7 +21,8 @@ const MyReservations = () => {
 
   return (
     <div>
-      <h2>my reservations</h2>
+      <h1>My Reservations</h1>
+      {!reservations.length && 'No reservations.'}
       {reservations.map(({ id, start_date, end_date, size }) => {
 
         return (

@@ -17,8 +17,6 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
   const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
 
   const bookSessions = () => {
-    console.log('booking')
-
     const promises = selectedBlocks.map(block => (
       context.api.createReservation({
         club_id,
@@ -31,12 +29,12 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
 
     Promise.all(promises).then(() => {
       console.log('Success!')
+      // Something here...
     })
     .catch((err) => {
-      console.error('Some reservations were not completed:', err)
+      // Something here...
     })
     .finally(() => {
-      console.log('navigating away now')
       setSessions({})
       history.push('/my-reservations')
     })

@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import React from 'react'
 import {
   BrowserRouter as Router,
@@ -17,7 +18,7 @@ import context, { ContextProvider } from './lib/context'
 const AuthenticatedRoute = (props) => {
   if (context.state.auth_token) {
     if (!context.state.user) {
-      return <p>loading...</p>
+      return <p>Loading...</p>
     }
 
     return <Route {...props} />
@@ -28,8 +29,8 @@ const AuthenticatedRoute = (props) => {
 
 const App = () => {
   return (
-    <ContextProvider>
-      <Router>
+    <Router>
+      <ContextProvider>
         <Layout>
           <Switch>
             <AuthenticatedRoute exact path="/" component={MyReservations} />
@@ -39,8 +40,8 @@ const App = () => {
             <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
           </Switch>
         </Layout>
-      </Router>
-    </ContextProvider>
+        </ContextProvider>
+    </Router>
   )
 }
 
