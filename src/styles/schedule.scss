@@ -1,0 +1,44 @@
+.schedule {
+  display: flex;
+}
+
+.days {
+  margin-right: 20px;
+}
+
+.option {
+  display: block;
+  font-weight: bold;
+  padding: 3px 0;
+  margin-bottom: 3px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.day {
+  &[data-selected="true"] {
+    background: yellow;
+    padding-left: 10px;
+  }
+}
+
+.sessions {
+
+}
+
+.session {
+  &[data-selected="true"] {
+    background: yellow;
+  }
+
+  &[data-available="false"] {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+.instruction {
+  display: block;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}

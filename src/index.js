@@ -7,18 +7,19 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import DayPicker from './DayPicker'
+import Schedule from './Schedule'
 import ReactDOM from 'react-dom'
 import Layout from './Layout'
 import Login from './Login'
 import Admin from './Admin'
+import Loading from 'Loading'
 import MyReservations from './MyReservations'
 import context, { ContextProvider } from './lib/context'
 
 const AuthenticatedRoute = (props) => {
   if (context.state.auth_token) {
     if (!context.state.user) {
-      return <p>Loading...</p>
+      return <Loading />
     }
 
     return <Route {...props} />
@@ -34,7 +35,7 @@ const App = () => {
         <Layout>
           <Switch>
             <AuthenticatedRoute exact path="/" component={MyReservations} />
-            <AuthenticatedRoute path="/reserve/:club_id" component={DayPicker} />
+            <AuthenticatedRoute path="/reserve/:club_id" component={Schedule} />
             <Route exact path="/login" component={Login} />
             <AuthenticatedRoute exact path="/admin" component={Admin} />
             <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />

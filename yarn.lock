@@ -4374,6 +4374,11 @@ schema-utils@^2.6.5:
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
 
+seasalt@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/seasalt/-/seasalt-0.0.2.tgz#933803858524af704cc20975a285c2f6a67dccd0"
+  integrity sha512-OSd5077uqlXqV9uGpONiPGF4dPWjvUMOfQCqzz8Qr6gxfW4P4BZ174ADIb1oif/MwM2H2nKTmw0NzqZMrVaphg==
+
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"

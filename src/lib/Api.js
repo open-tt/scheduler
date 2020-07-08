@@ -54,6 +54,7 @@ class Api {
   createReservation = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS })
   getReservations = () => this.get({ url: ENDPOINTS.USER_RESERVATIONS }).then(res => res.reservations)
   getUser = (userId) => this.get({ url: `${ENDPOINTS.USERS}/${userId}`}).then(res => res.user)
+  updateUser = ({ id, ...data }) => this.put({ data, url: `${ENDPOINTS.USERS}/${id}`}).then(res => res.user)
 }
 
 export default Api

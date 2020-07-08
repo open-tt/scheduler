@@ -7,17 +7,20 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <header>
-        TT Scheduler
-
-        <div className="links">
-          {loggedIn && <Link to="/admin">Admin</Link>}
-          {loggedIn && <Link to="/reserve/1">Book</Link>}
-          {loggedIn && <Link to="/my-reservations">My Reservations</Link>}
-          {loggedIn && `logged in as ${context.state.user.name}`}
-          {loggedIn && <button onClick={context.unauthenticate}>log out</button>}
+      <header data-row>
+        <div data-col="4">
+          TT Scheduler
         </div>
+
+        {loggedIn && <div className="links" data-col="8">
+          <Link to="/admin">Admin</Link>
+          <Link to="/reserve/1">Book</Link>
+          <Link to="/my-reservations">My Reservations</Link>
+          <button onClick={context.unauthenticate} data-plain data-link>Logout</button>
+        </div>}
       </header>
+
+      <div data-row="2"></div>
 
       <main>
         {children}

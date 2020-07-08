@@ -59,54 +59,56 @@ const Login = withRouter(({ history }) => {
   }
 
   return (
-    <div>
-      <h1>{isNew ? 'Sign up' : 'Log in'}</h1>
-      <Form
-        onSubmit={onSubmit}
-        validate={validate}
-        render={({ handleSubmit, form }) => (
-          <form onSubmit={handleSubmit}>
-            {isNew && <FormField
-              label="Name"
-              autoComplete="name"
-              name={FIELD.NAME}
-              required={isNew}
-              type="text"
-            />}
+    <div data-row>
+      <div data-col="12">
+        <h1>{isNew ? 'Sign up' : 'Log in'}</h1>
+        <Form
+          onSubmit={onSubmit}
+          validate={validate}
+          render={({ handleSubmit, form }) => (
+            <form onSubmit={handleSubmit}>
+              {isNew && <FormField
+                label="Name"
+                autoComplete="name"
+                name={FIELD.NAME}
+                required={isNew}
+                type="text"
+              />}
 
-            <FormField
-              label="Email"
-              autoComplete="email"
-              name={FIELD.EMAIL}
-              required={true}
-              type="email"
-            />
+              <FormField
+                label="Email"
+                autoComplete="email"
+                name={FIELD.EMAIL}
+                required={true}
+                type="email"
+              />
 
-            <FormField
-              label="Password"
-              autoComplete={isNew ? 'new-password' : 'current-password'}
-              name={FIELD.PASSWORD}
-              required={true}
-              type="password"
-            />
+              <FormField
+                label="Password"
+                autoComplete={isNew ? 'new-password' : 'current-password'}
+                name={FIELD.PASSWORD}
+                required={true}
+                type="password"
+              />
 
-            {isNew && <FormField
-              label="Confirm Password"
-              autoComplete='off'
-              required={isNew}
-              name={FIELD.PASSWORD_CONFIRMATION}
-              type="password"
-            />}
+              {isNew && <FormField
+                label="Confirm Password"
+                autoComplete='off'
+                required={isNew}
+                name={FIELD.PASSWORD_CONFIRMATION}
+                type="password"
+              />}
 
-            <button onClick={handleSubmit}>Continue</button>
-          </form>
-        )}
-      />
+              <button onClick={handleSubmit}>Continue</button>
+            </form>
+          )}
+        />
 
-      <br />
+        <br />
 
-      {!isNew && <p>Don't have an account yet? <button data-plain onClick={() => setIsNew(true)}>Sign up</button></p>}
-      {isNew && <p>Already have an account? <button data-plain onClick={() => setIsNew(false)}>Log in</button></p>}
+        {!isNew && <p>Don't have an account yet? <button data-plain onClick={() => setIsNew(true)}>Sign up</button></p>}
+        {isNew && <p>Already have an account? <button data-plain onClick={() => setIsNew(false)}>Log in</button></p>}
+      </div>
     </div>
   )
 })

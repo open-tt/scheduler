@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import moment from 'moment'
+import Loading from 'Loading'
 import context from './lib/context';
 
 const now = Date.now()
@@ -41,7 +42,8 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
   }
 
   return (
-    <div className="sessions">
+    <div className="sessions" data-col="8">
+      <label className="instruction">Select Time(s)</label>
       {blocks.map((block, i) => {
         const isSelected = !!sessions[i]
         const toggleSession = () => {
@@ -50,12 +52,13 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
         }
 
         return (
-          <div key={i} className="session" data-selected={isSelected} onClick={toggleSession}>
-            <p>{block.start} - {block.end} ({block.availability} open spots)</p>
+          <div key={i} className="option session" data-available={block.availability > 0} data-selected={isSelected} onClick={toggleSession}>
+            {block.start} - {block.end} ({block.availability} open spots)
           </div>
         )
       })}
 
+      <br />
       <button onClick={bookSessions} disabled={!selectedBlocks.length}>Book Sessions</button>
     </div>
   )
@@ -81,7 +84,7 @@ const DayPicker = withRouter(({ match }) => {
   }, [club_id])
 
   if (loading) {
-    return 'Loading...'
+    return <Loading />
   }
 
   if (!club) {
@@ -96,19 +99,27 @@ const DayPicker = withRouter(({ match }) => {
   }
 
   return (
-    <div>
-      <h1>Book Table Time // Club {club.name}</h1>
-      <div className="day-picker">
-        <div className="days">
-          {schedule.map((d, i) => {
-            return (
-              <div key={i} className='day' data-selected={day === i} onClick={() => setDay(i)}>
-                <label>{d.name}, {d.date.month}-{d.date.day}</label>
-              </div>
-            )
-          })}
+    <div data-row>
+      <div data-col="12">
+        <h1>Book Table Time at {club.name}</h1>
+        <p>Make reservations up to 7 days in advance.</p>
+        <br />
+        <div className="schedule">
+          <div className="day-picker" data-col="4">
+            <label className="instruction">Select a day</label>
+            <div className="days">
+
+              {schedule.map((d, i) => {
+                return (
+                  <div key={i} className='option day' data-selected={day === i} onClick={() => setDay(i)}>
+                    {day=== i ? '> ' : ''}{d.name}, {d.date.month}-{d.date.day}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <SessionPicker key={day} {...selectedDay} club_id={club_id} />
         </div>
-        <SessionPicker key={day} {...selectedDay} club_id={club_id} />
       </div>
     </div>
   )
