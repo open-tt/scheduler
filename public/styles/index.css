@@ -3,7 +3,7 @@
 :root {
   --rem: 3.5vw;
   --row-height: 10px;
-  --row-margin: 2.5%;
+  --row-margin: 2.5vw;
   --column-count: 12;
   --gutter: 5px;
   --h1-font-size: 2rem;
@@ -46,12 +46,19 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* MIXINS */
 /* GRID */
-[data-row] {
-  display: flex;
-  width: calc(100% - (var(--row-margin) * 2));
+[data-page] {
+  width: calc(100vw - (var(--row-margin) * 2));
   max-width: var(--row-max-width);
   margin-left: auto;
   margin-right: auto;
+}
+
+[data-row] {
+  width: calc(100vw - (var(--row-margin) * 2));
+  max-width: var(--row-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
 }
 
 [data-row="1"] {
@@ -594,7 +601,6 @@ html {
 body {
   font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
   font-size: 4rem;
-  padding: 20px;
   margin: 0;
   letter-spacing: -0.02ch;
 }
@@ -683,6 +689,7 @@ button[disabled] {
 }
 
 input {
+  max-width: 100%;
   font-size: 4rem;
   padding: 4px 6px;
   border: none;

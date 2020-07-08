@@ -105,7 +105,7 @@ const DayPicker = withRouter(({ match }) => {
         <h1>Book Table Time</h1>
         <p>Make reservations up to 7 days in advance.</p>
         <br />
-        <div className="schedule">
+        <div className="schedule" data-row>
           <div className="day-picker" data-col="4">
             <label className="instruction">Select a day</label>
             <div className="days">

@@ -4374,10 +4374,10 @@ schema-utils@^2.6.5:
     ajv "^6.12.2"
     ajv-keywords "^3.4.1"
 
-seasalt@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/seasalt/-/seasalt-0.0.2.tgz#933803858524af704cc20975a285c2f6a67dccd0"
-  integrity sha512-OSd5077uqlXqV9uGpONiPGF4dPWjvUMOfQCqzz8Qr6gxfW4P4BZ174ADIb1oif/MwM2H2nKTmw0NzqZMrVaphg==
+seasalt@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/seasalt/-/seasalt-0.0.3.tgz#25a1a998a34817385aa82e61c3b11eb8f2192082"
+  integrity sha512-9CMA27wis0IreYEyYuvg6pvVIv8yNX0AJyk0sQYMyVQ1Lh2bOOHx/vyjJJYQh6UYE3OcjfoQHyfT6nRJu6hRFA==
 
 select-hose@^2.0.0:
   version "2.0.0"

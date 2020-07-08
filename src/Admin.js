@@ -46,84 +46,87 @@ const Admin = withRouter(({ history }) => {
         <h1>Admin Dashboard</h1>
         <br />
 
-        <Form
-          onSubmit={updateProfile}
-          // validate={validate}
-          render={({ handleSubmit, submitSucceeded }) => (
-            <form onSubmit={handleSubmit}>
-              <h2>Edit Profile</h2>
+        <div data-row>
+          <div data-col="5">
+            <Form
+              onSubmit={updateProfile}
+              // validate={validate}
+              render={({ handleSubmit, submitSucceeded }) => (
+                <form onSubmit={handleSubmit}>
+                  <h2>Edit Profile</h2>
 
-              <FormField
-                label="Name"
-                name="name"
-                type="text"
-                required={true}
-                defaultValue={user.name}
-              />
+                  <FormField
+                    label="Name"
+                    name="name"
+                    type="text"
+                    required={true}
+                    defaultValue={user.name}
+                  />
 
-              {submitSucceeded && <label>Success!</label>}
-              <button onClick={handleSubmit}>Update Profile</button>
-            </form>
-          )}
-        />
+                  {submitSucceeded && <label>Success!</label>}
+                  <button onClick={handleSubmit}>Update Profile</button>
+                </form>
+              )}
+            />
+          </div>
+          <div data-col="1" />
+          <div data-col="6">
+            <Form
+              onSubmit={updateScheduleConfig}
+              // validate={validate}
+              render={({ handleSubmit, submitSucceeded }) => (
+                <form onSubmit={handleSubmit}>
+                  <h2>Edit Schedule Settings</h2>
 
-        <br />
-        <br />
+                  <FormField
+                    label="Reservation Length (Minutes)"
+                    name="interval_size_in_minutes"
+                    type="number"
+                    step={30}
+                    min={30}
+                    max={120}
+                    defaultValue={config.interval_size_in_minutes}
+                  />
 
-        <Form
-          onSubmit={updateScheduleConfig}
-          // validate={validate}
-          render={({ handleSubmit, submitSucceeded }) => (
-            <form onSubmit={handleSubmit}>
-              <h2>Edit Schedule Settings</h2>
+                  <FormField
+                    label="Opening Time"
+                    name="day_start_time"
+                    type="time"
+                    defaultValue={config.day_start_time.split(' ')[1]}
+                  />
 
-              <FormField
-                label="Reservation Length (Minutes)"
-                name="interval_size_in_minutes"
-                type="number"
-                step={30}
-                min={30}
-                max={120}
-                defaultValue={config.interval_size_in_minutes}
-              />
+                  <FormField
+                    label="Closing Time"
+                    name="day_end_time"
+                    type="time"
+                    defaultValue={config.day_end_time.split(' ')[1]}
+                  />
 
-              <FormField
-                label="Opening Time"
-                name="day_start_time"
-                type="time"
-                defaultValue={config.day_start_time.split(' ')[1]}
-              />
+                  <FormField
+                    label="Maximum Capacity"
+                    name="availability_per_interval"
+                    type="number"
+                    step={1}
+                    min={2}
+                    defaultValue={config.availability_per_interval}
+                  />
 
-              <FormField
-                label="Closing Time"
-                name="day_end_time"
-                type="time"
-                defaultValue={config.day_end_time.split(' ')[1]}
-              />
+                  <FormField
+                    label="Price (per player, per reservation)"
+                    name="price_per_participant"
+                    type="number"
+                    step={1}
+                    min={0}
+                    defaultValue={config.price_per_participant}
+                  />
 
-              <FormField
-                label="Maximum Capacity"
-                name="availability_per_interval"
-                type="number"
-                step={1}
-                min={2}
-                defaultValue={config.availability_per_interval}
-              />
-
-              <FormField
-                label="Price (per player, per reservation)"
-                name="price_per_participant"
-                type="number"
-                step={1}
-                min={0}
-                defaultValue={config.price_per_participant}
-              />
-
-              {submitSucceeded && <label>Success!</label>}
-              <button onClick={handleSubmit}>Update Settings</button>
-            </form>
-          )}
-        />
+                  {submitSucceeded && <label>Success!</label>}
+                  <button onClick={handleSubmit}>Update Settings</button>
+                </form>
+              )}
+            />
+          </div>
+        </div>
       </div>
     </div>
   )
