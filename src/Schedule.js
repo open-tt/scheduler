@@ -110,9 +110,11 @@ const DayPicker = withRouter(({ match }) => {
             <div className="days">
 
               {schedule.map((d, i) => {
+                const abbrev = d.name.substr(0,3)
+
                 return (
                   <div key={i} className='option day' data-selected={day === i} onClick={() => setDay(i)}>
-                    {day=== i ? '> ' : ''}{d.name}, {d.date.month}-{d.date.day}
+                    {day=== i ? '> ' : ''}{abbrev}, {d.date.month}/{d.date.day}
                   </div>
                 )
               })}
