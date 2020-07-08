@@ -64,14 +64,21 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
   )
 })
 
+const getSubdomain = () => {
+  const { host } = window.location
+  const parts = host.split('.')
+  if (parts.length < 3) return undefined
+  return parts[0]
+}
+
 const DayPicker = withRouter(({ match }) => {
-  const { club_id } = match.params
   const [loading, setLoading] = useState(true)
   const [club, setClub] = useState()
   const [day, setDay] = useState(0)
   const { user } = context.state
 
   useEffect(() => {
+    const club_id = getSubdomain() || '1'
     if (!club_id) return
 
     context.api.getUser(club_id)
@@ -81,7 +88,7 @@ const DayPicker = withRouter(({ match }) => {
     .finally(() => {
       setLoading(false)
     })
-  }, [club_id])
+  }, [])
 
   if (loading) {
     return <Loading />
@@ -121,7 +128,7 @@ const DayPicker = withRouter(({ match }) => {
               })}
             </div>
           </div>
-          <SessionPicker key={day} {...selectedDay} club_id={club_id} />
+          <SessionPicker key={day} {...selectedDay} club_id={club.id} />
         </div>
       </div>
     </div>
