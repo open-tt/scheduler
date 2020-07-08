@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import context from './lib/context';
@@ -11,7 +11,7 @@ const toDatetime = ({ date, time }) => {
   return m.format('YYYY-MM-DD HH:mm')
 }
 
-const SessionPicker = withRouter(({ blocks, date, history }) => {
+const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
   const [sessions, setSessions] = useState({})
   const { month, day, year } = date
   const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
@@ -21,6 +21,7 @@ const SessionPicker = withRouter(({ blocks, date, history }) => {
 
     const promises = selectedBlocks.map(block => (
       context.api.createReservation({
+        club_id,
         "start_date": toDatetime({ date, time: block.start }),
         "end_date": toDatetime({ date, time: block.end }),
         "size": 1,
@@ -62,14 +63,34 @@ const SessionPicker = withRouter(({ blocks, date, history }) => {
   )
 })
 
-const DayPicker = () => {
+const DayPicker = withRouter(({ match }) => {
+  const { club_id } = match.params
+  const [loading, setLoading] = useState(true)
+  const [club, setClub] = useState()
   const [day, setDay] = useState(0)
   const { user } = context.state
 
-  const schedule = user.schedule || []
+  useEffect(() => {
+    if (!club_id) return
 
-  console.log(schedule)
+    context.api.getUser(club_id)
+    .then(club => {
+      setClub(club)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  }, [club_id])
 
+  if (loading) {
+    return 'Loading...'
+  }
+
+  if (!club) {
+    return 'No club found.'
+  }
+
+  const schedule = club.schedule || []
   const selectedDay = schedule[day]
 
   if (!selectedDay) {
@@ -78,7 +99,7 @@ const DayPicker = () => {
 
   return (
     <div>
-      <h1>Book Table Time</h1>
+      <h1>Book Table Time // Club {club.name}</h1>
       <div className="day-picker">
         <div className="days">
           {schedule.map((d, i) => {
@@ -89,10 +110,10 @@ const DayPicker = () => {
             )
           })}
         </div>
-        <SessionPicker key={day} {...selectedDay} />
+        <SessionPicker key={day} {...selectedDay} club_id={club_id} />
       </div>
     </div>
   )
-}
+})
 
 export default DayPicker

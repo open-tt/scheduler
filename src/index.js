@@ -31,10 +31,12 @@ const App = () => {
     <ContextProvider>
       <Router>
         <Layout>
-          <AuthenticatedRoute exact path="/" component={DayPicker} />
-          <Route exact path="/login" component={Login} />
-          <AuthenticatedRoute exact path="/admin" component={Admin} />
-          <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
+          <Switch>
+            <AuthenticatedRoute path="/reserve/:club_id" component={DayPicker} />
+            <Route exact path="/login" component={Login} />
+            <AuthenticatedRoute exact path="/admin" component={Admin} />
+            <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
+          </Switch>
         </Layout>
       </Router>
     </ContextProvider>

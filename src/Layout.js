@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
         <div className="links">
           {loggedIn && <Link to="/admin">Admin</Link>}
-          {loggedIn && <Link to="/">Book</Link>}
+          {loggedIn && <Link to="/reserve/1">Book</Link>}
           {loggedIn && <Link to="/my-reservations">My Reservations</Link>}
           {loggedIn && `logged in as ${context.state.user.name}`}
           {loggedIn && <button onClick={context.unauthenticate}>log out</button>}

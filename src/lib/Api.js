@@ -6,6 +6,7 @@ const ENDPOINTS = {
   REGISTER_USER: `${ROOT}/users/register`,
   AUTHENTICATE: `${ROOT}/authenticate`,
   GET_CURRENT_USER: `${ROOT}/users/current_user`,
+  USERS: `${ROOT}/users`,
   SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`,
   USER_RESERVATIONS: `${ROOT}/current_user/reservations`
 }
@@ -52,6 +53,7 @@ class Api {
   updateScheduleConfig = (data) => this.put({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
   createReservation = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS })
   getReservations = () => this.get({ url: ENDPOINTS.USER_RESERVATIONS }).then(res => res.reservations)
+  getUser = (userId) => this.get({ url: `${ENDPOINTS.USERS}/${userId}`}).then(res => res.user)
 }
 
 export default Api

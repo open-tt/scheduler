@@ -17,7 +17,7 @@ const FormField = ({ label, defaultValue, ...props }) => {
 }
 
 const Admin = () => {
-  const { api, user } = context
+  const { api, state: { user } } = context
   const [scheduleConfig, setScheduleConfig] = useState()
 
   useEffect(() => {
@@ -39,8 +39,15 @@ const Admin = () => {
     })
   }
 
+  if (!user) {
+    return 'Loading...'
+  }
+
   return (
     <div>
+      <h1>Admin // Club {user.name}</h1>
+      <br />
+
       <Form
         onSubmit={onSubmit}
         // validate={validate}
