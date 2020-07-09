@@ -78,8 +78,9 @@ const DayPicker = withRouter(({ match }) => {
   const { user } = context.state
 
   useEffect(() => {
-    const club_id = getSubdomain() || '1'
-    if (!club_id) return
+    const club_id = '1'
+    // const club_id = getSubdomain() || '1'
+    // if (!club_id) return
 
     context.api.getUser(club_id)
     .then(club => {
