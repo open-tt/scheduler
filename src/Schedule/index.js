@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import Loading from 'Loading'
-import context from './lib/context';
+import Reserve from './Reserve'
+import context from 'lib/context'
+import { CLUB_ID_BY_SUBDOMAIN } from '../lib/constants';
+import Blocks from '../Reservations';
 
 const now = Date.now()
 
@@ -12,33 +15,14 @@ const toDatetime = ({ date, time }) => {
   return m.format('YYYY-MM-DD HH:mm')
 }
 
-const SessionPicker = withRouter(({ blocks, date, history, club_id }) => {
+const SessionPicker = withRouter(({ blocks, date, history, club_id, onSelect }) => {
   const [sessions, setSessions] = useState({})
   const { month, day, year } = date
   const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
 
   const bookSessions = () => {
-    const promises = selectedBlocks.map(block => (
-      context.api.createReservation({
-        club_id,
-        "start_date": toDatetime({ date, time: block.start }),
-        "end_date": toDatetime({ date, time: block.end }),
-        "size": 1,
-        "reservation_type": "play",
-      })
-    ))
-
-    Promise.all(promises).then(() => {
-      console.log('Success!')
-      // Something here...
-    })
-    .catch((err) => {
-      // Something here...
-    })
-    .finally(() => {
-      setSessions({})
-      history.push('/my-reservations')
-    })
+    onSelect({ blocks: selectedBlocks })
+    return
   }
 
   return (
@@ -71,24 +55,23 @@ const getSubdomain = () => {
   return parts[0]
 }
 
-const DayPicker = withRouter(({ match }) => {
+const Schedule = withRouter(({ match }) => {
+  const [selectedBlocks, setSelectedBlocks] = useState([])
   const [loading, setLoading] = useState(true)
   const [club, setClub] = useState()
   const [day, setDay] = useState(0)
-  const { user } = context.state
 
   useEffect(() => {
-    const club_id = '1'
-    // const club_id = getSubdomain() || '1'
-    // if (!club_id) return
+    const sub = getSubdomain()
+    const club_id = CLUB_ID_BY_SUBDOMAIN[sub] || '1'
 
     context.api.getUser(club_id)
-    .then(club => {
-      setClub(club)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
+      .then(club => {
+        setClub(club)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }, [])
 
   if (loading) {
@@ -106,6 +89,17 @@ const DayPicker = withRouter(({ match }) => {
     return 'No days available.'
   }
 
+  const handleBooking = ({ blocks }) => {
+    setSelectedBlocks(blocks)
+  }
+
+  if (!!selectedBlocks.length) {
+    // if (true) {
+    return (
+      <Reserve blocks={selectedBlocks} date={selectedDay.date} club={club} />
+    )
+  }
+
   return (
     <div data-row>
       <div data-col="12">
@@ -119,21 +113,21 @@ const DayPicker = withRouter(({ match }) => {
             <div className="days">
 
               {schedule.map((d, i) => {
-                const abbrev = d.name.substr(0,3)
+                const abbrev = d.name.substr(0, 3)
 
                 return (
                   <div key={i} className='option day' data-selected={day === i} onClick={() => setDay(i)}>
-                    {day=== i ? '> ' : ''}{abbrev}, {d.date.month}/{d.date.day}
+                    {day === i ? '> ' : ''}{abbrev}, {d.date.month}/{d.date.day}
                   </div>
                 )
               })}
             </div>
           </div>
-          <SessionPicker key={day} {...selectedDay} club_id={club.id} />
+          <SessionPicker key={day} {...selectedDay} club_id={club.id} onSelect={handleBooking} />
         </div>
       </div>
     </div>
   )
 })
 
-export default DayPicker
+export default Schedule

@@ -41,7 +41,7 @@ const App = () => {
             <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
           </Switch>
         </Layout>
-        </ContextProvider>
+      </ContextProvider>
     </Router>
   )
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import Reservations from './Reservations'
 import context from 'lib/context'
 
 const formatDateRange = ({ start_date, end_date }) => {
@@ -39,20 +40,6 @@ const getRanges = (reservations) => {
   }))
 }
 
-const Reservations = ({ reservations }) => {
-  return (
-    <>
-      {reservations.map(({ id, start_date, end_date, size, club }) => {
-        return (
-          <div key={id} className="reservation">
-            <label>{formatDateRange({ start_date, end_date })} ({size} {size > 1 ? 'people' : 'person'})</label>
-          </div>
-        )
-      })}
-    </>
-  )
-}
-
 const MyReservations = () => {
   const [reservations, setReservations] = useState([])
 
@@ -63,21 +50,14 @@ const MyReservations = () => {
       })
   }, [])
 
-  const reservationsByDay = {}
-  const activeKeys = {}
-
-  reservations.forEach((res) => {
+  const isCurrent = res => {
     const { start_date } = res
     const start = moment(start_date)
-    const startDay = start.format('dddd, MMMM Do YYYY')
-    const key = `${startDay} • ${res.club.name}`
-    activeKeys[key] = start.format('YYYY-MM-DD') >= moment().format('YYYY-MM-DD')
-    reservationsByDay[key] = reservationsByDay[key] || []
-    reservationsByDay[key].push(res)
-  })
+    return start.format('YYYY-MM-DD') >= moment().format('YYYY-MM-DD')
+  }
 
-  const currentReservations = Object.keys(reservationsByDay).filter(day => activeKeys[day])
-  const pastReservations = Object.keys(reservationsByDay).filter(day => !activeKeys[day])
+  const currentReservations = reservations.filter(r => isCurrent(r))
+  const pastReservations = reservations.filter(r => !isCurrent(r))
 
   return (
     <div data-row>
@@ -86,28 +66,18 @@ const MyReservations = () => {
         <h1>My Reservations</h1>
         <br />
         {!reservations.length && 'No reservations.'}
-        {currentReservations.map(day => {
-          const all = reservationsByDay[day]
+        <Reservations reservations={currentReservations} />
 
-          return (
-            <div key={day} className="reservations-day">
-              <p>{day}</p>
-              <Reservations reservations={all} />
-            </div>
-          )
-        })}
-
-        {!!pastReservations.length && <p>Past Reservations</p>}
-        {pastReservations.map(day => {
-          const all = reservationsByDay[day]
-
-          return (
-            <div key={day} className="reservations-day">
-              <p>{day}</p>
-              <Reservations reservations={all} />
-            </div>
-          )
-        })}
+        {!!pastReservations.length && (
+          <>
+            <br />
+            <br />
+            <label>Past Reservations</label>
+            <br />
+            <br />
+            <Reservations reservations={pastReservations} reverse />
+          </>
+        )}
       </div>
     </div>
   )

@@ -10,6 +10,8 @@
     "dev": "webpack-dev-server & sass --watch ./src/styles/index.scss ./public/styles/index.css"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0",
     "axios": "^0.19.2",
     "babel-polyfill": "^6.26.0",
     "container": "^0.0.2",

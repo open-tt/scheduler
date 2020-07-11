@@ -42,8 +42,8 @@ class Context extends Container {
       if (!user.schedule) {
         return this.api.createScheduleConfig(DEFAULT_SCHEDULE_CONFIG)
       }
-    } catch(err) {
-      // this.unauthenticate()
+    } catch (err) {
+      this.unauthenticate()
     }
   }
 
