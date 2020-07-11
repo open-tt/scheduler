@@ -655,6 +655,10 @@ p {
   margin: 0;
 }
 
+[data-p3] {
+  font-size: 3.3rem;
+}
+
 a, [data-link] {
   display: inline-block;
   font-size: inherit;
