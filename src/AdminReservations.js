@@ -24,6 +24,9 @@ const ReservationsTable = ({ reservations }) => {
         <div data-col="4">
           Name
         </div>
+        <div data-col="2">
+          Payment Info
+        </div>
       </div>
       <br />
 
@@ -44,6 +47,9 @@ const ReservationsTable = ({ reservations }) => {
             </div>
             <div data-col="4">
               {user.name}
+            </div>
+            <div data-col="2">
+              ???
             </div>
           </div>
         )
@@ -72,9 +78,12 @@ const AdminReservations = withRouter(({ history }) => {
     <div data-row>
       <div data-col="12">
         <h3>{user.name}</h3>
-        <h1>Club Reservations</h1>
+        <h1>Admin Dashboard</h1>
         <Link to="/admin">Edit Club Settings</Link>
         <br />
+        <br />
+
+        <h2>All Reservations</h2>
         <br />
 
         <div data-row>
