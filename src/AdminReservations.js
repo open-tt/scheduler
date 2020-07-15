@@ -1,11 +1,56 @@
 import React, { useState, useEffect } from 'react'
+import moment from 'moment'
 import { Form, Field } from 'react-final-form'
 import { withRouter, Link } from 'react-router-dom'
 import FormField from './form/FormField'
 import Loading from 'Loading'
 import context from 'lib/context'
 import { DEFAULT_SCHEDULE_CONFIG } from './lib/constants'
-import Reservations from './Reservations';
+import Reservations from './Reservations'
+
+const ReservationsTable = ({ reservations }) => {
+  return (
+    <div>
+      <div data-row>
+        <div data-col="2">
+          Date
+        </div>
+        <div data-col="2">
+          Start Time
+        </div>
+        <div data-col="2">
+          End Time
+        </div>
+        <div data-col="4">
+          Name
+        </div>
+      </div>
+      <br />
+
+      {reservations.map(({ id, start_date, end_date, user }) => {
+        const startM = moment(start_date)
+        const endM = moment(end_date)
+
+        return (
+          <div key={id} data-row>
+            <div data-col="2">
+              {startM.format('YYYY-MM-DD')}
+            </div>
+            <div data-col="2">
+              {startM.format('h:mm a')}
+            </div>
+            <div data-col="2">
+              {endM.format('h:mm a')}
+            </div>
+            <div data-col="4">
+              {user.name}
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 const AdminReservations = withRouter(({ history }) => {
   const { api, state: { user } } = context
@@ -34,7 +79,7 @@ const AdminReservations = withRouter(({ history }) => {
 
         <div data-row>
           <div data-col="12">
-            <Reservations reservations={reservations} />
+            <ReservationsTable reservations={reservations} />
           </div>
         </div>
       </div>
