@@ -34,7 +34,6 @@ class Context extends Container {
     window.localStorage.setItem('auth_token', auth_token)
 
     await this.setState({ auth_token })
-    console.log('DONE')
 
     try {
       const user = await this.api.getCurrentUser()

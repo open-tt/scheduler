@@ -35,7 +35,7 @@ const App = () => {
         <Layout>
           <Switch>
             <AuthenticatedRoute exact path="/" component={MyReservations} />
-            <AuthenticatedRoute path="/reserve" component={Schedule} />
+            <AuthenticatedRoute path="/reserve/:clubId" component={Schedule} />
             <Route exact path="/login" component={Login} />
             <AuthenticatedRoute exact path="/admin" component={Admin} />
             <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />

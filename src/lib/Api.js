@@ -8,7 +8,8 @@ const ENDPOINTS = {
   GET_CURRENT_USER: `${ROOT}/users/current_user`,
   USERS: `${ROOT}/users`,
   SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`,
-  USER_RESERVATIONS: `${ROOT}/current_user/reservations`
+  USER_RESERVATIONS: `${ROOT}/current_user/reservations`,
+  USER_RESERVATIONS_BATCH: `${ROOT}/current_user/reservations/batch`
 }
 
 class Api {
@@ -52,9 +53,10 @@ class Api {
   getScheduleConfig = () => this.get({ url: ENDPOINTS.SCHEDULE_CONFIG }).then(res => res.schedule_config)
   updateScheduleConfig = (data) => this.put({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
   createReservation = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS })
+  createReservations = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS_BATCH })
   getReservations = () => this.get({ url: ENDPOINTS.USER_RESERVATIONS }).then(res => res.reservations)
-  getUser = (userId) => this.get({ url: `${ENDPOINTS.USERS}/${userId}`}).then(res => res.user)
-  updateUser = ({ id, ...data }) => this.put({ data, url: `${ENDPOINTS.USERS}/${id}`}).then(res => res.user)
+  getUser = (userId) => this.get({ url: `${ENDPOINTS.USERS}/${userId}` }).then(res => res.user)
+  updateUser = ({ id, ...data }) => this.put({ data, url: `${ENDPOINTS.USERS}/${id}` }).then(res => res.user)
 }
 
 export default Api

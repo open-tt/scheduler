@@ -2,7 +2,8 @@ import React from 'react'
 import moment from 'moment'
 import context from 'lib/context'
 import { withRouter } from 'react-router-dom'
-import { Form, Field, FORM_ERROR } from 'react-final-form'
+import { Form } from 'react-final-form'
+import { FORM_ERROR } from 'final-form'
 import { CardElement, useStripe, useElements, Elements } from '@stripe/react-stripe-js'
 import { loadStripe } from '@stripe/stripe-js'
 
@@ -22,63 +23,48 @@ const CheckoutForm = withRouter(({ history, reservations, amountInCents }) => {
   const onSubmit = async (values) => {
     if (!stripe || !elements) {
       console.error('Cannot process.')
-      return
+      return { [FORM_ERROR]: 'Could not connect to payment provider. Please refresh.' }
     }
 
-    const paymentIntent = {
-      client_secret: 'ahhh'
+    try {
+      const { error, token } = await stripe.createToken(elements.getElement(CardElement))
+
+      if (error) {
+        console.error('Could not create card token.', error)
+        return { [FORM_ERROR]: error.message }
+      }
+
+      context.api.createReservations({
+        reservations,
+        cc_token: token
+      })
+        .then(async () => {
+          history.push('/my-reservations')
+        })
+        .catch((err) => {
+          console.error('Could not complete reservations.', error)
+          return { [FORM_ERROR]: err.message }
+        })
+    } catch (stripeError) {
+      console.error('Could not connect to Stripe.', stripeError)
+      return { [FORM_ERROR]: stripeError.message }
     }
-    const promises = reservations.map(res => context.api.createReservation(res))
-
-    Promise.all(promises)
-      .then(async () => {
-        console.log('Reservations saved, trying to process payment.')
-        console.log('PROCESSING PAYMENT')
-
-        // const result = await stripe.confirmCardPayment(paymentIntent.client_secret, {
-        //   payment_method: {
-        //     card: elements.getElement(CardElement),
-        //     billing_details: {
-        //       name: 'Jenny Rosen',
-        //     },
-        //   }
-        // })
-
-        // if (result.error) {
-        //   // Show error to your customer (e.g., insufficient funds)
-        //   console.log(result.error.message)
-
-        //   // DELETE RESERVATIONS
-        //   return
-        // }
-
-        // if (result.paymentIntent.status === 'succeeded') {
-        //   // UPDATE RESERVATIONS
-        //   // Show success
-        // }
-
-        history.push('/my-reservations')
-      })
-      .catch((err) => {
-        // Something here...
-      })
-      .finally(() => {
-      })
   }
 
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, form }) => (
+      render={({ handleSubmit, form, submitError }) => (
         <form onSubmit={handleSubmit}>
+          <label>Test Card: 4242-4242-4242-4242 w/ any valid date</label>
           <CardSection />
+          <label data-error>{submitError}</label><br />
           <button disabled={!stripe}>Confirm order</button>
         </form>
       )}
     />
   )
 })
-
 
 const stripePromise = loadStripe("pk_test_aggmgLA6W1bMgAD9bVfscNyL")
 

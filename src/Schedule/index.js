@@ -63,7 +63,8 @@ const Schedule = withRouter(({ match }) => {
 
   useEffect(() => {
     const sub = getSubdomain()
-    const club_id = CLUB_ID_BY_SUBDOMAIN[sub] || '1'
+    const que = match.params.clubId
+    const club_id = CLUB_ID_BY_SUBDOMAIN[sub] || que || '1'
 
     context.api.getUser(club_id)
       .then(club => {

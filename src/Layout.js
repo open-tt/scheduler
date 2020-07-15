@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom'
 import context from 'lib/context'
 
 const Layout = ({ children }) => {
-  const loggedIn = !!context.state.user
+  const { user } = context.state
+  const loggedIn = !!user
 
   return (
     <>
@@ -16,7 +17,8 @@ const Layout = ({ children }) => {
 
           {loggedIn && <div className="links" data-col="8">
             <Link to="/admin">Admin</Link>
-            <Link to="/reserve">Book</Link>
+            <Link to="/reserve/1">Book (Test Club)</Link>
+            <Link to={`/reserve/${user.id}`}>Book (My Club)</Link>
             <Link to="/my-reservations">My Reservations</Link>
             <button onClick={context.unauthenticate} data-plain data-link>Logout</button>
           </div>}
