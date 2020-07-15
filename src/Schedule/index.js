@@ -73,7 +73,7 @@ const Schedule = withRouter(({ match }) => {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [match.params.clubId])
 
   if (loading) {
     return <Loading />
