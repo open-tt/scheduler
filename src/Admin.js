@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Field } from 'react-final-form'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import FormField from './form/FormField'
 import Loading from 'Loading'
 import context from 'lib/context'
@@ -174,6 +174,8 @@ const Admin = withRouter(({ history }) => {
       <div data-col="12">
         <h3>{user.name}</h3>
         <h1>Admin Dashboard</h1>
+        <Link to="/admin/reservations">View all club reservations</Link>
+        <br />
         <br />
 
         <div data-row>

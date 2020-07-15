@@ -15,6 +15,7 @@ import Admin from './Admin'
 import Loading from 'Loading'
 import MyReservations from './MyReservations'
 import context, { ContextProvider } from './lib/context'
+import AdminReservations from './AdminReservations'
 
 const AuthenticatedRoute = (props) => {
   if (context.state.auth_token) {
@@ -37,8 +38,9 @@ const App = () => {
             <AuthenticatedRoute exact path="/" component={MyReservations} />
             <AuthenticatedRoute path="/reserve/:clubId" component={Schedule} />
             <Route exact path="/login" component={Login} />
-            <AuthenticatedRoute exact path="/admin" component={Admin} />
             <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
+            <AuthenticatedRoute exact path="/admin" component={Admin} />
+            <AuthenticatedRoute exact path="/admin/reservations" component={AdminReservations} />
           </Switch>
         </Layout>
       </ContextProvider>

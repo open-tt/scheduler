@@ -9,7 +9,8 @@ const ENDPOINTS = {
   USERS: `${ROOT}/users`,
   SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`,
   USER_RESERVATIONS: `${ROOT}/current_user/reservations`,
-  USER_RESERVATIONS_BATCH: `${ROOT}/current_user/reservations/batch`
+  USER_RESERVATIONS_BATCH: `${ROOT}/current_user/reservations/batch`,
+  RESERVATIONS: `${ROOT}/reservations`
 }
 
 class Api {
@@ -54,7 +55,8 @@ class Api {
   updateScheduleConfig = (data) => this.put({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
   createReservation = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS })
   createReservations = (data) => this.post({ data, url: ENDPOINTS.USER_RESERVATIONS_BATCH })
-  getReservations = () => this.get({ url: ENDPOINTS.USER_RESERVATIONS }).then(res => res.reservations)
+  getMyReservations = () => this.get({ url: ENDPOINTS.USER_RESERVATIONS }).then(res => res.reservations)
+  getReservations = ({ club_id }) => this.get({ url: `${ENDPOINTS.RESERVATIONS}?club_id=${club_id}` }).then(res => res.reservations)
   getUser = (userId) => this.get({ url: `${ENDPOINTS.USERS}/${userId}` }).then(res => res.user)
   updateUser = ({ id, ...data }) => this.put({ data, url: `${ENDPOINTS.USERS}/${id}` }).then(res => res.user)
 }

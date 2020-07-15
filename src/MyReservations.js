@@ -44,7 +44,7 @@ const MyReservations = () => {
   const [reservations, setReservations] = useState([])
 
   useEffect(() => {
-    context.api.getReservations()
+    context.api.getMyReservations()
       .then(data => {
         setReservations(data)
       })
