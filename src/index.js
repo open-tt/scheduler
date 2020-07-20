@@ -16,6 +16,7 @@ import Loading from 'Loading'
 import MyReservations from './MyReservations'
 import context, { ContextProvider } from './lib/context'
 import AdminReservations from './AdminReservations'
+import { ViewportProvider } from './useViewport';
 
 const AuthenticatedRoute = (props) => {
   if (context.state.auth_token) {
@@ -32,18 +33,20 @@ const AuthenticatedRoute = (props) => {
 const App = () => {
   return (
     <Router>
-      <ContextProvider>
-        <Layout>
-          <Switch>
-            <AuthenticatedRoute exact path="/" component={MyReservations} />
-            <AuthenticatedRoute path="/reserve/:clubId" component={Schedule} />
-            <Route exact path="/login" component={Login} />
-            <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
-            <AuthenticatedRoute exact path="/admin" component={Admin} />
-            <AuthenticatedRoute exact path="/admin/reservations" component={AdminReservations} />
-          </Switch>
-        </Layout>
-      </ContextProvider>
+      <ViewportProvider>
+        <ContextProvider>
+          <Layout>
+            <Switch>
+              <AuthenticatedRoute exact path="/" component={MyReservations} />
+              <AuthenticatedRoute path="/reserve/:clubId" component={Schedule} />
+              <Route exact path="/login" component={Login} />
+              <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
+              <AuthenticatedRoute exact path="/admin" component={Admin} />
+              <AuthenticatedRoute exact path="/admin/reservations" component={AdminReservations} />
+            </Switch>
+          </Layout>
+        </ContextProvider>
+      </ViewportProvider>
     </Router>
   )
 }

@@ -4,6 +4,7 @@ import moment from 'moment'
 const formatDateRange = ({ start_date, end_date }) => {
   const startM = moment(start_date)
   const endM = moment(end_date)
+  console.log(startM)
   return `${startM.format('h:mm a')} - ${endM.format('h:mm a')}`
 }
 

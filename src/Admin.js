@@ -5,6 +5,7 @@ import FormField from './form/FormField'
 import Loading from 'Loading'
 import context from 'lib/context'
 import { DEFAULT_SCHEDULE_CONFIG } from './lib/constants'
+import useViewport from './useViewport';
 
 const ProfileForm = () => {
   const { api, state: { user } } = context
@@ -164,6 +165,9 @@ const ScheduleConfigForm = () => {
 
 const Admin = withRouter(({ history }) => {
   const { api, state: { user } } = context
+  const { vw, vh } = useViewport()
+
+  const collapse = vw < 768
 
   if (!user) {
     return <Loading />
@@ -178,19 +182,29 @@ const Admin = withRouter(({ history }) => {
         <br />
         <br />
 
-        <div data-row>
-          <div data-col="5">
+        {collapse ? (
+          <>
             <ProfileForm />
-            <div data-row="2" />
+            <div data-row="3" />
             <PaymentConfigForm />
-          </div>
-          <div data-col="1" />
-          <div data-col="6">
+            <div data-row="3" />
             <ScheduleConfigForm />
-          </div>
-        </div>
+          </>
+        ) : (
+            <div data-row>
+              <div data-col='5'>
+                <ProfileForm />
+                <div data-row="2" />
+                <PaymentConfigForm />
+              </div>
+              <div data-col="1" />
+              <div data-col='6'>
+                <ScheduleConfigForm />
+              </div>
+            </div>
+          )}
       </div>
-    </div>
+    </div >
   )
 })
 

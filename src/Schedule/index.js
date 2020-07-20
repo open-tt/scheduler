@@ -37,13 +37,20 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id, onSelect }) 
 
         return (
           <div key={i} className="option session" data-available={block.availability > 0} data-selected={isSelected} onClick={toggleSession}>
-            {block.start} - {block.end} ({block.availability} open spots)
+            <label>{block.start} - {block.end}</label>
+            {!!block.availability && (
+              <label className="availability">
+                {block.availability} open
+              </label>
+            )}
           </div>
         )
       })}
 
       <br />
-      <button onClick={bookSessions} disabled={!selectedBlocks.length}>Book Sessions</button>
+      <button onClick={bookSessions} disabled={!selectedBlocks.length}>
+        Book {selectedBlocks.length} Session{selectedBlocks.length === 1 ? '' : 's'}
+      </button>
     </div>
   )
 })
@@ -94,10 +101,12 @@ const Schedule = withRouter(({ match }) => {
     setSelectedBlocks(blocks)
   }
 
+  const onCancel = () => setSelectedBlocks([])
+
   if (!!selectedBlocks.length) {
     // if (true) {
     return (
-      <Reserve blocks={selectedBlocks} date={selectedDay.date} club={club} />
+      <Reserve onCancel={onCancel} blocks={selectedBlocks} date={selectedDay.date} club={club} />
     )
   }
 
@@ -118,7 +127,7 @@ const Schedule = withRouter(({ match }) => {
 
                 return (
                   <div key={i} className='option day' data-selected={day === i} onClick={() => setDay(i)}>
-                    {day === i ? '> ' : ''}{abbrev}, {d.date.month}/{d.date.day}
+                    <label>{abbrev} {d.date.month}/{d.date.day}</label>
                   </div>
                 )
               })}
