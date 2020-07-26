@@ -27,7 +27,7 @@ const SessionPicker = withRouter(({ blocks, date, history, club_id, onSelect }) 
 
   return (
     <div className="sessions" data-col="8">
-      <label className="instruction">Select Time(s)</label>
+      <label className="instruction" data-faded>Select Time(s)</label>
       {blocks.map((block, i) => {
         const isSelected = !!sessions[i]
         const toggleSession = () => {
@@ -119,7 +119,7 @@ const Schedule = withRouter(({ match }) => {
         <br />
         <div className="schedule" data-row>
           <div className="day-picker" data-col="4">
-            <label className="instruction">Select a day</label>
+            <label className="instruction" data-faded>Select a day</label>
             <div className="days">
 
               {schedule.map((d, i) => {

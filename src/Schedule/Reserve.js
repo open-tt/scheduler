@@ -56,8 +56,8 @@ const CheckoutForm = withRouter(({ history, reservations, amountInCents }) => {
     <Form
       onSubmit={onSubmit}
       render={({ handleSubmit, form, submitError }) => (
-        <form onSubmit={handleSubmit}>
-          <label>Test Card: 4242-4242-4242-4242 w/ any valid date</label>
+        <form onSubmit={handleSubmit} className="StripeForm">
+          <label>Test Card: 4242-4242-4242-4242</label>
           <CardSection />
           <label data-error>{submitError}</label><br />
           <button disabled={!stripe}>Confirm order</button>
@@ -86,39 +86,45 @@ const Reserve = ({ blocks, date, club, onCancel }) => {
 
   return (
     <div>
-      <h1>Confirm Reservations</h1>
-      <label onClick={onCancel}>Edit Selection</label>
-      <div data-row="2" />
+      <div data-row>
+        <div data-col="12">
+          <h1>Confirm Reservations</h1>
+          <label onClick={onCancel}>{'<< Back'}</label>
+          <div data-row="2" />
+        </div>
+      </div>
 
       {collapse ?
         (
-          <>
-            <label>Selected Reservations</label>
-            <Reservations reservations={reservations} />
-            <label>Reservations For</label>
-            <p>{context.state.user.name}</p>
-            <p>{context.state.user.email}</p>
-            <div data-row="2" />
-            <label>Total Due</label>
-            <p>${(amountInCents / 100).toFixed(2)}</p>
-            <div data-row="2" />
-            <Elements stripe={stripePromise}>
-              <CheckoutForm reservations={reservations} amountInCents={amountInCents} />
-            </Elements>
-          </>
+          <div data-row>
+            <div data-col="12">
+              <label data-faded>Selected Reservations</label>
+              <Reservations reservations={reservations} />
+              <label data-faded>Reservations For</label>
+              <p>{context.state.user.name}</p>
+              <p>{context.state.user.email}</p>
+              <div data-row="2" />
+              <label data-faded>Total Due</label>
+              <p>${(amountInCents / 100).toFixed(2)}</p>
+              <div data-row="2" />
+              <Elements stripe={stripePromise}>
+                <CheckoutForm reservations={reservations} amountInCents={amountInCents} />
+              </Elements>
+            </div>
+          </div>
         )
         : (
           <div data-row>
             <div data-col="6">
-              <label>Selected Reservations</label>
+              <label data-faded>Selected Reservations</label>
               <Reservations reservations={reservations} />
             </div>
             <div data-col="6">
-              <label>Reservations For</label>
+              <label data-faded>Reservations For</label>
               <p>{context.state.user.name}</p>
               <p>{context.state.user.email}</p>
               <div data-row="2" />
-              <label>Total Due</label>
+              <label data-faded>Total Due</label>
               <p>${(amountInCents / 100).toFixed(2)}</p>
               <div data-row="2" />
               <Elements stripe={stripePromise}>

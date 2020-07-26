@@ -1,7 +1,25 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import context from 'lib/context'
 import IconOpenTT from './icons/OpenTT';
+
+const MenuLink = withRouter(({ location, children, to = '#', onClick }) => {
+  const isActive = location.pathname === to
+
+  return (
+    <Link
+      to={to}
+      onClick={onClick}
+      className="menu-link"
+      data-active={isActive}
+      tabIndex={isActive ? -1 : ''}
+    >
+      <label>
+        {children}
+      </label>
+    </Link>
+  )
+})
 
 const Menu = () => {
   const [open, setOpen] = useState(false)
@@ -15,25 +33,28 @@ const Menu = () => {
     close()
   }
 
-  if (!open) {
-    return (
-      <button data-plain onClick={() => setOpen(true)}>
-        menu
-      </button>
-    )
+  const toggleMenu = () => {
+    setOpen(!open)
   }
 
   return (
-    <div className="menu inner" data-row>
-      <div className="close" onClick={close}>X</div>
-      {loggedIn && <div className="links">
-        <Link onClick={close} to="/admin">Admin</Link>
-        <Link onClick={close} to="/reserve/1">Book (Test Club)</Link>
-        <Link onClick={close} to={`/reserve/${user.id}`}>Book (My Club)</Link>
-        <Link onClick={close} to="/my-reservations">My Reservations</Link>
-        <button onClick={logout} data-plain data-link>Logout</button>
-      </div>}
-    </div>
+    <>
+      <button className="menu-toggle" data-plain onClick={toggleMenu} data-open={open}>
+        <div className="bar" />
+        <div className="bar" />
+        <div className="bar" />
+      </button>
+      <div className="menu-overlay" onClick={close} data-open={open} />
+      <div className="menu inner" data-row data-open={open}>
+        {loggedIn && <div className="links">
+          <MenuLink onClick={close} to="/admin">Admin</MenuLink>
+          <MenuLink onClick={close} to="/reserve/1">Book (Test Club)</MenuLink>
+          <MenuLink onClick={close} to={`/reserve/${user.id}`}>Book (My Club)</MenuLink>
+          <MenuLink onClick={close} to="/my-reservations">My Reservations</MenuLink>
+          <MenuLink onClick={logout} data-plain data-link>Logout</MenuLink>
+        </div>}
+      </div>
+    </>
   )
 }
 
@@ -54,13 +75,16 @@ const Layout = ({ children }) => {
 
             <Menu />
           </div>
+          <div data-row="2"></div>
         </header>
 
-        <div data-row="2"></div>
-
         <main data-page>
-          {children}
-          <div data-row="5"></div>
+          {/* scrollable exists just so the scrollbar can have a litle space */}
+          <div className="scrollable">
+            <div data-row="2"></div>
+            {children}
+            <div data-row="5"></div>
+          </div>
         </main>
       </div>
     </>

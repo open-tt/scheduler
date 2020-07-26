@@ -17,6 +17,7 @@
     "container": "^0.0.2",
     "final-form": "^4.20.1",
     "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-final-form": "^6.5.0",

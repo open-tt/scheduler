@@ -5,7 +5,7 @@ const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
       color: "#32325d",
-      fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+      fontFamily: '"Source Sans Pro", Arial, Helvetica, sans-serif',
       fontSmoothing: "antialiased",
       fontSize: "16px",
       "::placeholder": {
@@ -22,10 +22,10 @@ const CARD_ELEMENT_OPTIONS = {
 const CardSection = () => {
   return (
     <div className="form-field">
-      <label>
-        Payment details (Not yet working)
-        <CardElement options={CARD_ELEMENT_OPTIONS} />
+      <label data-faded>
+        Payment details
       </label>
+      <CardElement options={CARD_ELEMENT_OPTIONS} />
     </div>
   )
 }

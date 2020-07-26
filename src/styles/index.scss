@@ -4,6 +4,7 @@
 @import './form.scss';
 @import './schedule.scss';
 @import './my-reservations.scss';
+@import './layout.scss';
 
 :root {
   --row-margin: 30px;
@@ -27,6 +28,11 @@ body {
   letter-spacing: -0.02ch;
   background: linear-gradient(var(--color-1), var(--color-2));
   overflow: hidden;
+  width: 100%;
+}
+
+*:focus {
+  outline: var(--color-1) dotted 1px;
 }
 
 h1 {
@@ -67,35 +73,6 @@ a, [data-link] {
   border-bottom: 1px solid currentColor;
 }
 
-header {
-  align-items: center;
-  margin-bottom: 10px;
-
-  .header-inner {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .logo {
-    display: flex;
-    align-items: flex-end;
-
-    svg {
-      height: 6rem;
-    }
-
-    label {
-      display: inline-block;
-      background: #00adff;
-      padding: 2px 5px;
-      color: white;
-      margin-left: 2rem;
-      margin-bottom: 0.3rem;
-      font-size: 2.6rem;
-    }
-  }
-}
-
 label {
   font-size: 3.2rem;
   font-weight: bold;
@@ -104,6 +81,10 @@ label {
 
   &[data-error] {
     color: red;
+  }
+
+  &[data-faded] {
+    color: var(--color-1);
   }
 }
 
@@ -121,7 +102,6 @@ button {
     background: transparent;
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid currentColor;
     color: inherit;
     font-size: inherit;
     font-weight: inherit;
@@ -143,47 +123,4 @@ input {
   border: none;
   box-sizing: border-box;
   border: 1px solid black;
-}
-
-.inner {
-  background: white;
-  flex-direction: column;
-  border: calc(var(--row-margin) / 2) solid white;
-  border-bottom: none;
-  border-radius: 10px;
-  height: calc(100vh - var(--row-margin) * 1.5);
-  box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
-  margin: calc(var(--row-margin) / 2) auto;
-}
-
-main {
-  overflow: scroll;
-}
-
-.menu {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-
-  .links {
-    display: flex;
-    flex-direction: column;
-    margin-top: 40px;
-
-    a, button {
-      display: block;
-      margin: 10px auto;
-    }
-  }
-
-  .close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    margin: -10px;
-  }
 }

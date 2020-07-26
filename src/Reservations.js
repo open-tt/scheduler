@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 const formatDateRange = ({ start_date, end_date }) => {
   const startM = moment(start_date)
   const endM = moment(end_date)
-  console.log(startM)
-  return `${startM.format('h:mm a')} - ${endM.format('h:mm a')}`
+  console.log(start_date, startM)
+  return `${startM.tz('America/New_York').format('h:mm a')} - ${endM.format('h:mm a')}`
 }
 
 const Reservation = ({ start, end, availability }) => {

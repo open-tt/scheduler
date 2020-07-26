@@ -5,7 +5,7 @@ const ROOT = 'https://nameless-spire-32644.herokuapp.com'
 const ENDPOINTS = {
   REGISTER_USER: `${ROOT}/users/register`,
   AUTHENTICATE: `${ROOT}/authenticate`,
-  GET_CURRENT_USER: `${ROOT}/users/current_user`,
+  CURRENT_USER: `${ROOT}/users/current_user`,
   USERS: `${ROOT}/users`,
   SCHEDULE_CONFIG: `${ROOT}/current_user/scheduleConfigs`,
   USER_RESERVATIONS: `${ROOT}/current_user/reservations`,
@@ -49,7 +49,7 @@ class Api {
 
   registerUser = (data) => this.post({ data, url: ENDPOINTS.REGISTER_USER })
   authenticate = (data) => this.post({ data, url: ENDPOINTS.AUTHENTICATE })
-  getCurrentUser = () => this.get({ url: ENDPOINTS.GET_CURRENT_USER }).then(res => res.user)
+  getCurrentUser = () => this.get({ url: ENDPOINTS.CURRENT_USER }).then(res => res.user)
   createScheduleConfig = (data) => this.post({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
   getScheduleConfig = () => this.get({ url: ENDPOINTS.SCHEDULE_CONFIG }).then(res => res.schedule_config)
   updateScheduleConfig = (data) => this.put({ data, url: ENDPOINTS.SCHEDULE_CONFIG })
