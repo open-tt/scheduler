@@ -18,7 +18,7 @@ import * as storage from 'lib/storage'
 const toDatetime = ({ date, time }) => {
   const { month, day, year } = date
   const m = moment(`${year}-${month}-${day} ${time}`)
-  return m.format('YYYY-MM-DD HH:mm')
+  return m.format('YYYY-MM-DD HH:mm ZZ')
 }
 
 const getReservations = ({ blocks, date, club }) => {
@@ -57,6 +57,7 @@ const CheckoutForm = withRouter(({ history, amountInCents, blocks, date }) => {
         cc_token: token
       })
         .then(async () => {
+          storage.setObject(STORAGE.RESERVE, {})
           history.push('/my-reservations')
         })
         .catch((err) => {

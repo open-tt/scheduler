@@ -9,14 +9,6 @@ import { STORAGE } from 'lib/constants'
 import * as storage from 'lib/storage'
 import useClub, { ClubProvider } from 'useClub';
 
-const now = Date.now()
-
-const toDatetime = ({ date, time }) => {
-  const { month, day, year } = date
-  const m = moment(`${year}-${month}-${day} ${time}`)
-  return m.format('YYYY-MM-DD HH:mm')
-}
-
 const getDateStr = ({ date }) => {
   let m
 
@@ -30,12 +22,8 @@ const getDateStr = ({ date }) => {
   return m.format('YYYY-MM-DD')
 }
 
-const SessionPicker = withRouter(({ blocks, onSelect }) => {
-  const data = storage.getObject(STORAGE.RESERVE)
-  const cachedBlocks = data.blocks || []
-  const date = data.date || {}
-
-  const [sessions, setSessions] = useState(cachedBlocks)
+const SessionPicker = withRouter(({ blocks, selected, onSelect }) => {
+  const [sessions, setSessions] = useState(selected)
 
   useEffect(() => {
     const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
@@ -69,13 +57,17 @@ const SessionPicker = withRouter(({ blocks, onSelect }) => {
 })
 
 const _Schedule = withRouter(({ history, match }) => {
-  const { date, blocks } = storage.getObject(STORAGE.RESERVE)
-  const cachedBlocks = date ? (blocks || []) : []
-  const cachedDay = getDateStr({ date })
-
-  const [selectedBlocks, setSelectedBlocks] = useState(cachedBlocks)
-  const [day, setDay] = useState(cachedDay)
+  const [selectedBlocks, setSelectedBlocks] = useState([])
+  const [day, setDay] = useState()
   const { club, loading } = useClub()
+
+  useEffect(() => {
+    const { date, blocks } = storage.getObject(STORAGE.RESERVE)
+    const cachedBlocks = date ? (blocks || []) : []
+    const cachedDay = getDateStr({ date })
+    setSelectedBlocks(cachedBlocks)
+    setDay(cachedDay)
+  }, [])
 
   if (loading) {
     return <Loading />
@@ -96,25 +88,13 @@ const _Schedule = withRouter(({ history, match }) => {
     setSelectedBlocks(blocks)
   }
 
-  const onCancel = () => setSelectedBlocks([])
-
-  // if (!!selectedBlocks.length) {
-  //   // if (true) {
-  //   return (
-  //     <Reserve onCancel={onCancel} blocks={selectedBlocks} date={selectedDay.date} club={club} />
-  //   )
-  // }
-
   const reserve = () => {
-    console.log('dud')
     storage.setObject(STORAGE.RESERVE, {
       blocks: selectedBlocks,
       date: selectedDay.date
     })
     history.push(`/reserve/edit/${club.id}`)
   }
-
-  console.log(selectedBlocks)
 
   return (
     <>
@@ -148,6 +128,7 @@ const _Schedule = withRouter(({ history, match }) => {
                 key={day}
                 {...selectedDay}
                 club_id={club.id}
+                selected={selectedBlocks}
                 onSelect={onSelect}
               />
               <div data-row="2" />
