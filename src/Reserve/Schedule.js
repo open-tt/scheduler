@@ -17,6 +17,19 @@ const toDatetime = ({ date, time }) => {
   return m.format('YYYY-MM-DD HH:mm')
 }
 
+const getDateStr = ({ date }) => {
+  let m
+
+  if (date) {
+    const { month, day, year } = date
+    m = moment(`${year}-${month}-${day}`)
+  } else {
+    m = moment()
+  }
+
+  return m.format('YYYY-MM-DD')
+}
+
 const SessionPicker = withRouter(({ blocks, onSelect }) => {
   const data = storage.getObject(STORAGE.RESERVE)
   const cachedBlocks = data.blocks || []
@@ -56,8 +69,12 @@ const SessionPicker = withRouter(({ blocks, onSelect }) => {
 })
 
 const _Schedule = withRouter(({ history, match }) => {
-  const [selectedBlocks, setSelectedBlocks] = useState([])
-  const [day, setDay] = useState(0)
+  const { date, blocks } = storage.getObject(STORAGE.RESERVE)
+  const cachedBlocks = date ? (blocks || []) : []
+  const cachedDay = getDateStr({ date })
+
+  const [selectedBlocks, setSelectedBlocks] = useState(cachedBlocks)
+  const [day, setDay] = useState(cachedDay)
   const { club, loading } = useClub()
 
   if (loading) {
@@ -69,7 +86,7 @@ const _Schedule = withRouter(({ history, match }) => {
   }
 
   const schedule = club.schedule || []
-  const selectedDay = schedule[day]
+  const selectedDay = schedule.find(d => getDateStr({ date: d.date }) === day)
 
   if (!selectedDay) {
     return 'No days available.'
@@ -90,10 +107,10 @@ const _Schedule = withRouter(({ history, match }) => {
 
   const reserve = () => {
     console.log('dud')
-    localStorage.setItem(STORAGE.RESERVE, JSON.stringify({
+    storage.setObject(STORAGE.RESERVE, {
       blocks: selectedBlocks,
       date: selectedDay.date
-    }))
+    })
     history.push(`/reserve/edit/${club.id}`)
   }
 
@@ -114,9 +131,11 @@ const _Schedule = withRouter(({ history, match }) => {
 
                 {schedule.map((d, i) => {
                   const abbrev = d.name.substr(0, 3)
+                  const str = getDateStr({ date: d.date })
+                  const selected = str === day
 
                   return (
-                    <div key={i} className='option day' data-selected={day === i} onClick={() => setDay(i)}>
+                    <div key={str} className='option day' data-selected={selected} onClick={() => setDay(str)}>
                       <label>{abbrev} {d.date.month}/{d.date.day}</label>
                     </div>
                   )
