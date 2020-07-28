@@ -44,7 +44,6 @@ header {
 main {
   flex: 1;
   overflow: hidden;
-  margin-bottom: calc(var(--row-margin) * 0.5);
 
   > .scrollable {
     height: calc(100% + var(--row-margin) * 0.5);
