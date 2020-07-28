@@ -42,13 +42,20 @@ header {
 }
 
 main {
+  flex: 1;
   overflow: hidden;
+  margin-bottom: calc(var(--row-margin) * 0.5);
 
   > .scrollable {
-    height: 100%;
+    height: calc(100% + var(--row-margin) * 0.5);
     width: calc(100% + var(--row-margin));
     margin-left: calc(var(--row-margin) * -0.5);
     overflow: scroll;
+
+    > .inner {
+      margin-left: calc(var(--row-margin) * 0.5);
+      overflow: hidden;
+    }
   }
 }
 

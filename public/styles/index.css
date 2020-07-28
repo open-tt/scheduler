@@ -584,6 +584,7 @@ h4, [data-h4] {
 
 .schedule {
   display: flex;
+  overflow: hidden;
 }
 
 .option {
@@ -685,13 +686,19 @@ header .logo label {
 }
 
 main {
+  flex: 1;
   overflow: hidden;
+  margin-bottom: calc(var(--row-margin) * 0.5);
 }
 main > .scrollable {
-  height: 100%;
+  height: calc(100% + var(--row-margin) * 0.5);
   width: calc(100% + var(--row-margin));
   margin-left: calc(var(--row-margin) * -0.5);
   overflow: scroll;
+}
+main > .scrollable > .inner {
+  margin-left: calc(var(--row-margin) * 0.5);
+  overflow: hidden;
 }
 
 .menu-toggle {

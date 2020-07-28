@@ -81,9 +81,13 @@ const Layout = ({ children }) => {
         <main data-page>
           {/* scrollable exists just so the scrollbar can have a litle space */}
           <div className="scrollable">
-            <div data-row="2"></div>
-            {children}
-            <div data-row="5"></div>
+            <div className="inner" data-row>
+              <div data-col="12">
+                <div data-row="2"></div>
+                {children}
+                <div data-row="5"></div>
+              </div>
+            </div>
           </div>
         </main>
       </div>
