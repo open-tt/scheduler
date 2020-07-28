@@ -49,6 +49,9 @@ class Context extends Container {
   unauthenticate = () => {
     window.localStorage.removeItem('auth_token')
     this.setState({ auth_token: undefined, user: undefined })
+
+    // if (window.location.pathname === '/login') return
+    // window.location = '/'
   }
 }
 

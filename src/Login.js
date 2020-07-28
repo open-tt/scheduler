@@ -17,10 +17,10 @@ const REQUIRED_FIELDS = {
 }
 
 const Login = withRouter(({ history }) => {
-  const [ isNew, setIsNew ] = useState(false)
+  const [isNew, setIsNew] = useState(false)
   const { api } = context
 
-  const login = ({ email, password }) =>  api.authenticate({
+  const login = ({ email, password }) => api.authenticate({
     email,
     password,
   })
@@ -40,12 +40,12 @@ const Login = withRouter(({ history }) => {
   const onSubmit = (values) => {
     const promise = isNew ? signup(values) : login(values)
     promise
-    .then(({ auth_token }) => {
-      context.authenticate({ auth_token })
-      .then(() => {
-        history.push('/my-reservations')
+      .then(({ auth_token }) => {
+        context.authenticate({ auth_token })
+          .then(() => {
+            history.push('/my-reservations')
+          })
       })
-    })
   }
 
   const validate = (values) => {

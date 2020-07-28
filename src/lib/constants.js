@@ -9,3 +9,7 @@ export const DEFAULT_SCHEDULE_CONFIG = {
 export const CLUB_ID_BY_SUBDOMAIN = {
   "broward": '1'
 }
+
+export const STORAGE = {
+  RESERVE: 'reservations_data'
+}

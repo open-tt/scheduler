@@ -1,4 +1,5 @@
 import axios from 'axios'
+import context from './context'
 
 const ROOT = 'https://nameless-spire-32644.herokuapp.com'
 
@@ -46,6 +47,11 @@ class Api {
     url,
     data
   }).then(res => res.data)
+    .catch(err => {
+      if (err.response && err.response.status === 401) {
+        context.unauthenticate()
+      }
+    })
 
   registerUser = (data) => this.post({ data, url: ENDPOINTS.REGISTER_USER })
   authenticate = (data) => this.post({ data, url: ENDPOINTS.AUTHENTICATE })
