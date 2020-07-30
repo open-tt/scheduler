@@ -22,8 +22,11 @@ const getDateStr = ({ date }) => {
   return m.format('YYYY-MM-DD')
 }
 
-const SessionPicker = withRouter(({ blocks, selected, onSelect }) => {
-  const [sessions, setSessions] = useState(selected)
+const getDayId = day => getDateStr({ date: day.date })
+const getBlockId = block => `${block.start}-${block.end}`
+
+const SessionPicker = withRouter(({ blocks, selectedBlocks, onSelect }) => {
+  const [sessions, setSessions] = useState(selectedBlocks)
 
   useEffect(() => {
     const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
@@ -56,45 +59,33 @@ const SessionPicker = withRouter(({ blocks, selected, onSelect }) => {
   )
 })
 
-const _Schedule = withRouter(({ history, match }) => {
+export const Schedule = withRouter(({ history, match }) => {
   const [selectedBlocks, setSelectedBlocks] = useState([])
-  const [day, setDay] = useState()
-  const { club, loading } = useClub()
+  const [selectedDay, setSelectedDay] = useState()
+  const { club, loading, schedule } = useClub()
 
   useEffect(() => {
-    const { date, blocks } = storage.getObject(STORAGE.RESERVE)
-    const cachedBlocks = date ? (blocks || []) : []
-    const cachedDay = getDateStr({ date })
-    setSelectedBlocks(cachedBlocks)
-    setDay(cachedDay)
-  }, [])
+    if (!club || !schedule) return
 
-  if (loading) {
-    return <Loading />
-  }
+    setSelectedDay(schedule.getSelectedDay())
+    setSelectedBlocks(schedule.getSelectedBlocks())
+  }, [club, schedule])
 
-  if (!club) {
-    return 'No club found.'
-  }
+  if (loading || !selectedDay) return <Loading />
+  if (!club) return 'Club not found.'
 
-  const schedule = club.schedule || []
-  const selectedDay = schedule.find(d => getDateStr({ date: d.date }) === day)
-
-  if (!selectedDay) {
-    return 'No days available.'
-  }
-
-  const onSelect = ({ blocks }) => {
-    setSelectedBlocks(blocks)
+  const onSelect = ({ day, blocks }) => {
+    schedule.setSelection({ ...(day || selectedDay), blocks: blocks || selectedBlocks })
+    setSelectedDay(schedule.getSelectedDay())
+    setSelectedBlocks(schedule.getSelectedBlocks())
   }
 
   const reserve = () => {
-    storage.setObject(STORAGE.RESERVE, {
-      blocks: selectedBlocks,
-      date: selectedDay.date
-    })
     history.push(`/reserve/edit/${club.id}`)
   }
+
+  const allDays = schedule.getDays()
+  const allBlocks = schedule.getBlocks(selectedDay)
 
   return (
     <>
@@ -109,13 +100,13 @@ const _Schedule = withRouter(({ history, match }) => {
               <label className="instruction" data-faded>Select a day</label>
               <div className="days">
 
-                {schedule.map((d, i) => {
+                {allDays.map((d, i) => {
                   const abbrev = d.name.substr(0, 3)
                   const str = getDateStr({ date: d.date })
-                  const selected = str === day
+                  const selected = d.id === selectedDay.id
 
                   return (
-                    <div key={str} className='option day' data-selected={selected} onClick={() => setDay(str)}>
+                    <div key={d.id} className='option day' data-selected={selected} onClick={() => onSelect({ day: d })}>
                       <label>{abbrev} {d.date.month}/{d.date.day}</label>
                     </div>
                   )
@@ -125,10 +116,10 @@ const _Schedule = withRouter(({ history, match }) => {
 
             <div data-col="8">
               <SessionPicker
-                key={day}
-                {...selectedDay}
+                key={selectedDay.id}
+                blocks={allBlocks}
                 club_id={club.id}
-                selected={selectedBlocks}
+                selectedBlocks={selectedBlocks}
                 onSelect={onSelect}
               />
               <div data-row="2" />
@@ -142,9 +133,3 @@ const _Schedule = withRouter(({ history, match }) => {
     </>
   )
 })
-
-export const Schedule = () => (
-  <ClubProvider>
-    <_Schedule />
-  </ClubProvider>
-)

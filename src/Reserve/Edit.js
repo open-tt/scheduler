@@ -99,8 +99,8 @@ const Selection = ({ blocks, date }) => {
   )
 }
 
-const _Edit = ({ onCancel }) => {
-  const { club, loading } = useClub()
+export const Edit = ({ onCancel }) => {
+  const { club, loading, schedule } = useClub()
   const { vw, vh } = useViewport()
   const collapse = vw < 768
 
@@ -112,11 +112,8 @@ const _Edit = ({ onCancel }) => {
     return 'Club not found.'
   }
 
-  const data = storage.getObject(STORAGE.RESERVE)
-  const blocks = data.blocks || []
-  const date = data.date || {}
-
-  console.log(blocks)
+  const day = schedule.getSelectedDay()
+  const blocks = schedule.getSelectedBlocks(day)
 
   const amountInCents = 1000
 
@@ -133,7 +130,7 @@ const _Edit = ({ onCancel }) => {
         (
           <div data-row>
             <div data-col="12">
-              <Selection blocks={blocks} date={date} />
+              <Selection blocks={blocks} date={day.date} />
               <label data-faded>Reservations For</label>
               <p>{context.state.user.name}</p>
               <p>{context.state.user.email}</p>
@@ -142,7 +139,7 @@ const _Edit = ({ onCancel }) => {
               <p>${(amountInCents / 100).toFixed(2)}</p>
               <div data-row="2" />
               <Elements stripe={stripePromise}>
-                <CheckoutForm blocks={blocks} date={date} amountInCents={amountInCents} />
+                <CheckoutForm blocks={blocks} date={day.date} amountInCents={amountInCents} />
               </Elements>
             </div>
           </div>
@@ -150,7 +147,7 @@ const _Edit = ({ onCancel }) => {
         : (
           <div data-row>
             <div data-col="6">
-              <Selection blocks={blocks} date={date} />
+              <Selection blocks={blocks} date={day.date} />
             </div>
             <div data-col="6">
               <label data-faded>Reservations For</label>
@@ -161,7 +158,7 @@ const _Edit = ({ onCancel }) => {
               <p>${(amountInCents / 100).toFixed(2)}</p>
               <div data-row="2" />
               <Elements stripe={stripePromise}>
-                <CheckoutForm blocks={blocks} date={date} amountInCents={amountInCents} />
+                <CheckoutForm blocks={blocks} date={day.date} amountInCents={amountInCents} />
               </Elements>
             </div>
           </div>
@@ -169,9 +166,3 @@ const _Edit = ({ onCancel }) => {
     </div>
   )
 }
-
-export const Edit = () => (
-  <ClubProvider>
-    <_Edit />
-  </ClubProvider>
-)

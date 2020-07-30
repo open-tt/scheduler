@@ -31,24 +31,30 @@ const AuthenticatedRoute = (props) => {
   return <Redirect to="/login" />
 }
 
+const Routes = () => (
+  <Switch>
+    <AuthenticatedRoute exact path="/" component={MyReservations} />
+    <AuthenticatedRoute path="/reserve/edit/:clubId" component={Reserve.Edit} />
+    <AuthenticatedRoute path="/reserve/:clubId" component={Reserve.Schedule} />
+    <Route exact path="/login" component={Login} />
+    <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
+    <AuthenticatedRoute exact path="/admin" component={Admin} />
+    <AuthenticatedRoute exact path="/admin/reservations" component={AdminReservations} />
+  </Switch>
+)
+
 const App = () => {
   return (
     <Router>
-      <ViewportProvider>
-        <ContextProvider>
-          <Layout>
-            <Switch>
-              <AuthenticatedRoute exact path="/" component={MyReservations} />
-              <AuthenticatedRoute path="/reserve/edit/:clubId" component={Reserve.Edit} />
-              <AuthenticatedRoute path="/reserve/:clubId" component={Reserve.Schedule} />
-              <Route exact path="/login" component={Login} />
-              <AuthenticatedRoute exact path="/my-reservations" component={MyReservations} />
-              <AuthenticatedRoute exact path="/admin" component={Admin} />
-              <AuthenticatedRoute exact path="/admin/reservations" component={AdminReservations} />
-            </Switch>
-          </Layout>
-        </ContextProvider>
-      </ViewportProvider>
+      <ClubProvider>
+        <ViewportProvider>
+          <ContextProvider>
+            <Layout>
+              <Routes />
+            </Layout>
+          </ContextProvider>
+        </ViewportProvider>
+      </ClubProvider>
     </Router>
   )
 }

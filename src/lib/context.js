@@ -1,6 +1,8 @@
 import React from 'react'
 import { Provider, Subscribe, Container } from 'unstated'
+import * as storage from 'lib/storage'
 import Api from 'lib/Api'
+import { STORAGE } from './constants';
 
 const cachedToken = window.localStorage.getItem('auth_token') || ''
 
@@ -48,6 +50,7 @@ class Context extends Container {
 
   unauthenticate = () => {
     window.localStorage.removeItem('auth_token')
+    storage.setObject(STORAGE.RESERVE, {})
     this.setState({ auth_token: undefined, user: undefined })
 
     // if (window.location.pathname === '/login') return
