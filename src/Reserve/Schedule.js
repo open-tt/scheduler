@@ -2,50 +2,38 @@ import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import Loading from 'Loading'
-import Reserve from './Edit'
-import context from 'lib/context'
-import Blocks from '../Reservations';
-import { STORAGE } from 'lib/constants'
-import * as storage from 'lib/storage'
-import useClub, { ClubProvider } from 'useClub';
+import useClub from 'useClub';
 
-const getDateStr = ({ date }) => {
-  let m
+const toggleArrayItem = (arr, item) => {
+  const newArr = arr.slice()
+  const index = newArray.indexOf(item)
 
-  if (date) {
-    const { month, day, year } = date
-    m = moment(`${year}-${month}-${day}`)
-  } else {
-    m = moment()
-  }
-
-  return m.format('YYYY-MM-DD')
+  if (index === -1) newArr.push(item)
+  else newArr.splice(index, 1)
+  return newArr
 }
 
-const getDayId = day => getDateStr({ date: day.date })
-const getBlockId = block => `${block.start}-${block.end}`
-
-const SessionPicker = withRouter(({ blocks, selectedBlocks, onSelect }) => {
-  const [sessions, setSessions] = useState(selectedBlocks)
-
-  useEffect(() => {
-    const selectedBlocks = Object.keys(sessions).filter(k => sessions[k]).map(k => blocks[k])
-    onSelect({ blocks: selectedBlocks })
-  }, [sessions])
-
+const BlockPicker = withRouter(({ blocks, selectedIds, onSelect }) => {
   return (
     <div className="sessions">
       <label className="instruction" data-faded>Select Time(s)</label>
       {blocks.map((block, i) => {
-        const isSelected = !!sessions[i]
+        const isSelected = selectedIds.includes(block.id)
 
-        const toggleSession = () => {
-          const newSessions = { ...sessions, [i]: !sessions[i] }
-          setSessions(newSessions)
+        const toggleBlock = () => {
+          const newSelectedIds = toggleArrayItem(selectedIds, block.id)
+          const newBlocks = newSelectedIds.map(id => blocks.find(b => b.id === id))
+          onSelect({ blocks: newBlocks })
         }
 
         return (
-          <div key={i} className="option session" data-available={block.availability > 0} data-selected={isSelected} onClick={toggleSession}>
+          <div
+            key={block.id}
+            className="option session"
+            data-available={block.availability > 0}
+            data-selected={isSelected}
+            onClick={toggleBlock}
+          >
             <label>{block.start} - {block.end}</label>
             {!!block.availability && (
               <label className="availability">
@@ -102,7 +90,6 @@ export const Schedule = withRouter(({ history, match }) => {
 
                 {allDays.map((d, i) => {
                   const abbrev = d.name.substr(0, 3)
-                  const str = getDateStr({ date: d.date })
                   const selected = d.id === selectedDay.id
 
                   return (
@@ -115,11 +102,11 @@ export const Schedule = withRouter(({ history, match }) => {
             </div>
 
             <div data-col="8">
-              <SessionPicker
+              <BlockPicker
                 key={selectedDay.id}
                 blocks={allBlocks}
                 club_id={club.id}
-                selectedBlocks={selectedBlocks}
+                selectedIds={selectedBlocks.map(b => b.id)}
                 onSelect={onSelect}
               />
               <div data-row="2" />
