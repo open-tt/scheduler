@@ -1,42 +1,12 @@
 {
-  "name": "scheduler",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "git@github.com:open-tt/scheduler.git",
+  "name": "club-manager",
+  "repository": "git@github.com:open-tt/club-manager.git",
   "author": "Christine Cha <hello@christinecha.com>",
   "license": "MIT",
   "scripts": {
-    "build": "webpack && sass ./src/styles/index.scss ./public/styles/index.css",
-    "dev": "webpack-dev-server & sass --watch ./src/styles/index.scss ./public/styles/index.css"
-  },
-  "dependencies": {
-    "@stripe/react-stripe-js": "^1.1.2",
-    "@stripe/stripe-js": "^1.8.0",
-    "axios": "^0.19.2",
-    "babel-polyfill": "^6.26.0",
-    "container": "^0.0.2",
-    "final-form": "^4.20.1",
-    "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-final-form": "^6.5.0",
-    "react-router": "3",
-    "react-router-dom": "^5.2.0",
-    "seasalt": "^0.0.3",
-    "unstated": "^2.1.1"
+    "build": "lerna run build"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-proposal-object-rest-spread": "^7.10.3",
-    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-    "@babel/preset-env": "^7.10.3",
-    "@babel/preset-react": "^7.10.1",
-    "babel-loader": "^8.1.0",
-    "sass": "^1.26.9",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "lerna": "3.22.1"
   }
 }
