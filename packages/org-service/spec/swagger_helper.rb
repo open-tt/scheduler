@@ -30,38 +30,11 @@ RSpec.configure do |config|
 
         },
         schemas: {
-          resource_creation_success: {
+          sample_schema: {
             type: :object,
             properties: {
               success: { type: :boolean },
               newId: { type: :integer }
-            }
-          },
-          resource_creation_failure: {
-            type: :object,
-            properties: {
-              success: { type: :boolean },
-              messages: {
-                type: :array,
-                items: { type: :string }
-              }
-            }
-          },
-          registration_success: {
-            type: :object,
-            properties: {
-              success: { type: :boolean },
-              newUserId: { type: :integer }
-            }
-          },
-          registration_failure: {
-            type: :object,
-            properties: {
-              success: { type: :boolean },
-              messages: {
-                type: :array,
-                items: { type: :string }
-              }
             }
           }
         }

@@ -11,46 +11,4 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20200809145232) do
-
-  create_table "actions", force: :cascade do |t|
-    t.string   "url_regex"
-    t.integer  "method"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "actions_roles", force: :cascade do |t|
-    t.integer  "action_id"
-    t.integer  "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_actions_roles_on_action_id"
-    t.index ["role_id"], name: "index_actions_roles_on_role_id"
-  end
-
-  create_table "roles", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "roles_users", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "org_id"
-    t.index ["role_id"], name: "index_roles_users_on_role_id"
-    t.index ["user_id"], name: "index_roles_users_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string  "email",           default: "",    null: false
-    t.string  "name"
-    t.string  "profile_img"
-    t.boolean "is_enabled",      default: false
-    t.string  "password_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
-
 end
