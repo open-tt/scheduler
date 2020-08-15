@@ -1,0 +1,231 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+  schemas:
+    resource_creation_success:
+      type: object
+      properties:
+        success:
+          type: boolean
+        newId:
+          type: integer
+    resource_creation_failure:
+      type: object
+      properties:
+        success:
+          type: boolean
+        messages:
+          type: array
+          items:
+            type: string
+    registration_success:
+      type: object
+      properties:
+        success:
+          type: boolean
+        newUserId:
+          type: integer
+    registration_failure:
+      type: object
+      properties:
+        success:
+          type: boolean
+        messages:
+          type: array
+          items:
+            type: string
+paths:
+  "/authenticate":
+    post:
+      summary: Create user token
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: Get a token for user authentication
+          content: {}
+        '401':
+          description: Authorization failed with bad credentials
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  "/users":
+    post:
+      summary: Creates New User
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/registration_success"
+        '409':
+          description: User creation failed with invalid email
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/registration_failure"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                is_enabled:
+                  type: boolean
+              required:
+              - name
+              - email
+              - password
+              - password_confirmation
+  "/users/{id}":
+    get:
+      summary: Get User by ID
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          content: {}
+    put:
+      summary: Edits existing User
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Update User fields successfully
+          content: {}
+        '404':
+          description: Update User fails with non-existent user id
+          content: {}
+        '422':
+          description: Update User fails edit when no params passed
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                is_enabled:
+                  type: boolean
+                profile_image:
+                  type: string
+  "/users/{id}/roles":
+    post:
+      summary: Add Role
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: role
+        in: query
+        enum:
+          player: 0
+          admin: 1
+          owner: 2
+          systems_admin: 3
+        required: true
+        schema:
+          type: string
+      - name: org_id
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Add Role
+          content: {}
+    delete:
+      summary: Remove a Role
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: role
+        in: query
+        enum:
+          player: 0
+          admin: 1
+          owner: 2
+          systems_admin: 3
+        required: true
+        schema:
+          type: string
+      - name: org_id
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Remove a Role
+          content: {}
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
+- url: https://nameless-spire-32644.herokuapp.com/
