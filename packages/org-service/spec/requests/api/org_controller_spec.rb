@@ -29,13 +29,14 @@ RSpec.describe 'Org API', type: :request do
         let(:data) do
           {
             user_id: 1,
-            org_name: 'Open Table Tennis'
+            org_name: @new_test_org_name
           }
         end
 
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['success']).to eq(true)
+          expect(data['org']['name']).to eq(@new_test_org_name)
         end
       end
     end
@@ -133,7 +134,7 @@ RSpec.describe 'Org API', type: :request do
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :integer
-      parameters name: :user_id, in: :path, type: :integer
+      parameter name: :user_id, in: :path, type: :integer
 
       response '201', 'Linked User to Org' do
         let(:id) { @test_org.id }
@@ -150,6 +151,9 @@ RSpec.describe 'Org API', type: :request do
 
       consumes 'application/json'
       produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :user_id, in: :path, type: :integer
 
       response '204', 'Unlinked User from Org' do
         before do
@@ -172,6 +176,36 @@ RSpec.describe 'Org API', type: :request do
 
       consumes 'application/json'
       produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :location, in: :body, schema: {
+        type: :object,
+        properties: {
+          addr_1: { type: :string },
+          addr_2: { type: :string },
+          city: { type: :string },
+          state: { type: :string },
+          zip: { type: :string }
+        },
+        required: %w[addr_1 city state zip]
+      }
+
+      response '201', 'Create Location for Org' do
+        let(:id) { @test_org.id }
+        let(:location) do
+          {
+            addr_1: '123 Lane 4th st',
+            city: 'Bellevue',
+            state: 'WA',
+            zip: '99999'
+          }
+        end
+
+        run_test! do
+          expect(@test_org.locations.count).to be(1)
+          expect(@test_org.locations.first.zip).to be('99999')
+        end
+      end
     end
 
     get 'List all addresses for org' do
@@ -179,6 +213,27 @@ RSpec.describe 'Org API', type: :request do
 
       consumes 'application/json'
       produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '200', 'List all locations' do
+        before do
+          @test_org.locations.create!({
+                                        addr_1: '123 Lane 4th st',
+                                        city: 'Bellevue',
+                                        state: 'WA',
+                                        zip: '99999'
+                                      })
+        end
+
+        let(:id) { @test_org.id }
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['success']).to eq(true)
+          expect(data['locations'].count).to eq(1)
+        end
+      end
     end
   end
 
@@ -188,6 +243,37 @@ RSpec.describe 'Org API', type: :request do
 
       consumes 'application/json'
       produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :address_id, in: :path, type: :integer
+      parameter name: :address_update, in: :body, schema: {
+        type: :object,
+        properties: {
+          addr_1: '123 Lane 4th st',
+          city: 'Bellevue',
+          state: 'WA',
+          zip: '99999'
+        }
+      }
+
+      response '204', 'Updated Address' do
+        before do
+          @test_address = @test_org.locations.create!({
+                                                        addr_1: '123 Lane 4th st',
+                                                        city: 'Bellevue',
+                                                        state: 'WA',
+                                                        zip: '99999'
+                                                      })
+        end
+
+        let(:id) { @test_org.id }
+        let(:address_id) { @test_address.id }
+        let(:address_update) { { zip: '00000' }}
+
+        run_test! do
+          expect(@test_address.zip).to be('00000')
+        end
+      end
     end
 
     delete 'Remove address from org' do
@@ -195,6 +281,27 @@ RSpec.describe 'Org API', type: :request do
 
       consumes 'application/json'
       produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :address_id, in: :path, type: :integer
+
+      response '204', 'Delete address' do
+        before do
+          @test_address = @test_org.locations.create!({
+                                                        addr_1: '123 Lane 4th st',
+                                                        city: 'Bellevue',
+                                                        state: 'WA',
+                                                        zip: '99999'
+                                                      })
+        end
+
+        let(:id) { @test_org.id }
+        let(:address_id) { @test_address.id }
+
+        run_test! do
+          expect(@test_org.addresses.count).to be(0)
+        end
+      end
     end
   end
 end

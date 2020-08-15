@@ -1,0 +1,800 @@
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE TABLE "addresses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "org_id" integer, "addr_1" varchar, "addr_2" varchar, "city" varchar, "state" varchar, "zip" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_addresses_on_org_id" ON "addresses" ("org_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "orgs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "is_verified" boolean DEFAULT 'f', "is_enabled" boolean DEFAULT 't')[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "orgs_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "org_id" integer, "user_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_orgs_users_on_org_id" ON "orgs_users" ("org_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200815023522)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20200815020835),
+(20200815021404),
+(20200815021004);
+
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "test"], ["created_at", "2020-08-15 22:26:23.908778"], ["updated_at", "2020-08-15 22:26:23.908778"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.506362"], ["updated_at", "2020-08-15 22:26:56.506362"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.512885"], ["updated_at", "2020-08-15 22:26:56.512885"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.514854"], ["updated_at", "2020-08-15 22:26:56.514854"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.521445"], ["updated_at", "2020-08-15 22:26:56.521445"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:26:56.546001"], ["updated_at", "2020-08-15 22:26:56.546001"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:26:56.547342"], ["updated_at", "2020-08-15 22:26:56.547342"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.550048"], ["updated_at", "2020-08-15 22:26:56.550048"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.552760"], ["updated_at", "2020-08-15 22:26:56.552760"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:26:56.554498"], ["updated_at", "2020-08-15 22:26:56.554498"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.557153"], ["updated_at", "2020-08-15 22:26:56.557153"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:26:56 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.559860"], ["updated_at", "2020-08-15 22:26:56.559860"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.561819"], ["updated_at", "2020-08-15 22:26:56.561819"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:26:56.563654"], ["updated_at", "2020-08-15 22:26:56.563654"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.308457"], ["updated_at", "2020-08-15 22:28:10.308457"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.351619"], ["updated_at", "2020-08-15 22:28:10.351619"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.380014"], ["updated_at", "2020-08-15 22:28:10.380014"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.9ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.389115"], ["updated_at", "2020-08-15 22:28:10.389115"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:28:10.414865"], ["updated_at", "2020-08-15 22:28:10.414865"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:28:10.417305"], ["updated_at", "2020-08-15 22:28:10.417305"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.428710"], ["updated_at", "2020-08-15 22:28:10.428710"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.8ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.439523"], ["updated_at", "2020-08-15 22:28:10.439523"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:28:10.443412"], ["updated_at", "2020-08-15 22:28:10.443412"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.455619"], ["updated_at", "2020-08-15 22:28:10.455619"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:28:10 -0400
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.465879"], ["updated_at", "2020-08-15 22:28:10.465879"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.545704"], ["updated_at", "2020-08-15 22:28:10.545704"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:28:10.563158"], ["updated_at", "2020-08-15 22:28:10.563158"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:18.933766"], ["updated_at", "2020-08-15 22:29:18.933766"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:29:18 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:18.974840"], ["updated_at", "2020-08-15 22:29:18.974840"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:18.999694"], ["updated_at", "2020-08-15 22:29:18.999694"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:29:19 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.037165"], ["updated_at", "2020-08-15 22:29:19.037165"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:29:19.078650"], ["updated_at", "2020-08-15 22:29:19.078650"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:29:19.081638"], ["updated_at", "2020-08-15 22:29:19.081638"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:29:19 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.105118"], ["updated_at", "2020-08-15 22:29:19.105118"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:29:19 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.115024"], ["updated_at", "2020-08-15 22:29:19.115024"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:29:19.117567"], ["updated_at", "2020-08-15 22:29:19.117567"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:29:19 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.127463"], ["updated_at", "2020-08-15 22:29:19.127463"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:29:19 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.135345"], ["updated_at", "2020-08-15 22:29:19.135345"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.171971"], ["updated_at", "2020-08-15 22:29:19.171971"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:19.185449"], ["updated_at", "2020-08-15 22:29:19.185449"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.680587"], ["updated_at", "2020-08-15 22:29:47.680587"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.709661"], ["updated_at", "2020-08-15 22:29:47.709661"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.733480"], ["updated_at", "2020-08-15 22:29:47.733480"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.753280"], ["updated_at", "2020-08-15 22:29:47.753280"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:29:47.775782"], ["updated_at", "2020-08-15 22:29:47.775782"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:29:47.777759"], ["updated_at", "2020-08-15 22:29:47.777759"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.783561"], ["updated_at", "2020-08-15 22:29:47.783561"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.792749"], ["updated_at", "2020-08-15 22:29:47.792749"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:29:47.795900"], ["updated_at", "2020-08-15 22:29:47.795900"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.804574"], ["updated_at", "2020-08-15 22:29:47.804574"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:29:47 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.811769"], ["updated_at", "2020-08-15 22:29:47.811769"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.882628"], ["updated_at", "2020-08-15 22:29:47.882628"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:29:47.899509"], ["updated_at", "2020-08-15 22:29:47.899509"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.445574"], ["updated_at", "2020-08-15 22:30:31.445574"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.477676"], ["updated_at", "2020-08-15 22:30:31.477676"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.502554"], ["updated_at", "2020-08-15 22:30:31.502554"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.522705"], ["updated_at", "2020-08-15 22:30:31.522705"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:30:31.544034"], ["updated_at", "2020-08-15 22:30:31.544034"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:30:31.545914"], ["updated_at", "2020-08-15 22:30:31.545914"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.552234"], ["updated_at", "2020-08-15 22:30:31.552234"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.558633"], ["updated_at", "2020-08-15 22:30:31.558633"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:30:31.560917"], ["updated_at", "2020-08-15 22:30:31.560917"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.567411"], ["updated_at", "2020-08-15 22:30:31.567411"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:30:31 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.574634"], ["updated_at", "2020-08-15 22:30:31.574634"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.642160"], ["updated_at", "2020-08-15 22:30:31.642160"]]
+  [1m[35m (0.6ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:30:31.657804"], ["updated_at", "2020-08-15 22:30:31.657804"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.759253"], ["updated_at", "2020-08-15 22:45:49.759253"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.794354"], ["updated_at", "2020-08-15 22:45:49.794354"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.820504"], ["updated_at", "2020-08-15 22:45:49.820504"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.840744"], ["updated_at", "2020-08-15 22:45:49.840744"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:45:49.862752"], ["updated_at", "2020-08-15 22:45:49.862752"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:45:49.864212"], ["updated_at", "2020-08-15 22:45:49.864212"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.870924"], ["updated_at", "2020-08-15 22:45:49.870924"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.887361"], ["updated_at", "2020-08-15 22:45:49.887361"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:45:49.889450"], ["updated_at", "2020-08-15 22:45:49.889450"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.898206"], ["updated_at", "2020-08-15 22:45:49.898206"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:45:49 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.905810"], ["updated_at", "2020-08-15 22:45:49.905810"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.979489"], ["updated_at", "2020-08-15 22:45:49.979489"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:45:49.990786"], ["updated_at", "2020-08-15 22:45:49.990786"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.209067"], ["updated_at", "2020-08-15 22:46:00.209067"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.242657"], ["updated_at", "2020-08-15 22:46:00.242657"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.265577"], ["updated_at", "2020-08-15 22:46:00.265577"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.288587"], ["updated_at", "2020-08-15 22:46:00.288587"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:46:00.309311"], ["updated_at", "2020-08-15 22:46:00.309311"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:46:00.310826"], ["updated_at", "2020-08-15 22:46:00.310826"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.316582"], ["updated_at", "2020-08-15 22:46:00.316582"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+  [1m[35m (0.7ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.325140"], ["updated_at", "2020-08-15 22:46:00.325140"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:46:00.327711"], ["updated_at", "2020-08-15 22:46:00.327711"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.335468"], ["updated_at", "2020-08-15 22:46:00.335468"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:46:00 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.343468"], ["updated_at", "2020-08-15 22:46:00.343468"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.412418"], ["updated_at", "2020-08-15 22:46:00.412418"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:46:00.440131"], ["updated_at", "2020-08-15 22:46:00.440131"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.351153"], ["updated_at", "2020-08-15 22:47:26.351153"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:47:26.359521"], ["updated_at", "2020-08-15 22:47:26.359521"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:47:26.377262"], ["updated_at", "2020-08-15 22:47:26.377262"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 19ms (Views: 0.1ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.426343"], ["updated_at", "2020-08-15 22:47:26.426343"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.450482"], ["updated_at", "2020-08-15 22:47:26.450482"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/orgs/1" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.503651"], ["updated_at", "2020-08-15 22:47:26.503651"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:47:26.505845"], ["updated_at", "2020-08-15 22:47:26.505845"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 2], ["created_at", "2020-08-15 22:47:26.507464"], ["updated_at", "2020-08-15 22:47:26.507464"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/orgs/1/users" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.514361"], ["updated_at", "2020-08-15 22:47:26.514361"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.522905"], ["updated_at", "2020-08-15 22:47:26.522905"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 1], ["user_id", 1], ["created_at", "2020-08-15 22:47:26.525106"], ["updated_at", "2020-08-15 22:47:26.525106"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/orgs/1/users/1" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.531874"], ["updated_at", "2020-08-15 22:47:26.531874"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs/1/addresses" for 127.0.0.1 at 2020-08-15 18:47:26 -0400
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.540902"], ["updated_at", "2020-08-15 22:47:26.540902"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.551565"], ["updated_at", "2020-08-15 22:47:26.551565"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:47:26.563378"], ["updated_at", "2020-08-15 22:47:26.563378"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:48:14.465147"], ["updated_at", "2020-08-15 22:48:14.465147"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:48:14 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:48:14.473515"], ["updated_at", "2020-08-15 22:48:14.473515"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:48:14.490916"], ["updated_at", "2020-08-15 22:48:14.490916"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 19ms (Views: 0.1ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:48:19.260274"], ["updated_at", "2020-08-15 22:48:19.260274"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:48:19 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:48:19.270640"], ["updated_at", "2020-08-15 22:48:19.270640"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:48:19.289452"], ["updated_at", "2020-08-15 22:48:19.289452"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 21ms (Views: 0.1ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:49:12.005897"], ["updated_at", "2020-08-15 22:49:12.005897"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:49:12 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:49:12.016604"], ["updated_at", "2020-08-15 22:49:12.016604"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:49:12.037778"], ["updated_at", "2020-08-15 22:49:12.037778"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 2772ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:49:54.690376"], ["updated_at", "2020-08-15 22:49:54.690376"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:49:54 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:49:54.699943"], ["updated_at", "2020-08-15 22:49:54.699943"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:49:54.719721"], ["updated_at", "2020-08-15 22:49:54.719721"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 22ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:50:01.338926"], ["updated_at", "2020-08-15 22:50:01.338926"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:50:01 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"Open Table Tennis", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:50:01.346387"], ["updated_at", "2020-08-15 22:50:01.346387"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:50:01.363349"], ["updated_at", "2020-08-15 22:50:01.363349"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 19ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:50:59.238894"], ["updated_at", "2020-08-15 22:50:59.238894"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:50:59 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:50:59.248248"], ["updated_at", "2020-08-15 22:50:59.248248"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:50:59.268649"], ["updated_at", "2020-08-15 22:50:59.268649"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 23ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:51:11.872870"], ["updated_at", "2020-08-15 22:51:11.872870"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:51:11 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2020-08-15 22:51:11.883028"], ["updated_at", "2020-08-15 22:51:11.883028"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:51:11.903312"], ["updated_at", "2020-08-15 22:51:11.903312"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 17724ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:51:32.724403"], ["updated_at", "2020-08-15 22:51:32.724403"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:51:32 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:55:14.111408"], ["updated_at", "2020-08-15 22:55:14.111408"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:55:14 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at", "is_verified", "is_enabled") VALUES (?, ?, ?, ?)[0m  [["created_at", "2020-08-15 22:55:14.122425"], ["updated_at", "2020-08-15 22:55:14.122425"], ["is_verified", nil], ["is_enabled", nil]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:55:14.146202"], ["updated_at", "2020-08-15 22:55:14.146202"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 27ms (Views: 0.3ms | ActiveRecord: 1.1ms)
+  [1m[35m (0.4ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:55:26.306630"], ["updated_at", "2020-08-15 22:55:26.306630"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:55:26 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at", "is_verified", "is_enabled") VALUES (?, ?, ?, ?)[0m  [["created_at", "2020-08-15 22:55:26.314704"], ["updated_at", "2020-08-15 22:55:26.314704"], ["is_verified", nil], ["is_enabled", nil]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:55:26.332736"], ["updated_at", "2020-08-15 22:55:26.332736"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Unpermitted parameters: user_id, org_name, org
+Completed 201 Created in 49737ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:56:19.198712"], ["updated_at", "2020-08-15 22:56:19.198712"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:56:19 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org_name, org
+Unpermitted parameters: user_id, org_name, org
+Unpermitted parameters: user_id, org_name, org
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("created_at", "updated_at", "is_verified", "is_enabled") VALUES (?, ?, ?, ?)[0m  [["created_at", "2020-08-15 22:57:13.348388"], ["updated_at", "2020-08-15 22:57:13.348388"], ["is_verified", nil], ["is_enabled", nil]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:57:13.370395"], ["updated_at", "2020-08-15 22:57:13.370395"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 54165ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.5ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:57:16.418153"], ["updated_at", "2020-08-15 22:57:16.418153"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:57:16 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at", "is_verified", "is_enabled") VALUES (?, ?, ?, ?, ?)[0m  [["name", "New Test Org Name"], ["created_at", "2020-08-15 22:57:16.425738"], ["updated_at", "2020-08-15 22:57:16.425738"], ["is_verified", nil], ["is_enabled", nil]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:57:16.445165"], ["updated_at", "2020-08-15 22:57:16.445165"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 21ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Test Org"], ["created_at", "2020-08-15 22:57:28.318471"], ["updated_at", "2020-08-15 22:57:28.318471"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/orgs" for 127.0.0.1 at 2020-08-15 18:57:28 -0400
+Processing by OrgController#create as JSON
+  Parameters: {"user_id"=>1, "org_name"=>"New Test Org Name", "org"=>{}}
+Unpermitted parameters: user_id, org
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "orgs" ("name", "created_at", "updated_at", "is_verified", "is_enabled") VALUES (?, ?, ?, ?, ?)[0m  [["name", "New Test Org Name"], ["created_at", "2020-08-15 22:57:28.326117"], ["updated_at", "2020-08-15 22:57:28.326117"], ["is_verified", nil], ["is_enabled", nil]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "orgs_users" ("org_id", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["org_id", 2], ["user_id", 1], ["created_at", "2020-08-15 22:57:28.343317"], ["updated_at", "2020-08-15 22:57:28.343317"]]
+  [1m[35m (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 19ms (Views: 0.3ms | ActiveRecord: 0.6ms)
+  [1m[35m (0.6ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m

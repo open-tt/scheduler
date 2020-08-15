@@ -9,109 +9,102 @@ components:
       type: http
       scheme: bearer
   schemas:
-    resource_creation_success:
+    sample_schema:
       type: object
       properties:
         success:
           type: boolean
         newId:
           type: integer
-    resource_creation_failure:
-      type: object
-      properties:
-        success:
-          type: boolean
-        messages:
-          type: array
-          items:
-            type: string
-    registration_success:
-      type: object
-      properties:
-        success:
-          type: boolean
-        newUserId:
-          type: integer
-    registration_failure:
-      type: object
-      properties:
-        success:
-          type: boolean
-        messages:
-          type: array
-          items:
-            type: string
 paths:
-  "/authenticate":
+  "/orgs":
     post:
-      summary: Create user token
+      summary: Creates New Org
       tags:
-      - Authentication
-      parameters: []
-      responses:
-        '200':
-          description: Get a token for user authentication
-          content: {}
-        '401':
-          description: Authorization failed with bad credentials
-          content: {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-  "/users":
-    post:
-      summary: Creates New User
-      tags:
-      - Users
+      - Orgs
       parameters: []
       responses:
         '201':
-          description: User created successfully
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/registration_success"
-        '409':
-          description: User creation failed with invalid email
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/registration_failure"
+          description: Org created successfully
+          content: {}
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                name:
+                user_id:
+                  type: integer
+                org_name:
                   type: string
-                email:
-                  type: string
-                password:
-                  type: string
-                password_confirmation:
+              required:
+              - user_id
+              - org_name
+    get:
+      summary: Search in Orgs
+      tags:
+      - Orgs
+      parameters:
+      - name: org_name
+        in: query
+        schema:
+          type: string
+      - name: owner_name
+        in: query
+        schema:
+          type: string
+      - name: address_1
+        in: query
+        schema:
+          type: string
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: state
+        in: query
+        schema:
+          type: string
+      - name: zip
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search in Orgs
+          content: {}
+  "/orgs/{id}":
+    put:
+      summary: Update an Org
+      tags:
+      - Orgs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Org Updated successfully
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                org_name:
                   type: string
                 is_enabled:
                   type: boolean
-              required:
-              - name
-              - email
-              - password
-              - password_confirmation
-  "/users/{id}":
+                is_verified:
+                  type: boolean
+  "/orgs/{id}/users":
     get:
-      summary: Get User by ID
+      summary: List all users in org
       tags:
-      - Users
-      security:
-      - bearer_auth: []
+      - Orgs
       parameters:
       - name: id
         in: path
@@ -120,14 +113,52 @@ paths:
           type: integer
       responses:
         '200':
-          description: User profile retrieved successfully
+          description: List all the users
           content: {}
-    put:
-      summary: Edits existing User
+  "/orgs/{id}/users/{user_id}":
+    post:
+      summary: Add User to Org
       tags:
-      - Users
-      security:
-      - bearer_auth: []
+      - Orgs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Linked User to Org
+          content: {}
+    delete:
+      summary: Remove user from org
+      tags:
+      - Orgs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Unlinked User from Org
+          content: {}
+  "/orgs/{id}/addresses":
+    post:
+      summary: Add address to org
+      tags:
+      - Orgs
       parameters:
       - name: id
         in: path
@@ -135,14 +166,8 @@ paths:
         schema:
           type: integer
       responses:
-        '204':
-          description: Update User fields successfully
-          content: {}
-        '404':
-          description: Update User fails with non-existent user id
-          content: {}
-        '422':
-          description: Update User fails edit when no params passed
+        '201':
+          description: Create Location for Org
           content: {}
       requestBody:
         content:
@@ -150,74 +175,83 @@ paths:
             schema:
               type: object
               properties:
-                name:
+                addr_1:
                   type: string
-                is_enabled:
-                  type: boolean
-                profile_image:
+                addr_2:
                   type: string
-  "/users/{id}/roles":
-    post:
-      summary: Add Role
+                city:
+                  type: string
+                state:
+                  type: string
+                zip:
+                  type: string
+              required:
+              - addr_1
+              - city
+              - state
+              - zip
+    get:
+      summary: List all addresses for org
       tags:
-      - Users
-      security:
-      - bearer_auth: []
+      - Orgs
       parameters:
       - name: id
         in: path
         required: true
         schema:
           type: integer
-      - name: role
-        in: query
-        enum:
-          player: 0
-          admin: 1
-          owner: 2
-          systems_admin: 3
-        required: true
-        schema:
-          type: string
-      - name: org_id
-        in: query
-        required: true
-        schema:
-          type: integer
       responses:
-        '204':
-          description: Add Role
+        '200':
+          description: List all locations
           content: {}
-    delete:
-      summary: Remove a Role
+  "/orgs/{id}/addresses/{address_id}":
+    put:
+      summary: Update address in org
       tags:
-      - Users
-      security:
-      - bearer_auth: []
+      - Orgs
       parameters:
       - name: id
         in: path
         required: true
         schema:
           type: integer
-      - name: role
-        in: query
-        enum:
-          player: 0
-          admin: 1
-          owner: 2
-          systems_admin: 3
-        required: true
-        schema:
-          type: string
-      - name: org_id
-        in: query
+      - name: address_id
+        in: path
         required: true
         schema:
           type: integer
       responses:
         '204':
-          description: Remove a Role
+          description: Updated Address
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addr_1: 123 Lane 4th st
+                city: Bellevue
+                state: WA
+                zip: '99999'
+    delete:
+      summary: Remove address from org
+      tags:
+      - Orgs
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Delete address
           content: {}
 servers:
 - url: http://{defaultHost}
