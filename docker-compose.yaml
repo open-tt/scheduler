@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  # webapp:
+  #   build : ./packages/club-manager-web
+  pqsql_userservice:
+    image: postgres:9.6-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: userservice
+      POSTGRES_USER: userservice
+      POSTGRES_PASSWORD: userservice
+
+    ports:
+      - '5432:5432'
+    volumes:
+      - userservice_database:/var/lib/postgresql/data
+
+  api_userservice:
+    restart: always
+    build:
+      context: ./packages/user-service
+      dockerfile: Dockerfile
+    environment:
+      LENOMIR_DB_HOST: pqsql_userservice
+      LENOMIR_DB_PORT: 5432
+    ports:
+      - '3001:3000'
+
+volumes:
+  userservice_database:
