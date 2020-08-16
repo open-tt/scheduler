@@ -72,6 +72,10 @@ class OrgController < ApplicationController
     render json: { success: true, addresses: resp }, status: :ok
   end
 
+  def update_address
+    raise StandardError 'not implemented...'
+  end
+
   private
 
   def address_create_params
