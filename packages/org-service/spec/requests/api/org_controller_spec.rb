@@ -47,19 +47,20 @@ RSpec.describe 'Org API', type: :request do
       consumes 'application/json'
       produces 'application/json'
 
-      parameter name: :org_name, in: :query, type: :string
-      parameter name: :owner_name, in: :query, type: :string
-      parameter name: :address_1, in: :query, type: :string
-      parameter name: :city, in: :query, type: :string
-      parameter name: :state, in: :query, type: :string
-      parameter name: :zip, in: :query, type: :string
+      parameter name: :org_name, in: :query, type: :string, required: false
+      parameter name: :owner_id, in: :query, type: :string, required: false
+      parameter name: :addr_1, in: :query, type: :string, required: false
+      parameter name: :city, in: :query, type: :string, required: false
+      parameter name: :state, in: :query, type: :string, required: false
+      parameter name: :zip, in: :query, type: :string, required: false
 
       response '200', 'Search in Orgs' do
-        let(:name) { @test_org.name }
+        let(:org_name) { @test_org.name }
 
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['success']).to eq(true)
+          expect(data['orgs'].count).to eq(1)
         end
       end
     end
@@ -82,7 +83,7 @@ RSpec.describe 'Org API', type: :request do
         }
       }
 
-      response '204', 'Org Updated successfully' do
+      response '204', 'Org Updated' do
         let(:id) { @test_org.id }
         let(:data) do
           {
@@ -92,7 +93,7 @@ RSpec.describe 'Org API', type: :request do
           }
         end
 
-        run_test! do |_response|
+        run_test! do
           @test_org.name = @new_test_org_name
           @test_org.is_enabled = true
           @test_org.is_verified = true
@@ -101,6 +102,7 @@ RSpec.describe 'Org API', type: :request do
     end
   end
 
+  # TODO: Adrian todo
   path '/orgs/{id}/users' do
     get 'List all users in org' do
       tags 'Orgs'
@@ -178,7 +180,7 @@ RSpec.describe 'Org API', type: :request do
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :integer
-      parameter name: :location, in: :body, schema: {
+      parameter name: :address, in: :body, schema: {
         type: :object,
         properties: {
           addr_1: { type: :string },
@@ -192,7 +194,7 @@ RSpec.describe 'Org API', type: :request do
 
       response '201', 'Create Location for Org' do
         let(:id) { @test_org.id }
-        let(:location) do
+        let(:address) do
           {
             addr_1: '123 Lane 4th st',
             city: 'Bellevue',
@@ -202,8 +204,8 @@ RSpec.describe 'Org API', type: :request do
         end
 
         run_test! do
-          expect(@test_org.locations.count).to be(1)
-          expect(@test_org.locations.first.zip).to be('99999')
+          expect(@test_org.addresses.count).to eq(1)
+          expect(@test_org.addresses.first.zip).to eq('99999')
         end
       end
     end
@@ -218,7 +220,7 @@ RSpec.describe 'Org API', type: :request do
 
       response '200', 'List all locations' do
         before do
-          @test_org.locations.create!({
+          @test_org.addresses.create!({
                                         addr_1: '123 Lane 4th st',
                                         city: 'Bellevue',
                                         state: 'WA',
@@ -231,7 +233,7 @@ RSpec.describe 'Org API', type: :request do
         run_test! do |response|
           data = JSON.parse(response.body)
           expect(data['success']).to eq(true)
-          expect(data['locations'].count).to eq(1)
+          expect(data['addresses'].count).to eq(1)
         end
       end
     end
