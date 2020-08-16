@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200809145232) do
+ActiveRecord::Schema.define(version: 20200816225656) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "url_regex"
@@ -26,6 +26,35 @@ ActiveRecord::Schema.define(version: 20200809145232) do
     t.datetime "updated_at", null: false
     t.index ["action_id"], name: "index_actions_roles_on_action_id"
     t.index ["role_id"], name: "index_actions_roles_on_role_id"
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "org_id"
+    t.string   "addr_1"
+    t.string   "addr_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["org_id"], name: "index_addresses_on_org_id"
+  end
+
+  create_table "orgs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "is_verified", default: false
+    t.boolean  "is_enabled",  default: true
+  end
+
+  create_table "orgs_users", force: :cascade do |t|
+    t.integer  "org_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["org_id"], name: "index_orgs_users_on_org_id"
+    t.index ["user_id"], name: "index_orgs_users_on_user_id"
   end
 
   create_table "roles", force: :cascade do |t|

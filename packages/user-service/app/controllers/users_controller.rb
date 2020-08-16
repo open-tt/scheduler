@@ -6,11 +6,12 @@ class UsersController < ApplicationController
     user.roles_users.new(role_id: Role.player.id)
 
     if user.save
+      token = AuthenticateUser.call(user.email, user.password).result
       render json: {
         success: true,
         newUserID: user.id,
         enabled: user.is_enabled,
-        token: AuthenticateUser.call(user.email, user.password)
+        token: token
       }, status: :created
       UserMailer.account_confirmation_email(user).deliver_later
     else
