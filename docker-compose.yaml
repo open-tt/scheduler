@@ -16,6 +16,9 @@ services:
       - userservice_database:/var/lib/postgresql/data
 
   api_userservice:
+    depends_on:
+      - pqsql_userservice
+    command: ["bash", "./wait-for-it.sh", "pqsql_userservice:5432", "--", "bash", "start.sh"]
     restart: always
     build:
       context: ./packages/user-service
