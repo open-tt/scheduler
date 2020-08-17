@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: userservice
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -23,4 +23,8 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: db/production.sqlite3
+  encoding: unicode
+  username: userservice
+  password: userservice
+  database: userservice
+  host: pqsql_userservice
