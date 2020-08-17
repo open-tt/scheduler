@@ -1,4 +1,4 @@
 class Org < ApplicationRecord
   has_many :addresses
-  has_many :orgs_users
+  has_and_belongs_to_many :users
 end

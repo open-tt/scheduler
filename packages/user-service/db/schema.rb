@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200816225656) do
+ActiveRecord::Schema.define(version: 20200816231843) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "url_regex"
@@ -42,18 +42,18 @@ ActiveRecord::Schema.define(version: 20200816225656) do
 
   create_table "orgs", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
     t.boolean  "is_verified", default: false
     t.boolean  "is_enabled",  default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
-  create_table "orgs_users", force: :cascade do |t|
-    t.integer  "org_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "orgs_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "org_id"
+    t.integer "role_id"
     t.index ["org_id"], name: "index_orgs_users_on_org_id"
+    t.index ["role_id"], name: "index_orgs_users_on_role_id"
     t.index ["user_id"], name: "index_orgs_users_on_user_id"
   end
 

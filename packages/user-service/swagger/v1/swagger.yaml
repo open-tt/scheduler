@@ -65,6 +65,268 @@ paths:
                   type: string
                 password:
                   type: string
+  "/orgs":
+    post:
+      summary: Creates New Org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Org created successfully
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                org_name:
+                  type: string
+              required:
+              - user_id
+              - org_name
+    get:
+      summary: Search in Orgs
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: org_name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: owner_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: addr_1
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: city
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: state
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: zip
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search in Orgs
+          content: {}
+  "/orgs/{id}":
+    put:
+      summary: Update an Org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Org Updated
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                org_name:
+                  type: string
+                is_enabled:
+                  type: boolean
+                is_verified:
+                  type: boolean
+  "/orgs/{id}/users":
+    get:
+      summary: List all users in org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List all the users
+          content: {}
+  "/orgs/{id}/users/{user_id}":
+    post:
+      summary: Add User to Org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Linked User to Org
+          content: {}
+    delete:
+      summary: Remove user from org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Unlinked User from Org
+          content: {}
+  "/orgs/{id}/addresses":
+    post:
+      summary: Add address to org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Create Location for Org
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addr_1:
+                  type: string
+                addr_2:
+                  type: string
+                city:
+                  type: string
+                state:
+                  type: string
+                zip:
+                  type: string
+              required:
+              - addr_1
+              - city
+              - state
+              - zip
+    get:
+      summary: List all addresses for org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List all locations
+          content: {}
+  "/orgs/{id}/addresses/{address_id}":
+    put:
+      summary: Update address in org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Updated Address
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addr_1: 123 Lane 4th st
+                city: Bellevue
+                state: WA
+                zip: '99999'
+    delete:
+      summary: Remove address from org
+      tags:
+      - Orgs
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: address_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Delete address
+          content: {}
   "/users":
     post:
       summary: Creates New User
