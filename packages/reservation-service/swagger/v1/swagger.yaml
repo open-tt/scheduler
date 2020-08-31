@@ -51,6 +51,86 @@ paths:
                   enum:
                     play: 0
                     lesson: 1
+    get:
+      summary: Get list of reservations with Filters
+      tags:
+      - Reservations
+      parameters:
+      - name: location_id
+        in: query
+        schema:
+          type: integer
+      - name: user_id
+        in: query
+        schema:
+          type: integer
+      - name: start_timestamp
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get list of reservations
+          content: {}
+  "/reservations/{id}":
+    put:
+      summary: Update Reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Reservation updated successfully
+          content: {}
+        '404':
+          description: Reservation update failure with invalid id
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_timestamp:
+                  type: integer
+                  description: UNIX EPOCH date time
+                duration_in_minutes:
+                  type: integer
+                size:
+                  type: integer
+    delete:
+      summary: Delete a Reservation
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Reservation deleted successfully
+          content: {}
+    get:
+      summary: Get a reservation by its ID
+      tags:
+      - Reservations
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Reservation retrieved successfully
+          content: {}
   "/schedules":
     post:
       summary: Creates New Schedule for an ORG

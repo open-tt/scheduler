@@ -640,3 +640,514 @@ Unpermitted parameters: kind, reservation
   [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
 Completed 201 Created in 4ms (Views: 0.9ms | ActiveRecord: 0.8ms)
   [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:30:32.919926"], ["updated_at", "2020-08-31 00:30:32.919926"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:30:59.512834"], ["updated_at", "2020-08-31 00:30:59.512834"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:31:11.595462"], ["updated_at", "2020-08-31 00:31:11.595462"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/12" for 127.0.0.1 at 2020-08-30 17:31:11 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"12", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:39:20.657121"], ["updated_at", "2020-08-31 00:39:20.657121"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/13" for 127.0.0.1 at 2020-08-30 17:39:20 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"13", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 00:39:20.699725"], ["id", 13]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 12ms (Views: 0.8ms | ActiveRecord: 2.2ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:39:47.769026"], ["updated_at", "2020-08-31 00:39:47.769026"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/14" for 127.0.0.1 at 2020-08-30 17:39:47 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"14", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 00:39:47.813033"], ["id", 14]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 1.2ms | ActiveRecord: 2.8ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:40:28.737804"], ["updated_at", "2020-08-31 00:40:28.737804"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/15" for 127.0.0.1 at 2020-08-30 17:40:28 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"15", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 00:40:28.780604"], ["id", 15]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 1.1ms | ActiveRecord: 2.6ms)
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 15], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:40:57.268474"], ["updated_at", "2020-08-31 00:40:57.268474"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/16" for 127.0.0.1 at 2020-08-30 17:40:57 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"16", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 00:40:57.312902"], ["id", 16]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 2.4ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:41:23.660317"], ["updated_at", "2020-08-31 00:41:23.660317"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 17:41:23 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.0ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 422 Unprocessable Entity in 8ms (Views: 0.3ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:45:09.524967"], ["updated_at", "2020-08-31 00:45:09.524967"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 17:45:09 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 422 Unprocessable Entity in 9ms (Views: 0.2ms | ActiveRecord: 1.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:45:54.523682"], ["updated_at", "2020-08-31 00:45:54.523682"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 17:45:54 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 9ms (Views: 0.2ms | ActiveRecord: 1.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:46:11.730051"], ["updated_at", "2020-08-31 00:46:11.730051"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/20" for 127.0.0.1 at 2020-08-30 17:46:11 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"20", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 00:46:11.775575"], ["id", 20]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 1.0ms | ActiveRecord: 2.3ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:46:11.795222"], ["updated_at", "2020-08-31 00:46:11.795222"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 17:46:11 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:52:12.263676"], ["updated_at", "2020-08-31 00:52:12.263676"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/22" for 127.0.0.1 at 2020-08-30 17:52:12 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"22", "reservation"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:53:45.937373"], ["updated_at", "2020-08-31 00:53:45.937373"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/23" for 127.0.0.1 at 2020-08-30 17:53:45 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"23", "reservation"=>{}}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 23]]
+Completed 204 No Content in 10ms (ActiveRecord: 2.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:54:09.017087"], ["updated_at", "2020-08-31 00:54:09.017087"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/24" for 127.0.0.1 at 2020-08-30 17:54:09 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"24", "reservation"=>{}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 24]]
+Completed 204 No Content in 11ms (ActiveRecord: 2.0ms)
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:56:25.716825"], ["updated_at", "2020-08-31 00:56:25.716825"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/25" for 127.0.0.1 at 2020-08-30 17:56:25 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"25", "reservation"=>{}}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 25]]
+Completed 204 No Content in 10ms (ActiveRecord: 2.2ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:57:19.054303"], ["updated_at", "2020-08-31 00:57:19.054303"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/26" for 127.0.0.1 at 2020-08-30 17:57:19 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"26", "reservation"=>{}}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 26]]
+Completed 204 No Content in 12ms (ActiveRecord: 2.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:57:39.146173"], ["updated_at", "2020-08-31 00:57:39.146173"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/27" for 127.0.0.1 at 2020-08-30 17:57:39 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"27", "reservation"=>{}}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 27]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 11ms (ActiveRecord: 1.9ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:57:50.050910"], ["updated_at", "2020-08-31 00:57:50.050910"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/28" for 127.0.0.1 at 2020-08-30 17:57:50 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"28", "reservation"=>{}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 28]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 10ms (ActiveRecord: 2.3ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:00:18.314595"], ["updated_at", "2020-08-31 01:00:18.314595"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/29" for 127.0.0.1 at 2020-08-30 18:00:18 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"29", "reservation"=>{}}
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 29]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 10ms (ActiveRecord: 2.1ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:00:51.408459"], ["updated_at", "2020-08-31 01:00:51.408459"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/30" for 127.0.0.1 at 2020-08-30 18:00:51 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"30", "reservation"=>{}}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 30]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 10ms (ActiveRecord: 2.5ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:01:30.480371"], ["updated_at", "2020-08-31 01:01:30.480371"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/31" for 127.0.0.1 at 2020-08-30 18:01:30 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"31", "reservation"=>{}}
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 31]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 11ms (ActiveRecord: 2.0ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:01:42.884811"], ["updated_at", "2020-08-31 01:01:42.884811"]]
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/32" for 127.0.0.1 at 2020-08-30 18:01:42 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"32", "reservation"=>{}}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 32]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 11ms (ActiveRecord: 2.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:02:32.256729"], ["updated_at", "2020-08-31 01:02:32.256729"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/reservations/33" for 127.0.0.1 at 2020-08-30 18:02:32 -0700
+Processing by ReservationsController#delete as JSON
+  Parameters: {"id"=>"33", "reservation"=>{}}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 33]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 204 No Content in 10ms (ActiveRecord: 2.1ms)
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 33], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:07:17.389336"], ["updated_at", "2020-08-31 01:07:17.389336"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations/34" for 127.0.0.1 at 2020-08-30 18:07:17 -0700
+Processing by ReservationsController#show as JSON
+  Parameters: {"id"=>"34", "reservation"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:09:01.942610"], ["updated_at", "2020-08-31 01:09:01.942610"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/35" for 127.0.0.1 at 2020-08-30 18:09:01 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"35", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 01:09:02.000985"], ["id", 35]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 0.7ms | ActiveRecord: 2.4ms)
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 35], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:09:02.020547"], ["updated_at", "2020-08-31 01:09:02.020547"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 18:09:02 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:10:22.790226"], ["updated_at", "2020-08-31 01:10:22.790226"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/37" for 127.0.0.1 at 2020-08-30 18:10:22 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"37", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "reservations" SET "start_timestamp" = $1, "duration_in_minutes" = $2, "size" = $3, "updated_at" = $4 WHERE "reservations"."id" = $5[0m  [["start_timestamp", 999], ["duration_in_minutes", 120], ["size", 3], ["updated_at", "2020-08-31 01:10:22.834323"], ["id", 37]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 13ms (Views: 0.9ms | ActiveRecord: 2.2ms)
+  [1m[36mReservation Load (0.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 37], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:10:22.855730"], ["updated_at", "2020-08-31 01:10:22.855730"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/reservations/99999" for 127.0.0.1 at 2020-08-30 18:10:22 -0700
+Processing by ReservationsController#update as JSON
+  Parameters: {"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3, "id"=>"99999", "reservation"=>{"start_timestamp"=>999, "duration_in_minutes"=>120, "size"=>3}}
+  [1m[36mReservation Load (0.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:10:31.890078"], ["updated_at", "2020-08-31 01:10:31.890078"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations/39" for 127.0.0.1 at 2020-08-30 18:10:31 -0700
+Processing by ReservationsController#show as JSON
+  Parameters: {"id"=>"39", "reservation"=>{}}
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 39], ["LIMIT", 1]]
+Completed 200 OK in 11ms (Views: 1.2ms | ActiveRecord: 2.1ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:14:52.336466"], ["updated_at", "2020-08-31 01:14:52.336466"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:14:52 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:52:59.460487"], ["updated_at", "2020-08-31 01:52:59.460487"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:52:59 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:54:02.180913"], ["updated_at", "2020-08-31 01:54:02.180913"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:54:02 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:55:19.610051"], ["updated_at", "2020-08-31 01:55:19.610051"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:55:19 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:55:41.165415"], ["updated_at", "2020-08-31 01:55:41.165415"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:55:41 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 500 Internal Server Error in 14651ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:56:21.495609"], ["updated_at", "2020-08-31 01:56:21.495609"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:56:21 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 01:59:42.499874"], ["updated_at", "2020-08-31 01:59:42.499874"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 18:59:42 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 2.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 02:08:08.823862"], ["updated_at", "2020-08-31 02:08:08.823862"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 19:08:08 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 2.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 02:08:24.852799"], ["updated_at", "2020-08-31 02:08:24.852799"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 19:08:24 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 200 OK in 83334ms (Views: 1.1ms | ActiveRecord: 2.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 02:10:30.344100"], ["updated_at", "2020-08-31 02:10:30.344100"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/reservations?location_id=1&user_id=1&start_timestamp=1598823644" for 127.0.0.1 at 2020-08-30 19:10:30 -0700
+Processing by ReservationsController#index as JSON
+  Parameters: {"location_id"=>"1", "user_id"=>"1", "start_timestamp"=>"1598823644", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 1], ["start_timestamp", 1598823644]]
+Completed 200 OK in 7ms (Views: 1.2ms | ActiveRecord: 1.9ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
