@@ -1,0 +1,642 @@
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 12:55:24 -0700
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 12:58:00 -0700
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 12:58:30 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 12:59:13 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (23.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (12.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7297964768896238010);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSchedules (20200830200700)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (15.3ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "org_id" integer, "user_id" integer, "hours" json, "availability_per_interval" integer, "price_in_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (5.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_schedules_on_org_id" ON "schedules"  ("org_id")[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830200700"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2020-08-30 20:14:01.846766"], ["updated_at", "2020-08-30 20:14:01.846766"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7297964768896238010)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:14:14 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 5.5ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:14:36 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:14:36.353481"], ["updated_at", "2020-08-30 20:14:36.353481"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 14ms (Views: 1.1ms | ActiveRecord: 8.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:14:50 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:14:50.866321"], ["updated_at", "2020-08-30 20:14:50.866321"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 21ms (Views: 0.8ms | ActiveRecord: 6.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:16:01 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:16:01.871605"], ["updated_at", "2020-08-30 20:16:01.871605"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 12ms (Views: 0.9ms | ActiveRecord: 7.2ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:17:09 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:17:09.446826"], ["updated_at", "2020-08-30 20:17:09.446826"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 12ms (Views: 1.2ms | ActiveRecord: 7.2ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:19:12 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: hours, schedule
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:23:21.462486"], ["updated_at", "2020-08-30 20:23:21.462486"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 248918ms (Views: 0.9ms | ActiveRecord: 8.0ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:23:34 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameters: monday, tuesday, wednesday, thursday, friday, saturday, sunday
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{}"], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:25:27.016165"], ["updated_at", "2020-08-30 20:25:27.016165"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 115201ms (Views: 1.0ms | ActiveRecord: 7.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:25:39 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:26:06.358667"], ["updated_at", "2020-08-30 20:26:06.358667"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 26688ms (Views: 1.2ms | ActiveRecord: 7.0ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:26:21 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:26:21.400816"], ["updated_at", "2020-08-30 20:26:21.400816"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 22ms (Views: 0.7ms | ActiveRecord: 7.3ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:41:26 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 25], ["price_in_cents", 1000], ["created_at", "2020-08-30 20:41:26.961630"], ["updated_at", "2020-08-30 20:41:26.961630"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 22ms (Views: 0.6ms | ActiveRecord: 7.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:51:02.691109"], ["updated_at", "2020-08-30 20:51:02.691109"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:51:02 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:51:02.737684"], ["id", 10]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 16ms (Views: 1.2ms | ActiveRecord: 2.9ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:51:02.759079"], ["updated_at", "2020-08-30 20:51:02.759079"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:52:13.713196"], ["updated_at", "2020-08-30 20:52:13.713196"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:52:13 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:52:13.762816"], ["id", 12]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 17ms (Views: 0.6ms | ActiveRecord: 2.9ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:52:13.785243"], ["updated_at", "2020-08-30 20:52:13.785243"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:53:08.266144"], ["updated_at", "2020-08-30 20:53:08.266144"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:53:08 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 14], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:53:08.313116"], ["id", 14]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 18ms (Views: 0.9ms | ActiveRecord: 3.1ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:53:08.333295"], ["updated_at", "2020-08-30 20:53:08.333295"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:54:33.256488"], ["updated_at", "2020-08-30 20:54:33.256488"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:54:33 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 16], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:54:33.302379"], ["id", 16]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 16ms (Views: 0.7ms | ActiveRecord: 2.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:54:33.320691"], ["updated_at", "2020-08-30 20:54:33.320691"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules" for 127.0.0.1 at 2020-08-30 13:54:33 -0700
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:55:20.971728"], ["updated_at", "2020-08-30 20:55:20.971728"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:55:20 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:55:21.019095"], ["id", 18]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 16ms (Views: 1.0ms | ActiveRecord: 2.6ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:55:21.039619"], ["updated_at", "2020-08-30 20:55:21.039619"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:55:45.241057"], ["updated_at", "2020-08-30 20:55:45.241057"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:55:45 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:55:45.288497"], ["id", 20]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 17ms (Views: 0.7ms | ActiveRecord: 2.9ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:55:45.308921"], ["updated_at", "2020-08-30 20:55:45.308921"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/21" for 127.0.0.1 at 2020-08-30 13:55:45 -0700
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:58:50.501189"], ["updated_at", "2020-08-30 20:58:50.501189"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:58:50 -0700
+Processing by SchedulesController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000, "schedule"=>{"org_id"=>1, "user_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>25, "price_in_cents"=>1000}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 25], ["price_in_cents", 1000], ["updated_at", "2020-08-30 20:58:50.556927"], ["id", 22]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 19ms (Views: 0.6ms | ActiveRecord: 2.6ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:58:50.575298"], ["updated_at", "2020-08-30 20:58:50.575298"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/23" for 127.0.0.1 at 2020-08-30 13:58:50 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"23", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 20:58:50.580254"], ["id", 23]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 20:59:39.078382"], ["updated_at", "2020-08-30 20:59:39.078382"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/24" for 127.0.0.1 at 2020-08-30 13:59:39 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"24", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 24], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 20:59:39.120616"], ["id", 24]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 12ms (Views: 1.0ms | ActiveRecord: 2.2ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:00:09.111676"], ["updated_at", "2020-08-30 21:00:09.111676"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/25" for 127.0.0.1 at 2020-08-30 14:00:09 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"25", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.7ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:00:09.155588"], ["id", 25]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 14ms (Views: 1.1ms | ActiveRecord: 2.8ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:00:35.809775"], ["updated_at", "2020-08-30 21:00:35.809775"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/26" for 127.0.0.1 at 2020-08-30 14:00:35 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"26", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 26], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:00:35.859579"], ["id", 26]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 2.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:01:01.594466"], ["updated_at", "2020-08-30 21:01:01.594466"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/27" for 127.0.0.1 at 2020-08-30 14:01:01 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"27", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 27], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:01:01.635338"], ["id", 27]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 12ms (Views: 0.7ms | ActiveRecord: 2.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:01:42.358338"], ["updated_at", "2020-08-30 21:01:42.358338"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/28" for 127.0.0.1 at 2020-08-30 14:01:42 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"28", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:01:42.402648"], ["id", 28]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 16220ms (Views: 1.3ms | ActiveRecord: 2.2ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:02:15.135318"], ["updated_at", "2020-08-30 21:02:15.135318"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/29" for 127.0.0.1 at 2020-08-30 14:02:15 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"29", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 29], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:02:15.178530"], ["id", 29]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 11ms (Views: 0.7ms | ActiveRecord: 1.9ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:02:31.173056"], ["updated_at", "2020-08-30 21:02:31.173056"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/30" for 127.0.0.1 at 2020-08-30 14:02:31 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"30", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 30], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:02:49.638163"], ["id", 30]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 24075ms (Views: 1.2ms | ActiveRecord: 2.3ms)
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:04:46.194904"], ["updated_at", "2020-08-30 21:04:46.194904"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/31" for 127.0.0.1 at 2020-08-30 14:04:46 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"31", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 31], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:04:46.237986"], ["id", 31]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 11ms (Views: 0.8ms | ActiveRecord: 1.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:05:03.707178"], ["updated_at", "2020-08-30 21:05:03.707178"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PUT "/schedules/32" for 127.0.0.1 at 2020-08-30 14:05:03 -0700
+Processing by SchedulesController#update as JSON
+  Parameters: {"availability_per_interval"=>1, "price_in_cents"=>1, "id"=>"32", "schedule"=>{"availability_per_interval"=>1, "price_in_cents"=>1}}
+  [1m[36mSchedule Load (1.6ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+Unpermitted parameters: id, schedule
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "schedules" SET "availability_per_interval" = $1, "price_in_cents" = $2, "updated_at" = $3 WHERE "schedules"."id" = $4[0m  [["availability_per_interval", 1], ["price_in_cents", 1], ["updated_at", "2020-08-30 21:05:03.750672"], ["id", 32]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 200 OK in 14ms (Views: 1.2ms | ActiveRecord: 2.6ms)
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 32], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:16:43.345253"], ["updated_at", "2020-08-30 21:16:43.345253"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/schedules/orgs/1" for 127.0.0.1 at 2020-08-30 14:16:43 -0700
+Processing by SchedulesController#org_schedule as JSON
+  Parameters: {"org_id"=>"1", "schedule"=>{}}
+  [1m[36mSchedule Load (1.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Completed 200 OK in 10ms (Views: 0.8ms | ActiveRecord: 1.2ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:17:44.570610"], ["updated_at", "2020-08-30 21:17:44.570610"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/schedules/orgs/1" for 127.0.0.1 at 2020-08-30 14:17:44 -0700
+Processing by SchedulesController#org_schedule as JSON
+  Parameters: {"org_id"=>"1", "schedule"=>{}}
+  [1m[36mSchedule Load (1.5ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Completed 200 OK in 10ms (Views: 1.0ms | ActiveRecord: 1.7ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:19:03.008003"], ["updated_at", "2020-08-30 21:19:03.008003"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/schedules/orgs/99999" for 127.0.0.1 at 2020-08-30 14:19:03 -0700
+Processing by SchedulesController#org_schedule as JSON
+  Parameters: {"org_id"=>"99999", "schedule"=>{}}
+  [1m[36mSchedule Load (1.0ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 9ms (Views: 0.1ms | ActiveRecord: 1.2ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 1], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 9], ["price_in_cents", 999], ["created_at", "2020-08-30 21:19:16.719958"], ["updated_at", "2020-08-30 21:19:16.719958"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/schedules/orgs/99999" for 127.0.0.1 at 2020-08-30 14:19:16 -0700
+Processing by SchedulesController#org_schedule as JSON
+  Parameters: {"org_id"=>"99999", "schedule"=>{}}
+  [1m[36mSchedule Load (1.1ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 99999], ["LIMIT", 1]]
+Completed 404 Not Found in 8ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7297964768896238010);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateReservations (20200830233631)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.6ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" serial primary key, "location_id" integer, "user_id" integer, "coach_id" integer, "start_timestamp" integer, "duration" integer, "size" integer, "kind" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_on_location_id_and_user_id_and_start_timestamp" ON "reservations"  ("location_id", "user_id", "start_timestamp")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830233631"]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7297964768896238010)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:00:29.108507"], ["updated_at", "2020-08-31 00:00:29.108507"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:00:29 -0700
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:02:07.303745"], ["updated_at", "2020-08-31 00:02:07.303745"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:02:07 -0700
+Processing by ReservationsController#create as JSON
+  Parameters: {"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_datetime"=>1598823644, "duration"=>222, "size"=>1, "kind"=>[{"id"=>2, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:02:07.303Z", "updated_at"=>"2020-08-31T00:02:07.303Z"}], "reservation"=>{"location_id"=>2, "user_id"=>2, "coach_id"=>2, "duration"=>222, "size"=>1, "kind"=>[{"id"=>2, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:02:07.303Z", "updated_at"=>"2020-08-31T00:02:07.303Z"}]}}
+Unpermitted parameters: kind, reservation
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:02:55.250995"], ["updated_at", "2020-08-31 00:02:55.250995"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:02:55 -0700
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:05:50.248898"], ["updated_at", "2020-08-31 00:05:50.248898"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (0.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:05:50 -0700
+Processing by ReservationsController#create as JSON
+  Parameters: {"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_datetime"=>1598823644, "duration"=>222, "size"=>1, "kind"=>[{"id"=>4, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:05:50.248Z", "updated_at"=>"2020-08-31T00:05:50.248Z"}], "reservation"=>{"location_id"=>2, "user_id"=>2, "coach_id"=>2, "duration"=>222, "size"=>1, "kind"=>[{"id"=>4, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:05:50.248Z", "updated_at"=>"2020-08-31T00:05:50.248Z"}]}}
+Unpermitted parameters: kind, reservation
+Completed 500 Internal Server Error in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:07:10.122859"], ["updated_at", "2020-08-31 00:07:10.122859"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:07:10 -0700
+Processing by ReservationsController#create as JSON
+  Parameters: {"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_datetime"=>1598823644, "duration"=>222, "size"=>1, "kind"=>[{"id"=>5, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:07:10.122Z", "updated_at"=>"2020-08-31T00:07:10.122Z"}], "reservation"=>{"location_id"=>2, "user_id"=>2, "coach_id"=>2, "duration"=>222, "size"=>1, "kind"=>[{"id"=>5, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:07:10.122Z", "updated_at"=>"2020-08-31T00:07:10.122Z"}]}}
+Unpermitted parameters: kind, reservation
+Completed 422 Unprocessable Entity in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:08:04.560173"], ["updated_at", "2020-08-31 00:08:04.560173"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:08:04 -0700
+Processing by ReservationsController#create as JSON
+  Parameters: {"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_timestamp"=>1598823644, "duration"=>222, "size"=>1, "kind"=>[{"id"=>6, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:08:04.560Z", "updated_at"=>"2020-08-31T00:08:04.560Z"}], "reservation"=>{"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_timestamp"=>1598823644, "duration"=>222, "size"=>1, "kind"=>[{"id"=>6, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:08:04.560Z", "updated_at"=>"2020-08-31T00:08:04.560Z"}]}}
+Unpermitted parameters: start_timestamp, kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "duration", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["location_id", 2], ["user_id", 2], ["coach_id", 2], ["duration", 222], ["size", 1], ["created_at", "2020-08-31 00:08:04.599888"], ["updated_at", "2020-08-31 00:08:04.599888"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 4ms (Views: 1.0ms | ActiveRecord: 0.7ms)
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7297964768896238010);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameColumnInReservations (20200831001347)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "reservations" RENAME COLUMN "duration" TO "duration_in_minutes"[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001347"]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(7297964768896238010)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7297964768896238010);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeIndexReservations (20200831001614)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP INDEX  "index_on_location_id_and_user_id_and_start_timestamp"[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id_and_start_timestamp" ON "reservations"  ("user_id", "start_timestamp")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001614"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7297964768896238010)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "kind", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 1], ["start_timestamp", 1598823644], ["duration_in_minutes", 60], ["size", 1], ["kind", 0], ["created_at", "2020-08-31 00:20:56.010566"], ["updated_at", "2020-08-31 00:20:56.010566"]]
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mReservation Load (0.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."kind" = $1[0m  [["kind", 0]]
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:20:56 -0700
+Processing by ReservationsController#create as JSON
+  Parameters: {"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_timestamp"=>1598823644, "duration_in_minutes"=>222, "size"=>1, "kind"=>[{"id"=>8, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration_in_minutes"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:20:56.010Z", "updated_at"=>"2020-08-31T00:20:56.010Z"}], "reservation"=>{"location_id"=>2, "user_id"=>2, "coach_id"=>2, "start_timestamp"=>1598823644, "duration_in_minutes"=>222, "size"=>1, "kind"=>[{"id"=>8, "location_id"=>1, "user_id"=>1, "coach_id"=>1, "start_timestamp"=>1598823644, "duration_in_minutes"=>60, "size"=>1, "kind"=>"play", "created_at"=>"2020-08-31T00:20:56.010Z", "updated_at"=>"2020-08-31T00:20:56.010Z"}]}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 2], ["user_id", 2], ["coach_id", 2], ["start_timestamp", 1598823644], ["duration_in_minutes", 222], ["size", 1], ["created_at", "2020-08-31 00:20:56.048062"], ["updated_at", "2020-08-31 00:20:56.048062"]]
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Completed 201 Created in 4ms (Views: 0.9ms | ActiveRecord: 0.8ms)
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m

@@ -1,6 +1,7 @@
 FROM ruby:2.5.1
 
 RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get install -y dos2unix
 
 # for postgres
 RUN apt-get install -y libpq-dev
@@ -19,5 +20,10 @@ RUN bundle install
 ADD . $APP_HOME
 
 EXPOSE 3000
+
+RUN dos2unix wait-for-it.sh
+RUN dos2unix start.sh
+RUN dos2unix bin/*
+
 # CMD ["bin/rails", "server", "-b", "0.0.0.0", "-e", "production"]
 CMD ["bash", "start.sh"]
