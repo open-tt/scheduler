@@ -1,8 +1,8 @@
 version: "3.8"
 services:
-  # webapp:
-  #   build : ./packages/club-manager-web
-  pqsql_userservice:
+
+  # Users & Orgs DB
+  pgsql_userservice:
     image: postgres:9.6-alpine
     restart: always
     environment:
@@ -15,19 +15,50 @@ services:
     volumes:
       - userservice_database:/var/lib/postgresql/data
 
+  # Users & Orgs Service
   api_userservice:
     depends_on:
-      - pqsql_userservice
-    command: ["bash", "./wait-for-it.sh", "pqsql_userservice:5432", "--", "bash", "start.sh"]
+      - pgsql_userservice
+    command: ["bash", "./wait-for-it.sh", "pgsql_userservice:5432", "--", "bash", "start.sh"]
     restart: always
     build:
       context: ./packages/user-service
       dockerfile: Dockerfile
     environment:
-      LENOMIR_DB_HOST: pqsql_userservice
+      LENOMIR_DB_HOST: pgsql_userservice
       LENOMIR_DB_PORT: 5432
     ports:
       - '3001:3000'
 
+  # Reservations DB
+  pgsql_reservationservice:
+    image: postgres:9.6-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: reservationservice
+      POSTGRES_USER: reservationservice
+      POSTGRES_PASSWORD: reservationservice
+
+    ports:
+      - '5442:5432'
+    volumes:
+      - reservationservice_database:/var/lib/postgresql/data
+
+  # Reservations Service
+  api_reservationservice:
+    depends_on:
+      - pgsql_userservice
+    command: ["bash", "./wait-for-it.sh", "pgsql_reservationservice:5432", "--", "bash", "start.sh"]
+    restart: always
+    build:
+      context: ./packages/reservation-service
+      dockerfile: Dockerfile
+    environment:
+      LENOMIR_DB_HOST: pgsql_reservationservice
+      LENOMIR_DB_PORT: 5432
+    ports:
+      - '3002:3000'
+
 volumes:
   userservice_database:
+  reservationservice_database:

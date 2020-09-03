@@ -27,4 +27,4 @@ production:
   username: userservice
   password: userservice
   database: userservice
-  host: pqsql_userservice
+  host: pgsql_userservice

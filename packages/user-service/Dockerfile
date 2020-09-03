@@ -25,5 +25,4 @@ RUN dos2unix wait-for-it.sh
 RUN dos2unix start.sh
 RUN dos2unix bin/*
 
-# CMD ["bin/rails", "server", "-b", "0.0.0.0", "-e", "production"]
 CMD ["bash", "start.sh"]
