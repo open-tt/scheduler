@@ -1,0 +1,634 @@
+DEPRECATION WARNING: Passing #original_exception is deprecated and has no effect. Exceptions will automatically capture the original exception. (called from require at /Users/dibu2018/src/club-manager/packages/org-service/bin/rails:9)
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "actions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url_regex" varchar, "method" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "actions_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "action_id" integer, "role_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_actions_roles_on_action_id" ON "actions_roles" ("action_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_actions_roles_on_role_id" ON "actions_roles" ("role_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "roles_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "role_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "org_id" integer)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE  INDEX "index_roles_users_on_role_id" ON "roles_users" ("role_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_roles_users_on_user_id" ON "roles_users" ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "name" varchar, "profile_img" varchar, "is_enabled" boolean DEFAULT 'f', "password_digest" varchar)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200809145232)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-15 02:04:34.493988"], ["updated_at", "2020-08-15 02:04:34.493988"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "actions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "url_regex" varchar, "method" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "actions_roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "action_id" integer, "role_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mselect sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_actions_roles_on_action_id" ON "actions_roles" ("action_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE  INDEX "index_actions_roles_on_role_id" ON "actions_roles" ("role_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "roles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "roles_users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "role_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, "org_id" integer)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE  INDEX "index_roles_users_on_role_id" ON "roles_users" ("role_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_roles_users_on_user_id" ON "roles_users" ("user_id")[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "name" varchar, "profile_img" varchar, "is_enabled" boolean DEFAULT 'f', "password_digest" varchar)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200809145232)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-15 02:04:34.515802"], ["updated_at", "2020-08-15 02:04:34.515802"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2020-08-15 02:04:34.517926"], ["key", "environment"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200809145232)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-15 02:04:51.353238"], ["updated_at", "2020-08-15 02:04:51.353238"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20200809145232)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-15 02:04:51.361734"], ["updated_at", "2020-08-15 02:04:51.361734"]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2020-08-15 02:04:51.363754"], ["key", "environment"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2020-08-30 12:54:04 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered C:/Ruby25-x64/lib/ruby/gems/2.5.0/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb (14.4ms)
+Completed 200 OK in 97ms (Views: 68.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-08-30 12:54:05 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-08-30 12:54:12 -0700
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 12:54:37 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/schedules"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+  [1m[35m (25.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (16.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSchedules (20200830200700)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (14.9ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "org_id" integer, "user_id" integer, "hours" json, "availability_per_interval" integer, "price_in_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_schedules_on_org_id" ON "schedules"  ("org_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830200700"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-08-30 20:09:50.101482"], ["updated_at", "2020-08-30 20:09:50.101482"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-08-30 13:27:45 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-08-30 13:27:46 -0700
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-08-30 13:27:46 -0700
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-08-30 13:27:46 -0700
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-08-30 13:27:46 -0700
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-08-30 13:27:46 -0700
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:27:58 -0700
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:27:58.219689"], ["updated_at", "2020-08-30 20:27:58.219689"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 21ms (Views: 0.5ms | ActiveRecord: 18.4ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:28:05 -0700
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (12.3ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:28:05.779319"], ["updated_at", "2020-08-30 20:28:05.779319"]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 12.6ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_schedules_on_org_id"
+DETAIL:  Key (org_id)=(0) already exists.
+: INSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"):
+  
+app/controllers/schedules_controller.rb:7:in `create'
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:29:43 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (12.5ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:30:02.545674"], ["updated_at", "2020-08-30 20:30:02.545674"]]
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 17534ms (ActiveRecord: 19.8ms)
+
+
+  
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_schedules_on_org_id"
+DETAIL:  Key (org_id)=(0) already exists.
+: INSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"):
+  
+app/controllers/schedules_controller.rb:7:in `create'
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:31:39 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (11.7ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:31:41.046185"], ["updated_at", "2020-08-30 20:31:41.046185"]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 18.5ms)
+
+
+  
+NoMethodError (undefined method `full_messages' for #<ActiveRecord::RecordNotUnique:0x000000000bcce718>
+Did you mean?  full_message):
+  
+app/controllers/schedules_controller.rb:17:in `rescue in create'
+app/controllers/schedules_controller.rb:7:in `create'
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:32:29 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (10.8ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:32:31.039700"], ["updated_at", "2020-08-30 20:32:31.039700"]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 107ms (ActiveRecord: 16.9ms)
+
+
+  
+NameError (undefined local variable or method `conflict' for #<SchedulesController:0x000000000ba2a430>
+Did you mean?  config):
+  
+app/controllers/schedules_controller.rb:17:in `rescue in create'
+app/controllers/schedules_controller.rb:7:in `create'
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:32:49 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (11.6ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:32:51.228896"], ["updated_at", "2020-08-30 20:32:51.228896"]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 409 Conflict in 32ms (Views: 0.4ms | ActiveRecord: 18.5ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:33:17 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (12.6ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 0], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:33:18.773606"], ["updated_at", "2020-08-30 20:33:18.773606"]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 409 Conflict in 30ms (Views: 0.2ms | ActiveRecord: 18.8ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:40:07 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (1.9ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 0], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 41ms (Views: 0.5ms | ActiveRecord: 9.4ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:40:29 -0700
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (2.2ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 0], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 14ms (Views: 0.5ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:40:38 -0700
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>1, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>1, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 1], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schedules" ("org_id", "user_id", "hours", "availability_per_interval", "price_in_cents", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["org_id", 1], ["user_id", 0], ["hours", "{\"monday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"tuesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"wednesday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"thursday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"friday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"saturday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true},\"sunday\":{\"start\":\"0800\",\"end\":\"2000\",\"enabled\":true}}"], ["availability_per_interval", 0], ["price_in_cents", 0], ["created_at", "2020-08-30 20:40:38.243385"], ["updated_at", "2020-08-30 20:40:38.243385"]]
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 17ms (Views: 0.9ms | ActiveRecord: 4.8ms)
+
+
+Started POST "/schedules" for 127.0.0.1 at 2020-08-30 13:40:52 -0700
+Processing by SchedulesController#create as */*
+  Parameters: {"user_id"=>0, "org_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0, "schedule"=>{"org_id"=>0, "user_id"=>0, "hours"=>{"monday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "tuesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "wednesday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "thursday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "friday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "saturday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}, "sunday"=>{"start"=>"0800", "end"=>"2000", "enabled"=>true}}, "availability_per_interval"=>0, "price_in_cents"=>0}}
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.3ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."org_id" = $1 LIMIT $2[0m  [["org_id", 0], ["LIMIT", 1]]
+Unpermitted parameter: schedule
+  [1m[36mSchedule Load (0.4ms)[0m  [1m[34mSELECT  "schedules".* FROM "schedules" WHERE "schedules"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 16ms (Views: 0.5ms | ActiveRecord: 1.2ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateReservations (20200830233631)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.6ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" serial primary key, "location_id" integer, "user_id" integer, "coach_id" integer, "start_timestamp" integer, "duration" integer, "size" integer, "kind" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateReservations (20200830233631)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.2ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" serial primary key, "location_id" integer, "user_id" integer, "coach_id" integer, "start_timestamp" integer, "duration" integer, "size" integer, "kind" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_on_location_id_and_user_id_and_start_timestamp" ON "reservations"  ("location_id", "user_id", "start_timestamp")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830233631"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-08-30 17:08:40 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-08-30 17:08:51 -0700
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-08-30 17:08:51 -0700
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-08-30 17:08:51 -0700
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-08-30 17:08:51 -0700
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-08-30 17:08:51 -0700
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:09:18 -0700
+  
+ActionController::RoutingError (uninitialized constant ApplicationController::RenderingHelper):
+  
+app/controllers/application_controller.rb:2:in `<class:ApplicationController>'
+app/controllers/application_controller.rb:1:in `<top (required)>'
+app/controllers/reservations_controller.rb:1:in `<top (required)>'
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:10:23 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: start_timestamp, duration_in_minutes, kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["size", 0], ["created_at", "2020-08-31 00:10:24.639280"], ["updated_at", "2020-08-31 00:10:24.639280"]]
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 500 Internal Server Error in 56ms (ActiveRecord: 8.4ms)
+
+
+  
+NoMethodError (undefined method `render_exception_as_json' for #<ReservationsController:0x0000000006dd42c0>):
+  
+app/controllers/reservations_controller.rb:10:in `rescue in create'
+app/controllers/reservations_controller.rb:2:in `create'
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:10:44 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: start_timestamp, duration_in_minutes, kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["size", 0], ["created_at", "2020-08-31 00:10:45.353745"], ["updated_at", "2020-08-31 00:10:45.353745"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 25ms (Views: 2.2ms | ActiveRecord: 9.7ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:10:50 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: start_timestamp, duration_in_minutes, kind, reservation
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["size", 0], ["created_at", "2020-08-31 00:10:50.491584"], ["updated_at", "2020-08-31 00:10:50.491584"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 12ms (Views: 0.7ms | ActiveRecord: 3.3ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:10:54 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: start_timestamp, duration_in_minutes, kind, reservation
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["size", 0], ["created_at", "2020-08-31 00:10:54.816028"], ["updated_at", "2020-08-31 00:10:54.816028"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 7ms (Views: 0.4ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:11:30 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>111, "duration_in_minutes"=>111, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>111, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: start_timestamp, duration_in_minutes, kind, reservation
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["size", 0], ["created_at", "2020-08-31 00:11:30.728507"], ["updated_at", "2020-08-31 00:11:30.728507"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 11ms (Views: 0.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-08-30 17:12:57 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-08-30 17:12:58 -0700
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-08-30 17:12:58 -0700
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-08-30 17:12:58 -0700
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-08-30 17:12:59 -0700
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-08-30 17:12:59 -0700
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:13:06 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+Completed 422 Unprocessable Entity in 9ms (Views: 0.1ms | ActiveRecord: 16.4ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RenameColumnInReservations (20200831001347)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "reservations" RENAME COLUMN "duration" TO "duration_in_minutes"[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001347"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:14:32 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:14:32.666152"], ["updated_at", "2020-08-31 00:14:32.666152"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 20ms (Views: 1.8ms | ActiveRecord: 9.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:14:39 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (14.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:14:39.193953"], ["updated_at", "2020-08-31 00:14:39.193953"]]
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 22ms (Views: 0.2ms | ActiveRecord: 14.8ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:14:49 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 1], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:14:49.288085"], ["updated_at", "2020-08-31 00:14:49.288085"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.5ms | ActiveRecord: 3.2ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:14:51 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (11.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 1], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:14:51.823781"], ["updated_at", "2020-08-31 00:14:51.823781"]]
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 19ms (Views: 0.2ms | ActiveRecord: 11.7ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:14:56 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 1], ["coach_id", 0], ["start_timestamp", 1], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:14:56.976754"], ["updated_at", "2020-08-31 00:14:56.976754"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.4ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:15:01 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (14.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 1], ["coach_id", 0], ["start_timestamp", 1], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:15:01.294495"], ["updated_at", "2020-08-31 00:15:01.294495"]]
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 422 Unprocessable Entity in 24ms (Views: 0.2ms | ActiveRecord: 14.9ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 17:15:10 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>1, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>1, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>1, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 1], ["user_id", 1], ["coach_id", 0], ["start_timestamp", 1], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 00:15:10.820590"], ["updated_at", "2020-08-31 00:15:10.820590"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.4ms | ActiveRecord: 2.4ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeIndexReservations (20200831001614)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeIndexReservations (20200831001614)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.0ms)[0m  [1m[35mDROP INDEX  "index_on_location_id_and_user_id_and_start_timestamp"[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id_and_start_timestamp" ON "reservations"  ("user_id", "start_timestamp")[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001614"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/reservations/create" for 127.0.0.1 at 2020-08-30 17:32:22 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#show as HTML
+  Parameters: {"id"=>"create"}
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-08-30 19:15:21 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-08-30 19:15:22 -0700
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-08-30 19:15:22 -0700
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-08-30 19:15:22 -0700
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-08-30 19:15:22 -0700
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-08-30 19:15:22 -0700
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 19:15:29 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 02:15:29.992688"], ["updated_at", "2020-08-31 02:15:29.992688"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 24ms (Views: 0.8ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/reservations?location_id=0" for 127.0.0.1 at 2020-08-30 19:15:48 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"location_id"=>"0"}
+  [1m[36mReservation Load (2.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."location_id" = $1[0m  [["location_id", 0]]
+Completed 200 OK in 12ms (Views: 2.9ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/reservations?location_id=0&user_id=0" for 127.0.0.1 at 2020-08-30 19:15:57 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"location_id"=>"0", "user_id"=>"0"}
+  [1m[36mReservation Load (0.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2[0m  [["user_id", 0], ["location_id", 0]]
+Completed 200 OK in 7ms (Views: 3.0ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-08-30 19:16:07 -0700
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>1, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 1], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-08-31 02:16:07.410580"], ["updated_at", "2020-08-31 02:16:07.410580"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 13ms (Views: 0.8ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/reservations?location_id=0&user_id=1" for 127.0.0.1 at 2020-08-30 19:16:13 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"location_id"=>"0", "user_id"=>"1"}
+  [1m[36mReservation Load (0.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2[0m  [["user_id", 1], ["location_id", 0]]
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/reservations?location_id=0&user_id=1&start_timestamp=1" for 127.0.0.1 at 2020-08-30 19:16:25 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"location_id"=>"0", "user_id"=>"1", "start_timestamp"=>"1"}
+  [1m[36mReservation Load (0.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."location_id" = $2 AND "reservations"."start_timestamp" = $3[0m  [["user_id", 1], ["location_id", 0], ["start_timestamp", 1]]
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/reservations?user_id=1&start_timestamp=1" for 127.0.0.1 at 2020-08-30 19:16:30 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"user_id"=>"1", "start_timestamp"=>"1"}
+  [1m[36mReservation Load (0.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1 AND "reservations"."start_timestamp" = $2[0m  [["user_id", 1], ["start_timestamp", 1]]
+Completed 200 OK in 5ms (Views: 0.8ms | ActiveRecord: 0.5ms)
+
+
