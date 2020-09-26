@@ -9,6 +9,7 @@
 
 
 ### P1
+- [Eriel] Dockerize and deploy to Prod
 - Fix startup error on `$ python manage.py runserver`:
 
         view's MembershipConfigViewSet raised exception during schema generation; use `getattr(self, 'swagger_fake_view', False)` to detect and short-circuit this
