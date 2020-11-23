@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   # Users
   post    '/users'            => 'users#register'
+  get     '/current_user'     => 'users#show_current_user'
   get     '/users/:id'        => 'users#show'
   put     '/users/:id'        => 'users#edit'
   post    '/users/:id/roles'  => 'users#add_role'

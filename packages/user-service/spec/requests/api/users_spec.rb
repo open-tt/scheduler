@@ -75,6 +75,20 @@ RSpec.describe 'Users API', type: :request do
     end
   end
 
+  path '/current_user' do
+    get 'Get the user belonging to the Authorization token' do
+      tags 'Users'
+
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'User retrieved' do
+        run_test!
+      end
+    end
+  end
+
   path '/users/{id}' do
     get 'Get User by ID' do
       tags 'Users'

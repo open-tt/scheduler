@@ -367,6 +367,17 @@ paths:
               - email
               - password
               - password_confirmation
+  "/current_user":
+    get:
+      summary: Get the user belonging to the Authorization token
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: User retrieved
+          content: {}
   "/users/{id}":
     get:
       summary: Get User by ID

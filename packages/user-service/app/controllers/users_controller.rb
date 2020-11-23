@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:register]
 
+  def show_current_user
+    render json: { user: current_user }
+  end
+
   def register
     user = User.new(create_user_params)
     user.roles_users.new(role_id: Role.player.id)
