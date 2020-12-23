@@ -1,10 +1,9 @@
 FROM ruby:2.5.1
 
-RUN apt-get update -qq && apt-get install -y build-essential
+# Explanation
+# libpq-dev -> for postgress, needs apt-get update
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN apt-get install -y dos2unix
-
-# for postgres
-RUN apt-get install -y libpq-dev
 
 # for nokogiri
 RUN apt-get install -y libxml2-dev libxslt1-dev

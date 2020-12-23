@@ -11497,3 +11497,527 @@ Processing by UsersController#show_current_user as */*
 Completed 200 OK in 63ms (Views: 0.3ms | ActiveRecord: 1.4ms)
 
 
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 21:58:03 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 21:58:10 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 21:58:16 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1+2@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+2@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+2@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 21:58:23 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1+3@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+3@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+3@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 21:58:29 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1+4@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+4@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+4@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2020-11-22 21:58:55 -0500
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"Eriel Marimon", "email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"erieljr1@gmail.com", "name"=>"Eriel Marimon", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "is_enabled", "password_digest") VALUES (?, ?, ?, ?)[0m  [["email", "erieljr1@gmail.com"], ["name", "Eriel Marimon"], ["is_enabled", "t"], ["password_digest", "$2a$12$1UZ7ecMlCqd.wJ/8QCJz9uR/ggcpCY3UdgHlfCoY4TjuEZhdGToMu"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["role_id", 1], ["created_at", "2020-11-23 02:58:55.336748"], ["updated_at", "2020-11-23 02:58:55.336748"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: a584a5d9-53a8-4e5d-93fa-057d727959be) to Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f832ac74ef8 @uri=#<URI::GID gid://opentt-scheduler/User/2>>
+Completed 201 Created in 790ms (Views: 0.1ms | ActiveRecord: 2.7ms)
+
+
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f83331633d0 @uri=#<URI::GID gid://opentt-scheduler/User/2>>
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be]   Rendering user_mailer/account_confirmation_email.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be]   Rendered user_mailer/account_confirmation_email.text.erb within layouts/mailer (1.7ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be] UserMailer#account_confirmation_email: processed outbound mail in 171.1ms
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be] Sent mail to erieljr1@gmail.com (9.3ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be] Date: Sun, 22 Nov 2020 21:58:56 -0500
+From: from@example.com
+To: erieljr1@gmail.com
+Message-ID: <5fbb257015a84_90593fc19563bfb49876e@eriels-mbp.lan.mail>
+Subject: Open TT Account Confirmation
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Eriel Marimon,
+Your have successful created an account at Open TT
+
+Reserve your spot at a local club: https://tt-scheduler.netlify.app
+
+[ActiveJob] [ActionMailer::DeliveryJob] [a584a5d9-53a8-4e5d-93fa-057d727959be] Performed ActionMailer::DeliveryJob from Async(mailers) in 186.02ms
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 21:59:10 -0500
+Processing by UsersController#show_current_user as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 2], ["method", 0]]
+  [1m[36mAction Load (0.2ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 2], ["method", 0]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 22:09:59 -0500
+Processing by UsersController#show_current_user as */*
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 2], ["method", 0]]
+  [1m[36mAction Load (0.2ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 2], ["method", 0]]
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2020-11-22 22:33:00 -0500
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"Eriel Marimon", "email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"erieljr1@gmail.com", "name"=>"Eriel Marimon", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.0ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 212ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "orgs_users" WHERE "orgs_users"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM "roles_users" WHERE "roles_users"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 1]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "orgs_users" WHERE "orgs_users"."user_id" = ?[0m  [["user_id", 2]]
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "roles_users" WHERE "roles_users"."user_id" = ?[0m  [["user_id", 2]]
+  [1m[35mSQL (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 2]]
+  [1m[35m (0.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+Started POST "/users" for 127.0.0.1 at 2020-11-22 22:33:31 -0500
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"Eriel Marimon", "email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"erieljr1@gmail.com", "name"=>"Eriel Marimon", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "is_enabled", "password_digest") VALUES (?, ?, ?, ?)[0m  [["email", "erieljr1@gmail.com"], ["name", "Eriel Marimon"], ["is_enabled", "t"], ["password_digest", "$2a$12$o2lLtmGLOKNx4yfIeCueyewnCYyo8aXtT9TvyytVR4rjQzjcEo93e"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 3], ["role_id", 1], ["created_at", "2020-11-23 03:33:32.189150"], ["updated_at", "2020-11-23 03:33:32.189150"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: f19237ca-76d9-4a29-9fbb-e16a7ffb1051) to Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f832c1676a8 @uri=#<URI::GID gid://opentt-scheduler/User/3>>
+Completed 201 Created in 613ms (Views: 0.1ms | ActiveRecord: 1.8ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f83332081c8 @uri=#<URI::GID gid://opentt-scheduler/User/3>>
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051]   Rendering user_mailer/account_confirmation_email.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051]   Rendered user_mailer/account_confirmation_email.text.erb within layouts/mailer (0.2ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051] UserMailer#account_confirmation_email: processed outbound mail in 16.3ms
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051] Sent mail to erieljr1@gmail.com (1.3ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051] Date: Sun, 22 Nov 2020 22:33:32 -0500
+From: from@example.com
+To: erieljr1@gmail.com
+Message-ID: <5fbb2d8c943bc_90593fc19563bfb498836@eriels-mbp.lan.mail>
+Subject: Open TT Account Confirmation
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Eriel Marimon,
+Your have successful created an account at Open TT
+
+Reserve your spot at a local club: https://tt-scheduler.netlify.app
+
+[ActiveJob] [ActionMailer::DeliveryJob] [f19237ca-76d9-4a29-9fbb-e16a7ffb1051] Performed ActionMailer::DeliveryJob from Async(mailers) in 17.91ms
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:34:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 19ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:34:14 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:35:29 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:36:05 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 4127ms (Views: 0.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:36:25 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 84537ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:38:07 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 18393ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:38:37 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1+1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1+1@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 52564ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:39:33 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 9688ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 22:39:43 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 5808ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:40:25 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 5775ms (Views: 0.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 22:40:30 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:45:36 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 402ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 22:45:37 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-22 22:45:57 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 396ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-22 22:45:57 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2020-11-22 23:42:10 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/reservations"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 11:40:42 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 401ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 11:40:42 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 11:42:00 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 397ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 11:42:01 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 11:43:24 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/reservations"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 15:26:46 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/reservations"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 15:28:22 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/reservations"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 15:28:39 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/reservations"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-11-23 15:30:02 -0500
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 15:30:28 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 400ms (Views: 0.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 15:30:28 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.2ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 7ms (Views: 0.4ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 15:44:35 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 410ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 15:44:36 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 16:09:50 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 423ms (Views: 0.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 16:09:51 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.2ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 21ms (Views: 0.9ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-23 16:09:58 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 431ms (Views: 0.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-23 16:09:59 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.3ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 9ms (Views: 1.2ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-11-24 00:05:45 -0500
+Processing by AuthenticationController#authenticate as HTML
+  Parameters: {"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"erieljr1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "erieljr1@gmail.com"], ["LIMIT", 1]]
+Completed 200 OK in 403ms (Views: 0.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/current_user" for 127.0.0.1 at 2020-11-24 00:05:46 -0500
+Processing by UsersController#show_current_user as HTML
+  Parameters: {"user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+  [1m[36mAction Load (0.2ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 3], ["method", 0]]
+Completed 200 OK in 10ms (Views: 0.6ms | ActiveRecord: 0.8ms)
+
+

@@ -632,3 +632,366 @@ Processing by ReservationsController#index as */*
 Completed 200 OK in 5ms (Views: 0.8ms | ActiveRecord: 0.5ms)
 
 
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 14:25:02 -0500
+  
+PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5433?
+could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5433?
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:673:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:217:in `initialize'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `new'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:729:in `new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:773:in `checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:752:in `try_to_checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:713:in `acquire_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:490:in `checkout'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:364:in `connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:883:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:128:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:91:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:559:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:546:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-11-23 14:25:02 -0500
+  
+PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5433?
+could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5433?
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:673:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:217:in `initialize'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `new'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:729:in `new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:773:in `checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:752:in `try_to_checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:713:in `acquire_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:490:in `checkout'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:364:in `connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:883:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:128:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:91:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:559:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:546:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 14:58:37 -0500
+  
+PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5433?
+could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5433?
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:673:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:217:in `initialize'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `new'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:729:in `new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:773:in `checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:752:in `try_to_checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:713:in `acquire_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:490:in `checkout'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:364:in `connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:883:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:128:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:91:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:559:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:546:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-11-23 14:58:38 -0500
+  
+PG::ConnectionBad (could not connect to server: Connection refused
+	Is the server running on host "localhost" (::1) and accepting
+	TCP/IP connections on port 5433?
+could not connect to server: Connection refused
+	Is the server running on host "localhost" (127.0.0.1) and accepting
+	TCP/IP connections on port 5433?
+):
+  
+pg (1.2.3) lib/pg.rb:58:in `initialize'
+pg (1.2.3) lib/pg.rb:58:in `new'
+pg (1.2.3) lib/pg.rb:58:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:673:in `connect'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:217:in `initialize'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `new'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/postgresql_adapter.rb:37:in `postgresql_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:729:in `new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:773:in `checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:752:in `try_to_checkout_new_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:713:in `acquire_connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:490:in `checkout'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:364:in `connection'
+activerecord (5.0.7.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:883:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:128:in `retrieve_connection'
+activerecord (5.0.7.2) lib/active_record/connection_handling.rb:91:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:559:in `connection'
+activerecord (5.0.7.2) lib/active_record/migration.rb:546:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+  [1m[35m (10.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2413208719491140235);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateSchedules (20200830200700)
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.2ms)[0m  [1m[35mCREATE TABLE "schedules" ("id" serial primary key, "org_id" integer, "user_id" integer, "hours" json, "availability_per_interval" integer, "price_in_cents" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_schedules_on_org_id" ON "schedules"  ("org_id")[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830200700"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReservations (20200830233631)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "reservations" ("id" serial primary key, "location_id" integer, "user_id" integer, "coach_id" integer, "start_timestamp" integer, "duration" integer, "size" integer, "kind" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_on_location_id_and_user_id_and_start_timestamp" ON "reservations"  ("location_id", "user_id", "start_timestamp")[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200830233631"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RenameColumnInReservations (20200831001347)
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "reservations" RENAME COLUMN "duration" TO "duration_in_minutes"[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001347"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeIndexReservations (20200831001614)
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP INDEX  "index_on_location_id_and_user_id_and_start_timestamp"[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE  INDEX  "index_reservations_on_user_id_and_start_timestamp" ON "reservations"  ("user_id", "start_timestamp")[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200831001614"]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-11-23 20:23:12.095332"], ["updated_at", "2020-11-23 20:23:12.095332"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_advisory_unlock(2413208719491140235)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-11-23 15:23:21 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:26:33 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:26:33 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:26:33 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:26:33 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:26:33 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-11-23 15:27:52 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-11-23 15:28:17 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-11-23 15:28:34 -0500
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 15:29:01 -0500
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>0, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 0], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-11-23 20:29:12.908417"], ["updated_at", "2020-11-23 20:29:12.908417"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 13375ms (Views: 0.3ms | ActiveRecord: 18.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2020-11-23 15:29:33 -0500
+Processing by ReservationsController#create as */*
+  Parameters: {"location_id"=>0, "user_id"=>3, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}, "reservation"=>{"location_id"=>0, "user_id"=>3, "coach_id"=>0, "start_timestamp"=>0, "duration_in_minutes"=>0, "size"=>0, "kind"=>{"play"=>0, "lesson"=>1}}}
+Unpermitted parameters: kind, reservation
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  [1m[32mINSERT INTO "reservations" ("location_id", "user_id", "coach_id", "start_timestamp", "duration_in_minutes", "size", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["location_id", 0], ["user_id", 3], ["coach_id", 0], ["start_timestamp", 0], ["duration_in_minutes", 0], ["size", 0], ["created_at", "2020-11-23 20:29:37.610392"], ["updated_at", "2020-11-23 20:29:37.610392"]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 3897ms (Views: 0.3ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-11-23 15:29:58 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-11-23 15:29:58 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-11-23 15:29:58 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-11-23 15:29:58 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-11-23 15:29:58 -0500
+Started GET "/reservations?user_id=3" for 127.0.0.1 at 2020-11-23 15:30:28 -0500
+Processing by ReservationsController#index as HTML
+  Parameters: {"user_id"=>"3", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1[0m  [["user_id", 3]]
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/reservations?user_id=3" for 127.0.0.1 at 2020-11-23 15:44:36 -0500
+Processing by ReservationsController#index as HTML
+  Parameters: {"user_id"=>"3", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1[0m  [["user_id", 3]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/reservations?user_id=3" for 127.0.0.1 at 2020-11-23 16:09:51 -0500
+Processing by ReservationsController#index as HTML
+  Parameters: {"user_id"=>"3", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1[0m  [["user_id", 3]]
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?user_id=3" for 127.0.0.1 at 2020-11-23 16:09:59 -0500
+Processing by ReservationsController#index as HTML
+  Parameters: {"user_id"=>"3", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1[0m  [["user_id", 3]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?user_id=3" for 127.0.0.1 at 2020-11-24 00:05:46 -0500
+Processing by ReservationsController#index as HTML
+  Parameters: {"user_id"=>"3", "reservation"=>{}}
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+Unpermitted parameter: reservation
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."user_id" = $1[0m  [["user_id", 3]]
+Completed 200 OK in 17ms (Views: 1.9ms | ActiveRecord: 1.7ms)
+
+
