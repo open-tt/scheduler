@@ -22,7 +22,7 @@
 * ~~Fix Player Registration error on Cancel~~
 
 # API Documentation
-- Create New Handicap Tournament
+ #### Create New Handicap Tournament
 
     Request
        
@@ -38,8 +38,181 @@
             waitingList: [],
             stage: "REGISTRATION",
             playoff: null,
-            
         }
+        
+ #### Create Player
+    
+    Request
+    
+        POST /users -d {
+            name: string,
+            rating: number,
+            userID?: string,
+            USATTID?: string,
+        }
+        
+    Response
+    
+         {
+            id: number,
+            name: string,
+            rating: number,
+            userID?: string,
+            USATTID?: string,
+         }
+         
+ #### Add Player to Tournament
+    
+    Request
+        
+        POST /tournaments/{id}/players -d {
+            playerId: number
+        }
+        
+    Response
+    
+         tournament = {
+             id: number,
+             date: Date,
+             players: [
+                {
+                    id: number,
+                    name: string,
+                    rating: number,
+                    userID?: string,
+                    USATTID?: string,
+                }
+             ],
+             groups: [],
+             waitingList: [],
+             stage: "REGISTRATION",
+             playoff: null,
+         }
+ 
+ #### Remove Player from Tournament
+     
+     Request
+         
+         DELETE /tournaments/{id}/players -d {
+             playerId: number
+         }
+         
+     Response
+     
+          tournament = {
+              id: number,
+              date: Date,
+              players: [
+                 {
+                     id: number,
+                     name: string,
+                     rating: number,
+                     userID?: string,
+                     USATTID?: string,
+                 }
+              ],
+              groups: [],
+              waitingList: [],
+              stage: "REGISTRATION",
+              playoff: null,
+          }
+
+ #### Create Groups for Tournament
+    
+    Request
+    
+        POST /tournaments/{id}/groups
+        
+    Response
+    
+         {
+              id: number,
+              date: Date,
+              players: [
+                 ...
+              ],
+              groups: [
+                {
+                  players: [
+                    {
+                        id: number,
+                        name: string,
+                        rating: number,
+                        userID?: string,
+                        USATTID?: string,
+                    }
+                  ]
+                }
+              ],
+              waitingList: [],
+              stage: "REGISTRATION",
+              playoff: null,
+          }
+          
+ #### Create Playoffs for Tournament
+  
+    Request
+  
+       POST /tournaments/{id}/playoffs
+      
+    Response
+  
+       {
+            id: number,
+            date: Date,
+            players: [
+              ...
+            ],
+            groups: [
+              ...
+            ],
+            waitingList: [],
+            stage: "REGISTRATION",
+            playoff: NgttTournament = {
+                rounds: NgttRound[] = [
+                    type: 'Winnerbracket',
+                    matches: NgttMatch = [
+                        {
+                            player1: 'Lester Hartmann',
+                            player2: 'Sarah Botsford',
+                        }
+                    ]
+                ]
+            },
+       }
+ 
+ #### Delete Tournament
+   
+     Request
+   
+        DELETE /tournaments/{id}
+    
+     Response
+        
+        204
+        
+ #### Update Group
+    
+    Request
+        
+        PUT /tournaments/{id}/groups -d {
+            groups = {
+              players: [
+                {
+                    id: number,
+                    name: string,
+                    rating: number,
+                    userID?: string,
+                    USATTID?: string,
+                }
+              ]
+            }              
+        }
+        
+    Response
+    
+        FULL TOURNAMENT
+    
 
 ### How to add a nav link to left nav bar
 - Create new page level component `ng generate component single-use-components/YOUR-NEW-COMPONENT`
