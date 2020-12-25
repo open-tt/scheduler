@@ -4,11 +4,18 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
 
-  # QuickAuth
-  # get '/quickauth/user1' => 'quick_auth#user1_auth'
-  # get '/quickauth/club1' => 'quick_auth#club1_auth'
+  # Authentication
+  post 'authenticate' => 'authentication#authenticate'
 
-  # Org
+  # Users (Code in this Project user-service)
+  post    '/users'            => 'users#register'
+  get     '/current_user'     => 'users#show_current_user'
+  get     '/users/:id'        => 'users#show'
+  put     '/users/:id'        => 'users#edit'
+  post    '/users/:id/roles'  => 'users#add_role'
+  delete  '/users/:id/roles'  => 'users#remove_role'
+
+  # Org (Code in this Project user-service)
   post    '/orgs' => 'org#create'
   get     '/orgs' => 'org#org_search'
   put     '/orgs/:id' => 'org#update'
@@ -20,14 +27,6 @@ Rails.application.routes.draw do
   put     '/orgs/:id/addresses/:address_id' => 'org#update_address'
   delete  '/orgs/:id/addresses/:address_id' => 'org#unlink_address'
 
-  # Users
-  post    '/users'            => 'users#register'
-  get     '/current_user'     => 'users#show_current_user'
-  get     '/users/:id'        => 'users#show'
-  put     '/users/:id'        => 'users#edit'
-  post    '/users/:id/roles'  => 'users#add_role'
-  delete  '/users/:id/roles'  => 'users#remove_role'
+  # Tournaments (Micro-Service code in Project tournament-service)
 
-  # Authentication
-  post 'authenticate' => 'authentication#authenticate'
 end
