@@ -8,11 +8,15 @@
 * ~~Allow Edit Scores in Groups~~
 * ~~Reverse Player - Alias in group tables~~
 * ~~Disable Playoffs properly~~
-* Add player to tournament inprogress
+* ~~Add player to tournament inprogress~~
+* ~~Mark players in the waiting list~~
+* Score should update both cells
 * Highlight Groups that have finished
-* Disallow creating multiple tournaments same day
 * Add Delete for tournament that hasn't started 
 * Fix Player Registration error on Cancel
+
+### TODO P2
+* Disallow creating multiple tournaments same day
 
 ### How to add a nav link to left nav bar
 - Create new page level component `ng generate component single-use-components/YOUR-NEW-COMPONENT`

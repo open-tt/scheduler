@@ -136,6 +136,12 @@ export class TournamentService {
     }
     const index = this.selectedTournament.players.indexOf(player);
     this.selectedTournament.players.splice(index, 1);
+
+    const waitingListIndex = this.selectedTournament.waitingList.indexOf(player);
+    if (waitingListIndex >= 0) {
+      this.selectedTournament.waitingList.splice(waitingListIndex, 1);
+    }
+
     this.selectedTournamentPlayersSubject.next(this.selectedTournament.players);
   }
 
@@ -309,5 +315,19 @@ export class TournamentService {
 
   selectedTournamentPlayers(): Player[] {
     return this.selectedTournament ? this.selectedTournament.players : [];
+  }
+
+  isPlayerInWatingList(player: Player): boolean {
+    return this.selectedTournament.waitingList.includes(player);
+  }
+
+  isPlayerRemovable(player: Player): boolean {
+    return (
+      this.selectedTournament.stage === TournamentStage.REGISTRATION ||
+      (
+        this.selectedTournament.stage === TournamentStage.CLASSIFICATION &&
+        this.isPlayerInWatingList(player)
+      )
+    );
   }
 }

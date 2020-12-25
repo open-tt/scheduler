@@ -85,6 +85,14 @@ export class TtPlayerHandicapTableComponent implements OnInit, OnChanges, AfterC
     this.tournamentService.removePlayer(player);
   }
 
+  isInWaitingList(player: Player): boolean {
+    return this.tournamentService.isPlayerInWatingList(player);
+  }
+
+  isRemovable(player: Player): boolean {
+    return this.tournamentService.isPlayerRemovable(player);
+  }
+
   ngAfterContentInit(): void {
 
   }

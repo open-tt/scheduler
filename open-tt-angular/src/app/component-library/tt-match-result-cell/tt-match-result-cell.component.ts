@@ -56,6 +56,8 @@ export class TtMatchResultCellComponent implements OnInit {
       if (!result) {
         return;
       }
+      const match2 = this.group.matchFor(this.player2, this.player1);
+      match2.setScore = [...match.setScore].reverse();
       this.tournamentService.updateMatchResult(this.group);
     });
   }
