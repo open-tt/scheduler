@@ -22,7 +22,7 @@
 * ~~Fix Player Registration error on Cancel~~
 
 # API Documentation
- #### Create New Handicap Tournament
+ 1. #### Create New Handicap Tournament
 
     Request
        
@@ -40,7 +40,7 @@
             playoff: null,
         }
         
- #### Create Player
+ 1. #### Create Player
     
     Request
     
@@ -61,7 +61,7 @@
             USATTID?: string,
          }
          
- #### Add Player to Tournament
+ 1. #### Add Player to Tournament
     
     Request
         
@@ -89,7 +89,7 @@
              playoff: null,
          }
  
- #### Remove Player from Tournament
+ 1. #### Remove Player from Tournament
      
      Request
          
@@ -117,7 +117,7 @@
               playoff: null,
           }
 
- #### Create Groups for Tournament
+ 1. #### Create Groups for Tournament
     
     Request
     
@@ -149,7 +149,7 @@
               playoff: null,
           }
           
- #### Create Playoffs for Tournament
+ 1. #### Create Playoffs for Tournament
   
     Request
   
@@ -181,7 +181,7 @@
             },
        }
  
- #### Delete Tournament
+ 1. #### Delete Tournament
    
      Request
    
@@ -191,7 +191,7 @@
         
         204
         
- #### Update Group
+ 1. #### Update Group
     
     Request
         

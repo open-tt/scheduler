@@ -28,5 +28,5 @@ Rails.application.routes.draw do
   delete  '/orgs/:id/addresses/:address_id' => 'org#unlink_address'
 
   # Tournaments (Micro-Service code in Project tournament-service)
-
+  
 end
