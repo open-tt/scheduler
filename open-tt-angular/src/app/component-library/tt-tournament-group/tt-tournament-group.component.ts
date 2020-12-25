@@ -18,7 +18,7 @@ export class TtTournamentGroupComponent implements OnInit {
 
   dataSource: MatTableDataSource<Player>;
   displayedColumns = [];
-
+  groupIsOver = false;
   groupSubscription: Subscription; // Listen to changes in service
 
   constructor(
@@ -40,10 +40,12 @@ export class TtTournamentGroupComponent implements OnInit {
             this.group = group;
             this.dataSource = new MatTableDataSource<Player>(this.group.players);
             this.displayedColumns = this.generateDisplayColumns();
+            this.groupIsOver = this.group.isOver();
           }
         }
       );
     this.displayedColumns = this.generateDisplayColumns();
+    this.groupIsOver = this.group.isOver();
   }
 
   generateDisplayColumns(): string[] {
@@ -57,6 +59,10 @@ export class TtTournamentGroupComponent implements OnInit {
   indexToLetter(i: number): string {
     return String.fromCharCode(i + 65);
   }
+
+  // isOver(): boolean {
+  //   this.group.isOver();
+  // }
 
   getResult(name1: string, name2: string): string {
     if (name1 === name2) {

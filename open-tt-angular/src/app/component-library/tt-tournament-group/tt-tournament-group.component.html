@@ -1,33 +1,35 @@
-<h3>{{title}}</h3>
-<mat-table [dataSource]="dataSource">
-  <ng-container matColumnDef="alias">
-    <mat-header-cell
-      *matHeaderCellDef></mat-header-cell>
-    <mat-cell *matCellDef="let s, let i = index;"> {{indexToLetter(i)}} </mat-cell>
-  </ng-container>
+<div [className]="groupIsOver ? 'primaryColorBorder' : ''">
+  <h3>{{title}}</h3>
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="alias">
+      <mat-header-cell
+        *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let s, let i = index;"> {{indexToLetter(i)}} </mat-cell>
+    </ng-container>
 
-  <ng-container matColumnDef="name">
-    <mat-header-cell
-      *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let player"> {{player.name}} </mat-cell>
-  </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell
+        *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let player"> {{player.name}} </mat-cell>
+    </ng-container>
 
-  <ng-container
-    class="score-cell"
-    *ngFor="let player2 of group.players; let inner_index = index"
-    [matColumnDef]="indexToLetter(inner_index)">
-    <mat-header-cell
-      *matHeaderCellDef="let _, let i = index;"> {{indexToLetter(inner_index)}} </mat-header-cell>
-    <mat-cell *matCellDef="let player1">
-      <app-tt-match-result-cell
-        simple
-        [group]="group"
-        [player1]="player1"
-        [player2]="player2"></app-tt-match-result-cell>
-    </mat-cell>
-  </ng-container>
+    <ng-container
+      class="score-cell"
+      *ngFor="let player2 of group.players; let inner_index = index"
+      [matColumnDef]="indexToLetter(inner_index)">
+      <mat-header-cell
+        *matHeaderCellDef="let _, let i = index;"> {{indexToLetter(inner_index)}} </mat-header-cell>
+      <mat-cell *matCellDef="let player1">
+        <app-tt-match-result-cell
+          simple
+          [group]="group"
+          [player1]="player1"
+          [player2]="player2"></app-tt-match-result-cell>
+      </mat-cell>
+    </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
 

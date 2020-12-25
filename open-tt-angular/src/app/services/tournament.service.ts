@@ -330,4 +330,17 @@ export class TournamentService {
       )
     );
   }
+
+  isClassificationComplete(): boolean {
+    if (this.selectedTournament.stage < TournamentStage.CLASSIFICATION) {
+      return false;
+    }
+
+    for (const g of this.selectedTournament.groups) {
+      if (!g.isOver()) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

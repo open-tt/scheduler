@@ -76,9 +76,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
 
   canCreatePlayoffs(): boolean {
     return this.selectedTournament &&
-      this.selectedTournament.groups &&
-      this.selectedTournament.groups.length > 0 &&
-      this.selectedTournament.stage === TournamentStage.CLASSIFICATION;
+      this.tournamentService.isClassificationComplete();
   }
 
   openDialog(player: Player): void {

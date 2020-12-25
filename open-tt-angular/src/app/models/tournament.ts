@@ -1,5 +1,7 @@
 import {NgttTournament} from 'ng-tournament-tree';
 import {Player} from './player';
+import {TournamentService} from '../services/tournament.service';
+import {environment} from '../../environments/environment';
 
 export interface HandicapTournament {
   id: number;
@@ -54,11 +56,27 @@ export class TournamentGroup {
     return scores;
   }
 
+  isOver(): boolean {
+    if (!this.matches || this.matches.length === 0) {
+      return false;
+    }
+    for (const match of this.matches) {
+      if (!match.isOver()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   matchFor(p1: Player, p2: Player): Match {
     return this.matches.find(m => m.player1 === p1 && m.player2 === p2);
   }
 
   matchScore(p1: Player, p2: Player): number[] {
+    if (p1.id === p2.id) {
+      return undefined;
+    }
+
     const match = this.matches.find(m => m.player1 === p1 && m.player2 === p2);
     if (!match) {
       this.matches.push(new Match(p1, p2, []));
@@ -77,6 +95,9 @@ export class Match {
   sets: MatchSet[];
 
   constructor(p1: Player, p2: Player, sets: MatchSet[] = [], setScore: number[] = [0, 0]) {
+    if (p1.id === p2.id) {
+      throw new Error('Cannot create match where both players are the same person.');
+    }
     this.player1 = p1;
     this.player2 = p2;
     this.setScore = setScore;
@@ -130,6 +151,10 @@ export class Match {
     } else {
       throw new Error(`Player ${player.name} is not in this Match [${this.player1.name}, ${this.player2.name}]`);
     }
+  }
+
+  isOver(): boolean {
+    return this.setScore.includes(environment.default_winning_score);
   }
 }
 

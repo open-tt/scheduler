@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {TournamentService} from '../../services/tournament.service';
 import {TtMatchResultDialogComponent} from '../tt-match-result-dialog/tt-match-result-dialog.component';
 import {Subscription} from 'rxjs';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-tt-match-result-cell',
@@ -12,12 +13,10 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./tt-match-result-cell.component.css']
 })
 export class TtMatchResultCellComponent implements OnInit {
-  DEFAULT_WINNING_SCORE = 3;
-
   @Input() group: TournamentGroup;
   @Input() player1: Player;
   @Input() player2: Player;
-  @Input() winningScore = this.DEFAULT_WINNING_SCORE;
+  @Input() winningScore = environment.default_winning_score;
 
   // Disables individual set scores
   @Input() simple = true;
@@ -39,7 +38,9 @@ export class TtMatchResultCellComponent implements OnInit {
           if (group.equals(this.group)) {
             this.group = group;
             const match = this.group.matchFor(this.player1, this.player2);
-            this.score = match.setScore;
+            if (!!match) {
+              this.score = match.setScore;
+            }
           }
         }
       );

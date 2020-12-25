@@ -10,8 +10,8 @@
 * ~~Disable Playoffs properly~~
 * ~~Add player to tournament inprogress~~
 * ~~Mark players in the waiting list~~
-* Score should update both cells
-* Highlight Groups that have finished
+* ~~Score should update both cells~~
+* ~~Highlight Groups that have finished~~
 * Add Delete for tournament that hasn't started 
 * Fix Player Registration error on Cancel
 
