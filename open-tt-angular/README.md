@@ -1,4 +1,10 @@
 ### TODO
+* Convert all long Service calls to Observables
+
+### TODO P2
+* Disallow creating multiple tournaments same day
+
+### DONE
 * ~~Add functionality for "Create Groups" and "Create Playoffs" buttons~~
 * ~~Dedupe players added to registration~~
 * ~~Remove players from registration~~
@@ -15,8 +21,25 @@
 * ~~Add Delete for tournament that hasn't started~~ 
 * ~~Fix Player Registration error on Cancel~~
 
-### TODO P2
-* Disallow creating multiple tournaments same day
+# API Documentation
+- Create New Handicap Tournament
+
+    Request
+       
+        POST /tournaments 
+
+    Response
+
+        {
+            id: number,
+            date: Date,
+            players: [],
+            groups: [],
+            waitingList: [],
+            stage: "REGISTRATION",
+            playoff: null,
+            
+        }
 
 ### How to add a nav link to left nav bar
 - Create new page level component `ng generate component single-use-components/YOUR-NEW-COMPONENT`

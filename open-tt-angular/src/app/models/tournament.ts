@@ -11,8 +11,6 @@ export interface HandicapTournament {
   playoff: NgttTournament;
   stage: TournamentStage;
   waitingList?: Player[];
-  inprogress?: boolean;
-  ended?: boolean;
 }
 
 export enum TournamentStage {

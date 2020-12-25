@@ -39,6 +39,8 @@ export class TournamentService {
     this.notifySelectedTournamentUpdates();
   }
 
+  // ------------------------ Observables -------------------- //
+  // --------------------------------------------------------- //
   /** Subscribe to this Observable in components to listen
    * for changes to activeTournament
    */
@@ -62,22 +64,139 @@ export class TournamentService {
     return this.selectedTournamentGroupSubject.asObservable();
   }
 
-  /** Subscribe to this Observable in components to listen
-   * for changes to activeTournament
-   */
-  getIsSelectedTournamentClosed(): Observable<boolean> {
-    return this.selectedTournamentIsClosedSubject.asObservable();
-  }
-
   getTournamentHistory(): Observable<HandicapTournament[]> {
     return this.tournamentHistorySubject.asObservable();
   }
 
+  getIsSelectedTournamentClosed(): Observable<boolean> {
+    return this.selectedTournamentIsClosedSubject.asObservable();
+  }
+  // ------------------------- Utilities --------------------- //
+  // --------------------------------------------------------- //
+  /** Subscribe to this Observable in components to listen
+   * for changes to activeTournament
+   */
+  findIncompleteGroup(): TournamentGroup {
+    return this.selectedTournament.groups.find(g => g.players.length < this.DEFAULT_MAX_PLAYERS_PER_GROUP);
+  }
+
+  isPlayerInWatingList(player: Player): boolean {
+    return this.selectedTournament.waitingList?.includes(player);
+  }
+
+  isPlayerRemovable(player: Player): boolean {
+    return (
+      this.selectedTournament.stage === TournamentStage.REGISTRATION ||
+      (
+        this.selectedTournament.stage === TournamentStage.CLASSIFICATION &&
+        this.isPlayerInWatingList(player)
+      )
+    );
+  }
+
+  isClassificationComplete(): boolean {
+    if (this.selectedTournament.stage < TournamentStage.CLASSIFICATION) {
+      return false;
+    }
+
+    for (const g of this.selectedTournament.groups) {
+      if (!g.isOver()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  hasActiveTournament(): boolean {
+    for (const tour of this.tournamentHistory) {
+      if (tour.stage < TournamentStage.PLAYOFFS) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // ----------------- Void Subscription Triggers ------------ //
+  // --------------------------------------------------------- //
   /** Change the selected tournament and send update through the subject
    */
   selectTournament(tournament: HandicapTournament): void {
     this.selectedTournament = tournament;
     this.notifySelectedTournamentUpdates();
+  }
+
+  // ------------------------ HTTP Calls --------------------- //
+  // --------------------------------------------------------- //
+  /** Create new Handicap tournament.
+   * Add it to the list of tournaments.
+   * Set selectedTournament to the new tournament and notify.
+   */
+  createNewHandicapTournament(): void {
+    // todo Replace with HTTP call to create Tournament
+    this.selectedTournament = FakeHandicapTournamentApi.createNewHandicapTournament();
+    this.tournamentHistory.unshift(this.selectedTournament);
+    this.notifySelectedTournamentUpdates();
+  }
+
+  /**
+   * Creates a player using PlayerService and adds it to the current
+   * tournament. Notify.
+   */
+  createPlayerForTournament(unsavedPlayer: Player): void {
+    if (!unsavedPlayer) {
+      return;
+    }
+    const player = FakeHandicapTournamentApi.createPlayer(
+      unsavedPlayer.name,
+      unsavedPlayer.rating,
+      unsavedPlayer.USATTID);
+    this.addPlayerToSelectedHandicapTournament(player);
+    this.notifySelectedTournamentUpdates();
+  }
+
+  createGroupsForSelectedTournament(): void {
+    if (this.selectedTournament.stage >= TournamentStage.CLASSIFICATION) {
+      throw new Error('001: Cannot create groups for this tournament. Its in progress.');
+    }
+    const totalPlayers = this.selectedTournament.players.length;
+    if (totalPlayers < this.DEFAULT_MIN_PLAYERS_PER_GROUP) {
+      throw new Error('002: Cannot create groups for this tournament. Not enough players.');
+    }
+    const groupSizes = FakeHandicapTournamentApi.decomposeInGroups(
+      totalPlayers,
+      this.DEFAULT_MIN_PLAYERS_PER_GROUP,
+      this.DEFAULT_MAX_PLAYERS_PER_GROUP
+    );
+    const groups: TournamentGroup[] = [];
+    let groupPlayers: Player[] = [];
+    let groupIndex = 0;
+    this.selectedTournament.players.forEach(player => {
+      if (groupSizes[groupIndex] <= 0) {
+        groups.push(new TournamentGroup(groupPlayers));
+        groupPlayers = [];
+        groupIndex += 1;
+      }
+      groupPlayers.push(player);
+      groupSizes[groupIndex] -= 1;
+    });
+    if (groupPlayers.length > 0) {
+      groups.push(new TournamentGroup(groupPlayers));
+    }
+    this.selectedTournament.groups = groups;
+    this.selectedTournament.stage = TournamentStage.CLASSIFICATION;
+    this.notifySelectedTournamentUpdates({tournament: true, groups: true, isClosed: true});
+  }
+
+  createPlayoffsForSelectedTournament(): void {
+    if (this.selectedTournament.playoff) {
+      alert('This tournament already has playoffs. This function should not be called. Report to developer.');
+      return;
+    }
+    this.selectedTournament.playoff = {
+      rounds: testRounds
+    };
+    this.selectedTournament.stage = TournamentStage.PLAYOFFS;
+    this.notifySelectedTournamentUpdates({playoffs: true});
   }
 
   /** Add players to selectedTournament and notify
@@ -123,132 +242,37 @@ export class TournamentService {
     this.notifySelectedTournamentUpdates({players: true});
   }
 
-  findIncompleteGroup(): TournamentGroup {
-    return this.selectedTournament.groups.find(g => g.players.length < this.DEFAULT_MAX_PLAYERS_PER_GROUP);
-  }
-
   /** Remove player from selectedTournament and notify
    */
   removePlayer(player): void {
-    if (this.selectedTournament.inprogress || this.selectedTournament.ended) {
+    const waitingListIndex = this.selectedTournament.waitingList.indexOf(player);
+    if (waitingListIndex >= 0) {
+      this.selectedTournament.waitingList.splice(waitingListIndex, 1);
+    }
+
+    if (this.selectedTournament.stage >= TournamentStage.CLASSIFICATION) {
       alert('Cannot remove player when tournament in progress');
       return;
     }
     const index = this.selectedTournament.players.indexOf(player);
     this.selectedTournament.players.splice(index, 1);
 
-    const waitingListIndex = this.selectedTournament.waitingList.indexOf(player);
-    if (waitingListIndex >= 0) {
-      this.selectedTournament.waitingList.splice(waitingListIndex, 1);
-    }
-
     this.selectedTournamentPlayersSubject.next(this.selectedTournament.players);
   }
 
-  /** Create new Handicap tournament.
-   * Add it to the list of tournaments.
-   * Set selectedTournament to the new tournament and notify.
-   */
-  createNewHandicapTournament(): void {
-    // todo Replace with HTTP call to create Tournament
-    this.selectedTournament = FakeHandicapTournamentApi.createNewHandicapTournament();
-    this.tournamentHistory.unshift(this.selectedTournament);
-    this.notifySelectedTournamentUpdates();
-  }
-
-  /** TODO
-   */
-  addPlayerToTournamentInProgress(playerID): void {
-    // const player = FakeHandicapTournamentApi.getPlayer(playerID);
-    // if (!player) {
-    //   throw new Error(`Player with id ${playerID} does not exist`);
-    // }
-    // const tour: HandicapTournament = this.tournaments[this.currentTournamentKey()];
-    // const group = tour.groups.reverse().find(g => g.players.length < this.DEFAULT_MAX_PLAYERS_PER_GROUP);
-    // if (!group) {
-    //   tour.waitingList.push(player);
-    //   alert(`Player ${player.name} added to waiting list. Groups are full.`);
-    //   this.checkWaitingList();
-    // } else {
-    //   group.players.push(player);
-    // }
-    // return of(true);
-  }
-
-  /**
-   * Create a new group for a running tournament if there are enough
-   * player in the waitingList.
-   * Notify subscribers.
-   */
-  checkWaitingList(): void {
-    if (
-      this.selectedTournament.waitingList &&
-      this.selectedTournament.waitingList.length === this.DEFAULT_MIN_PLAYERS_PER_GROUP) {
-      this.selectedTournament.groups.push(new TournamentGroup(this.selectedTournament.waitingList));
-      this.selectedTournament.waitingList = [];
-      this.notifySelectedTournamentUpdates();
-    }
-  }
-
-  /**
-   * Creates a player using PlayerService and adds it to the current
-   * tournament. Notify.
-   */
-  createPlayerForTournament(unsavedPlayer: Player): void {
-    if (!unsavedPlayer) {
-      return;
-    }
-    const player = FakeHandicapTournamentApi.createPlayer(
-      unsavedPlayer.name,
-      unsavedPlayer.rating,
-      unsavedPlayer.USATTID);
-    this.addPlayerToSelectedHandicapTournament(player);
-    this.notifySelectedTournamentUpdates();
-  }
-
-  createGroupsForSelectedTournament(): void {
-    if (this.selectedTournament.ended) {
-      throw new Error('001: Cannot create groups for this tournament. It has already ended.');
-    }
-    const totalPlayers = this.selectedTournament.players.length;
-    if (totalPlayers < this.DEFAULT_MIN_PLAYERS_PER_GROUP) {
-      throw new Error('002: Cannot create groups for this tournament. Not enough players.');
-    }
-    const groupSizes = FakeHandicapTournamentApi.decomposeInGroups(
-      totalPlayers,
-      this.DEFAULT_MIN_PLAYERS_PER_GROUP,
-      this.DEFAULT_MAX_PLAYERS_PER_GROUP
-    );
-    const groups: TournamentGroup[] = [];
-    let groupPlayers: Player[] = [];
-    let groupIndex = 0;
-    this.selectedTournament.players.forEach(player => {
-      if (groupSizes[groupIndex] <= 0) {
-        groups.push(new TournamentGroup(groupPlayers));
-        groupPlayers = [];
-        groupIndex += 1;
-      }
-      groupPlayers.push(player);
-      groupSizes[groupIndex] -= 1;
+  deleteActiveTournament(): void {
+    console.log('2');
+    const index = this.tournamentHistory.findIndex(t => {
+      console.log(t.stage === TournamentStage.REGISTRATION);
+      return t.stage === TournamentStage.REGISTRATION;
     });
-    if (groupPlayers.length > 0) {
-      groups.push(new TournamentGroup(groupPlayers));
+    if (index >= 0) {
+      console.log('3');
+      this.tournamentHistory.splice(index, 1);
+      this.selectedTournament = this.tournamentHistory[0];
+      this.notifySelectedTournamentUpdates({history: true, tournament: true, players: true});
     }
-    this.selectedTournament.groups = groups;
-    this.selectedTournament.stage = TournamentStage.CLASSIFICATION;
-    this.notifySelectedTournamentUpdates({tournament: true, groups: true, isClosed: true});
-  }
-
-  createPlayoffsForSelectedTournament(): void {
-    if (this.selectedTournament.playoff) {
-      alert('This tournament already has playoffs. This function should not be called. Report to developer.');
-      return;
-    }
-    this.selectedTournament.playoff = {
-      rounds: testRounds
-    };
-    this.selectedTournament.stage = TournamentStage.PLAYOFFS;
-    this.notifySelectedTournamentUpdates({playoffs: true});
+    console.log('4');
   }
 
   updateMatchResult(g: TournamentGroup): void {
@@ -260,6 +284,19 @@ export class TournamentService {
     }
   }
 
+  refreshHistory(): void {
+    this.tournamentHistorySubject.next(this.tournamentHistory);
+  }
+
+  refreshSelected(): void {
+    this.selectedTournamentSubject.next(this.selectedTournament);
+  }
+
+  selectedTournamentPlayers(): Player[] {
+    return this.selectedTournament ? this.selectedTournament.players : [];
+  }
+  // ------------------------- Notifiers --------------------- //
+  // --------------------------------------------------------- //
   notifySelectedTournamentUpdates(
     shouldNotify: {
       tournament?: true,
@@ -286,9 +323,6 @@ export class TournamentService {
     if (shouldNotify.players) {
       this.selectedTournamentPlayersSubject.next(this.selectedTournament.players);
     }
-    if (shouldNotify.isClosed) {
-      this.selectedTournamentIsClosedSubject.next(this.selectedTournament.inprogress || this.selectedTournament.ended);
-    }
     if (shouldNotify.group && !!g) {
       this.selectedTournamentGroupSubject.next(g);
     }
@@ -301,73 +335,5 @@ export class TournamentService {
     if (shouldNotify.history) {
       this.tournamentHistorySubject.next(this.tournamentHistory);
     }
-  }
-
-  refreshHistory(): void {
-    this.tournamentHistorySubject.next(this.tournamentHistory);
-  }
-
-  refreshSelected(): void {
-    this.selectedTournamentSubject.next(this.selectedTournament);
-  }
-
-  refreshStateSubscription(): void {
-    this.selectedTournamentIsClosedSubject.next(
-      this.selectedTournament.inprogress || this.selectedTournament.ended);
-  }
-
-  selectedTournamentPlayers(): Player[] {
-    return this.selectedTournament ? this.selectedTournament.players : [];
-  }
-
-  isPlayerInWatingList(player: Player): boolean {
-    return this.selectedTournament.waitingList?.includes(player);
-  }
-
-  isPlayerRemovable(player: Player): boolean {
-    return (
-      this.selectedTournament.stage === TournamentStage.REGISTRATION ||
-      (
-        this.selectedTournament.stage === TournamentStage.CLASSIFICATION &&
-        this.isPlayerInWatingList(player)
-      )
-    );
-  }
-
-  isClassificationComplete(): boolean {
-    if (this.selectedTournament.stage < TournamentStage.CLASSIFICATION) {
-      return false;
-    }
-
-    for (const g of this.selectedTournament.groups) {
-      if (!g.isOver()) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  hasActiveTournament(): boolean {
-    for (const tour of this.tournamentHistory) {
-      if (tour.stage < TournamentStage.PLAYOFFS) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  deleteActiveTournament(): void {
-    console.log('2');
-    const index = this.tournamentHistory.findIndex(t => {
-      console.log(t.stage === TournamentStage.REGISTRATION);
-      return t.stage === TournamentStage.REGISTRATION;
-    });
-    if (index >= 0) {
-      console.log('3');
-      this.tournamentHistory.splice(index, 1);
-      this.selectedTournament = this.tournamentHistory[0];
-      this.notifySelectedTournamentUpdates({history: true, tournament: true, players: true});
-    }
-    console.log('4');
   }
 }

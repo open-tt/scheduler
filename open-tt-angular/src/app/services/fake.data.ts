@@ -21,8 +21,6 @@ export class FakeHandicapTournamentApi {
       waitingList: [],
       stage: TournamentStage.REGISTRATION,
       playoff: undefined,
-      ended: false,
-      inprogress: false,
     };
   }
   static getPlayer(playerID): Player {

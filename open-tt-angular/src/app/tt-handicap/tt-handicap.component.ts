@@ -119,10 +119,6 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
     this.tournamentService.createNewHandicapTournament();
   }
 
-  hasEnded(): boolean {
-    return this.selectedTournament && this.selectedTournament.ended;
-  }
-
   shouldDisableGroups(): boolean {
     return !this.selectedTournament ||
       this.selectedTournament.stage < TournamentStage.CLASSIFICATION;
