@@ -1,0 +1,59 @@
+<div fxLayout="column" fxLayoutAlign="stretch">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <p>Header</p>
+  </div>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                 (closed)="events.push('close!')">
+      <!--   Navigation Section   -->
+      <div fxLayout="column" class="navigation" fxFlex="25">
+        <h3 style="padding-left: 10px">Some title Component</h3>
+        <app-tt-navigation-button
+          *ngIf="enableHomePage"
+          [title]="homePageTitle"
+          [href]="homePageRoute" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableHandicapTournamentPage"
+          [title]="handicapPageTitle"
+          [href]="handicapPageRoute" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableRegistrationPage && !hasLoggedInUser"
+          [title]="'registration'"
+          [href]="'/registrations'" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableOrgPage"
+          [title]="'org'"
+          [href]="'/org'" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableAdmissionsPage"
+          [title]="'admissions service'"
+          [href]="'/admissions'" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableMembershipPage"
+          [title]="'buy membership'"
+          [href]="'/membership'" ></app-tt-navigation-button>
+        <app-tt-navigation-button
+          *ngIf="enableMembershipSummaryPage"
+          [title]="'active memberships'"
+          [href]="'/memberships/active'" ></app-tt-navigation-button>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" (click)="sidenav.toggle()">menu</mat-icon>
+          <span>Table Tennis or Blood</span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <!-- Main Website Content -->
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <p>Footer</p>
+  </div>
+</div>

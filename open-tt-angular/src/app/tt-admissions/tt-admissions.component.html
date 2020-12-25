@@ -1,0 +1,16 @@
+<div fxLayout="row">
+  <div fxFlex fxLayout="column" fxLayoutGap="30px">
+    <!--  Configure New Membership  -->
+    <app-tt-configure-new-membership></app-tt-configure-new-membership>
+    <!--  Show Memberships  -->
+    <app-tt-actions-table
+      [headers]="admissionsHeaders"
+      [data]="admissionsData"></app-tt-actions-table>
+    <!--  Configure New Reservation  -->
+    <app-tt-configure-new-reservation></app-tt-configure-new-reservation>
+    <!--  Show Reservations  -->
+    <app-tt-actions-table
+      [headers]="reservationsHeaders"
+      [data]="reservationsData"></app-tt-actions-table>
+  </div>
+</div>

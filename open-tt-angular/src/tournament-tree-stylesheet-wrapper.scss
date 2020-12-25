@@ -1,0 +1,34 @@
+@import '../node_modules/ng-tournament-tree/styles/ngtt-styles';
+@import '~@angular/material/theming';
+
+// Remove default background color
+.ngtt-se__container {
+  background-color: transparent;
+}
+
+// Remove default min width
+.ngtt-se__round-wrapper {
+  min-width: 0;
+}
+
+// Make every sub component fit content
+.ngtt-se__match-wrapper {
+  width: fit-content;
+  height: fit-content;
+
+  .ngtt-se__match-component-container {
+    width: inherit;
+    height: inherit;
+  }
+
+  .ngtt-se__finale-match-wrapper {
+    width: inherit;
+    height: inherit;
+
+    .ngtt-se__finale-component-container {
+      width: inherit;
+      height: inherit;
+      margin-bottom: 0;
+    }
+  }
+}

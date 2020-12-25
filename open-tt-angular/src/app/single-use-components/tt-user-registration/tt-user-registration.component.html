@@ -1,0 +1,23 @@
+<div fxLayout="column" class="registration-container">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <mat-tab-group [selectedIndex]="0" mat-align-tabs="center" fxFlex="80" animationDuration="0">
+<!--   Log In Tab   -->
+      <mat-tab label="Log In">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <div fxFlex="20px"></div>
+          <app-tt-labeled-edit-group [labels]="loginLabels"></app-tt-labeled-edit-group>
+          <app-tt-simple-button title="Sign In" (action)="login()"></app-tt-simple-button>
+        </div>
+      </mat-tab>
+
+<!--   Sign Up Tab   -->
+      <mat-tab label="Sign Up" >
+        <div fxLayout="column" fxLayoutGap="20px">
+          <div fxFlex="20px"></div>
+          <app-tt-labeled-edit-group [labels]="signupLabels"></app-tt-labeled-edit-group>
+          <app-tt-simple-button title="Sign Up" (action)="signup()"></app-tt-simple-button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

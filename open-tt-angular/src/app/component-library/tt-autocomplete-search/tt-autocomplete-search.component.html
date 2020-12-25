@@ -1,0 +1,23 @@
+<form class="example-form" >
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="5%">
+    <mat-form-field appearance="outline">
+      <mat-label>Search Player</mat-label>
+      <input matInput
+             [(ngModel)]="searchString"
+             [formControl]="myControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="playerSelected($event.option.value)">
+        <mat-option *ngFor="let option of filteredPlayerNames | async" [value]="option.name">
+          {{option.name | titlecase}} [{{option.rating}}]
+        </mat-option>
+      </mat-autocomplete>
+      <mat-icon matSuffix>person_search</mat-icon>
+    </mat-form-field>
+
+    <button [disabled]="!searchString" mat-raised-button (click)="addPlayerButtonClick()">
+      <mat-icon *ngIf="noop">person_add</mat-icon>
+      <mat-icon *ngIf="!noop && !added">hourglass_top</mat-icon>
+      <mat-icon *ngIf="added">check</mat-icon>
+    </button>
+  </div>
+</form>

@@ -1,0 +1,88 @@
+@import '~@angular/material/theming';
+
+@import '../node_modules/ng-tournament-tree/styles/ngtt-styles';
+@import '~@angular/material/theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin theme-color-grabber($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+  .primaryColorBorder {
+    border: 1px solid mat-color($primary);
+  }
+  .accentColorBorder {
+    border: 1px solid mat-color($accent);
+  }
+  .warnColorBorder {
+    border: 1px solid mat-color($warn);
+  }
+  .primaryColorText {
+    color: mat-color($primary);
+  }
+  .accentColorText {
+    color: mat-color($accent);
+  }
+  .warnColorText {
+    color: mat-color($warn);
+  }
+
+  //  Tournament Tree Borders
+
+  //  --
+  //    |
+  //    |--[--]
+  //    |
+  //  --
+  .ngtt-se__finale-match-wrapper::before {
+    border-top-color: mat-color($primary);
+  }
+
+  //  --
+  //    |
+  //    |[--]--
+  //    |
+  //  --
+  .ngtt-se__match-wrapper::before {
+    border-top-color: mat-color($primary);
+  }
+
+  // [--]
+  //    |
+  //    |----
+  //    |
+  //  --
+  .ngtt-se__match-wrapper:nth-child(odd)::after {
+    border-top-color: mat-color($primary);
+  }
+
+  //  --
+  //   [|]
+  //   [|]----
+  //   [|]
+  //  --
+  .ngtt-se__match-wrapper::after {
+    border-right-color: mat-color($primary);
+  }
+
+  //  --
+  //   [|]
+  //   [|]----
+  //   [|]
+  //  --
+  .ngtt-se__match-wrapper:nth-child(even)::after {
+    border-bottom-color: mat-color($primary);
+  }
+}

@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  padding: 10px;
+}
+
+td.mat-cell {
+  padding: 10px;
+  text-align: left;
+}
+
+.hide {
+  display: none;
+}
