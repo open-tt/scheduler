@@ -7,7 +7,6 @@ import {HandicapTournament, TournamentGroup, TournamentStage} from '../models/to
 import {FakeUserData} from '../services/fake.data';
 import {TournamentService} from '../services/tournament.service';
 import {Subscription} from 'rxjs';
-import {group} from '@angular/animations';
 
 
 @Component({
@@ -135,5 +134,18 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
 
   totalParticipants(): number {
     return this.selectedTournament.players ? this.selectedTournament.players.length : 0;
+  }
+
+  onDeleteNewTournament(): void {
+    console.log('1');
+    this.tournamentService.deleteActiveTournament();
+  }
+
+  canCreateNewTournament(): boolean {
+    return !this.tournamentService.hasActiveTournament();
+  }
+
+  selectedTournamentIsActive(): boolean {
+    return this.selectedTournament.stage < TournamentStage.CLASSIFICATION;
   }
 }

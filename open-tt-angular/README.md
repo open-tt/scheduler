@@ -12,8 +12,8 @@
 * ~~Mark players in the waiting list~~
 * ~~Score should update both cells~~
 * ~~Highlight Groups that have finished~~
-* Add Delete for tournament that hasn't started 
-* Fix Player Registration error on Cancel
+* ~~Add Delete for tournament that hasn't started~~ 
+* ~~Fix Player Registration error on Cancel~~
 
 ### TODO P2
 * Disallow creating multiple tournaments same day

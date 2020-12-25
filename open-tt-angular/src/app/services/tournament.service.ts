@@ -195,6 +195,9 @@ export class TournamentService {
    * tournament. Notify.
    */
   createPlayerForTournament(unsavedPlayer: Player): void {
+    if (!unsavedPlayer) {
+      return;
+    }
     const player = FakeHandicapTournamentApi.createPlayer(
       unsavedPlayer.name,
       unsavedPlayer.rating,
@@ -318,7 +321,7 @@ export class TournamentService {
   }
 
   isPlayerInWatingList(player: Player): boolean {
-    return this.selectedTournament.waitingList.includes(player);
+    return this.selectedTournament.waitingList?.includes(player);
   }
 
   isPlayerRemovable(player: Player): boolean {
@@ -342,5 +345,29 @@ export class TournamentService {
       }
     }
     return true;
+  }
+
+  hasActiveTournament(): boolean {
+    for (const tour of this.tournamentHistory) {
+      if (tour.stage < TournamentStage.PLAYOFFS) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  deleteActiveTournament(): void {
+    console.log('2');
+    const index = this.tournamentHistory.findIndex(t => {
+      console.log(t.stage === TournamentStage.REGISTRATION);
+      return t.stage === TournamentStage.REGISTRATION;
+    });
+    if (index >= 0) {
+      console.log('3');
+      this.tournamentHistory.splice(index, 1);
+      this.selectedTournament = this.tournamentHistory[0];
+      this.notifySelectedTournamentUpdates({history: true, tournament: true, players: true});
+    }
+    console.log('4');
   }
 }

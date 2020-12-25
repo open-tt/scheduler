@@ -2,7 +2,7 @@
 <div fxLayout="column" fxLayoutGap="20px">
   <!--  Dropdown  -->
   <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="end start" class="tournament-selector">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" fxFlex="20%">
       <mat-label>Choose an Event</mat-label>
       <mat-select
         [value]="tournamentHistory[0]"
@@ -15,9 +15,23 @@
       </mat-select>
     </mat-form-field>
 
-    <button mat-fab color="none" (click)="onCreateNewTournament()">
-      <mat-icon color="primary">add</mat-icon>
-    </button>
+    <div fxFlex="10%">
+      <button
+        *ngIf="canCreateNewTournament()"
+        mat-fab
+        color="none"
+        (click)="onCreateNewTournament()">
+        <mat-icon color="primary">add</mat-icon>
+      </button>
+
+      <button
+        *ngIf="!canCreateNewTournament() && selectedTournamentIsActive()"
+        mat-fab
+        color="none"
+        (click)="onDeleteNewTournament()">
+        <mat-icon color="primary">remove</mat-icon>
+      </button>
+    </div>
   </div>
 
   <!-- Tournament Summary -->
