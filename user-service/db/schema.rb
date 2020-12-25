@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200816231843) do
+ActiveRecord::Schema.define(version: 20201225184646) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "url_regex"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 20200816231843) do
     t.string  "profile_img"
     t.boolean "is_enabled",      default: false
     t.string  "password_digest"
+    t.integer "rating"
+    t.string  "usattid"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

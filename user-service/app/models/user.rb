@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :actions, through: :roles
   has_many :roles_users, class_name: 'RolesUsers'
 
-  validates_presence_of :email, :name, :password_digest
+  validates_presence_of :name
   validates_uniqueness_of :email
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
@@ -27,6 +27,15 @@ class User < ApplicationRecord
       email: email,
       profile_img: profile_img,
       is_enabled: is_enabled
+    }
+  end
+
+  def tournament_data
+    {
+      id: id,
+      name: name,
+      rating: rating,
+      usattid: usattid
     }
   end
 

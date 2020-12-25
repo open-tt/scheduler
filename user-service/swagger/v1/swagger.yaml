@@ -41,6 +41,17 @@ components:
           type: array
           items:
             type: string
+    partial_user_for_tournament:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        rating:
+          type: integer
+        USATTID?:
+          type: string
 paths:
   "/authenticate":
     post:
@@ -367,6 +378,37 @@ paths:
               - email
               - password
               - password_confirmation
+  "/users/partial":
+    post:
+      summary: Creates New User without username and password requirements
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Partial User created successfully
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/partial_user_for_tournament"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                rating:
+                  type: integer
+                usattid:
+                  type: string
+              required:
+              - name
+              - rating
+              - usattid
   "/current_user":
     get:
       summary: Get the user belonging to the Authorization token
@@ -429,6 +471,23 @@ paths:
                   type: boolean
                 profile_image:
                   type: string
+  "/users/{id}/tournament_data":
+    get:
+      summary: Get User by ID
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get user data for tournament
+          content: {}
   "/users/{id}/roles":
     post:
       summary: Add Role

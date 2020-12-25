@@ -23,9 +23,33 @@ class UsersController < ApplicationController
     end
   end
 
+  def soft_register
+    fake_email = generate_fake_email(
+      [
+        create_user_soft_params[:name],
+        create_user_soft_params[:rating]
+      ]
+    )
+    user = User.new(create_user_soft_params.merge(email: fake_email, password: fake_email, password_confirmation:
+      fake_email))
+    user.roles_users.new(role_id: Role.player.id)
+    user.is_enabled = false
+
+    if user.save
+      render json: user.tournament_data, status: :created
+    else
+      render json: { errors: user.errors.full_messages }, status: :conflict
+    end
+  end
+
   def show
     user = User.find(params[:id])
     render json: { success: true, user: user.profile }, status: :ok
+  end
+
+  def show_tournament_data
+    user = User.find(params[:id])
+    render json: user.tournament_data, status: :ok
   end
 
   def edit
@@ -63,7 +87,20 @@ class UsersController < ApplicationController
     params.permit(:name, :email, :password, :password_confirmation, :is_enabled)
   end
 
+  def create_user_soft_params
+    params.permit(:name, :rating, :usattid)
+  end
+
   def edit_user_params
     params.permit(:id, :name, :is_enabled, :profile_img)
+  end
+
+  def generate_fake_email(stuff)
+    email = ''
+    stuff.each do |s|
+      email += s.to_s
+    end
+    email += '@gmail.com'
+    email.delete ' '
   end
 end

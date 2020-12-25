@@ -12061,3 +12061,227 @@ Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-25 12:55:4
 Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-25 12:55:42 -0500
 Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-25 12:55:42 -0500
 Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-25 12:55:42 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddInfoToUser (20201225184646)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ADD "rating" integer[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "usattid" varchar[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20201225184646"]]
+  [1m[35m (0.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_actions_roles_on_role_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_actions_roles_on_role_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_actions_roles_on_action_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_addresses_on_org_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_addresses_on_org_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orgs_users_on_role_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orgs_users_on_role_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orgs_users_on_org_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orgs_users_on_org_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_orgs_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_orgs_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_roles_users_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_roles_users_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_roles_users_on_role_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-25 14:21:09 -0500
+Started POST "/users/partial" for 127.0.0.1 at 2020-12-25 14:21:31 -0500
+Processing by UsersController#soft_register as JSON
+  Parameters: {"name"=>"Eriel Ma", "rating"=>2222, "usattid"=>"D1141512", "user"=>{"name"=>"Eriel Ma", "rating"=>2222, "usattid"=>"D1141512"}}
+Filter chain halted as :authenticate_request rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2020-12-25 14:21:56 -0500
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"string", "email"=>"string@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"string@test.com", "name"=>"string", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."usattid" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 409 Conflict in 242ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2020-12-25 14:22:38 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"string", "email"=>"string@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"string@test.com", "name"=>"string", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "is_enabled", "password_digest") VALUES (?, ?, ?, ?)[0m  [["email", "string@test.com"], ["name", "string"], ["is_enabled", "t"], ["password_digest", "$2a$12$sl74Fww6ylw1/JG8ChjSLuyRPcJN3rzvSIruzqpgLRN7oe6kfLgMe"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 4], ["role_id", 1], ["created_at", "2020-12-25 19:22:38.601762"], ["updated_at", "2020-12-25 19:22:38.601762"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: e8df4536-aea3-49ab-b237-4b8268acae96) to Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f986ec78a68 @uri=#<URI::GID gid://opentt-scheduler/User/4>>
+Completed 201 Created in 751ms (Views: 0.2ms | ActiveRecord: 3.6ms)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f9870a47eb8 @uri=#<URI::GID gid://opentt-scheduler/User/4>>
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96]   Rendering user_mailer/account_confirmation_email.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96]   Rendered user_mailer/account_confirmation_email.text.erb within layouts/mailer (1.3ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96] UserMailer#account_confirmation_email: processed outbound mail in 151.7ms
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96] Sent mail to string@test.com (8.7ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96] Date: Fri, 25 Dec 2020 14:22:39 -0500
+From: from@example.com
+To: string@test.com
+Message-ID: <5fe63bff420ee_c7c93fcc38532da4623fe@eriels-mbp.lan.mail>
+Subject: Open TT Account Confirmation
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi string,
+Your have successful created an account at Open TT
+
+Reserve your spot at a local club: https://tt-scheduler.netlify.app
+
+[ActiveJob] [ActionMailer::DeliveryJob] [e8df4536-aea3-49ab-b237-4b8268acae96] Performed ActionMailer::DeliveryJob from Async(mailers) in 163.78ms
+Started POST "/users/partial" for 127.0.0.1 at 2020-12-25 14:22:52 -0500
+Processing by UsersController#soft_register as JSON
+  Parameters: {"name"=>"Eriel Ma", "rating"=>2222, "usattid"=>"D1141512", "user"=>{"name"=>"Eriel Ma", "rating"=>2222, "usattid"=>"D1141512"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 1]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 1]]
+Unpermitted parameter: user
+Unpermitted parameter: user
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ErielMa2222@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "password_digest", "rating", "usattid") VALUES (?, ?, ?, ?, ?)[0m  [["email", "ErielMa2222@gmail.com"], ["name", "Eriel Ma"], ["password_digest", "$2a$12$VqxVW7yXC253bOL7DynHe.rpbPtgIdjtLEFNOmQzE/vIvlqB.2n72"], ["rating", 2222], ["usattid", "D1141512"]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 5], ["role_id", 1], ["created_at", "2020-12-25 19:22:53.070167"], ["updated_at", "2020-12-25 19:22:53.070167"]]
+  [1m[35m (0.9ms)[0m  [1m[36mcommit transaction[0m
+Completed 201 Created in 233ms (Views: 0.2ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/users/partial" for 127.0.0.1 at 2020-12-25 14:28:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#soft_register as JSON
+  Parameters: {"name"=>"Eriel Marim", "rating"=>2222, "usattid"=>"D1141512", "user"=>{"name"=>"Eriel Marim", "rating"=>2222, "usattid"=>"D1141512"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 1]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 1]]
+Unpermitted parameter: user
+Unpermitted parameter: user
+Unpermitted parameter: user
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.0ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "ErielMarim2222@gmail.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "password_digest", "rating", "usattid") VALUES (?, ?, ?, ?, ?)[0m  [["email", "ErielMarim2222@gmail.com"], ["name", "Eriel Marim"], ["password_digest", "$2a$12$IkiR1C9lDPMV7nOqHMxgfefzFw47BuwB.Ix9DyCS3c1OTtUesc3dK"], ["rating", 2222], ["usattid", "D1141512"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 6], ["role_id", 1], ["created_at", "2020-12-25 19:28:23.110369"], ["updated_at", "2020-12-25 19:28:23.110369"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Completed 201 Created in 251ms (Views: 0.2ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2020-12-25 14:28:53 -0500
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-25 14:48:56 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-25 14:48:57 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-25 14:48:57 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-25 14:48:57 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-25 14:48:57 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-25 14:48:57 -0500
+Started POST "/authenticate" for 127.0.0.1 at 2020-12-25 14:49:09 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"string@test.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"string@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "string@test.com"], ["LIMIT", 1]]
+Completed 200 OK in 427ms (Views: 0.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/6/tournament_data" for 127.0.0.1 at 2020-12-25 14:49:28 -0500
+Processing by UsersController#show_tournament_data as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 0]]
+  [1m[36mAction Load (0.1ms)[0m  [1m[34mSELECT "actions".* FROM "actions" INNER JOIN "actions_roles" ON "actions"."id" = "actions_roles"."action_id" INNER JOIN "roles" ON "actions_roles"."role_id" = "roles"."id" INNER JOIN "roles_users" ON "roles"."id" = "roles_users"."role_id" WHERE "roles_users"."user_id" = ? AND "actions"."method" = ?[0m  [["user_id", 4], ["method", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+Completed 200 OK in 38ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+

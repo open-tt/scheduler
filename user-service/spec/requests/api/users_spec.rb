@@ -20,8 +20,6 @@ RSpec.describe 'Users API', type: :request do
   path '/users' do
     post 'Creates New User' do
       tags 'Users'
-
-      # operationId 'createUser'
       consumes 'application/json'
       produces 'application/json'
 
@@ -70,6 +68,44 @@ RSpec.describe 'Users API', type: :request do
           data = JSON.parse(response.body)
           expect(data['success']).to eq(false)
           expect(data['messages']).to include('Email is invalid')
+        end
+      end
+    end
+  end
+
+  path '/users/partial' do
+    post 'Creates New User without username and password requirements' do
+      tags 'Users'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :user, in: :body, schema: {
+        type: :object,
+        properties: {
+          name: { type: :string },
+          rating: { type: :integer },
+          usattid: { type: :string }
+        },
+        required: %w[name rating usattid]
+      }
+
+      response '201', 'Partial User created successfully' do
+        schema '$ref' => '#/components/schemas/partial_user_for_tournament'
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin_user.id)}" }
+        let(:user) do
+          {
+            name: 'jon doe',
+            rating: 2199,
+            usattid: 'ID71947161'
+          }
+        end
+
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['name']).to eq('jon doe')
+          expect(data['rating']).to eq(2199)
+          expect(data['usattid']).to eq('ID71947161')
         end
       end
     end
@@ -193,6 +229,44 @@ RSpec.describe 'Users API', type: :request do
           data = JSON.parse(response.body)
           expect(data['success']).to eq(false)
           expect(data['message']).to eq('No fields to update')
+        end
+      end
+    end
+  end
+
+  path '/users/{id}/tournament_data' do
+    get 'Get User by ID' do
+      tags 'Users'
+
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '200', 'Get user data for tournament' do
+        let(:user) do
+          user = User.create!(
+            {
+              name: 'jon doe',
+              email: 'jd@testmail.com',
+              password: 'jdpass',
+              password_confirmation: 'jdpass',
+              rating: 2199,
+              usattid: 'D23423532'
+            }
+          )
+          user.roles = [Role.player]
+          user
+        end
+
+        let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @admin_user.id)}" }
+        let(:id) { user.id }
+        run_test! do |response|
+          data = JSON.parse(response.body)
+          expect(data['name']).to eq('jon doe')
+          expect(data['rating']).to eq(2199)
+          expect(data['usattid']).to eq('D23423532')
         end
       end
     end

@@ -63,6 +63,15 @@ RSpec.configure do |config|
                 items: { type: :string }
               }
             }
+          },
+          partial_user_for_tournament: {
+            type: :object,
+            properties: {
+              id: { type: :integer },
+              name: { type: :string },
+              rating: { type: :integer },
+              USATTID?: { type: :string }
+            }
           }
         }
       },
