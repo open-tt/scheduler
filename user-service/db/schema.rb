@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201225184646) do
+ActiveRecord::Schema.define(version: 20201228165909) do
 
   create_table "actions", force: :cascade do |t|
     t.string   "url_regex"
     t.integer  "method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["url_regex", "method"], name: "index_actions_on_url_regex_and_method", unique: true
   end
 
   create_table "actions_roles", force: :cascade do |t|
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20201225184646) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "roles_users", force: :cascade do |t|

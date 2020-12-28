@@ -338,6 +338,34 @@ paths:
         '204':
           description: Delete address
           content: {}
+  "/tournaments":
+    post:
+      summary: Creates New Tournament
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      responses:
+        '201':
+          description: Tournament Created
+          content: {}
+  "/tournaments/{id}":
+    delete:
+      summary: Delete Tournament
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Tournament Deleted
+          content: {}
   "/users":
     post:
       summary: Creates New User

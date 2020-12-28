@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'
-  post    '/users/partial'    => 'users#soft_register' # todo
+  post    '/users/partial'    => 'users#soft_register'
   get     '/current_user'     => 'users#show_current_user'
   get     '/users/:id'        => 'users#show'
   get     '/users/:id/tournament_data' => 'users#show_tournament_data'
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   # Tournaments (Micro-Service code in Project tournament-service)
   post '/tournaments' => 'tournaments#create' # todo
-  delete '/tournaments' => 'tournaments#delete' # todo
+  delete '/tournaments/:id' => 'tournaments#delete' # todo
   post '/tournaments/:id/players/:player_id' => 'tournaments#add_player' # todo
   delete '/tournaments/:id/players/:player_id' => 'tournaments#remove_player' # todo
   post '/tournaments/:id/groups' => 'tournaments#create_groups' # todo

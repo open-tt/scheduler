@@ -22,7 +22,7 @@ services:
     command: ["bash", "./wait-for-it.sh", "pgsql_userservice:5432", "--", "bash", "start.sh"]
     restart: always
     build:
-      context: ./packages/user-service
+      context: ./user-service
       dockerfile: Dockerfile
     environment:
       LENOMIR_DB_HOST: pgsql_userservice
@@ -51,7 +51,7 @@ services:
     command: ["bash", "./wait-for-it.sh", "pgsql_reservationservice:5432", "--", "bash", "start.sh"]
     restart: always
     build:
-      context: ./packages/reservation-service
+      context: ./reservation-service
       dockerfile: Dockerfile
     environment:
       LENOMIR_DB_HOST: pgsql_reservationservice

@@ -24,7 +24,11 @@ class AuthorizeApiRequest
   end
 
   def user_has_enough_permissions
-    http_method_enum = Action.http_methods[headers['REQUEST_METHOD'].downcase]
+    method = headers['REQUEST_METHOD'].downcase
+    # Cannot defined 'delete' as http_method in Actions because of
+    # conflict, when receive 'delete' convert to 'del'
+    method = 'del' if method == 'delete'
+    http_method_enum = Action.http_methods[method]
     actions = @user.actions.where(method: http_method_enum)
     return false if actions.empty?
 

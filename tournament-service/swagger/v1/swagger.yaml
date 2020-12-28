@@ -1,0 +1,50 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+  schemas:
+    sample_schema:
+      type: object
+      properties:
+        success:
+          type: boolean
+        newId:
+          type: integer
+paths:
+  "/tournaments":
+    post:
+      summary: Creates New Tournament
+      tags:
+      - Tournaments
+      parameters: []
+      responses:
+        '201':
+          description: Tournament Created
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                org_id:
+                  type: integer
+              required:
+              - user_id
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3002
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3002
