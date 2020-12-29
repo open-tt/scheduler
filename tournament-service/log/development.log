@@ -2029,3 +2029,446 @@ Processing by TournamentsController#delete as */*
 Completed 500 Internal Server Error in 2ms (Views: 0.1ms | ActiveRecord: 1.1ms)
 
 
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:22:28 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:23:10 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:23:11 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:23:11 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:23:11 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:23:11 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:23:11 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:23:49 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:24:43 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:24:54 -0500
+Started POST "/tournaments" for 127.0.0.1 at 2020-12-28 16:25:09 -0500
+Processing by TournamentsController#create as */*
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2020-12-28"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2020-12-28 21:25:10.026898"], ["updated_at", "2020-12-28 21:25:10.026898"]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 15ms (Views: 0.4ms | ActiveRecord: 12.5ms)
+
+
+Started DELETE "/tournaments/45" for 127.0.0.1 at 2020-12-28 16:25:22 -0500
+Processing by TournamentsController#delete as */*
+  Parameters: {"id"=>"45"}
+  [1m[36mTournament Load (1.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[31mDELETE FROM "tournaments" WHERE "tournaments"."id" = $1[0m  [["id", 45]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 204 No Content in 14ms (Views: 0.1ms | ActiveRecord: 7.8ms)
+
+
+Started POST "/tournaments/45/players" for 127.0.0.1 at 2020-12-28 16:25:50 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"user_id"=>1, "name"=>"Test Player", "rating"=>1222, "id"=>"45", "tournament"=>{}}
+Unpermitted parameters: user_id, tournament
+  [1m[36mTournament Load (2.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 45], ["LIMIT", 1]]
+Completed 404 Not Found in 3ms (ActiveRecord: 2.0ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Tournament with 'id'=45):
+  
+app/controllers/tournaments_controller.rb:22:in `add_player'
+Started POST "/tournaments" for 127.0.0.1 at 2020-12-28 16:25:57 -0500
+Processing by TournamentsController#create as */*
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2020-12-28"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2020-12-28 21:25:57.224147"], ["updated_at", "2020-12-28 21:25:57.224147"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 7ms (Views: 0.4ms | ActiveRecord: 4.8ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:26:07 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"user_id"=>1, "name"=>"Test Player", "rating"=>1222, "id"=>"46", "tournament"=>{}}
+Unpermitted parameters: user_id, tournament
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 3.7ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/tournaments_controller.rb:28:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:26:22 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#add_player as */*
+  Parameters: {"user_id"=>1, "name"=>"Test Player", "rating"=>1222, "id"=>"46", "tournament"=>{}}
+  [1m[36mTournament Load (1.5ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+  [1m[36mTournament Load (2.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+Unpermitted parameters: user_id, tournament
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.7ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 60052ms (ActiveRecord: 15.1ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/tournaments_controller.rb:28:in `add_player'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 16:27:45 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 16:27:46 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 16:27:46 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 16:27:46 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 16:27:46 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 16:27:46 -0500
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:28:07 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>1, "name"=>"Terst Play", "rating"=>1000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 5368ms (ActiveRecord: 13.4ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/tournaments_controller.rb:28:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:28:20 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>1, "name"=>"Terst Play", "rating"=>1000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 66874ms (ActiveRecord: 5.2ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/tournaments_controller.rb:28:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:32:49 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>1, "name"=>"Terst Play", "rating"=>1000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Completed 500 Internal Server Error in 3159ms (ActiveRecord: 8.5ms)
+
+
+  
+NoMethodError (undefined method `<<' for nil:NilClass):
+  
+app/controllers/tournaments_controller.rb:28:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:33:42 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>1, "name"=>"Terst Play", "rating"=>1000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000}]"], ["updated_at", "2020-12-28 21:34:11.669812"], ["id", 46]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 30370ms (Views: 0.4ms | ActiveRecord: 9.2ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:34:37 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>2, "name"=>"Another Dude", "rating"=>2003, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.5ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003}]"], ["updated_at", "2020-12-28 21:34:52.284228"], ["id", 46]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 32040ms (Views: 0.4ms | ActiveRecord: 5.8ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:36:43 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888}]"], ["updated_at", "2020-12-28 21:36:43.201006"], ["id", 46]]
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 13.3ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:44:31 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 6.9ms)
+
+
+  
+NoMethodError (undefined method `id' for {"id"=>1, "name"=>"Terst Play", "rating"=>1000}:Hash):
+  
+app/models/tournament.rb:16:in `block in validate_unique_player'
+app/models/tournament.rb:15:in `each'
+app/models/tournament.rb:15:in `validate_unique_player'
+app/models/tournament.rb:7:in `add_player'
+app/controllers/tournaments_controller.rb:29:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:44:50 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888}]"], ["updated_at", "2020-12-28 21:45:00.910719"], ["id", 46]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 6.5ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:45:32 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.6ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888}]"], ["updated_at", "2020-12-28 21:46:31.903760"], ["id", 46]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 59046ms (Views: 0.4ms | ActiveRecord: 9.3ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:47:03 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888}]"], ["updated_at", "2020-12-28 21:48:27.319971"], ["id", 46]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 83954ms (Views: 0.4ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:48:42 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.2ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 7.4ms)
+
+
+  
+StandardError (This player already exists):
+  
+app/models/tournament.rb:7:in `add_player'
+app/controllers/tournaments_controller.rb:29:in `add_player'
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:50:16 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>3, "name"=>"X Man", "rating"=>1888, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Completed 500 Internal Server Error in 10ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-28 16:51:06 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>4, "name"=>"Cool Aid", "rating"=>1455, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.6ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"Terst Play\",\"rating\":1000},{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":4,\"name\":\"Cool Aid\",\"rating\":1455}]"], ["updated_at", "2020-12-28 21:51:09.165427"], ["id", 46]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 2255ms (Views: 0.4ms | ActiveRecord: 7.9ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-28 17:03:27 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-28 17:03:27 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-28 17:03:27 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-28 17:03:27 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-28 17:03:28 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-28 17:03:28 -0500
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:04:28 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 8822ms (Views: 0.2ms | ActiveRecord: 11.4ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:04:56 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 204 No Content in 54337ms (ActiveRecord: 6.9ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:07:02 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.5ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 2400ms (Views: 0.5ms | ActiveRecord: 1.5ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:07:40 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 21ms (Views: 0.6ms | ActiveRecord: 8.6ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:07:56 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 49675ms (Views: 0.4ms | ActiveRecord: 1.4ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:08:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.2ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 24626ms (Views: 0.9ms | ActiveRecord: 8.3ms)
+
+
+Started DELETE "/tournaments/46/players/1" for 127.0.0.1 at 2020-12-28 17:09:33 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"1"}
+  [1m[36mTournament Load (2.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 2.0ms)
+
+
+Started DELETE "/tournaments/46/players/1" for 127.0.0.1 at 2020-12-28 17:10:03 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"1"}
+  [1m[36mTournament Load (1.2ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":3,\"name\":\"X Man\",\"rating\":1888},{\"id\":4,\"name\":\"Cool Aid\",\"rating\":1455}]"], ["updated_at", "2020-12-28 22:10:03.887868"], ["id", 46]]
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 26ms (Views: 0.6ms | ActiveRecord: 13.2ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:10:17 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.6ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":4,\"name\":\"Cool Aid\",\"rating\":1455}]"], ["updated_at", "2020-12-28 22:10:17.418159"], ["id", 46]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 9ms (Views: 0.4ms | ActiveRecord: 5.9ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-28 17:10:59 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (2.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-29 11:00:22 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 20ms (Views: 3.7ms | ActiveRecord: 3.0ms)
+
+
+Started DELETE "/tournaments/46/players/3" for 127.0.0.1 at 2020-12-29 11:00:35 -0500
+Processing by TournamentsController#remove_player as */*
+  Parameters: {"id"=>"46", "player_id"=>"3"}
+  [1m[36mTournament Load (1.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.7ms)
+
+

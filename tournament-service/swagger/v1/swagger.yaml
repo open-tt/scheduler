@@ -39,6 +39,72 @@ paths:
                   type: integer
               required:
               - user_id
+  "/tournaments/{id}":
+    delete:
+      summary: Delete Tournament
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Tournament Deleted
+          content: {}
+  "/tournaments/{id}/players":
+    post:
+      summary: Adds a player to the tournament
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Add player
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_id:
+                  type: integer
+                name:
+                  type: string
+                rating:
+                  type: integer
+              required:
+              - user_id
+              - name
+              - rating
+  "/tournaments/{id}/players/{player_id}":
+    delete:
+      summary: Remove player
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Remove player
+          content: {}
 servers:
 - url: http://{defaultHost}
   variables:

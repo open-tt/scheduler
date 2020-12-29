@@ -15042,3 +15042,56 @@ Processing by TournamentsController#delete as */*
 Completed 500 Internal Server Error in 9ms (Views: 0.1ms | ActiveRecord: 0.5ms)
 
 
+Started POST "/authenticate" for 127.0.0.1 at 2020-12-29 10:40:18 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 15ms (Views: 0.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/authenticate" for 127.0.0.1 at 2020-12-29 10:40:28 -0500
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"test@test.com", "password"=>"[FILTERED]", "authentication"=>{"email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2020-12-29 10:40:59 -0500
+Processing by UsersController#register as JSON
+  Parameters: {"name"=>"test1", "email"=>"test1@test.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]", "is_enabled"=>true, "user"=>{"email"=>"test1@test.com", "name"=>"test1", "is_enabled"=>true}}
+Unpermitted parameter: user
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."name" = ? LIMIT ?[0m  [["name", "player"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT  "roles".* FROM "roles" WHERE "roles"."id" = ? LIMIT ?[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test1@test.com"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "name", "is_enabled", "password_digest") VALUES (?, ?, ?, ?)[0m  [["email", "test1@test.com"], ["name", "test1"], ["is_enabled", "t"], ["password_digest", "$2a$12$HGsGPIn8z92eeigSbSw5Vu67TfpWVvuCc7QzAOPCu/djGVo7FFTnS"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "roles_users" ("user_id", "role_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 11], ["role_id", 25], ["created_at", "2020-12-29 15:40:59.433232"], ["updated_at", "2020-12-29 15:40:59.433232"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test1@test.com"], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "test1@test.com"], ["LIMIT", 1]]
+[ActiveJob] Enqueued ActionMailer::DeliveryJob (Job ID: dcddd5d6-399b-4d40-adb5-ed9457195781) to Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f8285f5ff50 @uri=#<URI::GID gid://opentt-scheduler/User/11>>
+Completed 201 Created in 895ms (Views: 0.2ms | ActiveRecord: 3.1ms)
+
+
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781] Performing ActionMailer::DeliveryJob from Async(mailers) with arguments: "UserMailer", "account_confirmation_email", "deliver_now", #<GlobalID:0x00007f8285ebc4b8 @uri=#<URI::GID gid://opentt-scheduler/User/11>>
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781]   Rendering user_mailer/account_confirmation_email.text.erb within layouts/mailer
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781]   Rendered user_mailer/account_confirmation_email.text.erb within layouts/mailer (2.6ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781] UserMailer#account_confirmation_email: processed outbound mail in 185.7ms
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781] Sent mail to test1@test.com (7.9ms)
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781] Date: Tue, 29 Dec 2020 10:41:00 -0500
+From: from@example.com
+To: test1@test.com
+Message-ID: <5feb4e0c3fd2b_164623fc142fc2450579c0@eriels-mbp.lan.mail>
+Subject: Open TT Account Confirmation
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi test1,
+Your have successful created an account at Open TT
+
+Reserve your spot at a local club: https://tt-scheduler.netlify.app
+
+[ActiveJob] [ActionMailer::DeliveryJob] [dcddd5d6-399b-4d40-adb5-ed9457195781] Performed ActionMailer::DeliveryJob from Async(mailers) in 203.87ms

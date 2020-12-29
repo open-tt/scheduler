@@ -18,9 +18,38 @@ class TournamentsController < ApplicationController
     render json: { error: e.message }, status: :internal_server_error
   end
 
+  def add_player
+    tour = Tournament.find(add_player_params[:id])
+    tour.players = [] if tour.players.nil?
+    new_player = {
+      id: add_player_params[:player_id],
+      name: add_player_params[:name],
+      rating: add_player_params[:rating]
+    }
+    begin
+      tour.add_player new_player
+      tour.save!
+      render json: tour.as_json, status: :ok
+    rescue StandardError => e
+      render json: { error: e.message }, status: :internal_server_error
+    end
+  end
+
+  def remove_player
+    tour = Tournament.find(params[:id])
+    tour.remove_player params[:player_id].to_i
+    render json: tour, status: :ok
+  rescue StandardError => e
+    render json: { error: e.message }, status: :internal_server_error
+  end
+
   private
 
   def create_tournament_params
     params.permit(:user_id, :org_id)
+  end
+
+  def add_player_params
+    params.permit(:id, :player_id, :name, :rating)
   end
 end

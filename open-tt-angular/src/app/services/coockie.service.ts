@@ -10,7 +10,8 @@ export class CoockieService {
   ) { }
 
   getAuthTokenCoockie(): string {
-    return this.getCookie(Coockie.USER_AUTH_TOKEN);
+    return 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMSwiZXhwIjoxNjA5MzQyODU5fQ.sh-ywXmNbNOFVAo006xQ5xqFIf0UXxF7d9r4P2C-dBU';
+    // return this.getCookie(Coockie.USER_AUTH_TOKEN);
   }
 
   setAuthTokenCoockie(token: string): void {
