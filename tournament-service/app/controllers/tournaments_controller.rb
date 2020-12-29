@@ -43,6 +43,12 @@ class TournamentsController < ApplicationController
     render json: { error: e.message }, status: :internal_server_error
   end
 
+  def create_groups
+    tour = Tournament.find(params[:id])
+    tour.generate_groups
+    render json: tour, status: :created
+  end
+
   private
 
   def create_tournament_params

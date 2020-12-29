@@ -105,6 +105,21 @@ paths:
         '204':
           description: Remove player
           content: {}
+  "/tournaments/{id}/groups":
+    post:
+      summary: Create Groups for the tournament using registered users
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Create Group
+          content: {}
 servers:
 - url: http://{defaultHost}
   variables:

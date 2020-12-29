@@ -2472,3 +2472,53 @@ Processing by TournamentsController#remove_player as */*
 Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.7ms)
 
 
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-29 11:55:29 -0500
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2020-12-29 11:55:46 -0500
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "tournaments"[0m
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" ORDER BY "tournaments"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-29 11:56:50 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>5, "name"=>"string", "rating"=>2000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (1.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":4,\"name\":\"Cool Aid\",\"rating\":1455},{\"id\":5,\"name\":\"string\",\"rating\":2000}]"], ["updated_at", "2020-12-29 16:56:51.009677"], ["id", 46]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 21ms (Views: 0.3ms | ActiveRecord: 15.8ms)
+
+
+Started POST "/tournaments/46/players" for 127.0.0.1 at 2020-12-29 11:57:05 -0500
+Processing by TournamentsController#add_player as */*
+  Parameters: {"player_id"=>6, "name"=>"ssss", "rating"=>1000, "id"=>"46", "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[36mTournament Load (2.2ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+Unpermitted parameter: tournament
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":2,\"name\":\"Another Dude\",\"rating\":2003},{\"id\":4,\"name\":\"Cool Aid\",\"rating\":1455},{\"id\":5,\"name\":\"string\",\"rating\":2000},{\"id\":6,\"name\":\"ssss\",\"rating\":1000}]"], ["updated_at", "2020-12-29 16:57:05.733034"], ["id", 46]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/tournaments/46/groups" for 127.0.0.1 at 2020-12-29 11:58:02 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by TournamentsController#create_groups as */*
+  Parameters: {"id"=>"46"}
+  [1m[36mTournament Load (1.9ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 46], ["LIMIT", 1]]
+Completed 201 Created in 116732ms (Views: 0.5ms | ActiveRecord: 11.8ms)
+
+

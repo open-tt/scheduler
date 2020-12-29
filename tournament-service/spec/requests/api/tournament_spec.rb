@@ -76,4 +76,18 @@ RSpec.describe 'Tournaments API', type: :request do
       end
     end
   end
+
+  path '/tournaments/{id}/groups' do
+    post 'Create Groups for the tournament using registered users' do
+      tags 'Tournaments'
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '204', 'Create Group' do
+        run_test!
+      end
+    end
+  end
 end
