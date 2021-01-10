@@ -117,9 +117,34 @@ paths:
         schema:
           type: integer
       responses:
-        '204':
+        '201':
           description: Create Group
           content: {}
+  "/tournaments/{id}/playoffs":
+    post:
+      summary: Create Playoffs for the tournament from the existing groups
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Create Playoffs
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_ids:
+                  type: array
+                  items:
+                    type: integer
 servers:
 - url: http://{defaultHost}
   variables:

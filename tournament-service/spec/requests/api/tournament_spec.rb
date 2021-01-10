@@ -85,7 +85,32 @@ RSpec.describe 'Tournaments API', type: :request do
 
       parameter name: :id, in: :path, type: :integer
 
-      response '204', 'Create Group' do
+      response '201', 'Create Group' do
+        run_test!
+      end
+    end
+  end
+
+  path '/tournaments/{id}/playoffs' do
+    post 'Create Playoffs for the tournament from the existing groups' do
+      tags 'Tournaments'
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          player_ids: {
+            type: :array,
+            items: {
+              type: :integer
+            }
+          }
+        }
+      }
+
+      response '201', 'Create Playoffs' do
         run_test!
       end
     end

@@ -29,7 +29,7 @@ class TournamentsController < ApplicationController
     begin
       tour.add_player new_player
       tour.save!
-      render json: tour.as_json, status: :ok
+      render json: tour, status: :ok
     rescue StandardError => e
       render json: { error: e.message }, status: :internal_server_error
     end
@@ -46,7 +46,13 @@ class TournamentsController < ApplicationController
   def create_groups
     tour = Tournament.find(params[:id])
     tour.generate_groups
-    render json: tour, status: :created
+    render json: tour, include: %i[id stage], status: :created
+  end
+
+  def create_playoffs
+    tour = Tournament.find(params[:id])
+    winners = tour.groups_stage_winners
+    render json: winners, status: :created
   end
 
   private
