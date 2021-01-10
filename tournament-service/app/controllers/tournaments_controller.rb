@@ -46,11 +46,21 @@ class TournamentsController < ApplicationController
   def create_groups
     tour = Tournament.find(params[:id])
     tour.generate_groups
-    render json: tour, include: %i[id stage], status: :created
+    render json: tour, status: :created
   end
 
   def create_playoffs
     tour = Tournament.find(params[:id])
+    unless tour.classification_over?
+      render json: {
+        error: 'Classification stage is not over. Did all matches finished?',
+        total_players: tour.players.count,
+        total_groups: tour.groups.count,
+        expected_total_matches: tour.expected_total_matches,
+        total_matches: tour.groups.map { |gro| gro.matches.count }.reduce(:+)
+      }, status: :expectation_failed
+      return
+    end
     winners = tour.groups_stage_winners
     render json: winners, status: :created
   end

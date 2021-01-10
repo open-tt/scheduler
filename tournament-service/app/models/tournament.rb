@@ -3,7 +3,7 @@
 class Tournament < ApplicationRecord
   has_many :groups
 
-  enum stage: %i[registration classification playoffs end]
+  enum stage: %i[registration registration_over classification classification_over playoffs playoffs_over end]
 
   def add_player(player_hash)
     raise StandardError, 'This player already exists' unless validate_unique_player player_hash
@@ -24,6 +24,8 @@ class Tournament < ApplicationRecord
   end
 
   def generate_groups
+    return unless groups.nil? || groups.empty?
+
     if players.nil? || !players.count
       count = players.nil? ? 0 : players.count
       raise StandardError, `Not enough players [#{count}]`
@@ -45,6 +47,10 @@ class Tournament < ApplicationRecord
     return if group_players.empty?
 
     groups.create!(players: group_players)
+  end
+
+  def expected_total_matches
+    groups.map { |gro| gro.players.combination(2).count }.reduce(:+)
   end
 
   def generate_playoffs(ids)
