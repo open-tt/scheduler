@@ -7,9 +7,9 @@ class Tournament < ApplicationRecord
 
   def classification_over?
     for gro in groups
-      return false if gro.finished_all_matches?
+      return false unless gro.finished_all_matches?
     end
-    false
+    true
   end
 
   def playoffs_over?

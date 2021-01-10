@@ -41,8 +41,8 @@ class Group < ApplicationRecord
     ranks = standings
     return ranks if nth >= ranks.count
 
-    nth_player_score = ranks[nth][1]
-    nth_1_player_score = ranks[nth + 1][1]
+    nth_player_score = ranks[nth - 1][1]
+    nth_1_player_score = ranks[nth][1]
     return ranks[0...nth] if nth_player_score != nth_1_player_score
 
     # There is a tie between nth and nth + 1 and possibly more.
@@ -53,7 +53,7 @@ class Group < ApplicationRecord
   def count_matches_won_for(player_id)
     c = 0
     matches.each do |match|
-      c += 1 if match.player_x_won(player_id)
+      c += 1 if match.winner == player_id
     end
     c
   end
