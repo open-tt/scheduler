@@ -17,6 +17,64 @@ components:
         newId:
           type: integer
 paths:
+  "/groups/{id}/match":
+    get:
+      summary: Get a match between 2 players
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player1
+        in: query
+        schema:
+          type: integer
+      - name: player2
+        in: query
+        schema:
+          type: integer
+      - name: should_create
+        in: query
+        default: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Find Match
+          content: {}
+    put:
+      summary: Create a set for a match
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player1
+        in: query
+        schema:
+          type: integer
+      - name: player1_score
+        in: query
+        schema:
+          type: integer
+      - name: player2
+        in: query
+        schema:
+          type: integer
+      - name: player2_score
+        in: query
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Created Set
+          content: {}
   "/tournaments":
     post:
       summary: Creates New Tournament

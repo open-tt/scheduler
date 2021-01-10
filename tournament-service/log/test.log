@@ -47,3 +47,57 @@
   [1m[36mActiveRecord::SchemaMigration Load (4.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (2.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (43.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "db/test-tournaments"[0m
+  [1m[35m (197.4ms)[0m  [1m[35mCREATE DATABASE "db/test-tournaments" ENCODING = 'utf8'[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (11.0ms)[0m  [1m[35mCREATE TABLE "groups" ("id" serial primary key, "players" integer[], "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "tournament_id" integer)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_groups_on_tournament_id" ON "groups" USING btree ("tournament_id")[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "match_sets" ("id" serial primary key, "player1_id" integer, "player1_score" integer, "player2_id" integer, "player2_score" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "match_id" integer)[0m
+  [1m[35m (2.6ms)[0m  [1m[35mCREATE  INDEX  "index_match_sets_on_match_id" ON "match_sets" USING btree ("match_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "matches" ("id" serial primary key, "best_of" integer, "player1_id" integer, "player2_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "group_id" integer)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE  INDEX  "index_matches_on_group_id" ON "matches" USING btree ("group_id")[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "tournaments" ("id" serial primary key, "scheduled_at" date, "stage" integer, "creator" jsonb, "players" jsonb, "waitingList" jsonb, "playoffs" jsonb, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "groups" ADD CONSTRAINT "fk_rails_1a66c2460d"
+FOREIGN KEY ("tournament_id")
+  REFERENCES "tournaments" ("id")
+[0m
+  [1m[35m (1.8ms)[0m  [1m[35mALTER TABLE "match_sets" ADD CONSTRAINT "fk_rails_615a09ce57"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+[0m
+  [1m[35m (1.7ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_6932dce62e"
+FOREIGN KEY ("group_id")
+  REFERENCES "groups" ("id")
+[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210110060409)[0m
+  [1m[35m (1.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210109181149),
+(20210109174523),
+(20210109175741),
+(20210109181613),
+(20210109175912),
+(20201225224253);
+
+[0m
+  [1m[35m (5.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-01-10 16:20:39.702938"], ["updated_at", "2021-01-10 16:20:39.702938"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m

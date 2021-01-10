@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   post    '/tournaments/:id/players'  => 'tournaments#add_player'
   delete  '/tournaments/:id/players/:player_id' => 'tournaments#remove_player'
 
+  # Groups
+  get '/groups/:id/match' => 'groups#find_match'
+  put '/groups/:id/match' => 'groups#create_set'
 end

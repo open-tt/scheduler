@@ -3266,3 +3266,587 @@ app/models/group.rb:23:in `get_first_n'
 app/models/tournament.rb:63:in `block in groups_stage_winners'
 app/models/tournament.rb:62:in `groups_stage_winners'
 app/controllers/tournaments_controller.rb:54:in `create_playoffs'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-01-10 11:20:50 -0500
+  [1m[36mGroup Load (6.6ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" ORDER BY "groups"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" ORDER BY "groups"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-01-10 11:21:51 -0500
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:22:01 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/groups/4/match"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:22:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/groups/4/match"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:23:53 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  
+ActionController::RoutingError (uninitialized constant GroupsController):
+  
+activesupport (5.0.7.2) lib/active_support/inflector/methods.rb:268:in `const_get'
+activesupport (5.0.7.2) lib/active_support/inflector/methods.rb:268:in `block in constantize'
+activesupport (5.0.7.2) lib/active_support/inflector/methods.rb:266:in `each'
+activesupport (5.0.7.2) lib/active_support/inflector/methods.rb:266:in `inject'
+activesupport (5.0.7.2) lib/active_support/inflector/methods.rb:266:in `constantize'
+actionpack (5.0.7.2) lib/action_dispatch/http/request.rb:81:in `controller_class'
+actionpack (5.0.7.2) lib/action_dispatch/routing/route_set.rb:44:in `controller'
+actionpack (5.0.7.2) lib/action_dispatch/routing/route_set.rb:30:in `serve'
+actionpack (5.0.7.2) lib/action_dispatch/journey/router.rb:39:in `block in serve'
+actionpack (5.0.7.2) lib/action_dispatch/journey/router.rb:26:in `each'
+actionpack (5.0.7.2) lib/action_dispatch/journey/router.rb:26:in `serve'
+actionpack (5.0.7.2) lib/action_dispatch/routing/route_set.rb:727:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (5.0.7.2) lib/active_record/migration.rb:553:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:38:in `block in call'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:97:in `__run_callbacks__'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:750:in `_run_call_callbacks'
+activesupport (5.0.7.2) lib/active_support/callbacks.rb:90:in `run_callbacks'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/callbacks.rb:36:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:49:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:24:37 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (2.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Class (0.1ms)
+Completed 200 OK in 7106ms (Views: 17.8ms | ActiveRecord: 16.2ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:27:36 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+Completed 500 Internal Server Error in 100ms (ActiveRecord: 3.1ms)
+
+
+  
+NameError (undefined local variable or method `groups' for #<GroupsController:0x00007ff623f4f440>
+Did you mean?  group):
+  
+app/controllers/groups_controller.rb:11:in `find_match'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:27:58 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 6.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'player1' for Match.):
+  
+app/controllers/groups_controller.rb:11:in `find_match'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:28:27 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.5ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:28:27.872630"], ["updated_at", "2021-01-10 16:28:27.872630"], ["group_id", 4]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Match (0.29ms)
+Completed 200 OK in 34ms (Views: 4.8ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:29:50 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:29:50.456517"], ["updated_at", "2021-01-10 16:29:50.456517"], ["group_id", 4]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 8.2ms)
+
+
+  
+LoadError (Unable to autoload constant MatchSerializer, expected /Users/dibu2018/src/club-manager/tournament-service/app/serializers/match_serializer.rb to define it):
+  
+app/controllers/groups_controller.rb:13:in `find_match'
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:30:05 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:30:05.985748"], ["updated_at", "2021-01-10 16:30:05.985748"], ["group_id", 4]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.4ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 3]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (10.77ms)
+Completed 200 OK in 40ms (Views: 10.8ms | ActiveRecord: 11.6ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:30:07 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.9ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.5ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:30:07.628049"], ["updated_at", "2021-01-10 16:30:07.628049"], ["group_id", 4]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (0.9ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 4]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.79ms)
+Completed 200 OK in 15ms (Views: 2.4ms | ActiveRecord: 9.2ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:30:08 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:30:08.277859"], ["updated_at", "2021-01-10 16:30:08.277859"], ["group_id", 4]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.5ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 5]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.81ms)
+Completed 200 OK in 15ms (Views: 1.8ms | ActiveRecord: 9.3ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:30:08 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:30:08.763278"], ["updated_at", "2021-01-10 16:30:08.763278"], ["group_id", 4]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.1ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 6]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.46ms)
+Completed 200 OK in 15ms (Views: 1.7ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:30:17 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.9ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.8ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (2.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:31:08.893390"], ["updated_at", "2021-01-10 16:31:08.893390"], ["group_id", 4]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.4ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 7]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.83ms)
+Completed 200 OK in 51065ms (Views: 1.8ms | ActiveRecord: 13.0ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:31:16 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 2], ["player2_id", 3], ["created_at", "2021-01-10 16:31:35.940067"], ["updated_at", "2021-01-10 16:31:35.940067"], ["group_id", 4]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.5ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 8]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (10.47ms)
+Completed 200 OK in 19435ms (Views: 28.7ms | ActiveRecord: 23.6ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:31:41 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (3.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.4ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 1]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (12.73ms)
+Completed 200 OK in 4365ms (Views: 45.9ms | ActiveRecord: 22.6ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:31:52 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (2.9ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (3.3ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 1]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (5.58ms)
+Completed 200 OK in 2306ms (Views: 3.1ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:32:00 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 1]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.56ms)
+Completed 200 OK in 8ms (Views: 1.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/groups/4/match?player1=2&player2=3" for 127.0.0.1 at 2021-01-10 11:32:01 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.8ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.5ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.3ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 1]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.64ms)
+Completed 200 OK in 8ms (Views: 1.7ms | ActiveRecord: 4.6ms)
+
+
+Started GET "/groups/4/match?player1=4&player2=3" for 127.0.0.1 at 2021-01-10 11:32:21 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"4", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 4], ["player2_id", 3], ["created_at", "2021-01-10 16:32:21.231132"], ["updated_at", "2021-01-10 16:32:21.231132"], ["group_id", 4]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 9]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (5.17ms)
+Completed 200 OK in 19ms (Views: 3.1ms | ActiveRecord: 11.2ms)
+
+
+Started GET "/groups/4/match?player1=4&player2=3" for 127.0.0.1 at 2021-01-10 11:32:25 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"4", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.4ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 9]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.84ms)
+Completed 200 OK in 8ms (Views: 1.8ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/groups/4/match?player1=4&player2=3" for 127.0.0.1 at 2021-01-10 11:32:26 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"4", "player2"=>"3", "id"=>"4"}
+  [1m[36mGroup Load (1.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 9]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.53ms)
+Completed 200 OK in 9ms (Views: 1.7ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/groups/4/match?player1=3&player2=4" for 127.0.0.1 at 2021-01-10 11:32:32 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"3", "player2"=>"4", "id"=>"4"}
+  [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.8ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 9]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.18ms)
+Completed 200 OK in 9ms (Views: 1.8ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/groups/4/match?player1=3&player2=4" for 127.0.0.1 at 2021-01-10 11:32:34 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"3", "player2"=>"4", "id"=>"4"}
+  [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.6ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 9]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.99ms)
+Completed 200 OK in 8ms (Views: 1.8ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/groups/4/match?player1=5&player2=4" for 127.0.0.1 at 2021-01-10 11:35:35 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"5", "player2"=>"4", "id"=>"4"}
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Completed 404 Not Found in 34ms (Views: 4.7ms | ActiveRecord: 11.9ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-01-10 11:36:12 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-01-10 11:36:12 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-01-10 11:36:12 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-01-10 11:36:12 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-01-10 11:36:13 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-01-10 11:36:13 -0500
+Started GET "/groups/4/match?player1=1&player2=2&should_create=true" for 127.0.0.1 at 2021-01-10 11:36:27 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"2", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (1.6ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 1], ["player2_id", 2], ["created_at", "2021-01-10 16:36:27.498196"], ["updated_at", "2021-01-10 16:36:27.498196"], ["group_id", 4]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 10]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (12.36ms)
+Completed 500 Internal Server Error in 25ms (Views: 7.7ms | ActiveRecord: 13.0ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/groups_controller.rb:16:in `find_match'
+Started GET "/groups/4/match?player1=1&player2=2&should_create=true" for 127.0.0.1 at 2021-01-10 11:36:48 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"2", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (1.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 10]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (9.04ms)
+Completed 500 Internal Server Error in 76ms (Views: 24.2ms | ActiveRecord: 15.6ms)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/groups_controller.rb:16:in `find_match'
+Started GET "/groups/4/match?player1=1&player2=2&should_create=true" for 127.0.0.1 at 2021-01-10 11:37:59 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"2", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.7ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 10]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (6.06ms)
+Completed 200 OK in 30ms (Views: 5.6ms | ActiveRecord: 4.7ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=2&should_create=true" for 127.0.0.1 at 2021-01-10 11:38:14 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"2", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (2.1ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.7ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 10]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.14ms)
+Completed 200 OK in 9ms (Views: 1.8ms | ActiveRecord: 5.5ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=2&should_create=false" for 127.0.0.1 at 2021-01-10 11:38:18 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"2", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (2.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.8ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 10]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.16ms)
+Completed 200 OK in 9ms (Views: 1.7ms | ActiveRecord: 5.4ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=3&should_create=false" for 127.0.0.1 at 2021-01-10 11:38:23 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"3", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 1], ["player2_id", 3], ["created_at", "2021-01-10 16:38:23.654906"], ["updated_at", "2021-01-10 16:38:23.654906"], ["group_id", 4]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.1ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (4.97ms)
+Completed 200 OK in 18ms (Views: 3.0ms | ActiveRecord: 10.7ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=7&should_create=false" for 127.0.0.1 at 2021-01-10 11:38:33 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"7", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 1], ["player2_id", 7], ["created_at", "2021-01-10 16:38:33.520782"], ["updated_at", "2021-01-10 16:38:33.520782"], ["group_id", 4]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.3ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 12]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.6ms)
+Completed 200 OK in 15ms (Views: 1.6ms | ActiveRecord: 9.6ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=7&should_create=false" for 127.0.0.1 at 2021-01-10 11:38:51 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"7", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.1ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 12]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (6.17ms)
+Completed 200 OK in 54590ms (Views: 6.6ms | ActiveRecord: 3.7ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=8&should_create=false" for 127.0.0.1 at 2021-01-10 11:39:55 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"8", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (0.9ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.5ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 404 Not Found in 4191ms (Views: 5.6ms | ActiveRecord: 13.5ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=8&should_create=true" for 127.0.0.1 at 2021-01-10 11:40:05 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"8", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (2.0ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "matches" ("best_of", "player1_id", "player2_id", "created_at", "updated_at", "group_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["best_of", 5], ["player1_id", 1], ["player2_id", 8], ["created_at", "2021-01-10 16:40:05.838296"], ["updated_at", "2021-01-10 16:40:05.838296"], ["group_id", 4]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (2.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 13]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (17.39ms)
+Completed 200 OK in 52ms (Views: 29.3ms | ActiveRecord: 17.8ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=8&should_create=true" for 127.0.0.1 at 2021-01-10 11:40:08 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"8", "should_create"=>"true", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.6ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 13]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.1ms)
+Completed 200 OK in 12ms (Views: 1.8ms | ActiveRecord: 4.4ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=8&should_create=false" for 127.0.0.1 at 2021-01-10 11:40:10 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"8", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.7ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 13]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.75ms)
+Completed 200 OK in 9ms (Views: 2.4ms | ActiveRecord: 4.8ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-01-10 12:04:33 -0500
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-01-10 12:04:43 -0500
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-01-10 12:04:43 -0500
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-01-10 12:04:43 -0500
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-01-10 12:04:43 -0500
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-01-10 12:04:43 -0500
+Started GET "/groups/4/match?player1=1&player2=3&should_create=false" for 127.0.0.1 at 2021-01-10 12:05:31 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"3", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.8ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (11.1ms)
+Completed 200 OK in 42ms (Views: 8.1ms | ActiveRecord: 15.8ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=3&should_create=false" for 127.0.0.1 at 2021-01-10 12:05:35 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"3", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.4ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (2.6ms)
+Completed 200 OK in 7ms (Views: 1.6ms | ActiveRecord: 4.1ms)
+
+
+Started PUT "/groups/4/match?player1=1&player1_score=11&player2=3&player2_score=7" for 127.0.0.1 at 2021-01-10 12:05:50 -0500
+Processing by GroupsController#create_set as */*
+  Parameters: {"player1"=>"1", "player1_score"=>"11", "player2"=>"3", "player2_score"=>"7", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "match_sets" ("player1_id", "player1_score", "player2_id", "player2_score", "created_at", "updated_at", "match_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["player1_id", 1], ["player1_score", 11], ["player2_id", 3], ["player2_score", 7], ["created_at", "2021-01-10 17:05:50.767318"], ["updated_at", "2021-01-10 17:05:50.767318"], ["match_id", 11]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with MatchSet (0.36ms)
+Completed 200 OK in 24ms (Views: 5.1ms | ActiveRecord: 8.9ms)
+
+
+Started PUT "/groups/4/match?player1=1&player1_score=11&player2=3&player2_score=8" for 127.0.0.1 at 2021-01-10 12:06:38 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#create_set as */*
+  Parameters: {"player1"=>"1", "player1_score"=>"11", "player2"=>"3", "player2_score"=>"8", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "match_sets" ("player1_id", "player1_score", "player2_id", "player2_score", "created_at", "updated_at", "match_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["player1_id", 1], ["player1_score", 11], ["player2_id", 3], ["player2_score", 8], ["created_at", "2021-01-10 17:06:38.866150"], ["updated_at", "2021-01-10 17:06:38.866150"], ["match_id", 11]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] No serializer found for resource: #<MatchSet id: 1, player1_id: 1, player1_score: 11, player2_id: 3, player2_score: 7, created_at: "2021-01-10 17:05:50", updated_at: "2021-01-10 17:05:50", match_id: 11>
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (13.42ms)
+Completed 200 OK in 104ms (Views: 32.9ms | ActiveRecord: 22.7ms)
+
+
+Started PUT "/groups/4/match?player1=1&player1_score=11&player2=3&player2_score=2" for 127.0.0.1 at 2021-01-10 12:06:52 -0500
+Processing by GroupsController#create_set as */*
+  Parameters: {"player1"=>"1", "player1_score"=>"11", "player2"=>"3", "player2_score"=>"2", "id"=>"4"}
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "match_sets" ("player1_id", "player1_score", "player2_id", "player2_score", "created_at", "updated_at", "match_id") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["player1_id", 1], ["player1_score", 11], ["player2_id", 3], ["player2_score", 2], ["created_at", "2021-01-10 17:06:53.024101"], ["updated_at", "2021-01-10 17:06:53.024101"], ["match_id", 11]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mMatchSet Load (1.2ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] No serializer found for resource: #<MatchSet id: 1, player1_id: 1, player1_score: 11, player2_id: 3, player2_score: 7, created_at: "2021-01-10 17:05:50", updated_at: "2021-01-10 17:05:50", match_id: 11>
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (5.35ms)
+Completed 200 OK in 17ms (Views: 3.3ms | ActiveRecord: 9.8ms)
+
+
+Started GET "/groups/4/match?player1=1&player2=3&should_create=false" for 127.0.0.1 at 2021-01-10 12:07:13 -0500
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"1", "player2"=>"3", "should_create"=>"false", "id"=>"4"}
+  [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mMatch Load (1.7ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 4]]
+[active_model_serializers]   [1m[36mMatchSet Load (1.7ms)[0m  [1m[34mSELECT "match_sets".* FROM "match_sets" WHERE "match_sets"."match_id" = $1[0m  [["match_id", 11]]
+[active_model_serializers] No serializer found for resource: #<MatchSet id: 1, player1_id: 1, player1_score: 11, player2_id: 3, player2_score: 7, created_at: "2021-01-10 17:05:50", updated_at: "2021-01-10 17:05:50", match_id: 11>
+[active_model_serializers] Rendered MatchSerializer with ActiveModelSerializers::Adapter::Attributes (3.98ms)
+Completed 200 OK in 13ms (Views: 2.7ms | ActiveRecord: 4.7ms)
+
+
