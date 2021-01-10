@@ -3,7 +3,17 @@
 class Tournament < ApplicationRecord
   has_many :groups
 
-  enum stage: %i[registration registration_over classification classification_over playoffs playoffs_over end]
+  enum stage: %i[registration classification playoffs end]
+
+  def classification_over?
+    for gro in groups
+      return false if gro.finished_all_matches?
+    end
+    false
+  end
+
+  def playoffs_over?
+  end
 
   def add_player(player_hash)
     raise StandardError, 'This player already exists' unless validate_unique_player player_hash

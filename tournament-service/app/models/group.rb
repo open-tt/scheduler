@@ -4,6 +4,28 @@ class Group < ApplicationRecord
   has_many :matches
   belongs_to :tournament
 
+  def finished_all_matches?
+    return false unless expected_total_matches == matches.count
+
+    for mat in matches
+      return false unless mat.is_over?
+    end
+
+    true
+  end
+
+  def total_matches_in_progress
+    matches.map { |mat| mat.is_over? ? 0 : 1 }.reduce(:+)
+  end
+
+  def total_matches_over
+    matches.map { |mat| mat.is_over? ? 1 : 0 }.reduce(:+)
+  end
+
+  def expected_total_matches
+    players.combination(2).count
+  end
+
   def standings
     data = {}
     players.each do |player_id|

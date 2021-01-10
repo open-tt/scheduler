@@ -11,6 +11,11 @@ class MatchSet < ApplicationRecord
     -1
   end
 
+  def player_won(player_id)
+    (player_id == player1_id && player1_won) ||
+      (player_id == player2_id && player2_won)
+  end
+
   def player1_won
     player1_score >= 11 and player1_score - 2 >= player2_score
   end

@@ -31,6 +31,18 @@ class GroupsController < ApplicationController
         [matches.player1_id, matches.player2_id].include? p2
     end
 
+    if match.is_over?
+      render json: { error: "Cannot add set to match {#{match.id}} that has already finished. Winner #{match.winner}" },
+             status: :expectation_failed
+      return
+    end
+
+    if match.match_sets.count >= match.best_of
+      render json: { error: 'All sets for this match already created. Did you mean to update an existing one?' },
+             status: :expectation_failed
+      return
+    end
+
     if match.nil?
       render json: { error: 'Match does not exist', player1: p1, player2: p2 }, status: :not_found
       return

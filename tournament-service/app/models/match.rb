@@ -12,6 +12,10 @@ class Match < ApplicationRecord
     -1
   end
 
+  def is_over?
+    player1_won or player2_won
+  end
+
   def player_x_won(player_id)
     return player1_won if player_id == player1_id
     return player2_won if player_id == player2_won
@@ -30,8 +34,8 @@ class Match < ApplicationRecord
   def player1_count_sets_won
     # TODO: there is probably a 1 liner to do this count
     c = 0
-    sets.each do |set|
-      c += 1 if set.player1_won
+    match_sets.each do |set|
+      c += 1 if set.player_won(player1_id)
     end
     c
   end
@@ -39,8 +43,8 @@ class Match < ApplicationRecord
   def player2_count_sets_won
     # TODO: there is probably a 1 liner to do this count
     c = 0
-    sets.each do |set|
-      c += 1 if set.player2_won
+    match_sets.each do |set|
+      c += 1 if set.player_won(player2_id)
     end
     c
   end

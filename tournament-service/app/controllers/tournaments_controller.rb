@@ -54,10 +54,12 @@ class TournamentsController < ApplicationController
     unless tour.classification_over?
       render json: {
         error: 'Classification stage is not over. Did all matches finished?',
-        total_players: tour.players.count,
-        total_groups: tour.groups.count,
-        expected_total_matches: tour.expected_total_matches,
-        total_matches: tour.groups.map { |gro| gro.matches.count }.reduce(:+)
+        player_count: tour.players.count,
+        group_count: tour.groups.count,
+        expected_matches_count: tour.expected_total_matches,
+        matches_created_count: tour.groups.map { |gro| gro.matches.count }.reduce(:+),
+        matches_in_progress_count: tour.groups.map(&:total_matches_in_progress).reduce(:+),
+        matches_over_count: tour.groups.map(&:total_matches_over).reduce(:+)
       }, status: :expectation_failed
       return
     end
