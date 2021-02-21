@@ -73,6 +73,38 @@ RSpec.describe 'Users API', type: :request do
     end
   end
 
+  path '/users/import' do
+    post 'Import batch of users' do
+      tags 'Users'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          batch: {
+            type: :array,
+            items: {
+              type: :object,
+              properties: {
+                name: { type: :string },
+                usattid: { type: :integer },
+                location: { type: :string },
+                homeclub: { type: :string },
+                rating: { type: :integer }
+              }
+            }
+          }
+        }
+      }
+
+      response '201', 'Imported batch of users' do
+        run_test!
+      end
+    end
+  end
+
   path '/users/partial' do
     post 'Creates New User without username and password requirements' do
       tags 'Users'

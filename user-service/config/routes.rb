@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'
+  post    '/users/import'     => 'users#import'
   post    '/users/partial'    => 'users#soft_register'
   get     '/current_user'     => 'users#show_current_user'
   get     '/users/:id'        => 'users#show'

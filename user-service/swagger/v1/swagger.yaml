@@ -406,6 +406,39 @@ paths:
               - email
               - password
               - password_confirmation
+  "/users/import":
+    post:
+      summary: Import batch of users
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Imported batch of users
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      usattid:
+                        type: integer
+                      location:
+                        type: string
+                      homeclub:
+                        type: string
+                      rating:
+                        type: integer
   "/users/partial":
     post:
       summary: Creates New User without username and password requirements

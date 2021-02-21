@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:register]
 
+  def import
+    players_batch = params[:batch]
+    validated_players = validate_players(players_batch)
+    Player.import validated_players
+    render json: { accepted_players: validated_players }, status: :accepted
+  end
+
   def show_current_user
     render json: { user: current_user }
   end
@@ -83,8 +90,19 @@ class UsersController < ApplicationController
     user.roles_users.find_by(org_id: org_id, role_id: role.id)&.delete
   end
 
+  private
+
+  def validate_players(data)
+    players = data.map do |player|
+      player_params = player.permit(:name, :usattid, :location, :homeclub, :tournament_rating, :league_rating)
+      Player.new(player_params)
+    end
+    players.select(&:valid?)
+  end
+
   def create_user_params
-    params.permit(:name, :email, :password, :password_confirmation, :is_enabled)
+    params.permit(:name, :email, :password, :password_confirmation,
+                  :is_enabled, :usattid, :location, :homeclub, :rating)
   end
 
   def create_user_soft_params

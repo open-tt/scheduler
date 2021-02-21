@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201228165909) do
+ActiveRecord::Schema.define(version: 20210221183531) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "actions", force: :cascade do |t|
     t.string   "url_regex"
     t.integer  "method"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url_regex", "method"], name: "index_actions_on_url_regex_and_method", unique: true
+    t.index ["url_regex", "method"], name: "index_actions_on_url_regex_and_method", unique: true, using: :btree
   end
 
   create_table "actions_roles", force: :cascade do |t|
@@ -25,8 +28,8 @@ ActiveRecord::Schema.define(version: 20201228165909) do
     t.integer  "role_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["action_id"], name: "index_actions_roles_on_action_id"
-    t.index ["role_id"], name: "index_actions_roles_on_role_id"
+    t.index ["action_id"], name: "index_actions_roles_on_action_id", using: :btree
+    t.index ["role_id"], name: "index_actions_roles_on_role_id", using: :btree
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20201228165909) do
     t.string   "zip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["org_id"], name: "index_addresses_on_org_id"
+    t.index ["org_id"], name: "index_addresses_on_org_id", using: :btree
   end
 
   create_table "orgs", force: :cascade do |t|
@@ -53,16 +56,27 @@ ActiveRecord::Schema.define(version: 20201228165909) do
     t.integer "user_id"
     t.integer "org_id"
     t.integer "role_id"
-    t.index ["org_id"], name: "index_orgs_users_on_org_id"
-    t.index ["role_id"], name: "index_orgs_users_on_role_id"
-    t.index ["user_id"], name: "index_orgs_users_on_user_id"
+    t.index ["org_id"], name: "index_orgs_users_on_org_id", using: :btree
+    t.index ["role_id"], name: "index_orgs_users_on_role_id", using: :btree
+    t.index ["user_id"], name: "index_orgs_users_on_user_id", using: :btree
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "tournament_rating", default: 0
+    t.integer  "league_rating",     default: 0
+    t.string   "usattid"
+    t.string   "location"
+    t.string   "homeclub"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_roles_on_name", unique: true
+    t.index ["name"], name: "index_roles_on_name", unique: true, using: :btree
   end
 
   create_table "roles_users", force: :cascade do |t|
@@ -71,8 +85,8 @@ ActiveRecord::Schema.define(version: 20201228165909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "org_id"
-    t.index ["role_id"], name: "index_roles_users_on_role_id"
-    t.index ["user_id"], name: "index_roles_users_on_user_id"
+    t.index ["role_id"], name: "index_roles_users_on_role_id", using: :btree
+    t.index ["user_id"], name: "index_roles_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -83,7 +97,17 @@ ActiveRecord::Schema.define(version: 20201228165909) do
     t.string  "password_digest"
     t.integer "rating"
     t.string  "usattid"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string  "location"
+    t.string  "homeclub"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  add_foreign_key "actions_roles", "actions"
+  add_foreign_key "actions_roles", "roles"
+  add_foreign_key "addresses", "orgs"
+  add_foreign_key "orgs_users", "orgs"
+  add_foreign_key "orgs_users", "roles"
+  add_foreign_key "orgs_users", "users"
+  add_foreign_key "roles_users", "roles"
+  add_foreign_key "roles_users", "users"
 end
