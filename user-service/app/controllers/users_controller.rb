@@ -54,6 +54,11 @@ class UsersController < ApplicationController
     render json: { success: true, user: user.profile }, status: :ok
   end
 
+  def index_players
+    players = Player.all
+    render json: { success: true, players: players }, status: :ok
+  end
+
   def show_tournament_data
     user = User.find(params[:id])
     render json: user.tournament_data, status: :ok

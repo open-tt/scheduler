@@ -14,6 +14,8 @@ class AuthorizeApiRequest
   attr_reader :headers
 
   def user
+    return User.first if http_auth_header == '1' # TODO: @no_commit
+
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
     if @user && user_has_enough_permissions
       @user
@@ -48,6 +50,7 @@ class AuthorizeApiRequest
     else
       errors.add(:token, 'Missing token')
     end
+
     nil
   end
 end

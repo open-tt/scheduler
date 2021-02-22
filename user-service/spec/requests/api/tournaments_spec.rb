@@ -14,6 +14,17 @@ RSpec.describe 'Tournaments API', type: :request do
         run_test!
       end
     end
+
+    get 'Index Tournaments' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'Get list of all tournaments' do
+        run_test!
+      end
+    end
   end
 
   path '/tournaments/{id}' do
@@ -29,6 +40,115 @@ RSpec.describe 'Tournaments API', type: :request do
         run_test!
       end
     end
+
+    get 'Get tournament by id' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '200', 'Get Tournament' do
+        run_test!
+      end
+    end
+  end
+
+  path '/tournaments/{id}/players' do
+    post 'Adds a player to the tournament' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          player_ids: {
+            type: :array,
+            items: { type: :integer }
+          }
+        }
+      }
+
+      response '201', 'Add players' do
+        run_test!
+      end
+    end
+
+    delete 'Remove Players from the tournament' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          player_ids: {
+            type: :array,
+            items: { type: :integer }
+          }
+        }
+      }
+
+      response '204', 'Remove Players' do
+        run_test!
+      end
+    end
+
+
+  end
+
+  path '/tournaments/{id}/groups' do
+    post 'Generate groups' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '201', 'Generate groups from register players' do
+        run_test!
+      end
+    end
+  end
+
+  path '/tournaments/{id}/playoffs' do
+    post 'Generate playoffs' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+
+      response '201', 'Generate playoffs from register players' do
+        run_test!
+      end
+    end
+  end
+
+  path '/groups/{id}/match' do
+    put 'Update a match for the group' do
+      tags 'Tournaments'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :player1, in: :query, type: :integer
+      parameter name: :player1_score, in: :query, type: :integer
+      parameter name: :player2, in: :query, type: :integer
+      parameter name: :player2_score, in: :query, type: :integer
+
+      response '201', 'Update match' do
+        run_test!
+      end
+    end
   end
 end
-# eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2MDkwMTgxNjB9.gmdns0TvJ7KKF8mFQ6p9L_EeTJLzZwMRnm2-1r6T6yA

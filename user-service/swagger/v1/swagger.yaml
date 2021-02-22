@@ -349,6 +349,16 @@ paths:
         '201':
           description: Tournament Created
           content: {}
+    get:
+      summary: Index Tournaments
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Get list of all tournaments
+          content: {}
   "/tournaments/{id}":
     delete:
       summary: Delete Tournament
@@ -365,6 +375,186 @@ paths:
       responses:
         '204':
           description: Tournament Deleted
+          content: {}
+    get:
+      summary: Get tournament by id
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get Tournament
+          content: {}
+  "/tournaments/{id}/players":
+    post:
+      summary: Adds a player to the tournament
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Add players
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_ids:
+                  type: array
+                  items:
+                    type: integer
+    delete:
+      summary: Remove Players from the tournament
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Remove Players
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_ids:
+                  type: array
+                  items:
+                    type: integer
+  "/tournaments/{id}/groups":
+    post:
+      summary: Generate groups
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Generate groups from register players
+          content: {}
+  "/tournaments/{id}/playoffs":
+    post:
+      summary: Generate playoffs
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Generate playoffs from register players
+          content: {}
+  "/groups/{id}/match":
+    put:
+      summary: Update a match for the group
+      tags:
+      - Tournaments
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player1
+        in: query
+        schema:
+          type: integer
+      - name: player1_score
+        in: query
+        schema:
+          type: integer
+      - name: player2
+        in: query
+        schema:
+          type: integer
+      - name: player2_score
+        in: query
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Update match
+          content: {}
+  "/players/import":
+    post:
+      summary: Import batch of users
+      tags:
+      - Players
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Imported batch of users
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                batch:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      usattid:
+                        type: integer
+                      location:
+                        type: string
+                      homeclub:
+                        type: string
+                      rating:
+                        type: integer
+  "/players":
+    get:
+      summary: Import batch of users
+      tags:
+      - Players
+      security:
+      - bearer_auth: []
+      responses:
+        '200':
+          description: Get all players
           content: {}
   "/users":
     post:
@@ -406,39 +596,6 @@ paths:
               - email
               - password
               - password_confirmation
-  "/users/import":
-    post:
-      summary: Import batch of users
-      tags:
-      - Users
-      security:
-      - bearer_auth: []
-      parameters: []
-      responses:
-        '201':
-          description: Imported batch of users
-          content: {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                batch:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      usattid:
-                        type: integer
-                      location:
-                        type: string
-                      homeclub:
-                        type: string
-                      rating:
-                        type: integer
   "/users/partial":
     post:
       summary: Creates New User without username and password requirements

@@ -7,9 +7,12 @@ Rails.application.routes.draw do
   # Authentication
   post 'authenticate' => 'authentication#authenticate'
 
+  # Players
+  post    '/players/import'     => 'users#import'
+  get     '/players'            => 'users#index_players'
+
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'
-  post    '/users/import'     => 'users#import'
   post    '/users/partial'    => 'users#soft_register'
   get     '/current_user'     => 'users#show_current_user'
   get     '/users/:id'        => 'users#show'
@@ -31,11 +34,16 @@ Rails.application.routes.draw do
   delete  '/orgs/:id/addresses/:address_id' => 'org#unlink_address'
 
   # Tournaments (Micro-Service code in Project tournament-service)
-  post '/tournaments' => 'tournaments#create' # todo
-  delete '/tournaments/:id' => 'tournaments#delete' # todo
-  post '/tournaments/:id/players/:player_id' => 'tournaments#add_player' # todo
-  delete '/tournaments/:id/players/:player_id' => 'tournaments#remove_player' # todo
-  post '/tournaments/:id/groups' => 'tournaments#create_groups' # todo
-  put '/tournaments/:id/groups' => 'tournaments#update_group' # todo
-  post '/tournaments/:id/playoffs' => 'tournaments#create_playoffs' # todo
+  get     '/tournaments' => 'tournaments#index'
+  get     '/tournaments/:id' => 'tournaments#show'
+  post    '/tournaments' => 'tournaments#create'
+  delete  '/tournaments/:id' => 'tournaments#delete'
+  post    '/tournaments/:id/players' => 'tournaments#add_players'
+  delete  '/tournaments/:id/players' => 'tournaments#remove_players'
+  post    '/tournaments/:id/groups' => 'tournaments#generate_groups'
+  put     '/tournaments/:id/groups' => 'tournaments#update_group' # todo
+  post    '/tournaments/:id/playoffs' => 'tournaments#generate_playoffs'
+  get     '/groups/:id' => 'tournaments#show_group' # todo
+  put     '/groups/:id/match' => 'tournaments#update_match' # todo
+  get     '/groups/:id/match' => 'tournaments#show_match' # todo
 end
