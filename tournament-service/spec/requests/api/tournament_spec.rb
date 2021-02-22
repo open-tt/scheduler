@@ -150,4 +150,22 @@ RSpec.describe 'Tournaments API', type: :request do
       end
     end
   end
+
+  path '/playoffs/{id}/match' do
+    put 'Update Playoffs' do
+      tags 'Groups'
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :player1, in: :query, type: :integer
+      parameter name: :player1_score, in: :query, type: :integer
+      parameter name: :player2, in: :query, type: :integer
+      parameter name: :player2_score, in: :query, type: :integer
+
+      response '201', 'Created Set' do
+        run_test!
+      end
+    end
+  end
 end

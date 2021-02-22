@@ -84,7 +84,7 @@ class Tournament < ApplicationRecord
       second_places(winners),
       []
     )
-    playoff.matches
+    playoff.rounds
   end
 
   private
@@ -113,8 +113,6 @@ class Tournament < ApplicationRecord
     total_players = first_places.count + second_places.count + extra_players.count
     total_matches = calc_matches_for_n_players(total_players)
 
-    # Create placeholder for all matches
-    create_playoff!
     (0...total_matches).each do |_|
       round1.matches.create!(best_of: 5, player1_id: -1, player2_id: -1)
     end

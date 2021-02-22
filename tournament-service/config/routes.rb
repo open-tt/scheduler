@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   # Groups
   get '/groups/:id/match' => 'groups#find_match'
   put '/groups/:id/match' => 'groups#create_set'
+
+  # Playoffs
+  put '/playoffs/:id/match' => 'tournaments#update_playoffs_match'
 end

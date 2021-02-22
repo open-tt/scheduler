@@ -81,6 +81,18 @@ class TournamentsController < ApplicationController
     render json: tour, status: :created
   end
 
+  def update_playoffs_match
+    playoff = Playoff.find(params[:id])
+    playoff.update_match(
+      params[:player1],
+      params[:player1_score],
+      params[:player2],
+      params[:player2_score]
+    )
+    playoff.create_next_round if playoff.rounds.last.is_over? && !playoff.rounds.last.is_final?
+    render json: playoff.tournament
+  end
+
   private
 
   def create_tournament_params

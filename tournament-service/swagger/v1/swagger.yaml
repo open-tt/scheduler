@@ -233,6 +233,37 @@ paths:
                   type: array
                   items:
                     type: integer
+  "/playoffs/{id}/match":
+    put:
+      summary: Update Playoffs
+      tags:
+      - Groups
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player1
+        in: query
+        schema:
+          type: integer
+      - name: player1_score
+        in: query
+        schema:
+          type: integer
+      - name: player2
+        in: query
+        schema:
+          type: integer
+      - name: player2_score
+        in: query
+        schema:
+          type: integer
+      responses:
+        '201':
+          description: Created Set
+          content: {}
 servers:
 - url: http://{defaultHost}
   variables:
