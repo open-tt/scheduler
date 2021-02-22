@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210110202438) do
+ActiveRecord::Schema.define(version: 20210117215250) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,26 @@ ActiveRecord::Schema.define(version: 20210110202438) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "group_id"
-    t.index ["group_id", "player1_id", "player2_id"], name: "index_matches_on_group_id_and_player1_id_and_player2_id", unique: true, using: :btree
-    t.index ["group_id"], name: "index_matches_on_group_id", using: :btree
+    t.integer  "playoff_id"
+    t.integer  "round_id"
+    t.index ["round_id"], name: "index_matches_on_round_id", using: :btree
+  end
+
+  create_table "playoffs", force: :cascade do |t|
+    t.integer  "tournament_id"
+    t.integer  "first_places",               array: true
+    t.integer  "second_places",              array: true
+    t.integer  "extra_players",              array: true
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["tournament_id"], name: "index_playoffs_on_tournament_id", using: :btree
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer  "playoff_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playoff_id"], name: "index_rounds_on_playoff_id", using: :btree
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -51,7 +69,6 @@ ActiveRecord::Schema.define(version: 20210110202438) do
     t.jsonb    "creator"
     t.jsonb    "players"
     t.jsonb    "waitingList"
-    t.jsonb    "playoffs"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -59,4 +76,7 @@ ActiveRecord::Schema.define(version: 20210110202438) do
   add_foreign_key "groups", "tournaments"
   add_foreign_key "match_sets", "matches"
   add_foreign_key "matches", "groups"
+  add_foreign_key "matches", "rounds"
+  add_foreign_key "playoffs", "tournaments"
+  add_foreign_key "rounds", "playoffs"
 end

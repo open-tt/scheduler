@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class TournamentsController < ApplicationController
+  def index
+    render json: { tournaments: Tournament.all }, status: :ok
+  end
+
+  def show
+    render json:  Tournament.find(params[:id]), status: :ok
+  end
+
   def create
     tour = Tournament.new(creator: create_tournament_params, stage: Tournament.stages[:registration], scheduled_at: Date
                                                                                                               .current)
@@ -18,26 +26,30 @@ class TournamentsController < ApplicationController
     render json: { error: e.message }, status: :internal_server_error
   end
 
-  def add_player
+  def add_players
     tour = Tournament.find(add_player_params[:id])
-    tour.players = [] if tour.players.nil?
-    new_player = {
-      id: add_player_params[:player_id],
-      name: add_player_params[:name],
-      rating: add_player_params[:rating]
-    }
     begin
-      tour.add_player new_player
+      params[:players].each do |p|
+        n_player = {
+          id: p[:id],
+          name: p[:name],
+          rating: p[:rating]
+        }
+        tour.add_player n_player
+      end
       tour.save!
-      render json: tour, status: :ok
+      render json: tour, status: :created
     rescue StandardError => e
       render json: { error: e.message }, status: :internal_server_error
     end
   end
 
-  def remove_player
+  def remove_players
     tour = Tournament.find(params[:id])
-    tour.remove_player params[:player_id].to_i
+    params[:player_ids].each do |id|
+      tour.remove_player id.to_i
+    end
+    tour.save!
     render json: tour, status: :ok
   rescue StandardError => e
     render json: { error: e.message }, status: :internal_server_error
@@ -47,6 +59,8 @@ class TournamentsController < ApplicationController
     tour = Tournament.find(params[:id])
     tour.generate_groups
     render json: tour, status: :created
+  rescue StandardError => e
+    render json: { error: e.message }, status: :internal_server_error
   end
 
   def create_playoffs
@@ -63,8 +77,8 @@ class TournamentsController < ApplicationController
       }, status: :expectation_failed
       return
     end
-    winners = tour.groups_stage_winners
-    render json: winners, status: :created
+    tour.groups_stage_winners!
+    render json: tour, status: :created
   end
 
   private

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Match < ApplicationRecord
-  belongs_to :group
+  belongs_to :group, required: false
+  belongs_to :playoff, required: false
+  belongs_to :round, required: false
   has_many :match_sets
 
   # returns id of winner or -1

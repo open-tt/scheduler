@@ -97,6 +97,14 @@ paths:
                   type: integer
               required:
               - user_id
+    get:
+      summary: Index Tournaments
+      tags:
+      - Tournaments
+      responses:
+        '200':
+          description: Get all tournaments
+          content: {}
   "/tournaments/{id}":
     delete:
       summary: Delete Tournament
@@ -111,6 +119,20 @@ paths:
       responses:
         '204':
           description: Tournament Deleted
+          content: {}
+    get:
+      summary: Retrieve a single tournament
+      tags:
+      - Tournaments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get one tournament by id
           content: {}
   "/tournaments/{id}/players":
     post:
@@ -133,19 +155,22 @@ paths:
             schema:
               type: object
               properties:
-                player_id:
-                  type: integer
-                name:
-                  type: string
-                rating:
-                  type: integer
-              required:
-              - user_id
-              - name
-              - rating
-  "/tournaments/{id}/players/{player_id}":
+                players:
+                  type: array
+                  items:
+                    properties:
+                      player_id:
+                        type: integer
+                      name:
+                        type: string
+                      rating:
+                        type: integer
+                    required:
+                    - user_id
+                    - name
+                    - rating
     delete:
-      summary: Remove player
+      summary: Remove Players
       tags:
       - Tournaments
       parameters:
@@ -154,15 +179,20 @@ paths:
         required: true
         schema:
           type: integer
-      - name: player_id
-        in: path
-        required: true
-        schema:
-          type: integer
       responses:
         '204':
           description: Remove player
           content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                player_ids:
+                  type: array
+                  items:
+                    type: integer
   "/tournaments/{id}/groups":
     post:
       summary: Create Groups for the tournament using registered users

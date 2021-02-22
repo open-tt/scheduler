@@ -2,6 +2,7 @@
 
 class Tournament < ApplicationRecord
   has_many :groups
+  has_one :playoff
 
   enum stage: %i[registration classification playoffs end]
 
@@ -16,6 +17,7 @@ class Tournament < ApplicationRecord
   end
 
   def add_player(player_hash)
+    self.players = [] if players.nil?
     raise StandardError, 'This player already exists' unless validate_unique_player player_hash
 
     players << player_hash
@@ -25,7 +27,7 @@ class Tournament < ApplicationRecord
     return if players.nil? || players.count.zero?
 
     players.each do |player|
-      next unless player['id'] == player_id
+      next unless player['id'].to_i == player_id
 
       players.delete player
       save!
@@ -36,12 +38,10 @@ class Tournament < ApplicationRecord
   def generate_groups
     return unless groups.nil? || groups.empty?
 
-    if players.nil? || !players.count
-      count = players.nil? ? 0 : players.count
-      raise StandardError, `Not enough players [#{count}]`
-    end
     min = Rails.application.config.tournament[:group][:min]
     max = Rails.application.config.tournament[:group][:max]
+    return if players.nil? || !players.count || players.count < min
+
     group_sizes = size_groups(players.count, min, max)
     group_players = []
     group_index = 0
@@ -70,18 +70,104 @@ class Tournament < ApplicationRecord
     end
     round1_players.shuffle!
     r1 = create_round(round1_players, spots)
-    return r1
+    r1
   end
 
-  def groups_stage_winners
+  def groups_stage_winners!
     winners = []
     groups.each do |gro|
       winners.push gro.get_first_n(2)
     end
-    winners
+    # winners
+    create_initial_round!(
+      first_places(winners),
+      second_places(winners),
+      []
+    )
+    playoff.matches
   end
 
   private
+
+  #                 id, matches won
+  # winners = [ [ [  1, 2           ],    # first place
+  #               [  3, 1           ] ] ] # second place
+  def first_places(winners_3d_arr)
+    winners_3d_arr.map do |pair|
+      pair[0][0]
+    end
+  end
+
+  def second_places(winners_3d_arr)
+    winners_3d_arr.map do |pair|
+      pair[1][0]
+    end
+  end
+
+  # - Assign first places evenly throughout the brackets
+  # - Assign second places and extra randomly
+  def create_initial_round!(first_places, second_places, extra_players)
+    playoff = self.create_playoff! if playoff.nil?
+    round1 = playoff.rounds.create!
+    first_places.shuffle!
+    total_players = first_places.count + second_places.count + extra_players.count
+    total_matches = calc_matches_for_n_players(total_players)
+
+    # Create placeholder for all matches
+    create_playoff!
+    (0...total_matches).each do |_|
+      round1.matches.create!(best_of: 5, player1_id: -1, player2_id: -1)
+    end
+
+    # Distribute first places evenly in matches
+    # first_places[0] goes to first match, first_places[1] goes to last match
+    # first_places[2] goes to second match, first_places[3] goes to second to match
+    # etc...
+    # There may be more matches than 1st places because we allow adding extra players manually
+    front_winner = 0
+    back_winner = 1
+    front_match = 0
+    back_match = total_matches - front_match - 1
+    while front_winner < first_places.count
+      round1.matches[front_match].update!(player1_id: first_places[front_winner])
+      front_winner += 2
+      next if back_match <= front_match
+
+      round1.matches[back_match].update!(player1_id: first_places[back_winner])
+      back_winner = front_winner + 1
+      front_match += 1
+      back_match -= 1
+    end
+
+    # Distribute 2nd places and extra players randomly
+    players = (second_places + extra_players).shuffle
+    next_player = 0
+    round1.matches.each do |match|
+      if match.player1_id == -1
+        match.update!(player1_id: players[next_player])
+        next_player += 1
+      elsif match.player2_id == -1
+        match.update!(player2_id: players[next_player])
+        next_player += 1
+      end
+    end
+  end
+
+  def calc_matches_for_n_players(total)
+    if total == 2
+      1
+    elsif total > 2 && total <= 4
+      2
+    elsif total > 4 && total <= 8
+      4
+    elsif total > 8 && total <= 16
+      8
+    elsif total > 16 && total <= 32
+      16
+    else
+      raise StandardError, "We do not support more than 32 players, current count #{total}"
+    end
+  end
 
   def create_round(round_players, spots)
     c = round_players.count
@@ -120,7 +206,7 @@ class Tournament < ApplicationRecord
   end
 
   def validate_unique_player(player_hash)
-    players.each do |player|
+    self.players.each do |player|
       return false if player['id'] == player_hash[:id]
     end
     true
