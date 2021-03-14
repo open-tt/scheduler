@@ -152,8 +152,16 @@ class Tournament < ApplicationRecord
     playoff.rounds
   end
 
-  private
+  def reset
+    self.groups.destroy_all if self.groups
+    self.playoff.destroy_all if self.playoff
+    self.players = []
+    self.registration!
+    self.waitingList = []
+    self.save!
+  end
 
+  private
   #                 id, matches won
   # winners = [ [ [  1, 2           ],    # first place
   #               [  3, 1           ] ] ] # second place

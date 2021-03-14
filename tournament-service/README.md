@@ -7,6 +7,20 @@ TODO:
 
 ## How to Run
 
+#### Start isolated PgSql server 
+Note: Development Only. Start on port 5452 for this app. [PgSql Docker image](https://hub.docker.com/_/postgres) 
+1. Check is Docker has ran pg image before. If is stopped, restart it.
+     
+        docker ps -a | grep tournament-service-postgres
+        docker start tournament-service-postgres 
+
+2. If setting up first time
+
+        docker run --name tournament-service-postgres -e POSTGRES_PASSWORD=password -d db/development-tournaments
+
+3. Test that this app can connect to BD with the custom DB connection script
+
+        ruby test-db-connection.rb
 #### Using Docker
 
 If you are familiar with Docker (or wish to lear it), this is the

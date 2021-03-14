@@ -21998,3 +21998,165 @@ puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
 puma (3.12.6) lib/puma/server.rb:476:in `process_client'
 puma (3.12.6) lib/puma/server.rb:334:in `block in run'
 puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-03-14 15:28:29 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-03-14 15:28:29 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-03-14 15:28:29 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-03-14 15:28:29 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-03-14 15:28:30 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-03-14 15:28:30 -0400
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 15:59:35 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>20, "name"=>"string", "rating"=>1222}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>20, "name"=>"string", "rating"=>1222}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Load (2.8ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.4ms)[0m  [1m[32mINSERT INTO "groups" ("players", "created_at", "updated_at", "tournament_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["players", "{16,NULL,NULL}"], ["created_at", "2021-03-14 20:01:06.931605"], ["updated_at", "2021-03-14 20:01:06.931605"], ["tournament_id", 52]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "tournaments" SET "waitingList" = $1, "players" = $2, "updated_at" = $3 WHERE "tournaments"."id" = $4[0m  [["waitingList", "[]"], ["players", "[{\"id\":2,\"name\":\"string\",\"rating\":0},{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":3,\"name\":\"string\",\"rating\":0},{\"id\":4,\"name\":\"string\",\"rating\":0},{\"id\":5,\"name\":\"string\",\"rating\":0},{\"id\":6,\"name\":\"string\",\"rating\":0},{\"id\":7,\"name\":\"string\",\"rating\":0},{\"id\":8,\"name\":\"string\",\"rating\":0},{\"id\":9,\"name\":\"string\",\"rating\":0},{\"id\":10,\"name\":\"string\",\"rating\":0},{\"id\":11,\"name\":\"string\",\"rating\":0},{\"id\":12,\"name\":\"string\",\"rating\":0},{\"id\":13,\"name\":\"string\",\"rating\":0},{\"id\":14,\"name\":\"string\",\"rating\":0},{\"id\":15,\"name\":\"string\",\"rating\":0},{\"id\":16,\"name\":\"string\",\"rating\":0},{\"id\":null,\"name\":\"string\",\"rating\":0},{\"id\":20,\"name\":\"string\",\"rating\":1222}]"], ["updated_at", "2021-03-14 20:01:06.941116"], ["id", 52]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.8ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (2.9ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (27.72ms)
+Completed 201 Created in 91259ms (Views: 75.5ms | ActiveRecord: 36.1ms)
+
+
+  [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.9ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+  [1m[36mTournament Load (1.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+  [1m[36mTournament Load (1.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.0ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Load (3.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 11]]
+  [1m[35mSQL (1.4ms)[0m  [1m[31mDELETE FROM "groups" WHERE "groups"."id" = $1[0m  [["id", 11]]
+  [1m[36mMatch Load (1.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 13]]
+  [1m[35mSQL (1.1ms)[0m  [1m[31mDELETE FROM "groups" WHERE "groups"."id" = $1[0m  [["id", 13]]
+  [1m[36mMatch Load (1.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 14]]
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "groups" WHERE "groups"."id" = $1[0m  [["id", 14]]
+  [1m[36mMatch Load (1.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1[0m  [["group_id", 15]]
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "groups" WHERE "groups"."id" = $1[0m  [["id", 15]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.8ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Load (1.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+  [1m[36mPlayoff Load (1.3ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE "tournaments" SET "stage" = $1, "players" = $2, "updated_at" = $3 WHERE "tournaments"."id" = $4[0m  [["stage", 0], ["players", "[]"], ["updated_at", "2021-03-14 20:06:04.464898"], ["id", 52]]
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:06:20 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>1, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>1, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:06:26.764324"], ["id", 52]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.2ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.1ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (29.15ms)
+Completed 201 Created in 6567ms (Views: 26.2ms | ActiveRecord: 19.6ms)
+
+
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:06:39 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>2, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>2, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.8ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":2,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:06:39.412360"], ["id", 52]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (8.25ms)
+Completed 201 Created in 20ms (Views: 5.2ms | ActiveRecord: 10.8ms)
+
+
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:06:42 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>3, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>3, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.5ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":2,\"name\":\"string\",\"rating\":0},{\"id\":3,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:06:42.611850"], ["id", 52]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (5.15ms)
+Completed 201 Created in 17ms (Views: 3.3ms | ActiveRecord: 9.8ms)
+
+
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:06:51 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>4, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>4, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":2,\"name\":\"string\",\"rating\":0},{\"id\":3,\"name\":\"string\",\"rating\":0},{\"id\":4,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:06:51.569291"], ["id", 52]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (5.51ms)
+Completed 201 Created in 18ms (Views: 3.4ms | ActiveRecord: 9.7ms)
+
+
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:06:56 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>5, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>5, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":2,\"name\":\"string\",\"rating\":0},{\"id\":3,\"name\":\"string\",\"rating\":0},{\"id\":4,\"name\":\"string\",\"rating\":0},{\"id\":5,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:06:56.343812"], ["id", 52]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.0ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.1ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (5.25ms)
+Completed 201 Created in 19ms (Views: 3.3ms | ActiveRecord: 9.1ms)
+
+
+Started POST "/tournaments/52/players" for 127.0.0.1 at 2021-03-14 16:07:16 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>6, "name"=>"string", "rating"=>0}], "id"=>"52", "tournament"=>{"players"=>[{"player_id"=>6, "name"=>"string", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.5ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[33mUPDATE "tournaments" SET "players" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["players", "[{\"id\":1,\"name\":\"string\",\"rating\":0},{\"id\":2,\"name\":\"string\",\"rating\":0},{\"id\":3,\"name\":\"string\",\"rating\":0},{\"id\":4,\"name\":\"string\",\"rating\":0},{\"id\":5,\"name\":\"string\",\"rating\":0},{\"id\":6,\"name\":\"string\",\"rating\":0}]"], ["updated_at", "2021-03-14 20:07:16.075659"], ["id", 52]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTournament Load (1.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (5.45ms)
+Completed 201 Created in 19ms (Views: 3.5ms | ActiveRecord: 10.3ms)
+
+
+Started POST "/tournaments/52/groups" for 127.0.0.1 at 2021-03-14 16:12:46 -0400
+Processing by TournamentsController#create_groups as */*
+  Parameters: {"id"=>"52"}
+  [1m[36mTournament Load (1.8ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 52], ["LIMIT", 1]]
+  [1m[36mGroup Exists (1.4ms)[0m  [1m[34mSELECT  1 AS one FROM "groups" WHERE "groups"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "groups" ("players", "created_at", "updated_at", "tournament_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["players", "{1,2,3}"], ["created_at", "2021-03-14 20:12:46.388982"], ["updated_at", "2021-03-14 20:12:46.388982"], ["tournament_id", 52]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "groups" ("players", "created_at", "updated_at", "tournament_id") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["players", "{4,5,6}"], ["created_at", "2021-03-14 20:12:46.394216"], ["updated_at", "2021-03-14 20:12:46.394216"], ["tournament_id", 52]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[33mUPDATE "tournaments" SET "stage" = $1, "updated_at" = $2 WHERE "tournaments"."id" = $3[0m  [["stage", 1], ["updated_at", "2021-03-14 20:12:46.399451"], ["id", 52]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mGroup Load (0.9ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 52]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 52], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (7.95ms)
+Completed 201 Created in 43ms (Views: 6.2ms | ActiveRecord: 17.7ms)
+
+
