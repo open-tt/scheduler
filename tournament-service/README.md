@@ -16,7 +16,9 @@ Note: Development Only. Start on port 5452 for this app. [PgSql Docker image](ht
 
 2. If setting up first time
 
-        docker run --name tournament-service-postgres -e POSTGRES_PASSWORD=password -d db/development-tournaments
+        docker run --name tournament-service-postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=user -p5452:5432 -d postgres
+        rails db:create
+        rails db:migrate
 
 3. Test that this app can connect to BD with the custom DB connection script
 
