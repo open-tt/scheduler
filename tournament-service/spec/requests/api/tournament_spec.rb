@@ -20,7 +20,16 @@ RSpec.describe 'Tournaments API', type: :request do
       }
 
       response '201', 'Tournament Created' do
-        run_test!
+        let(:body) do
+          {
+            user_id: 1,
+            org_id: 1
+          }
+        end
+        run_test! do |resp|
+          data = JSON.parse(resp.body)
+          expect(data["id"]).to be_a(Integer)
+        end
       end
     end
 
