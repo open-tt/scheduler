@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Tournament < ApplicationRecord
-  has_many :groups
-  has_one :playoff
+  has_many :groups, dependent: :destroy
+  has_one :playoff, dependent: :destroy
 
   enum stage: %i[registration classification playoffs end]
+  DEFAULT_MAX_PLAYERS_PER_GROUP = 4
+  DEFAULT_MIN_PLAYERS_PER_GROUP = 3
 
   def classification_over?
     for gro in groups
@@ -17,11 +19,73 @@ class Tournament < ApplicationRecord
   end
 
   def add_player(player_hash)
+    raise StandardError, 'Cannot add player after classification is over' unless registration? || classification?
+
     self.players = [] if players.nil?
     raise StandardError, 'This player already exists' unless validate_unique_player player_hash
 
     players << player_hash
+
+    (add_to_waiting_list(player_hash) unless add_to_group(player_hash)) if classification?
+    create_extra_group if waitingList.count >= DEFAULT_MIN_PLAYERS_PER_GROUP
+    save!
   end
+
+  def create_extra_group
+    groups.create!(players: waitingList.pluck('id'))
+    self.waitingList = []
+  end
+
+  def add_to_waiting_list(player_hash)
+    self.waitingList = [] if self.waitingList.nil?
+    self.waitingList << player_hash
+  end
+
+  def add_to_group(player_hash)
+    g = groups.select do |group|
+      group.players.size < DEFAULT_MAX_PLAYERS_PER_GROUP
+    end.first
+
+    return false unless g
+
+    g.players << player_hash['id']
+    g.save!
+    true
+  end
+
+  # //   return this.selectedTournament.groups.find(
+  #   //     (g) => g.players.length < this.DEFAULT_MAX_PLAYERS_PER_GROUP
+  # //   );
+  # // For tournaments already in the Classification Stage (Groups)
+  # // We need to add player to a group manually or to a waiting list
+  # // if all groups are full.
+  #   // Create new group if waitingList is at least the minimum players required
+  # if (this.selectedTournament.stage === TournamentStage.CLASSIFICATION) {
+  #   const g = this.findIncompleteGroup();
+  # if (!g) {
+  #   this.selectedTournament.waitingList.push(player);
+  # if (
+  #   this.selectedTournament.waitingList.length >=
+  #     this.DEFAULT_MIN_PLAYERS_PER_GROUP
+  # ) {
+  #   const newGroup = new TournamentGroup(
+  #                          this.selectedTournament.waitingList
+  #                        );
+  # this.selectedTournament.groups.push(newGroup);
+  # this.selectedTournament.waitingList = [];
+  # } else {
+  #   alert(
+  #     `All groups are full, added ${player.name} to the waiting list. ${this.selectedTournament.waitingList.length} Players waiting.`
+  #   );
+  # }
+  # this.notifySelectedTournamentUpdates({
+  #                                        tournament: true,
+  #                                      });
+  # } else {
+  #   g.players.push(player);
+  # this.notifySelectedTournamentUpdates({ group: true }, g);
+  # }
+  # }
 
   def remove_player(player_id)
     return if players.nil? || players.count.zero?
@@ -57,6 +121,7 @@ class Tournament < ApplicationRecord
     return if group_players.empty?
 
     groups.create!(players: group_players)
+    classification!
   end
 
   def expected_total_matches

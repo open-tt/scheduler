@@ -31,13 +31,13 @@ class TournamentsController < ApplicationController
     begin
       params[:players].each do |p|
         n_player = {
-          id: p[:id],
+          id: p[:player_id],
           name: p[:name],
           rating: p[:rating]
         }
         tour.add_player n_player
       end
-      tour.save!
+      tour.reload
       render json: tour, status: :created
     rescue StandardError => e
       render json: { error: e.message }, status: :internal_server_error

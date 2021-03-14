@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Group < ApplicationRecord
-  has_many :matches
+  has_many :matches, dependent: :destroy
   belongs_to :tournament
 
   def finished_all_matches?
@@ -66,6 +66,10 @@ class Group < ApplicationRecord
       match.player1_count_sets_won,
       match.player2_count_sets_won
     ]
+  end
+
+  def add_player
+
   end
 
   private

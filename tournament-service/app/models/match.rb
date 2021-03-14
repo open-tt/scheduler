@@ -4,7 +4,7 @@ class Match < ApplicationRecord
   belongs_to :group, required: false
   belongs_to :playoff, required: false
   belongs_to :round, required: false
-  has_many :match_sets
+  has_many :match_sets, dependent: :destroy
 
   # returns id of winner or -1
   def winner
