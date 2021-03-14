@@ -182,3 +182,180 @@ FOREIGN KEY ("playoff_id")
   [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (35.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "db/test-tournaments"[0m
+  [1m[35m (134.5ms)[0m  [1m[35mCREATE DATABASE "db/test-tournaments" ENCODING = 'utf8'[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (9.9ms)[0m  [1m[35mCREATE TABLE "groups" ("id" serial primary key, "players" integer[], "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "tournament_id" integer)[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE  INDEX  "index_groups_on_tournament_id" ON "groups" USING btree ("tournament_id")[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "match_sets" ("id" serial primary key, "player1_id" integer, "player1_score" integer, "player2_id" integer, "player2_score" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "match_id" integer)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX  "index_match_sets_on_match_id" ON "match_sets" USING btree ("match_id")[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "matches" ("id" serial primary key, "best_of" integer, "player1_id" integer, "player2_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "group_id" integer, "playoff_id" integer, "round_id" integer)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE  INDEX  "index_matches_on_round_id" ON "matches" USING btree ("round_id")[0m
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "playoffs" ("id" serial primary key, "tournament_id" integer, "first_places" integer[], "second_places" integer[], "extra_players" integer[], "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCREATE  INDEX  "index_playoffs_on_tournament_id" ON "playoffs" USING btree ("tournament_id")[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE TABLE "rounds" ("id" serial primary key, "playoff_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE  INDEX  "index_rounds_on_playoff_id" ON "rounds" USING btree ("playoff_id")[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE TABLE "tournaments" ("id" serial primary key, "scheduled_at" date, "stage" integer, "creator" jsonb, "players" jsonb, "waitingList" jsonb, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (3.7ms)[0m  [1m[35mALTER TABLE "groups" ADD CONSTRAINT "fk_rails_1a66c2460d"
+FOREIGN KEY ("tournament_id")
+  REFERENCES "tournaments" ("id")
+[0m
+  [1m[35m (5.7ms)[0m  [1m[35mALTER TABLE "match_sets" ADD CONSTRAINT "fk_rails_615a09ce57"
+FOREIGN KEY ("match_id")
+  REFERENCES "matches" ("id")
+[0m
+  [1m[35m (2.9ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_6932dce62e"
+FOREIGN KEY ("group_id")
+  REFERENCES "groups" ("id")
+[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "matches" ADD CONSTRAINT "fk_rails_e7c0250650"
+FOREIGN KEY ("round_id")
+  REFERENCES "rounds" ("id")
+[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "playoffs" ADD CONSTRAINT "fk_rails_50357dc6c8"
+FOREIGN KEY ("tournament_id")
+  REFERENCES "tournaments" ("id")
+[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "rounds" ADD CONSTRAINT "fk_rails_516a24b939"
+FOREIGN KEY ("playoff_id")
+  REFERENCES "playoffs" ("id")
+[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (2.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210117215250)[0m
+  [1m[35m (1.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210110202438),
+(20210110060409),
+(20210109181149),
+(20210117215058),
+(20210117194100),
+(20210109174523),
+(20210109175741),
+(20210109181613),
+(20210109175912),
+(20210117204049),
+(20210117203611),
+(20210117193651),
+(20201225224253);
+
+[0m
+  [1m[35m (6.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "test"], ["created_at", "2021-03-14 23:36:34.021995"], ["updated_at", "2021-03-14 23:36:34.021995"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:36:34 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (3.9ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:36:34.612397"], ["updated_at", "2021-03-14 23:36:34.612397"]]
+  [1m[35m (2.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.9ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 1]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.4ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (56.4ms)
+Completed 201 Created in 108ms (Views: 75.0ms | ActiveRecord: 25.3ms)
+  [1m[35m (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:37:38 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:37:38.600961"], ["updated_at", "2021-03-14 23:37:38.600961"]]
+  [1m[35m (1.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 2]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.8ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (57.48ms)
+Completed 201 Created in 94ms (Views: 70.1ms | ActiveRecord: 22.1ms)
+  [1m[35m (3.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (3.2ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:38:06 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:38:06.593279"], ["updated_at", "2021-03-14 23:38:06.593279"]]
+  [1m[35m (1.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 3]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.6ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 3], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (50.23ms)
+Completed 201 Created in 91ms (Views: 68.4ms | ActiveRecord: 20.6ms)
+  [1m[35m (13.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.6ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:41:29 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.1ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:41:29.613813"], ["updated_at", "2021-03-14 23:41:29.613813"]]
+  [1m[35m (1.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.6ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 4]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.5ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 4], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (67.29ms)
+Completed 201 Created in 110ms (Views: 80.1ms | ActiveRecord: 24.8ms)
+  [1m[35m (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:41:55 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:41:55.585185"], ["updated_at", "2021-03-14 23:41:55.585185"]]
+  [1m[35m (1.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.8ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 5]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 5], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (47.55ms)
+Completed 201 Created in 75ms (Views: 53.0ms | ActiveRecord: 20.2ms)
+  [1m[35m (2.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:42:30 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:42:30.802066"], ["updated_at", "2021-03-14 23:42:30.802066"]]
+  [1m[35m (1.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.8ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 6]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.7ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 6], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (52.67ms)
+Completed 201 Created in 89ms (Views: 65.2ms | ActiveRecord: 21.7ms)
+  [1m[35m (2.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (1.9ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:43:22 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:43:22.350755"], ["updated_at", "2021-03-14 23:43:22.350755"]]
+  [1m[35m (1.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 7]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.3ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 7], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (51.05ms)
+Completed 201 Created in 87ms (Views: 67.0ms | ActiveRecord: 20.2ms)
+  [1m[35m (1.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:44:00 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:44:00.778140"], ["updated_at", "2021-03-14 23:44:00.778140"]]
+  [1m[35m (1.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (1.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 8]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.5ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 8], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (48.98ms)
+Completed 201 Created in 94ms (Views: 70.0ms | ActiveRecord: 21.7ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
