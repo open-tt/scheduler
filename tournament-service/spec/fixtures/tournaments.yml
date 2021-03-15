@@ -4,7 +4,7 @@ tournament1:
     user_id: 1
     org_id: 1
 
-tournament-b:
+tournament2:
   id: 2
   creator:
     user_id: 1

@@ -57,7 +57,11 @@ RSpec.describe 'Tournaments API', type: :request do
       parameter name: :id, in: :path, type: :integer
 
       response '204', 'Tournament Deleted' do
-        run_test!
+        let(:id) { tournaments(:tournament1).id }
+        run_test! do |resp|
+          t = Tournament.where(id: tournaments(:tournament1).id)
+          expect(t).to be_empty
+        end
       end
     end
 
