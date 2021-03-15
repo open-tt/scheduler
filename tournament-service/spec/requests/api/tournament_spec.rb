@@ -1,6 +1,8 @@
 require 'swagger_helper'
 
 RSpec.describe 'Tournaments API', type: :request do
+  fixtures :tournaments
+
   before do
   end
 
@@ -39,7 +41,9 @@ RSpec.describe 'Tournaments API', type: :request do
       produces 'application/json'
 
       response '200', 'Get all tournaments' do
-        run_test!
+        run_test! do |resp|
+          expect(resp).to be_truthy
+        end
       end
     end
   end
@@ -65,7 +69,11 @@ RSpec.describe 'Tournaments API', type: :request do
       parameter name: :id, in: :path, type: :integer
 
       response '200', 'Get one tournament by id' do
-        run_test!
+        let(:id) { tournaments(:tournament1).id }
+        run_test! do |resp|
+          data = JSON.parse(resp.body)
+          expect(data["id"]).to be_a(Integer)
+        end
       end
     end
   end

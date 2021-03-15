@@ -1,9 +1,0 @@
-tournament-a:
-  id: 1
-  user_id: 1
-  org_id: 1
-
-tournament-b:
-  id: 2
-  user_id: 1
-  org_id: 1
