@@ -1,0 +1,11 @@
+tournament1:
+  id: 1
+  creator:
+    user_id: 1
+    org_id: 1
+
+tournament2:
+  id: 2
+  creator:
+    user_id: 1
+    org_id: 1
