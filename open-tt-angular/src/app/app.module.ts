@@ -53,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TtMatchResultCellComponent } from './component-library/tt-match-result-cell/tt-match-result-cell.component';
 import { TtMatchResultDialogComponent } from './component-library/tt-match-result-dialog/tt-match-result-dialog.component';
 import { ResponseMappingInterceptor } from './interceptors/response-mapping.interceptor';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 
 @NgModule({
   declarations: [
@@ -112,6 +113,11 @@ import { ResponseMappingInterceptor } from './interceptors/response-mapping.inte
     MatDialogModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthenticationInterceptor,
+      multi: true,
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseMappingInterceptor,

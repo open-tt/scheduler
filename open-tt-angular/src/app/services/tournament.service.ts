@@ -188,18 +188,6 @@ export class TournamentService {
       });
   }
 
-  //
-  /**
-   * Load all tournaments from backend
-   */
-  loadTournamentsAPI(): void {
-    this.http.get<HandicapTournament[]>('/tournaments').subscribe((history) => {
-      this.tournamentHistory = history;
-      this.tournamentHistorySubject.next(history);
-      this.setSelectedTournament(history[0]);
-    });
-  }
-
   /**
    * Creates a player using PlayerService and adds it to the current
    * tournament. Notify.
@@ -279,6 +267,29 @@ export class TournamentService {
     return throwError('Something bad happened; please try again later.');
   }
 
+  /**
+   * Load all tournaments from backend.
+   * Context needs to be passed explicitly because this is
+   * intended to be a callback function.
+   */
+  private loadTournamentsCallback(context: TournamentService): void {
+    context.http
+      .get<HandicapTournament[]>('/tournaments')
+      .subscribe((history) => {
+        context.tournamentHistory = history;
+        context.tournamentHistorySubject.next(history);
+        context.setSelectedTournament(history[0]);
+      });
+  }
+
+  /**
+   * Public version of loadTournamentsCallback that does not need
+   * to be called with context
+   */
+  reloadTournamentsAsync(): void {
+    this.loadTournamentsCallback(this);
+  }
+
   // /** Add players to selectedTournament and notify
   //  */
   addPlayerToSelectedHandicapTournament(player: Player): void {
@@ -319,11 +330,9 @@ export class TournamentService {
 
   deleteTournament(id: number): void {
     this.http
-      .delete(
-        `${environment.tournament_api_url}/${this.TOURNAMENTS_PATH}/${id}`
-      )
+      .delete(`/tournaments/${id}`)
       .pipe(catchError(this.handleError))
-      .subscribe(this.loadTournamentsAPI);
+      .subscribe(() => this.loadTournamentsCallback(this));
   }
 
   deleteActiveTournament(): void {

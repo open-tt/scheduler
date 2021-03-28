@@ -1,22 +1,25 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
-import { delay, map } from 'rxjs/operators';
-import { FakeUserData } from './fake.data';
-import { HandicapTournament } from '../models/tournament';
-import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
-import { ReservationApi } from '../utils/reservation_api';
-import { CookieService } from './cookie.service';
+import { Observable, Subject } from 'rxjs';
 import { BaseApiService } from './base-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  PLAYERS_API = '/players';
+  playerUniverse: Player[];
+  playerUniverseSubject: Subject<Player[]>;
 
-  constructor(private http2: HttpClient, private http: BaseApiService) {}
+  constructor(private http2: HttpClient, private http: BaseApiService) {
+    this.playerUniverseSubject = new Subject<Player[]>();
+    this.playerUniverse = [];
+  }
+
+  // Getters and Setters
+  genPlayerUniverse(): Observable<Player[]> {
+    return this.playerUniverseSubject.asObservable();
+  }
 
   createNewPlayer(name: string, rating: number): Observable<Player> {
     const body = {
@@ -24,5 +27,12 @@ export class PlayerService {
       rating,
     };
     return this.http.post<Player>('/players', body);
+  }
+
+  loadAllPlayers(): void {
+    this.http.get<Player[]>('/players').subscribe((players: Player[]) => {
+      this.playerUniverse = players;
+      this.playerUniverseSubject.next(this.playerUniverse);
+    });
   }
 }

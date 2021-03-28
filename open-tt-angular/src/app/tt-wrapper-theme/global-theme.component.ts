@@ -39,7 +39,7 @@ export class GlobalThemeComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cookieService.hasLoggedInUser()) {
-      this.userService.userApiToken = this.cookieService.getAuthTokenCoockie();
+      this.userService.userApiToken = this.cookieService.getAuthTokenCookie();
       this.hasLoggedInUser = true;
       this.userService.loadUser();
       this.router.navigate([TTRoute.TOURNAMENT_HANDICAP]);

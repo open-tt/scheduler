@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Reservation, Player } from '../models/player';
-import { USERS } from '../mock-users';
-import { forkJoin, Observable, of } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Player } from '../models/player';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserApi } from '../utils/user_api';
-import { map, switchMap, tap } from 'rxjs/operators';
-import { any } from 'codelyzer/util/function';
+import { map, switchMap } from 'rxjs/operators';
 import { ReservationService } from './reservation.service';
-import { environment } from '../../environments/environment';
 import { CookieService } from './cookie.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  allUsers: Player[];
   loggedInUser: Player;
   userApiToken: string;
 
@@ -22,9 +18,7 @@ export class UserService {
     private http: HttpClient,
     private reservationService: ReservationService,
     private coockieService: CookieService
-  ) {
-    this.allUsers = USERS;
-  }
+  ) {}
 
   hasLoggedInUser(): boolean {
     return !!this.userApiToken && this.userApiToken !== '';
@@ -40,7 +34,7 @@ export class UserService {
     return loggin$.pipe(
       switchMap((authResponse) => {
         this.userApiToken = authResponse.auth_token;
-        this.coockieService.setAuthTokenCoockie(this.userApiToken);
+        this.coockieService.setAuthTokenCookie(this.userApiToken);
         return this.loadUser();
       })
     );
@@ -48,7 +42,7 @@ export class UserService {
 
   logout(): void {
     this.userApiToken = '';
-    this.coockieService.setAuthTokenCoockie(this.userApiToken);
+    this.coockieService.setAuthTokenCookie(this.userApiToken);
     this.loggedInUser = undefined;
     // TODO: Should I reload or re-route?
   }
@@ -66,7 +60,7 @@ export class UserService {
     return signup$.pipe(
       switchMap((createUserResponse) => {
         this.userApiToken = createUserResponse.token;
-        this.coockieService.setAuthTokenCoockie(this.userApiToken);
+        this.coockieService.setAuthTokenCookie(this.userApiToken);
         return this.loadUser();
       })
     );

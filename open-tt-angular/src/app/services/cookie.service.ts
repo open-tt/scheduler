@@ -5,18 +5,40 @@ import { UserService } from './user.service';
   providedIn: 'root',
 })
 export class CookieService {
-  constructor() {}
+  private authToken: string;
 
-  getAuthTokenCoockie(): string {
-    return this.getCookie(Cookie.USER_AUTH_TOKEN);
+  constructor() {
+    this.authToken = null;
   }
 
-  setAuthTokenCoockie(token: string): void {
+  hardReloadAuthTokenCookie(): string {
+    this.authToken = this.getCookie(Cookie.USER_AUTH_TOKEN);
+    return this.authToken;
+  }
+
+  clearAuthToken(): void {
+    this.deleteCookie(Cookie.USER_AUTH_TOKEN);
+    this.authToken = null;
+  }
+
+  getAuthTokenCookie(): string {
+    if (this.authToken !== null) {
+      return this.authToken;
+    }
+    this.authToken = this.getCookie(Cookie.USER_AUTH_TOKEN);
+    return this.authToken;
+  }
+
+  setAuthTokenCookie(token: string): void {
     this.setCookie(Cookie.USER_AUTH_TOKEN, token);
   }
 
   hasLoggedInUser(): boolean {
-    const token = this.getCookie(Cookie.USER_AUTH_TOKEN);
+    if (this.authToken !== null) {
+      return true;
+    }
+
+    const token = this.getAuthTokenCookie();
     return !!token && token !== '';
   }
 

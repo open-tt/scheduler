@@ -117,7 +117,7 @@
     <mat-tab label="Registration">
       <app-tt-autocomplete-search
               *ngIf="inClassifiers()"
-              [allPlayerNames]="registeredPlayers"
+              [allPlayerNames]="playerUniverse"
               (addPlayer)="addPlayer($event)"
       ></app-tt-autocomplete-search>
 
@@ -128,7 +128,7 @@
     <mat-tab label="Groups" [disabled]="shouldDisableGroups()">
       <app-tt-autocomplete-search
               *ngIf="inClassifiers()"
-              [allPlayerNames]="registeredPlayers"
+              [allPlayerNames]="playerUniverse"
               (addPlayer)="addPlayer($event)"
       ></app-tt-autocomplete-search>
       <div *ngIf="selectedTournament" fxLayout="row wrap">

@@ -11,19 +11,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class BaseApiService {
-  // Load from cookie in constructor/
-  // Authentication requests will update this apiToken and the cookie.
-  apiToken: string;
-
-  constructor(private http: HttpClient, private cookie: CookieService) {
-    this.apiToken = cookie.getAuthTokenCoockie();
-  }
+  constructor(private http: HttpClient) {}
 
   post<T>(path: string, params: {} = {}, body: {} = {}): Observable<T> {
     const url = environment.tournament_api_url + path;
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.apiToken}`)
-      .set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const httpOptions = {
       headers,
       params,
@@ -33,9 +25,7 @@ export class BaseApiService {
 
   get<T>(path: string, params: {} = {}): Observable<T> {
     const url = environment.tournament_api_url + path;
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.apiToken}`)
-      .set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const httpOptions = {
       headers,
       params,
@@ -45,9 +35,7 @@ export class BaseApiService {
 
   delete<T>(path: string, params: {} = {}): Observable<T> {
     const url = environment.tournament_api_url + path;
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.apiToken}`)
-      .set('Content-Type', 'application/json');
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     const httpOptions = {
       headers,
       params,

@@ -10,6 +10,7 @@ import {
 } from '../models/tournament';
 import { TournamentService } from '../services/tournament.service';
 import { Subscription } from 'rxjs';
+import { PlayerService } from '../services/player.service';
 
 @Component({
   selector: 'app-tt-handicap',
@@ -25,24 +26,33 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   // Subscriptions
   selectedTournamentSubscription: Subscription; // Listen to changes in service
   tournamentHistorySubscription: Subscription;
+  playerUniverseSubscription: Subscription;
   selectedTournamentGroupsSubscription: Subscription;
 
   tournamentHistory: HandicapTournament[];
   groups: TournamentGroup[];
 
   registeredPlayers: Player[];
+  playerUniverse: Player[];
 
   constructor(
     public dialog: MatDialog,
-    public tournamentService: TournamentService
+    public tournamentService: TournamentService,
+    public playerService: PlayerService
   ) {
     this.registeredPlayers = [];
+    this.playerUniverse = [];
   }
 
   ngOnInit(): void {
+    this.playerUniverseSubscription = this.playerService
+      .genPlayerUniverse()
+      .subscribe((players: Player[]) => {
+        this.playerUniverse = players;
+      });
     this.tournamentHistorySubscription = this.tournamentService
       .genTournamentHistory()
-      .subscribe((tournaments) => {
+      .subscribe((tournaments: HandicapTournament[]) => {
         this.tournamentHistory = tournaments;
       });
     this.selectedTournamentSubscription = this.tournamentService
@@ -50,11 +60,9 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
       .subscribe((handicap) => {
         this.selectedTournament = handicap;
         this.registeredPlayers = this.selectedTournament.players ?? [];
-        console.log('Updated selected tournamnet');
-        console.log('Updated players');
-        console.log(this.registeredPlayers);
       });
-    this.tournamentService.loadTournamentsAPI();
+    this.tournamentService.reloadTournamentsAsync();
+    this.playerService.loadAllPlayers();
   }
 
   ngOnDestroy(): void {
