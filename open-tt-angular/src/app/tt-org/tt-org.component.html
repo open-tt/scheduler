@@ -1,28 +1,68 @@
 <div fxLayout="row">
   <div fxLayout="column" fxFlex>
-    <app-tt-simple-button [title]="'switch'" (action)="swapMode()" fxFlex="20%"></app-tt-simple-button>
+    <app-tt-simple-button
+      [title]="'switch'"
+      (action)="swapMode()"
+      fxFlex="20%"
+    ></app-tt-simple-button>
 
     <div *ngIf="isModeShow()" fxLayoutGap="20px">
-      <app-tt-labeled-info [label]="'Club Name'" [content]="'Seattle Pacific Table Tennis Club'"></app-tt-labeled-info>
-      <app-tt-labeled-info [label]="'Address'" [content]="'123 watery ln, Seattle WA, 99001'"></app-tt-labeled-info>
-      <app-tt-labeled-info-group [title]="'contact info'" [pairs]="contactInfo"></app-tt-labeled-info-group>
-      <app-tt-labeled-info-group [title]="'facility info'" [pairs]="facilityInfo"></app-tt-labeled-info-group>
-      <app-tt-labeled-info-group [title]="'schedule'" [pairs]="scheduleInfo"></app-tt-labeled-info-group>
+      <app-tt-labeled-info
+        [label]="'Club Name'"
+        [content]="'Seattle Pacific Table Tennis Club'"
+      ></app-tt-labeled-info>
+      <app-tt-labeled-info
+        [label]="'Address'"
+        [content]="'123 watery ln, Seattle WA, 99001'"
+      ></app-tt-labeled-info>
+      <app-tt-labeled-info-group
+        [title]="'contact info'"
+        [pairs]="contactInfo"
+      ></app-tt-labeled-info-group>
+      <app-tt-labeled-info-group
+        [title]="'facility info'"
+        [pairs]="facilityInfo"
+      ></app-tt-labeled-info-group>
+      <app-tt-labeled-info-group
+        [title]="'schedule'"
+        [pairs]="scheduleInfo"
+      ></app-tt-labeled-info-group>
     </div>
 
     <div *ngIf="isModeCreate()" fxLayoutGap="20px" fxLayout="column">
       <div fxLayout="row" fxLayoutAlign="end">
-        <app-tt-simple-button [title]="'save'" fxFlex="20%"></app-tt-simple-button>
+        <app-tt-simple-button
+          [title]="'save'"
+          fxFlex="20%"
+        ></app-tt-simple-button>
       </div>
 
-      <app-tt-labeled-edit [label]="'Club Name'" [placeholder]="'ex: Charlotte Table Tennis Club'"></app-tt-labeled-edit>
-      <app-tt-labeled-edit [label]="'Address'" [placeholder]="'ex: 123 watery ln, Seattle WA, 99001'"></app-tt-labeled-edit>
-      <app-tt-labeled-edit-group [title]="'contact info'" [labels]="contactInfoLabels"></app-tt-labeled-edit-group>
-      <app-tt-labeled-edit-group [title]="'facility info'" [labels]="facilityInfoLabels"></app-tt-labeled-edit-group>
-      <app-tt-labeled-edit-group [title]="'schedule'" [labels]="scheduleInfoLabels"></app-tt-labeled-edit-group>
+      <app-tt-labeled-edit
+        [label]="'Club Name'"
+        [placeholder]="'ex: Charlotte Table Tennis Club'"
+      ></app-tt-labeled-edit>
+      <app-tt-labeled-edit
+        [label]="'Address'"
+        [placeholder]="'ex: 123 watery ln, Seattle WA, 99001'"
+      ></app-tt-labeled-edit>
+      <app-tt-labeled-edit-group
+        [title]="'contact info'"
+        [labels]="contactInfoLabels"
+      ></app-tt-labeled-edit-group>
+      <app-tt-labeled-edit-group
+        [title]="'facility info'"
+        [labels]="facilityInfoLabels"
+      ></app-tt-labeled-edit-group>
+      <app-tt-labeled-edit-group
+        [title]="'schedule'"
+        [labels]="scheduleInfoLabels"
+      ></app-tt-labeled-edit-group>
 
       <div fxLayout="row" fxLayoutAlign="end">
-        <app-tt-simple-button [title]="'save'" fxFlex="20%"></app-tt-simple-button>
+        <app-tt-simple-button
+          [title]="'save'"
+          fxFlex="20%"
+        ></app-tt-simple-button>
       </div>
     </div>
   </div>

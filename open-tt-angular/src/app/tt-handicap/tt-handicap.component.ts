@@ -1,18 +1,20 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Player} from '../models/player';
-import {MatSelectChange} from '@angular/material/select';
-import {MatDialog} from '@angular/material/dialog';
-import {CreatePlayerDialogComponent} from '../component-library/create-player-dialog/create-player-dialog.component';
-import {HandicapTournament, TournamentGroup, TournamentStage} from '../models/tournament';
-import {FakeUserData} from '../services/fake.data';
-import {TournamentService} from '../services/tournament.service';
-import {Subscription} from 'rxjs';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Player } from '../models/player';
+import { MatSelectChange } from '@angular/material/select';
+import { MatDialog } from '@angular/material/dialog';
+import { CreatePlayerDialogComponent } from '../component-library/create-player-dialog/create-player-dialog.component';
+import {
+  HandicapTournament,
+  TournamentGroup,
+  TournamentStage,
+} from '../models/tournament';
+import { TournamentService } from '../services/tournament.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tt-handicap',
   templateUrl: './tt-handicap.component.html',
-  styleUrls: ['./tt-handicap.component.scss']
+  styleUrls: ['./tt-handicap.component.scss'],
 })
 export class TtHandicapComponent implements OnInit, OnDestroy {
   today: Date = new Date();
@@ -28,31 +30,31 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   tournamentHistory: HandicapTournament[];
   groups: TournamentGroup[];
 
-  fakePlayerUniverse: Player[];
+  registeredPlayers: Player[];
 
   constructor(
     public dialog: MatDialog,
-    public tournamentService: TournamentService,
+    public tournamentService: TournamentService
   ) {
-    this.fakePlayerUniverse = new FakeUserData().players;
+    this.registeredPlayers = [];
   }
 
   ngOnInit(): void {
-    this.tournamentHistorySubscription =
-      this.tournamentService.getTournamentHistory().subscribe(
-        tournaments => {
-          this.tournamentHistory = tournaments;
-        }
-      );
-    this.selectedTournamentSubscription =
-      this.tournamentService.getSelectedTournament().subscribe(
-        handicap => {
-          this.selectedTournament = handicap;
-        }
-      );
-
-    this.tournamentService.refreshHistory();
-    this.tournamentService.refreshSelected();
+    this.tournamentHistorySubscription = this.tournamentService
+      .genTournamentHistory()
+      .subscribe((tournaments) => {
+        this.tournamentHistory = tournaments;
+      });
+    this.selectedTournamentSubscription = this.tournamentService
+      .genSelectedTournament()
+      .subscribe((handicap) => {
+        this.selectedTournament = handicap;
+        this.registeredPlayers = this.selectedTournament.players ?? [];
+        console.log('Updated selected tournamnet');
+        console.log('Updated players');
+        console.log(this.registeredPlayers);
+      });
+    this.tournamentService.loadTournamentsAPI();
   }
 
   ngOnDestroy(): void {
@@ -61,27 +63,40 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   }
 
   inClassifiers(): boolean {
-    return this.selectedTournament.stage <= TournamentStage.CLASSIFICATION;
+    return (
+      this.selectedTournament &&
+      this.selectedTournament.stage <= TournamentStage.CLASSIFICATION
+    );
   }
 
   canCreateGroups(): boolean {
     return (
       this.selectedTournament &&
       this.selectedTournament.players &&
-      this.selectedTournament.players.length >= this.tournamentService.DEFAULT_MIN_PLAYERS_PER_GROUP &&
+      this.selectedTournament.players.length >=
+        this.tournamentService.DEFAULT_MIN_PLAYERS_PER_GROUP &&
       this.selectedTournament.stage === TournamentStage.REGISTRATION
     );
   }
 
+  firstTournament(): HandicapTournament {
+    if (!this.tournamentHistory || this.tournamentHistory.length === 0) {
+      return;
+    }
+    return this.tournamentHistory[0];
+  }
+
   canCreatePlayoffs(): boolean {
-    return this.selectedTournament &&
-      this.tournamentService.isClassificationComplete();
+    return (
+      this.selectedTournament &&
+      this.tournamentService.isClassificationComplete()
+    );
   }
 
   openDialog(player: Player): void {
     const dialogRef = this.dialog.open(CreatePlayerDialogComponent, {
       width: '250px',
-      data: player
+      data: player,
     });
 
     dialogRef.afterClosed().subscribe((result: Player) => {
@@ -90,7 +105,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   }
 
   onDropdownChange(change: MatSelectChange): void {
-    this.tournamentService.selectTournament(change.value);
+    this.tournamentService.setSelectedTournament(change.value);
   }
 
   addPlayer(player: Player): void {
@@ -120,20 +135,26 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   }
 
   shouldDisableGroups(): boolean {
-    return !this.selectedTournament ||
-      this.selectedTournament.stage < TournamentStage.CLASSIFICATION;
+    return (
+      !this.selectedTournament ||
+      this.selectedTournament.stage < TournamentStage.CLASSIFICATION
+    );
   }
 
   shouldDisablePlayoffs(): boolean {
-    return !this.selectedTournament || this.selectedTournament.stage < TournamentStage.PLAYOFFS;
+    return (
+      !this.selectedTournament ||
+      this.selectedTournament.stage < TournamentStage.PLAYOFFS
+    );
   }
 
   totalParticipants(): number {
-    return this.selectedTournament.players ? this.selectedTournament.players.length : 0;
+    return this.selectedTournament.players
+      ? this.selectedTournament.players.length
+      : 0;
   }
 
   onDeleteNewTournament(): void {
-    console.log('1');
     this.tournamentService.deleteActiveTournament();
   }
 

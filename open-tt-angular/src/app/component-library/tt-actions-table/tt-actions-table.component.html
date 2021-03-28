@@ -1,13 +1,13 @@
 <table class="table table-bordered table-hover table-sm">
   <thead class="thead-dark">
-    <th *ngFor="let title of headers">{{title}}</th>
+    <th *ngFor="let title of headers">{{ title }}</th>
     <th class="text-center">Actions</th>
   </thead>
 
   <tbody>
     <tr *ngFor="let row of data">
       <td *ngFor="let col of row">
-        {{col}}
+        {{ col }}
       </td>
       <td class="text-center">
         <a>Delete</a> |

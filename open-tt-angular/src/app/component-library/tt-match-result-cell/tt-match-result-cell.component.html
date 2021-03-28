@@ -1,9 +1,5 @@
-<div *ngIf="player1 === player2">
-  -
-</div>
+<div *ngIf="player1 === player2">-</div>
 
-<div
-  (click)="openDialog()"
-  *ngIf="player1 !== player2">
-  {{score[0]}} - {{score[1]}}
+<div (click)="openDialog()" *ngIf="player1 !== player2">
+  {{ score[0] }} - {{ score[1] }}
 </div>

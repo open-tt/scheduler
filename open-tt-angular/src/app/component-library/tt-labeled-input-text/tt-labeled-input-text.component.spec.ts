@@ -8,9 +8,8 @@ describe('TtLabeledInputTextComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtLabeledInputTextComponent ]
-    })
-    .compileComponents();
+      declarations: [TtLabeledInputTextComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

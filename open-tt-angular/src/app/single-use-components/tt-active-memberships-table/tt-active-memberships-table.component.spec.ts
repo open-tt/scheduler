@@ -8,9 +8,8 @@ describe('TtActiveMembershipsTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtActiveMembershipsTableComponent ]
-    })
-    .compileComponents();
+      declarations: [TtActiveMembershipsTableComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,12 +1,12 @@
-<div
-  fxLayout="column"
-  class="mat-elevation-z8 match-container">
-
+<div fxLayout="column" class="mat-elevation-z8 match-container">
   <div
     *ngIf="validPlayer1()"
-    fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="5%">
-    <mat-icon >person</mat-icon>
-    <div class="player-name">{{match.player1}}</div>
+    fxLayout="row"
+    fxLayoutAlign="none center"
+    fxLayoutGap="5%"
+  >
+    <mat-icon>person</mat-icon>
+    <div class="player-name">{{ match.player1 }}</div>
     <div class="score">
       <div *ngIf="!isIncomplete()">3</div>
     </div>
@@ -14,9 +14,12 @@
 
   <div
     *ngIf="validPlayer2()"
-    fxLayout="row" fxLayoutAlign="none center" fxLayoutGap="5%">
+    fxLayout="row"
+    fxLayoutAlign="none center"
+    fxLayoutGap="5%"
+  >
     <mat-icon>person</mat-icon>
-    <div class="player-name">{{match.player2}}</div>
+    <div class="player-name">{{ match.player2 }}</div>
     <div class="score">
       <div *ngIf="!isIncomplete()">2</div>
     </div>

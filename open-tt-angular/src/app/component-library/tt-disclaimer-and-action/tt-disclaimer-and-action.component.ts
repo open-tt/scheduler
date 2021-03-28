@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-tt-disclaimer-and-action',
   templateUrl: './tt-disclaimer-and-action.component.html',
-  styleUrls: ['./tt-disclaimer-and-action.component.css']
+  styleUrls: ['./tt-disclaimer-and-action.component.css'],
 })
 export class TtDisclaimerAndActionComponent implements OnInit {
   actionStatement: string; // What action has the user taken.
@@ -13,7 +13,5 @@ export class TtDisclaimerAndActionComponent implements OnInit {
     this.actionSubject = 'Adult membership for 1 Month';
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

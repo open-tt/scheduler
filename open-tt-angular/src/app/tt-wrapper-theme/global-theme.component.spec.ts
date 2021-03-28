@@ -8,9 +8,8 @@ describe('GlobalThemeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GlobalThemeComponent ]
-    })
-    .compileComponents();
+      declarations: [GlobalThemeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

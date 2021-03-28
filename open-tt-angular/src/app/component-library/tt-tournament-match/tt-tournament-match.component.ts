@@ -1,18 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tt-tournament-match',
   templateUrl: './tt-tournament-match.component.html',
-  styleUrls: ['./tt-tournament-match.component.scss']
+  styleUrls: ['./tt-tournament-match.component.scss'],
 })
 export class TtTournamentMatchComponent implements OnInit {
-
   @Input() match: NgttMatch;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   hasPlayers(): boolean {
     return this.validPlayer1() || this.validPlayer2();
@@ -22,8 +19,8 @@ export class TtTournamentMatchComponent implements OnInit {
    * Has only one player
    */
   isIncomplete(): boolean {
-    const a = this.hasPlayers() &&
-      !this.validPlayer1() || !this.validPlayer2();
+    const a =
+      (this.hasPlayers() && !this.validPlayer1()) || !this.validPlayer2();
     return a;
   }
 
@@ -34,7 +31,6 @@ export class TtTournamentMatchComponent implements OnInit {
   validPlayer2(): boolean {
     return !!this.match.player2 && this.match.player2 !== '';
   }
-
 }
 
 export interface NgttMatch {

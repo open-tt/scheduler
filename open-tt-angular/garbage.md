@@ -24,18 +24,18 @@
           <app-tt-player-handicap-table [className]="isPast ? 'accentColorBorder' : ''"
                                         [dataSource]="dataSource"></app-tt-player-handicap-table>
         </div>
-    
+
         <div fxLayout="column">
           <h2>Past Tournaments</h2>
           <table mat-table [dataSource]="prevEvents">
             <ng-container matColumnDef="date">
               <td mat-cell *matCellDef="let tournament"> {{tournament.date | date}} </td>
             </ng-container>
-    
+
             <ng-container matColumnDef="players">
               <td mat-cell *matCellDef="let tournament"> {{tournament.totalPlayers}} players </td>
             </ng-container>
-    
+
             <tr mat-row *matRowDef="let row; columns: ['date', 'players'];" (click)="openPastTournament(row)"></tr>
           </table>
         </div>

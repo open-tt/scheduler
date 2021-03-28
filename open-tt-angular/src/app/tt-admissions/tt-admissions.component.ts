@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-tt-admissions',
   templateUrl: './tt-admissions.component.html',
-  styleUrls: ['./tt-admissions.component.css']
+  styleUrls: ['./tt-admissions.component.css'],
 })
 export class TtAdmissionsComponent implements OnInit {
   admissionsHeaders: string[];
@@ -28,6 +27,5 @@ export class TtAdmissionsComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

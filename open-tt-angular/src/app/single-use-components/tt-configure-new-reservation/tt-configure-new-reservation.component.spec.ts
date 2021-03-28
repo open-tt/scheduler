@@ -8,9 +8,8 @@ describe('TtConfigureNewReservationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtConfigureNewReservationComponent ]
-    })
-    .compileComponents();
+      declarations: [TtConfigureNewReservationComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-tt-info-card',
   templateUrl: './tt-info-card.component.html',
-  styleUrls: ['./tt-info-card.component.css']
+  styleUrls: ['./tt-info-card.component.css'],
 })
 export class TtInfoCardComponent implements OnInit {
   line1: string;
@@ -15,7 +15,5 @@ export class TtInfoCardComponent implements OnInit {
     this.line3 = '$50';
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

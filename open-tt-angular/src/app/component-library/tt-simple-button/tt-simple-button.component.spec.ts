@@ -8,9 +8,8 @@ describe('TtSimpleButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtSimpleButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [TtSimpleButtonComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

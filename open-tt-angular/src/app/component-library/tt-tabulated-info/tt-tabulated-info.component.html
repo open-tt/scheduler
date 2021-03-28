@@ -1,14 +1,25 @@
 <div fxLayout="column" class="container">
   <div fxLayout="row">
-    <div fxLayout="column" fxLayoutAlign="center" *ngFor="let header of columns" fxFlex="{{columnWidth}}">
-      <strong>{{header | titlecase}}</strong>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center"
+      *ngFor="let header of columns"
+      fxFlex="{{ columnWidth }}"
+    >
+      <strong>{{ header | titlecase }}</strong>
     </div>
   </div>
 
   <div fxLayout="row" *ngFor="let row of rows">
-    <div fxLayoutAlign="left" fxFlex="{{columnWidth}}"><em>{{row}}</em></div>
-    <div fxLayoutAlign="left" *ngFor="let col of columns | slice:1" fxFlex="{{columnWidth}}">
-      {{data[col][row]}}
+    <div fxLayoutAlign="left" fxFlex="{{ columnWidth }}">
+      <em>{{ row }}</em>
+    </div>
+    <div
+      fxLayoutAlign="left"
+      *ngFor="let col of columns | slice: 1"
+      fxFlex="{{ columnWidth }}"
+    >
+      {{ data[col][row] }}
     </div>
   </div>
 </div>

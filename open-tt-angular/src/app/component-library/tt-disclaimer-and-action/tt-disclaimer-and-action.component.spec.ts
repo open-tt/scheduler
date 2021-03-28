@@ -8,9 +8,8 @@ describe('TtDisclaimerAndActionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtDisclaimerAndActionComponent ]
-    })
-    .compileComponents();
+      declarations: [TtDisclaimerAndActionComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

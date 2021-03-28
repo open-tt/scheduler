@@ -1,9 +1,15 @@
-import {HandicapTournament, Match, MatchSet, TournamentGroup, TournamentStage} from '../models/tournament';
-import {delay} from 'rxjs/operators';
-import {Player} from '../models/player';
+import {
+  HandicapTournament,
+  Match,
+  MatchSet,
+  TournamentGroup,
+  TournamentStage,
+} from '../models/tournament';
+import { delay } from 'rxjs/operators';
+import { Player } from '../models/player';
 import * as faker from 'faker';
-import {NgttMatch} from '../component-library/tt-tournament-match/tt-tournament-match.component';
-import {NgttRound, NgttTournament} from 'ng-tournament-tree';
+import { NgttMatch } from '../component-library/tt-tournament-match/tt-tournament-match.component';
+import { NgttRound, NgttTournament } from 'ng-tournament-tree';
 
 export class FakeHandicapTournamentApi {
   static playerDatabase: Player[] = [];
@@ -15,7 +21,7 @@ export class FakeHandicapTournamentApi {
     this.NEXT_TOURNAMENT_ID += 1;
     return {
       id: this.NEXT_TOURNAMENT_ID,
-      date: new Date(),
+      scheduled_at: new Date(),
       players: [],
       groups: [],
       waitingList: [],
@@ -25,7 +31,7 @@ export class FakeHandicapTournamentApi {
   }
   static getPlayer(playerID): Player {
     delay(1000);
-    return this.playerDatabase.find(player => player.id === playerID);
+    return this.playerDatabase.find((player) => player.id === playerID);
   }
   static createPlayer(name: string, rating: number, usattid: string): Player {
     delay(1000);
@@ -49,7 +55,11 @@ export class FakeHandicapTournamentApi {
       return [total];
     }
     for (let i = max; i >= min; i--) {
-      const arr = FakeHandicapTournamentApi.decomposeInGroups(total - i, min, max);
+      const arr = FakeHandicapTournamentApi.decomposeInGroups(
+        total - i,
+        min,
+        max
+      );
       if (arr.length > 0) {
         return [i].concat(arr);
       }
@@ -61,30 +71,20 @@ export class FakeHandicapTournamentApi {
 export class FakeUserData {
   public players: Player[] = [];
   constructor() {
-    for ( let i = 1; i <= 30; i++) {
-      const rating = faker.random.number({min: 800, max: 2400});
-      this.players.push(
-        {
-          id: i,
-          name: faker.name.findName(),
-          userID: faker.internet.email(),
-          rating,
-          handicap: FakeUserData.calcHandicap(rating)
-        }
-      );
+    for (let i = 1; i <= 30; i++) {
+      const rating = faker.random.number({ min: 800, max: 2400 });
+      this.players.push({
+        id: i,
+        name: faker.name.findName(),
+        userID: faker.internet.email(),
+        rating,
+        handicap: FakeUserData.calcHandicap(rating),
+      });
     }
   }
 
   static calcHandicap(rating: number): number {
-    return -1 * Math.round(
-      Math.max(
-        Math.min(
-          8,
-          (rating - 1900) / 100
-        ),
-        -8
-      )
-    );
+    return -1 * Math.round(Math.max(Math.min(8, (rating - 1900) / 100), -8));
   }
 }
 
@@ -92,86 +92,102 @@ export const round1: NgttMatch[] = [
   {
     player1: 'Lester Hartmann',
     player2: 'Sarah Botsford',
-  }, {
+  },
+  {
     player1: 'Mike Rolfson',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Brendan Okuneva',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Mary Abshire',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Joan Langosh Dvm',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Tyrone Hettinger',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Donald Kunze',
     player2: '',
-  }, {
+  },
+  {
     player1: 'Karen Herman',
     player2: 'Pat Berge',
-  }
+  },
 ];
 
 export const round2: NgttMatch[] = [
   {
     player1: 'Lester Hartmann',
     player2: 'Mike Rolfson',
-  }, {
+  },
+  {
     player1: 'Brendan Okuneva',
     player2: 'Mary Abshire',
-  }, {
+  },
+  {
     player1: 'Joan Langosh Dvm',
     player2: 'Tyrone Hettinger',
-  }, {
+  },
+  {
     player1: 'Donald Kunze',
     player2: 'Karen Herman',
-  }
+  },
 ];
 
 export const round3: NgttMatch[] = [
   {
     player1: 'Lester Hartmann',
     player2: 'Mary Abshire',
-  }, {
+  },
+  {
     player1: 'Joan Langosh Dvm',
     player2: 'Karen Herman',
-  }
+  },
 ];
 
 export const testRounds: NgttRound[] = [
   {
     type: 'Winnerbracket',
-    matches: round1
-  }, {
+    matches: round1,
+  },
+  {
     type: 'Winnerbracket',
-    matches: round2
-  }, {
+    matches: round2,
+  },
+  {
     type: 'Winnerbracket',
-    matches: round3
-  }, {
+    matches: round3,
+  },
+  {
     type: 'Final',
-    matches: [{
-      player1: 'Lester Hartmann',
-      player2: 'Joan Langosh Dvm',
-    }]
-  }
+    matches: [
+      {
+        player1: 'Lester Hartmann',
+        player2: 'Joan Langosh Dvm',
+      },
+    ],
+  },
 ];
 
 export class FakePlayerData {
   static createPlayers(total: number): Player[] {
     const players: Player[] = [];
     for (let i = 0; i < total; i++) {
-      const rating = faker.random.number({min: 800, max: 2400});
+      const rating = faker.random.number({ min: 800, max: 2400 });
       players.push({
-        id: faker.random.number({min: 1, max: 1000000}),
+        id: faker.random.number({ min: 1, max: 1000000 }),
         name: faker.name.findName(),
         userID: faker.internet.email(),
         rating,
-        handicap: FakeUserData.calcHandicap(rating)
+        handicap: FakeUserData.calcHandicap(rating),
       });
     }
     return players;
@@ -186,7 +202,7 @@ export class FakePlayerData {
     const groups: TournamentGroup[] = [];
     let groupPlayers: Player[] = [];
     let groupIndex = 0;
-    players.forEach(player => {
+    players.forEach((player) => {
       if (groupSizes[groupIndex] <= 0) {
         groups.push(new TournamentGroup(groupPlayers));
         groupPlayers = [];
@@ -204,14 +220,10 @@ export class FakePlayerData {
 
   static fixMatches(players: Player[]): Match[] {
     const matches: Match[] = [];
-    players.forEach(p1 => {
-      players.forEach(p2 => {
+    players.forEach((p1) => {
+      players.forEach((p2) => {
         if (p1.name !== p2.name) {
-          const match: Match = new Match(
-            p1,
-            p2,
-            FakePlayerData.fakeSets(),
-          );
+          const match: Match = new Match(p1, p2, FakePlayerData.fakeSets());
           matches.push(match);
         }
       });
@@ -221,10 +233,10 @@ export class FakePlayerData {
 
   static fakeSets(): MatchSet[] {
     const sets: MatchSet[] = [];
-    const losserScore = faker.random.number({min: 1, max: 9});
+    const losserScore = faker.random.number({ min: 1, max: 9 });
     for (let i = 0; i < 5; i++) {
       let set: MatchSet;
-      if (faker.random.number({min: 1, max: 2}) === 1) {
+      if (faker.random.number({ min: 1, max: 2 }) === 1) {
         set = new MatchSet(11, losserScore);
       } else {
         set = new MatchSet(losserScore, 3);
@@ -239,7 +251,7 @@ export class FakePlayerData {
       rounds: testRounds,
     };
     const players: Player[] = [];
-    groups.forEach(g => {
+    groups.forEach((g) => {
       players.push(g.players[0]);
       players.push(g.players[1]);
     });
@@ -266,10 +278,10 @@ export class FakePlayerData {
         matches.push(undefined);
       }
       const usedSet: Set<number> = new Set([-1]);
-      players.forEach(p => {
+      players.forEach((p) => {
         let num = -1;
         while (usedSet.has(num)) {
-          num = faker.random.number({min: 0, max: base - 1});
+          num = faker.random.number({ min: 0, max: base - 1 });
           if (num === undefined) {
           }
         }
@@ -305,28 +317,30 @@ export class FakeTournamentData {
   tournaments: HandicapTournament[] = [
     {
       id: 1,
-      date: new Date(new Date().setDate(new Date().getDate() - 21)),
+      scheduled_at: new Date(new Date().setDate(new Date().getDate() - 21)),
       players: this.players1,
       groups: this.groups1,
       stage: TournamentStage.END,
       playoff: FakePlayerData.createPlayoffs(this.groups1),
-      ended: true
-    }, {
+      ended: true,
+    },
+    {
       id: 2,
-      date: new Date(new Date().setDate(new Date().getDate() - 14)),
+      scheduled_at: new Date(new Date().setDate(new Date().getDate() - 14)),
       players: this.players2,
       groups: this.groups2,
       stage: TournamentStage.END,
       playoff: FakePlayerData.createPlayoffs(this.groups2),
-      ended: true
-    }, {
+      ended: true,
+    },
+    {
       id: 3,
-      date: new Date(new Date().setDate(new Date().getDate() - 7)),
+      scheduled_at: new Date(new Date().setDate(new Date().getDate() - 7)),
       players: this.players3,
       groups: this.groups3,
       playoff: FakePlayerData.createPlayoffs(this.groups3),
       stage: TournamentStage.END,
-      ended: true
+      ended: true,
     },
   ].reverse();
 }

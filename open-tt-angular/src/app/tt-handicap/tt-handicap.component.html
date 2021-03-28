@@ -1,34 +1,44 @@
-
 <div fxLayout="column" fxLayoutGap="20px">
   <!--  Dropdown  -->
-  <div fxLayout="row" fxLayoutGap="5%" fxLayoutAlign="end start" class="tournament-selector">
+  <div
+          fxLayout="row"
+          fxLayoutGap="5%"
+          fxLayoutAlign="end start"
+          class="tournament-selector"
+  >
     <mat-form-field appearance="fill" fxFlex="20%">
       <mat-label>Choose an Event</mat-label>
       <mat-select
-        [value]="tournamentHistory[0]"
-        (selectionChange)="onDropdownChange($event)">
-        <mat-option
-          *ngFor="let tour of tournamentHistory"
-          [value]="tour">
-            {{tour.date | date}}
-            {{tour.date.getDate() === today.getDate() ? '(today)' : ''}}</mat-option>
+              [value]="firstTournament()"
+              (selectionChange)="onDropdownChange($event)"
+      >
+        <mat-option *ngFor="let tour of tournamentHistory" [value]="tour">
+          {{ tour.scheduled_at | date }}
+          <!--          {{-->
+          <!--          TODO: Fix Later -->
+          <!--          // tour.scheduled_at.getDate() === today.getDate() ? '(today)' : ''-->
+          <!--          }}-->
+        </mat-option
+        >
       </mat-select>
     </mat-form-field>
 
     <div fxFlex="10%">
       <button
-        *ngIf="canCreateNewTournament()"
-        mat-fab
-        color="none"
-        (click)="onCreateNewTournament()">
+              *ngIf="canCreateNewTournament()"
+              mat-fab
+              color="none"
+              (click)="onCreateNewTournament()"
+      >
         <mat-icon color="primary">add</mat-icon>
       </button>
 
       <button
-        *ngIf="!canCreateNewTournament() && selectedTournamentIsActive()"
-        mat-fab
-        color="none"
-        (click)="onDeleteNewTournament()">
+              *ngIf="!canCreateNewTournament() && selectedTournamentIsActive()"
+              mat-fab
+              color="none"
+              (click)="onDeleteNewTournament()"
+      >
         <mat-icon color="primary">remove</mat-icon>
       </button>
     </div>
@@ -38,9 +48,7 @@
   <div fxLayout="row">
     <div fxFlex="15%"></div>
 
-    <div
-      *ngIf="selectedTournament"
-      fxLayout="column" fxFlex="35%">
+    <div *ngIf="selectedTournament" fxLayout="column" fxFlex="35%">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
         <mat-icon>looks_one</mat-icon>
         <div>Ricky McClure</div>
@@ -60,17 +68,20 @@
     <div fxFlex="15%"></div>
 
     <div
-      *ngIf="selectedTournament"
-      fxLayout="column" fxFlex="30%" fxLayoutGap="20px" fxLayoutAlign="start">
-
+            *ngIf="selectedTournament"
+            fxLayout="column"
+            fxFlex="30%"
+            fxLayoutGap="20px"
+            fxLayoutAlign="start"
+    >
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5%">
         <mat-icon>schedule</mat-icon>
-        <div>{{selectedTournament.date | date}}</div>
+        <div>{{ selectedTournament.scheduled_at | date }}</div>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="5%">
         <mat-icon>people</mat-icon>
-        <div>{{totalParticipants()}}</div>
+        <div>{{ totalParticipants() }}</div>
       </div>
     </div>
   </div>
@@ -80,16 +91,20 @@
     <div fxFlex="15%"></div>
 
     <button
-      *ngIf="canCreateGroups()"
-      mat-raised-button color="accent"
-      (click)="onCreateGroup()">
+            *ngIf="canCreateGroups()"
+            mat-raised-button
+            color="accent"
+            (click)="onCreateGroup()"
+    >
       Create Groups
     </button>
 
     <button
-      *ngIf="canCreatePlayoffs()"
-      (click)="onCreatePlayoffs()"
-      mat-raised-button color="accent">
+            *ngIf="canCreatePlayoffs()"
+            (click)="onCreatePlayoffs()"
+            mat-raised-button
+            color="accent"
+    >
       Create Playoffs
     </button>
 
@@ -101,9 +116,10 @@
     <!-- Tab 1: Registration -->
     <mat-tab label="Registration">
       <app-tt-autocomplete-search
-        *ngIf="inClassifiers()"
-        [allPlayerNames]="fakePlayerUniverse"
-        (addPlayer)="addPlayer($event)"></app-tt-autocomplete-search>
+              *ngIf="inClassifiers()"
+              [allPlayerNames]="registeredPlayers"
+              (addPlayer)="addPlayer($event)"
+      ></app-tt-autocomplete-search>
 
       <app-tt-player-handicap-table></app-tt-player-handicap-table>
     </mat-tab>
@@ -111,39 +127,37 @@
     <!-- Tab 2: Groups -->
     <mat-tab label="Groups" [disabled]="shouldDisableGroups()">
       <app-tt-autocomplete-search
-        *ngIf="inClassifiers()"
-        [allPlayerNames]="fakePlayerUniverse"
-        (addPlayer)="addPlayer($event)"></app-tt-autocomplete-search>
-      <div
-        *ngIf="selectedTournament"
-        fxLayout="row wrap">
+              *ngIf="inClassifiers()"
+              [allPlayerNames]="registeredPlayers"
+              (addPlayer)="addPlayer($event)"
+      ></app-tt-autocomplete-search>
+      <div *ngIf="selectedTournament" fxLayout="row wrap">
         <app-tt-tournament-group
-          *ngFor="let group of selectedTournament.groups; let i = index"
-          fxFlex="100%"
-          class="mat-background-primary player-group-section mat-elevation-z4"
-          [title]="'Group ' + (i+1)"
-          [group]="group"></app-tt-tournament-group>
+                *ngFor="let group of selectedTournament.groups; let i = index"
+                fxFlex="100%"
+                class="mat-background-primary player-group-section mat-elevation-z4"
+                [title]="'Group ' + (i + 1)"
+                [group]="group"
+        ></app-tt-tournament-group>
       </div>
     </mat-tab>
 
     <!--  Tab 3: Playoffs  -->
     <mat-tab label="Playoffs" [disabled]="shouldDisablePlayoffs()">
       <div
-        *ngIf="selectedTournament && selectedTournament.playoff"
-        fxLayout="column" fxFlex="100%">
+              *ngIf="selectedTournament && selectedTournament.playoff"
+              fxLayout="column"
+              fxFlex="100%"
+      >
         <ngtt-single-elimination-tree
-          [tournament]="selectedTournament.playoff"
-          [matchTemplate]="myMatchTemplate"></ngtt-single-elimination-tree>
+                [tournament]="selectedTournament.playoff"
+                [matchTemplate]="myMatchTemplate"
+        ></ngtt-single-elimination-tree>
 
         <ng-template #myMatchTemplate let-match>
-          <app-tt-tournament-match
-            [match]="match">
-          </app-tt-tournament-match>
+          <app-tt-tournament-match [match]="match"></app-tt-tournament-match>
         </ng-template>
       </div>
     </mat-tab>
   </mat-tab-group>
 </div>
-
-
-

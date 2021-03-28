@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {LabeledContent} from '../component-library/tt-labeled-info-group/tt-labeled-info-group.component';
+import { LabeledContent } from '../component-library/tt-labeled-info-group/tt-labeled-info-group.component';
 
 @Component({
   selector: 'app-tt-active-memberships',
   templateUrl: './tt-active-memberships.component.html',
-  styleUrls: ['./tt-active-memberships.component.css']
+  styleUrls: ['./tt-active-memberships.component.css'],
 })
 export class TtActiveMembershipsComponent implements OnInit {
-
   membershipSummary: LabeledContent[];
   membershipsHeaders: string[];
   membershipsData: string[][];
@@ -27,7 +26,5 @@ export class TtActiveMembershipsComponent implements OnInit {
     ];
   }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

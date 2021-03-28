@@ -8,9 +8,8 @@ describe('TtLabeledInfoGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtLabeledInfoGroupComponent ]
-    })
-    .compileComponents();
+      declarations: [TtLabeledInfoGroupComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

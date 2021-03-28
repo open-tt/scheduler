@@ -8,9 +8,8 @@ describe('TournamentMatchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtTournamentMatchComponent ]
-    })
-    .compileComponents();
+      declarations: [TtTournamentMatchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

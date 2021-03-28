@@ -8,9 +8,8 @@ describe('TtInfoCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtInfoCardComponent ]
-    })
-    .compileComponents();
+      declarations: [TtInfoCardComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

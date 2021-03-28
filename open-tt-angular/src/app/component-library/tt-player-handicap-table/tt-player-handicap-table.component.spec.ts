@@ -8,9 +8,8 @@ describe('TtPlayerHandicapTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtPlayerHandicapTableComponent ]
-    })
-    .compileComponents();
+      declarations: [TtPlayerHandicapTableComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

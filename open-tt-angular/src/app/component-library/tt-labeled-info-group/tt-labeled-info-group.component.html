@@ -1,11 +1,15 @@
 <div fxLayout="row" class="container" fxLayoutAlign="center">
   <div fxLayout="column" fxFlex="80">
-    <p class="title"><strong>{{title | titlecase}}:</strong></p>
+    <p class="title">
+      <strong>{{ title | titlecase }}:</strong>
+    </p>
     <div *ngFor="let info of pairs">
       <div fxLayout="row" class="labeled-info">
         <p fxFlex="10"></p>
-        <p fxFlex="40"><em>{{info.label | titlecase}}:</em></p>
-        <p fxFlex>{{info.content}}</p>
+        <p fxFlex="40">
+          <em>{{ info.label | titlecase }}:</em>
+        </p>
+        <p fxFlex>{{ info.content }}</p>
       </div>
     </div>
   </div>

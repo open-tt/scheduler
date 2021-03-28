@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {ComponentMode} from '../utils/enums';
-import {environment} from '../../environments/environment';
-import {CoockieService} from '../services/coockie.service';
-import {UserService} from '../services/user.service';
-import {Router} from '@angular/router';
-import {TTRoute} from '../routing.constants';
+import { ComponentMode } from '../utils/enums';
+import { environment } from '../../environments/environment';
+import { CookieService } from '../services/cookie.service';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
+import { TTRoute } from '../routing.constants';
 
 @Component({
   selector: 'app-global-theme',
   templateUrl: './global-theme.component.html',
-  styleUrls: ['./global-theme.component.scss']
+  styleUrls: ['./global-theme.component.scss'],
 })
 export class GlobalThemeComponent implements OnInit {
   mode = ComponentMode.SHOW;
@@ -32,14 +32,14 @@ export class GlobalThemeComponent implements OnInit {
   opened: boolean;
 
   constructor(
-    private coockieService: CoockieService,
+    private cookieService: CookieService,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
-    if (this.coockieService.hasLoggedInUser()){
-      this.userService.userApiToken = this.coockieService.getAuthTokenCoockie();
+    if (this.cookieService.hasLoggedInUser()) {
+      this.userService.userApiToken = this.cookieService.getAuthTokenCoockie();
       this.hasLoggedInUser = true;
       this.userService.loadUser();
       this.router.navigate([TTRoute.TOURNAMENT_HANDICAP]);

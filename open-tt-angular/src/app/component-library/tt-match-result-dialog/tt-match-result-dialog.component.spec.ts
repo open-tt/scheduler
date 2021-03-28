@@ -8,9 +8,8 @@ describe('TtMatchResultDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtMatchResultDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [TtMatchResultDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

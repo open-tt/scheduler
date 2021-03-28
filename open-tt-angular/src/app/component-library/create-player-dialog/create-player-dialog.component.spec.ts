@@ -8,9 +8,8 @@ describe('CreatePlayerDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CreatePlayerDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [CreatePlayerDialogComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

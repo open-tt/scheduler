@@ -1,11 +1,20 @@
 <div fxLayout="row" class="container" fxLayoutAlign="center">
   <div fxLayout="column" fxFlex>
-    <div class="title" *ngIf="title"><strong>{{title | titlecase}}:</strong></div>
+    <div class="title" *ngIf="title">
+      <strong>{{ title | titlecase }}:</strong>
+    </div>
     <div *ngFor="let info of labels">
-      <label  fxLayout="row" class="labeled-info">
+      <label fxLayout="row" class="labeled-info">
         <div fxFlex="10"></div>
-        <div fxFlex="40"><em>{{info[0] | titlecase}}:</em></div>
-        <input fxFlex type="text" placeholder="{{info[1]}}" [(ngModel)]="info[2]"/>
+        <div fxFlex="40">
+          <em>{{ info[0] | titlecase }}:</em>
+        </div>
+        <input
+          fxFlex
+          type="text"
+          placeholder="{{ info[1] }}"
+          [(ngModel)]="info[2]"
+        />
       </label>
     </div>
   </div>

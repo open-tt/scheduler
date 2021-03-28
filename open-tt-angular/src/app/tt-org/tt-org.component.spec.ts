@@ -8,9 +8,8 @@ describe('TtOrgComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtOrgComponent ]
-    })
-    .compileComponents();
+      declarations: [TtOrgComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

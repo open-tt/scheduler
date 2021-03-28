@@ -33,8 +33,6 @@ export interface Reservation {
 
 enum ReservationType {
   Lesson,
-  OpenPlay
+  OpenPlay,
 }
 // tslint:enable
-
-

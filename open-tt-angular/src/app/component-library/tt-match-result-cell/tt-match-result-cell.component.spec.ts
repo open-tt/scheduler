@@ -8,9 +8,8 @@ describe('TtMatchResultCellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtMatchResultCellComponent ]
-    })
-    .compileComponents();
+      declarations: [TtMatchResultCellComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -8,9 +8,8 @@ describe('TtAutocompleteSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtAutocompleteSearchComponent ]
-    })
-    .compileComponents();
+      declarations: [TtAutocompleteSearchComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

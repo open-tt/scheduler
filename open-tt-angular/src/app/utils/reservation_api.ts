@@ -1,6 +1,6 @@
 // tslint:disable-next-line:no-namespace
 
-import {Reservation} from '../models/player';
+import { Reservation } from '../models/player';
 
 // tslint:disable-next-line:no-namespace
 export namespace ReservationApi {
@@ -9,11 +9,21 @@ export namespace ReservationApi {
     private static BASE_URL = 'http://0.0.0.0:3001';
     private static RESERVATIONS = '/reservations';
 
-    static createReservation(): string { return Paths.BASE_URL + Paths.RESERVATIONS; }
-    static getManyReservations(): string { return Paths.BASE_URL + Paths.RESERVATIONS; }
-    static getOneReservation(id: string): string { return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`; }
-    static updateReservation(id: string): string { return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`; }
-    static deleteReservation(id: string): string { return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`; }
+    static createReservation(): string {
+      return Paths.BASE_URL + Paths.RESERVATIONS;
+    }
+    static getManyReservations(): string {
+      return Paths.BASE_URL + Paths.RESERVATIONS;
+    }
+    static getOneReservation(id: string): string {
+      return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`;
+    }
+    static updateReservation(id: string): string {
+      return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`;
+    }
+    static deleteReservation(id: string): string {
+      return Paths.BASE_URL + Paths.RESERVATIONS + `/${id}`;
+    }
   }
 
   export class ReservationResponse {

@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {MatTableDataSource} from '@angular/material/table';
-import {TournamentGroup} from '../../models/tournament';
-import {Player} from '../../models/player';
-import {Subscription} from 'rxjs';
-import {TournamentService} from '../../services/tournament.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { TournamentGroup } from '../../models/tournament';
+import { Player } from '../../models/player';
+import { Subscription } from 'rxjs';
+import { TournamentService } from '../../services/tournament.service';
 
 @Component({
   selector: 'app-tt-tournament-group',
   templateUrl: './tt-tournament-group.component.html',
-  styleUrls: ['./tt-tournament-group.component.scss']
+  styleUrls: ['./tt-tournament-group.component.scss'],
 })
 export class TtTournamentGroupComponent implements OnInit {
   static DEFAULT_COLUMNS: string[] = ['alias', 'name'];
@@ -17,14 +17,11 @@ export class TtTournamentGroupComponent implements OnInit {
   @Input() group: TournamentGroup;
 
   dataSource: MatTableDataSource<Player>;
+  subscription: Subscription;
   displayedColumns = [];
   groupIsOver = false;
-  groupSubscription: Subscription; // Listen to changes in service
 
-  constructor(
-    private tournamentService: TournamentService,
-  ) {
-  }
+  constructor(private tournamentService: TournamentService) {}
 
   ngOnInit(): void {
     if (!this.group) {
@@ -33,17 +30,16 @@ export class TtTournamentGroupComponent implements OnInit {
 
     this.dataSource = new MatTableDataSource<Player>(this.group.players);
 
-    this.groupSubscription =
-      this.tournamentService.getGroup().subscribe(
-        (group: TournamentGroup) => {
-          if (group.equals(this.group)) {
-            this.group = group;
-            this.dataSource = new MatTableDataSource<Player>(this.group.players);
-            this.displayedColumns = this.generateDisplayColumns();
-            this.groupIsOver = this.group.isOver();
-          }
+    this.subscription = this.tournamentService
+      .getGroupSubscription(this.group.id)
+      .subscribe((group: TournamentGroup) => {
+        if (group.equals(this.group)) {
+          this.group = group;
+          this.dataSource = new MatTableDataSource<Player>(this.group.players);
+          this.displayedColumns = this.generateDisplayColumns();
+          this.groupIsOver = this.group.isOver();
         }
-      );
+      });
     this.displayedColumns = this.generateDisplayColumns();
     this.groupIsOver = this.group.isOver();
   }
@@ -72,10 +68,8 @@ export class TtTournamentGroupComponent implements OnInit {
     return '3 - 2';
 
     const match = this.group.matches.find(
-      res => (
-        res.player1.name === name1 &&
-        res.player2.name === name2
-      ));
+      (res) => res.player1.name === name1 && res.player2.name === name2
+    );
     if (match) {
       return match.getSetResultSummary();
     }

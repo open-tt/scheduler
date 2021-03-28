@@ -1,4 +1,4 @@
-import {Player} from './models/player';
+import { Player } from './models/player';
 
 export const USERS: Player[] = [
   // {id: 1, name: 'Celeritas User', userID: '123'},

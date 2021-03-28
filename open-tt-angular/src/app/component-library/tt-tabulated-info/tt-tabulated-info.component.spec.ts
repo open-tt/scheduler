@@ -8,9 +8,8 @@ describe('TtTabulatedInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TtTabulatedInfoComponent ]
-    })
-    .compileComponents();
+      declarations: [TtTabulatedInfoComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
