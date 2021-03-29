@@ -80,6 +80,8 @@ export class TournamentService {
 
   setSelectedTournament(tournament: HandicapTournament): void {
     this.selectedTournament = tournament;
+    console.log('Updated Tournament');
+    console.log(this.selectedTournament);
     if (this.selectedTournament.groups) {
       for (const g of this.selectedTournament.groups) {
         this.addGroupSubject(g);
@@ -221,7 +223,7 @@ export class TournamentService {
         {}
       )
       .pipe(catchError(this.handleError))
-      .subscribe(this.setSelectedTournament);
+      .subscribe((t) => this.setSelectedTournament(t));
   }
 
   createPlayoffsForSelectedTournament(): void {
@@ -237,19 +239,16 @@ export class TournamentService {
         {}
       )
       .pipe(catchError(this.handleError))
-      .subscribe(this.setSelectedTournament);
+      .subscribe((t) => this.setSelectedTournament(t));
   }
 
   addPlayerToTournament(t: HandicapTournament, p: Player): void {
     this.http
-      .post<HandicapTournament>(
-        `${environment.tournament_api_url}/${this.TOURNAMENTS_PATH}/${t.id}/${this.PLAYERS_PATH}`,
-        {
-          player_ids: [p.id],
-        }
-      )
+      .post<HandicapTournament>(`/tournaments/${t.id}/players`, {
+        player_ids: [p.id],
+      })
       .pipe(catchError(this.handleError))
-      .subscribe(this.setSelectedTournament);
+      .subscribe((iT) => this.setSelectedTournament(iT));
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
