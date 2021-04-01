@@ -32,16 +32,13 @@ export class TtUserRegistrationComponent implements OnInit {
       ['UserID', 'Phone or Email', ''],
       ['PIN', 'ex: 123456', ''],
     ];
-    console.log('TEST');
   }
 
   ngOnInit(): void {
     if (this.userService.hasLoggedInUser()) {
       alert('Already logged in');
-      console.log(this.userService.loggedInUser);
       this.router.navigate([TTRoute.HOME]);
     }
-    console.log('Not Logged in');
   }
 
   login(): void {

@@ -61,7 +61,6 @@ export class ResponseMappingInterceptor implements HttpInterceptor {
         this.isTournamentStage(key, value)
       ) {
         body[key] = TournamentStage[value.toUpperCase()];
-        console.log(`Mapping STAGE ${value} to ${body[key]}`);
       } else if (typeof value === 'object') {
         this.convertToDate(value);
       }

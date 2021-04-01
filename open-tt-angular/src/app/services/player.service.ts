@@ -35,4 +35,9 @@ export class PlayerService {
       this.playerUniverseSubject.next(this.playerUniverse);
     });
   }
+
+  playerName(id: number): string {
+    const player = this.playerUniverse.find((p) => p.id === id);
+    return player.name;
+  }
 }

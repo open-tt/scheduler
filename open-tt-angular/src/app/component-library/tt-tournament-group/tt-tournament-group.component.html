@@ -15,7 +15,7 @@
 
     <ng-container
       class="score-cell"
-      *ngFor="let player2 of group.players; let inner_index = index"
+      *ngFor="let player2_id of group.players; let inner_index = index"
       [matColumnDef]="indexToLetter(inner_index)"
     >
       <mat-header-cell *matHeaderCellDef="let _; let i = index">
@@ -25,8 +25,8 @@
         <app-tt-match-result-cell
           simple
           [group]="group"
-          [player1]="player1"
-          [player2]="player2"
+          [player1]="+player1.id"
+          [player2]="player2_id"
         ></app-tt-match-result-cell>
       </mat-cell>
     </ng-container>

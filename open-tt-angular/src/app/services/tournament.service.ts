@@ -17,6 +17,7 @@ import { environment } from '../../environments/environment';
 import { PlayerService } from './player.service';
 import { catchError } from 'rxjs/operators';
 import { BaseApiService } from './base-api.service';
+import { GroupService } from './group.service';
 
 @Injectable({
   providedIn: 'root',
@@ -48,10 +49,12 @@ export class TournamentService {
   constructor(
     private http2222: HttpClient,
     private playerService: PlayerService,
-    private http: BaseApiService
+    private http: BaseApiService,
+    private groupService: GroupService
   ) {
     this.tournamentHistorySubject = new Subject<HandicapTournament[]>();
     this.selectedTournamentSubject = new Subject<HandicapTournament>();
+    this.groupSubjects = new Map();
     // this.selectedTournamentPlayersSubject = new Subject<Player[]>();
     // this.selectedTournamentIsClosedSubject = new Subject<boolean>();
     // this.selectedTournamentGroupsSubject = new Subject<TournamentGroup[]>();
@@ -61,8 +64,19 @@ export class TournamentService {
     // this.notifySelectedTournamentUpdates();
   }
 
+  groupPlayers(g: TournamentGroup): Player[] {
+    const players: Player[] = [];
+    for (const dId of g.players) {
+      const player = this.selectedTournament.players.find((p) => {
+        return p.id.toString() === dId.toString();
+      });
+      players.push(player);
+    }
+    return players;
+  }
+
   getGroupSubscription(id: number): Observable<TournamentGroup> {
-    return this.groupSubjects[id].asObservable();
+    return this.groupSubjects.get(id).asObservable();
   }
 
   addGroupSubject(group: TournamentGroup): void {
@@ -80,8 +94,6 @@ export class TournamentService {
 
   setSelectedTournament(tournament: HandicapTournament): void {
     this.selectedTournament = tournament;
-    console.log('Updated Tournament');
-    console.log(this.selectedTournament);
     if (this.selectedTournament.groups) {
       for (const g of this.selectedTournament.groups) {
         this.addGroupSubject(g);
@@ -140,7 +152,7 @@ export class TournamentService {
     }
 
     for (const g of this.selectedTournament.groups) {
-      if (!g.isOver()) {
+      if (!this.groupService.isOver(g)) {
         return false;
       }
     }
@@ -219,8 +231,7 @@ export class TournamentService {
     }
     this.http
       .post<HandicapTournament>(
-        `${environment.tournament_api_url}/${this.TOURNAMENTS_PATH}/${this.selectedTournament.id}/${this.GROUPS_PATH}`,
-        {}
+        `/tournaments/${this.selectedTournament.id}/groups`
       )
       .pipe(catchError(this.handleError))
       .subscribe((t) => this.setSelectedTournament(t));
@@ -277,7 +288,9 @@ export class TournamentService {
       .subscribe((history) => {
         context.tournamentHistory = history;
         context.tournamentHistorySubject.next(history);
-        context.setSelectedTournament(history[0]);
+        if (history.length > 0) {
+          context.setSelectedTournament(history[0]);
+        }
       });
   }
 
@@ -348,7 +361,9 @@ export class TournamentService {
 
   updateMatchResult(g: TournamentGroup): void {
     for (let i = 0; i < this.selectedTournament.groups.length; i++) {
-      if (this.selectedTournament.groups[i].equals(g)) {
+      if (
+        this.groupService.areSameGroup(g, this.selectedTournament.groups[i])
+      ) {
         this.selectedTournament.groups[i] = g;
         this.selectedTournamentSubject.next(this.selectedTournament);
       }

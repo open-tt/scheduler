@@ -171,6 +171,9 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   }
 
   selectedTournamentIsActive(): boolean {
-    return this.selectedTournament.stage < TournamentStage.CLASSIFICATION;
+    return (
+      this.selectedTournament &&
+      this.selectedTournament.stage < TournamentStage.CLASSIFICATION
+    );
   }
 }

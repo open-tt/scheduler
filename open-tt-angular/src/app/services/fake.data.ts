@@ -204,7 +204,7 @@ export class FakePlayerData {
     let groupIndex = 0;
     players.forEach((player) => {
       if (groupSizes[groupIndex] <= 0) {
-        groups.push(new TournamentGroup(groupPlayers));
+        groups.push({ id: null, players: groupPlayers, matches: [] });
         groupPlayers = [];
         groupIndex += 1;
       }
@@ -212,7 +212,7 @@ export class FakePlayerData {
       groupSizes[groupIndex] -= 1;
     });
     if (groupPlayers.length > 0) {
-      groups.push(new TournamentGroup(groupPlayers));
+      groups.push({ id: null, players: groupPlayers, matches: [] });
     }
 
     return groups;

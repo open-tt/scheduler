@@ -21,158 +21,20 @@ export enum TournamentStage {
   END,
 }
 
-export class TournamentGroup {
-  static subjects: Map<number, Subject<TournamentGroup>[]>;
+export interface TournamentGroup {
   id: number;
-  players: Player[];
-  matches: Match[] = [];
-
-  constructor(players: Player[], matches: Match[] = []) {
-    this.players = players;
-    this.matches = matches;
-  }
-
-  genSubscription(): Observable<TournamentGroup> {
-    return TournamentGroup.subjects[this.id].asObservable();
-  }
-
-  equals(group: TournamentGroup): boolean {
-    if (this.players.length !== group.players.length) {
-      return false;
-    }
-    const ids: number[] = this.players.map((p) => p.id);
-    for (const gp of group.players) {
-      if (!ids.includes(gp.id)) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  standings(): number[] {
-    const scores: number[] = [];
-    this.players.forEach((_) => scores.push(0));
-    this.matches.forEach((match) => {
-      let winner = match.player2;
-      if (match.player1Won()) {
-        winner = match.player1;
-      }
-      scores[this.players.indexOf(winner)] += 1;
-    });
-    return scores;
-  }
-
-  isOver(): boolean {
-    if (!this.matches || this.matches.length === 0) {
-      return false;
-    }
-    for (const match of this.matches) {
-      if (!match.isOver()) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  matchFor(p1: Player, p2: Player): Match {
-    return this.matches.find((m) => m.player1 === p1 && m.player2 === p2);
-  }
-
-  matchScore(p1: Player, p2: Player): number[] {
-    if (p1.id === p2.id) {
-      return undefined;
-    }
-
-    const match = this.matches.find(
-      (m) => m.player1 === p1 && m.player2 === p2
-    );
-    if (!match) {
-      this.matches.push(new Match(p1, p2, []));
-      return [0, 0];
-    }
-    const p1Sets = match.player1Sets().length;
-    const p2Sets = match.player2Sets().length;
-    return [p1Sets, p2Sets];
-  }
+  players: number[];
+  matches: Match[];
 }
 
-export class Match {
-  player1: Player;
-  player2: Player;
-  setScore: number[];
+export interface Match {
+  id: number;
+  player1_id: number;
+  player2_id: number;
+  player1_count_sets_won: number;
+  player2_count_sets_won: number;
+  is_over: boolean;
   sets: MatchSet[];
-
-  constructor(
-    p1: Player,
-    p2: Player,
-    sets: MatchSet[] = [],
-    setScore: number[] = [0, 0]
-  ) {
-    if (p1.id === p2.id) {
-      throw new Error(
-        'Cannot create match where both players are the same person.'
-      );
-    }
-    this.player1 = p1;
-    this.player2 = p2;
-    this.setScore = setScore;
-    this.sets = sets;
-  }
-
-  equals(match: Match): boolean {
-    return this.player1 === match.player1 && this.player2 === match.player2;
-  }
-
-  player1Won(): boolean {
-    const wonBy1 = this.player1Sets();
-    const wonBy2 = this.player2Sets();
-
-    return wonBy1.length > wonBy2.length && wonBy1.length >= 3;
-  }
-
-  finished(): boolean {
-    const wonBy1 = this.player1Sets();
-    const wonBy2 = this.player2Sets();
-
-    return wonBy1.length >= 3 || wonBy2.length >= 3;
-  }
-
-  player1Sets(): MatchSet[] {
-    return this.sets.filter((set) => set.player1Won());
-  }
-
-  player2Sets(): MatchSet[] {
-    return this.sets.filter((set) => !set.player1Won());
-  }
-
-  getSetResultSummary(): string {
-    let count1 = 0;
-    let count2 = 0;
-    this.sets.forEach((res) => {
-      if (res.player1Score > res.player2Score) {
-        count1 += 1;
-      } else {
-        count2 += 1;
-      }
-    });
-    return `${count1} - ${count2}`;
-  }
-
-  setsForPlayer(player: Player): number {
-    if (player.id === this.player1.id) {
-      return this.player1Sets().length;
-    } else if (player.id === this.player2.id) {
-      return this.player2Sets().length;
-    } else {
-      throw new Error(
-        `Player ${player.name} is not in this Match [${this.player1.name}, ${this.player2.name}]`
-      );
-    }
-  }
-
-  isOver(): boolean {
-    return this.setScore.includes(environment.default_winning_score);
-  }
 }
 
 export class MatchSet {

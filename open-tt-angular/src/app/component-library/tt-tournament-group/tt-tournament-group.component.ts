@@ -4,6 +4,7 @@ import { TournamentGroup } from '../../models/tournament';
 import { Player } from '../../models/player';
 import { Subscription } from 'rxjs';
 import { TournamentService } from '../../services/tournament.service';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'app-tt-tournament-group',
@@ -21,27 +22,32 @@ export class TtTournamentGroupComponent implements OnInit {
   displayedColumns = [];
   groupIsOver = false;
 
-  constructor(private tournamentService: TournamentService) {}
+  constructor(
+    private tournamentService: TournamentService,
+    private groupService: GroupService
+  ) {}
 
   ngOnInit(): void {
     if (!this.group) {
       throw new Error('group is required for tt-tournament-group');
     }
-
-    this.dataSource = new MatTableDataSource<Player>(this.group.players);
+    const pp = this.tournamentService.groupPlayers(this.group);
+    this.dataSource = new MatTableDataSource<Player>(pp);
 
     this.subscription = this.tournamentService
       .getGroupSubscription(this.group.id)
       .subscribe((group: TournamentGroup) => {
-        if (group.equals(this.group)) {
+        if (this.groupService.areSameGroup(group, this.group)) {
           this.group = group;
-          this.dataSource = new MatTableDataSource<Player>(this.group.players);
+          this.dataSource = new MatTableDataSource<Player>(
+            this.tournamentService.groupPlayers(this.group)
+          );
           this.displayedColumns = this.generateDisplayColumns();
-          this.groupIsOver = this.group.isOver();
+          this.groupIsOver = this.groupService.isOver(this.group);
         }
       });
     this.displayedColumns = this.generateDisplayColumns();
-    this.groupIsOver = this.group.isOver();
+    this.groupIsOver = this.groupService.isOver(this.group);
   }
 
   generateDisplayColumns(): string[] {
@@ -54,25 +60,5 @@ export class TtTournamentGroupComponent implements OnInit {
 
   indexToLetter(i: number): string {
     return String.fromCharCode(i + 65);
-  }
-
-  // isOver(): boolean {
-  //   this.group.isOver();
-  // }
-
-  getResult(name1: string, name2: string): string {
-    if (name1 === name2) {
-      return '-';
-    }
-
-    return '3 - 2';
-
-    const match = this.group.matches.find(
-      (res) => res.player1.name === name1 && res.player2.name === name2
-    );
-    if (match) {
-      return match.getSetResultSummary();
-    }
-    return '';
   }
 }

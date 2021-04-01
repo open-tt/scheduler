@@ -27,8 +27,6 @@ export class TtAutocompleteSearchComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log('this.allPlayerNames');
-    console.log(this.allPlayerNames);
     this.filteredPlayerNames = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value))

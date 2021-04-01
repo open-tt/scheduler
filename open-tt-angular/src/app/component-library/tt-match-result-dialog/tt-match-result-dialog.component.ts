@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Player } from '../../models/player';
 import { Match } from '../../models/tournament';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-tt-match-result-dialog',
@@ -11,28 +11,32 @@ import { Match } from '../../models/tournament';
 export class TtMatchResultDialogComponent {
   displayedColumns = ['player', 'sets'];
   sets: {
-    player: Player;
+    player: number;
     score: number;
   }[];
 
   constructor(
     public dialogRef: MatDialogRef<TtMatchResultDialogComponent>,
+    private playerService: PlayerService,
     @Inject(MAT_DIALOG_DATA) public match: Match
   ) {
     this.sets = [
       {
-        player: match.player1,
-        score: match.setScore[0],
+        player: match.player1_id,
+        score: match.player1_count_sets_won,
       },
       {
-        player: match.player2,
-        score: match.setScore[1],
+        player: match.player2_id,
+        score: match.player2_count_sets_won,
       },
     ];
   }
 
+  playerName(id: number): string {
+    return this.playerService.playerName(id);
+  }
+
   sendResult(): void {
-    this.match.setScore = [+this.sets[0].score, +this.sets[1].score];
     this.dialogRef.close(this.match);
   }
 }
