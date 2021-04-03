@@ -27,7 +27,8 @@ class Tournament < ApplicationRecord
     players << player_hash
 
     (add_to_waiting_list(player_hash) unless add_to_group(player_hash)) if classification?
-    create_extra_group if waitingList.count >= DEFAULT_MIN_PLAYERS_PER_GROUP
+    self.waitingList = [] if self.waitingList.nil?
+    create_extra_group if self.waitingList.count >= DEFAULT_MIN_PLAYERS_PER_GROUP
     save!
   end
 
@@ -48,7 +49,7 @@ class Tournament < ApplicationRecord
 
     return false unless g
 
-    g.players << player_hash['id']
+    g.players << player_hash[:id]
     g.save!
     true
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210117215250) do
+ActiveRecord::Schema.define(version: 20210329025346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 20210117215250) do
   create_table "tournaments", force: :cascade do |t|
     t.date     "scheduled_at"
     t.integer  "stage"
-    t.jsonb    "creator"
-    t.jsonb    "players"
+    t.jsonb    "creator",      default: []
+    t.jsonb    "players",      default: []
     t.jsonb    "waitingList"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_foreign_key "groups", "tournaments"

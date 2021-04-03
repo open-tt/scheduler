@@ -5,6 +5,14 @@ TODO:
 
 ## Overview (TODO)
 
+#### Start Development Postgres Database
+
+    docker run --name tournament-service-postgres-development \
+      -p 5452:5432 \
+      -e POSTGRES_USER=userservice \
+      -e POSTGRES_PASSWORD=userservice \
+      -d postgres
+
 ## How to Run
 
 #### Start isolated PgSql server 

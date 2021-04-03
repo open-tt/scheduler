@@ -8,7 +8,7 @@ class Round < ApplicationRecord
 
   def is_over?
     matches.each do |mat|
-      return false unless mat.is_over?
+      return false unless mat.over?
     end
     true
   end

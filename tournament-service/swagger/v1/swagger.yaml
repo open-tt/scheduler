@@ -17,72 +17,63 @@ components:
         newId:
           type: integer
 paths:
-  "/groups/{id}/match":
+  "/match/{id}":
     get:
       summary: Get a match between 2 players
       tags:
-        - Groups
+      - Groups
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: player1
-          in: query
-          schema:
-            type: integer
-        - name: player2
-          in: query
-          schema:
-            type: integer
-        - name: should_create
-          in: query
-          default: false
-          schema:
-            type: boolean
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "200":
+        '200':
           description: Find Match
           content: {}
     put:
       summary: Create a set for a match
       tags:
-        - Groups
+      - Groups
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: player1
-          in: query
-          schema:
-            type: integer
-        - name: player1_score
-          in: query
-          schema:
-            type: integer
-        - name: player2
-          in: query
-          schema:
-            type: integer
-        - name: player2_score
-          in: query
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "201":
-          description: Created Set
+        '200':
+          description: Updated Match
           content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sets:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                      player1_id:
+                        type: integer
+                      player2_id:
+                        type: integer
+                      player1_score:
+                        type: integer
+                      player2_score:
+                        type: integer
   "/tournaments":
     post:
       summary: Creates New Tournament
       tags:
-        - Tournaments
+      - Tournaments
       parameters: []
       responses:
-        "201":
+        '201':
           description: Tournament Created
           content: {}
       requestBody:
@@ -96,57 +87,57 @@ paths:
                 org_id:
                   type: integer
               required:
-                - user_id
+              - user_id
     get:
       summary: Index Tournaments
       tags:
-        - Tournaments
+      - Tournaments
       responses:
-        "200":
+        '200':
           description: Get all tournaments
           content: {}
   "/tournaments/{id}":
     delete:
       summary: Delete Tournament
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "204":
+        '204':
           description: Tournament Deleted
           content: {}
     get:
       summary: Retrieve a single tournament
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "200":
+        '200':
           description: Get one tournament by id
           content: {}
   "/tournaments/{id}/players":
     post:
       summary: Adds a player to the tournament
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "201":
+        '201':
           description: Add player
           content: {}
       requestBody:
@@ -166,21 +157,21 @@ paths:
                       rating:
                         type: integer
                     required:
-                      - user_id
-                      - name
-                      - rating
+                    - user_id
+                    - name
+                    - rating
     delete:
       summary: Remove Players
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "204":
+        '204':
           description: Remove player
           content: {}
       requestBody:
@@ -197,30 +188,30 @@ paths:
     post:
       summary: Create Groups for the tournament using registered users
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "201":
+        '201':
           description: Create Group
           content: {}
   "/tournaments/{id}/playoffs":
     post:
       summary: Create Playoffs for the tournament from the existing groups
       tags:
-        - Tournaments
+      - Tournaments
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
-        "201":
+        '201':
           description: Create Playoffs
           content: {}
       requestBody:
@@ -237,39 +228,39 @@ paths:
     put:
       summary: Update Playoffs
       tags:
-        - Groups
+      - Groups
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: player1
-          in: query
-          schema:
-            type: integer
-        - name: player1_score
-          in: query
-          schema:
-            type: integer
-        - name: player2
-          in: query
-          schema:
-            type: integer
-        - name: player2_score
-          in: query
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: player1
+        in: query
+        schema:
+          type: integer
+      - name: player1_score
+        in: query
+        schema:
+          type: integer
+      - name: player2
+        in: query
+        schema:
+          type: integer
+      - name: player2_score
+        in: query
+        schema:
+          type: integer
       responses:
-        "201":
+        '201':
           description: Created Set
           content: {}
 servers:
-  - url: http://{defaultHost}
-    variables:
-      defaultHost:
-        default: localhost:3002
-  - url: https://{defaultHost}
-    variables:
-      defaultHost:
-        default: localhost:3002
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3002
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3002

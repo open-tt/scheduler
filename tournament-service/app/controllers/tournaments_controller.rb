@@ -2,7 +2,8 @@
 
 class TournamentsController < ApplicationController
   def index
-    render json: { tournaments: Tournament.all }, status: :ok
+    # return an array of tournaments [{}, {}]
+    render json: Tournament.all, status: :ok
   end
 
   def show
@@ -10,8 +11,11 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    tour = Tournament.new(creator: create_tournament_params, stage: Tournament.stages[:registration], scheduled_at: Date
-                                                                                                              .current)
+    tour = Tournament.new(
+      creator: create_tournament_params,
+      stage: Tournament.stages[:registration],
+      scheduled_at: Date.current
+    )
     if tour.save
       render json: tour, status: :created
     else
@@ -40,7 +44,8 @@ class TournamentsController < ApplicationController
       tour.reload
       render json: tour, status: :created
     rescue StandardError => e
-      render json: { error: e.message }, status: :internal_server_error
+      Rails.logger.error(e.full_message)
+      render json: { error: e.message, more: e.as_json }, status: :internal_server_error
     end
   end
 
@@ -89,7 +94,7 @@ class TournamentsController < ApplicationController
       params[:player2],
       params[:player2_score]
     )
-    playoff.create_next_round if playoff.rounds.last.is_over? && !playoff.rounds.last.is_final?
+    playoff.create_next_round if playoff.rounds.last.over? && !playoff.rounds.last.is_final?
     render json: playoff.tournament
   end
 

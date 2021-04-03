@@ -4,22 +4,13 @@ RSpec.describe 'Tournaments API', type: :request do
   before do
   end
 
-  # path '/groups' do
-  # end
-  #
-  # path '/groups/{id}' do
-  # end
-
-  path '/groups/{id}/match' do
+  path '/match/{id}' do
     get 'Get a match between 2 players' do
       tags 'Groups'
       consumes 'application/json'
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :integer
-      parameter name: :player1, in: :query, type: :integer
-      parameter name: :player2, in: :query, type: :integer
-      parameter name: :should_create, in: :query, type: :boolean, default: false
 
       response '200', 'Find Match' do
         run_test!
@@ -32,12 +23,25 @@ RSpec.describe 'Tournaments API', type: :request do
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :integer
-      parameter name: :player1, in: :query, type: :integer
-      parameter name: :player1_score, in: :query, type: :integer
-      parameter name: :player2, in: :query, type: :integer
-      parameter name: :player2_score, in: :query, type: :integer
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          sets: {
+            type: :array,
+            items: {
+              properties: {
+                id: { type: :integer },
+                player1_id: { type: :integer },
+                player2_id: { type: :integer },
+                player1_score: { type: :integer },
+                player2_score: { type: :integer }
+              }
+            }
+          }
+        }
+      }
 
-      response '201', 'Created Set' do
+      response '200', 'Updated Match' do
         run_test!
       end
     end

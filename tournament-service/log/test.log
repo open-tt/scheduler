@@ -182,3 +182,43 @@ FOREIGN KEY ("playoff_id")
   [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 18:30:20 -0400
+Processing by TournamentsController#create as JSON
+  Parameters: {"_json"=>nil, "tournament"=>{}}
+Unpermitted parameters: _json, tournament
+  [1m[35m (1.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (4.4ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{}"], ["created_at", "2021-03-14 22:30:20.897183"], ["updated_at", "2021-03-14 22:30:20.897183"]]
+  [1m[35m (1.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+[active_model_serializers]   [1m[36mGroup Load (2.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 1]]
+[active_model_serializers]   [1m[36mPlayoff Load (2.3ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (36.33ms)
+Completed 201 Created in 82ms (Views: 46.7ms | ActiveRecord: 27.9ms)
+  [1m[35m (1.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+Started GET "/tournaments" for 127.0.0.1 at 2021-03-14 18:30:20 -0400
+Processing by TournamentsController#index as JSON
+  Parameters: {"tournament"=>{}}
+[active_model_serializers]   [1m[36mTournament Load (1.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.54ms)
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 1.1ms)
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m

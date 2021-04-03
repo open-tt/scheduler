@@ -8,28 +8,28 @@ class Match < ApplicationRecord
 
   # returns id of winner or -1
   def winner
-    return player1_id if player1_won
-    return player2_id if player2_won
+    return player1_id if player1_won?
+    return player2_id if player2_won?
 
     -1
   end
 
-  def is_over?
-    player1_won or player2_won
+  def over?
+    player1_won? or player2_won?
   end
 
   def player_x_won(player_id)
-    return player1_won if player_id == player1_id
-    return player2_won if player_id == player2_won
+    return player1_won? if player_id == player1_id
+    return player2_won? if player_id == player2_won?
 
     false
   end
 
-  def player1_won
+  def player1_won?
     player1_count_sets_won > best_of / 2
   end
 
-  def player2_won
+  def player2_won?
     player2_count_sets_won > best_of / 2
   end
 
@@ -52,6 +52,12 @@ class Match < ApplicationRecord
   end
 
   def finished
-    player1_won or player2_won
+    player1_won? or player2_won?
+  end
+
+  private
+
+  def generate_sets
+    # todo: Maybe ?
   end
 end

@@ -4,22 +4,24 @@ class Group < ApplicationRecord
   has_many :matches, dependent: :destroy
   belongs_to :tournament
 
+  after_create :generate_matches
+
   def finished_all_matches?
     return false unless expected_total_matches == matches.count
 
     for mat in matches
-      return false unless mat.is_over?
+      return false unless mat.over?
     end
 
     true
   end
 
   def total_matches_in_progress
-    matches.map { |mat| mat.is_over? ? 0 : 1 }.reduce(:+)
+    matches.map { |mat| mat.over? ? 0 : 1 }.reduce(:+)
   end
 
   def total_matches_over
-    matches.map { |mat| mat.is_over? ? 1 : 0 }.reduce(:+)
+    matches.map { |mat| mat.over? ? 1 : 0 }.reduce(:+)
   end
 
   def expected_total_matches
@@ -73,6 +75,24 @@ class Group < ApplicationRecord
   end
 
   private
+
+  def generate_matches
+    i = 0
+
+    while i < players.count
+      j = i + 1
+      while j < players.count
+        matches.create!(
+          best_of: 5,
+          player1_id: players[i],
+          player2_id: players[j]
+        )
+        Rails.logger.warn `Created match for #{players[i]} and #{players[j]}`
+        j += 1
+      end
+      i += 1
+    end
+  end
 
   def get_first_n_with_conflict(ranks, nth)
     val = ranks[nth][1]

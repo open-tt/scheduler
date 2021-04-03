@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   delete  '/tournaments/:id/players' => 'tournaments#remove_players'
 
   # Groups
-  get '/groups/:id/match' => 'groups#find_match'
-  put '/groups/:id/match' => 'groups#create_set'
+  get '/match/:id' => 'groups#find_match'
+  put '/match/:id' => 'groups#update_match'
 
   # Playoffs
   put '/playoffs/:id/match' => 'tournaments#update_playoffs_match'

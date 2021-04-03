@@ -7,8 +7,8 @@ class Playoff < ApplicationRecord
     match = rounds.last.matches.select do |mat|
       mat.player1_id == player1.to_i && mat.player2_id == player2.to_i
     end.first
-    match.is_over?
-    if match.is_over?
+    match.over?
+    if match.over?
       raise StandardError, "Cannot add set to match {#{match.id}} that has already finished. Winner #{match.winner}"
     end
 
@@ -21,7 +21,7 @@ class Playoff < ApplicationRecord
   end
 
   def is_over
-    rounds.last.is_final? && rounds.last.is_over?
+    rounds.last.is_final? && rounds.last.over?
   end
 
   def create_next_round
