@@ -30,7 +30,7 @@ export class TtMatchResultDialogComponent {
     { value: 'tacos-2', viewValue: 'Tacos' },
   ];
 
-  scoreboardColumns = ['player', 'set1', 'set2', 'set3'];
+  scoreboardColumns = ['player', 'set1', 'set2', 'set3', 'set4', 'set5'];
 
   constructor(
     public dialogRef: MatDialogRef<TtMatchResultDialogComponent>,
@@ -100,19 +100,6 @@ export class TtMatchResultDialogComponent {
             : null,
       },
     ];
-
-    if (this.match.match_sets.length > 3) {
-      this.scoreboardColumns = ['player', 'set1', 'set2', 'set3', 'set4'];
-    } else if (this.scoreboard.length > 4) {
-      this.scoreboardColumns = [
-        'player',
-        'set1',
-        'set2',
-        'set3',
-        'set4',
-        'set5',
-      ];
-    }
   }
 
   playerName(id: number): string {
@@ -120,6 +107,18 @@ export class TtMatchResultDialogComponent {
   }
 
   sendResult(): void {
+    this.scoreboardColumns.slice(1).forEach((col, index) => {
+      if (this.match.match_sets.length === index) {
+        this.match.match_sets.push({
+          id: null,
+          player1_score: 0,
+          player2_score: 0,
+        });
+      }
+      this.match.match_sets[index].player1_score = this.scoreboard[0][col];
+      this.match.match_sets[index].player2_score = this.scoreboard[1][col];
+    });
+
     for (let i = 0; i < this.match.match_sets.length; i++) {
       this.match.match_sets[i].player1_score = this.scoreboard[0][
         'set' + (i + 1)

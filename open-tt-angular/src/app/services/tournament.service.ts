@@ -369,6 +369,8 @@ export class TournamentService {
     this.matchService
       .updateMatchResult(match)
       .subscribe((responseMatch: Match) => {
+        console.log('responseMatch');
+        console.log(responseMatch);
         let updated = false;
         this.selectedTournament.groups.forEach((g) => {
           g.matches.forEach((m) => {
@@ -380,6 +382,7 @@ export class TournamentService {
             m.player2_count_sets_won = responseMatch.player2_count_sets_won;
             updated = true;
             this.groupSubjects.get(g.id).next(g);
+            console.log(g);
           });
         });
         if (updated) {

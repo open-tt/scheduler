@@ -1,7 +1,13 @@
 <div *ngIf="selfMatch">-</div>
 
 <div (click)="openDialog()" *ngIf="match">
-  {{ this.match.player1_count_sets_won }} - {{ this.match.player2_count_sets_won }}
+  <div *ngIf="match.inverted">
+    {{ this.match.player2_count_sets_won }} - {{ this.match.player1_count_sets_won }}
+  </div>
+
+  <div *ngIf="!match.inverted">
+    {{ this.match.player1_count_sets_won }} - {{ this.match.player2_count_sets_won }}
+  </div>
 </div>
 
 <div (click)="openDialog()" *ngIf="!match && !selfMatch">

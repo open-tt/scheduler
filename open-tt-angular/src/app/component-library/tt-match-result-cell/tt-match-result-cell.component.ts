@@ -5,7 +5,6 @@ import { TtMatchResultDialogComponent } from '../tt-match-result-dialog/tt-match
 import { environment } from '../../../environments/environment';
 import { GroupService } from '../../services/group.service';
 import { TournamentService } from '../../services/tournament.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tt-match-result-cell',
@@ -14,9 +13,6 @@ import { Subscription } from 'rxjs';
 })
 export class TtMatchResultCellComponent implements OnInit {
   @Input() match: Match;
-  // @Input() group: TournamentGroup;
-  // @Input() player1: number;
-  // @Input() player2: number;
   @Input() selfMatch = false;
   @Input() winningScore = environment.default_winning_score;
 
@@ -25,8 +21,7 @@ export class TtMatchResultCellComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    public tournamentService: TournamentService,
-    private groupService: GroupService
+    public tournamentService: TournamentService
   ) {}
 
   ngOnInit(): void {

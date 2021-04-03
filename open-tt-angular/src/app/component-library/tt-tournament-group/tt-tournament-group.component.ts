@@ -50,7 +50,27 @@ export class TtTournamentGroupComponent implements OnInit {
   }
 
   findMatch(p1: number, p2: number): Match {
-    return this.groupService.matchFor(this.group, p1, p2);
+    let m = this.groupService.matchFor(this.group, p1, p2);
+    if (!m) {
+      m = this.groupService.matchFor(this.group, p2, p1);
+      if (!m) {
+        return m;
+      }
+      // Return copy of the match with the inverted variable set to flip score in UI
+      // Cannot set inverted in original match bc it will update previous ref to that object.
+      return {
+        id: m.id,
+        player1_id: m.player1_id,
+        player2_id: m.player2_id,
+        player1_count_sets_won: m.player1_count_sets_won,
+        player2_count_sets_won: m.player2_count_sets_won,
+        is_over: m.is_over,
+        match_sets: m.match_sets,
+        inverted: true,
+      };
+    }
+
+    return m;
   }
 
   generateDisplayColumns(): string[] {

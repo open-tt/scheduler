@@ -39,4 +39,5 @@ export interface Match {
     player1_score: number;
     player2_score: number;
   }[];
+  inverted: boolean;
 }
