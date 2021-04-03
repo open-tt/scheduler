@@ -64,6 +64,7 @@ export class TtTournamentGroupComponent implements OnInit {
         player2_id: m.player2_id,
         player1_count_sets_won: m.player1_count_sets_won,
         player2_count_sets_won: m.player2_count_sets_won,
+        player1_won: m.player1_won,
         is_over: m.is_over,
         match_sets: m.match_sets,
         inverted: true,

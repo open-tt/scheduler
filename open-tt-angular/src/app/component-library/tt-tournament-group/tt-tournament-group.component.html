@@ -24,8 +24,9 @@
       </mat-header-cell>
 
       <!--   player1 is the object being iterated from dataSource   -->
-      <mat-cell *matCellDef="let player1">
+      <mat-cell *matCellDef="let player1" fxLayout="column">
         <app-tt-match-result-cell
+                fxFlexFill
                 [match]="findMatch(+player1.id, player2_id)"
                 [selfMatch]="+player1.id === player2_id"
         ></app-tt-match-result-cell>

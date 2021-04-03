@@ -1,15 +1,19 @@
-<div *ngIf="selfMatch">-</div>
+<div>
+  <div [className]="matchStyle()" fxLayout="row" fxLayoutAlign="space-around center">
+    <div *ngIf="selfMatch">-</div>
 
-<div (click)="openDialog()" *ngIf="match">
-  <div *ngIf="match.inverted">
-    {{ this.match.player2_count_sets_won }} - {{ this.match.player1_count_sets_won }}
+    <div (click)="openDialog()" *ngIf="match">
+      <div *ngIf="match.inverted">
+        {{ this.match.player2_count_sets_won }} - {{ this.match.player1_count_sets_won }}
+      </div>
+
+      <div *ngIf="!match.inverted">
+        {{ this.match.player1_count_sets_won }} - {{ this.match.player2_count_sets_won }}
+      </div>
+    </div>
+
+    <div (click)="openDialog()" *ngIf="!match && !selfMatch">
+      0 - 0
+    </div>
   </div>
-
-  <div *ngIf="!match.inverted">
-    {{ this.match.player1_count_sets_won }} - {{ this.match.player2_count_sets_won }}
-  </div>
-</div>
-
-<div (click)="openDialog()" *ngIf="!match && !selfMatch">
-  0 - 0
 </div>

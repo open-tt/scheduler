@@ -377,9 +377,10 @@ export class TournamentService {
             if (m.id !== responseMatch.id) {
               return;
             }
-            m.match_sets = responseMatch.match_sets;
-            m.player1_count_sets_won = responseMatch.player1_count_sets_won;
-            m.player2_count_sets_won = responseMatch.player2_count_sets_won;
+            // Update all the keys of this match with their updated values.
+            Object.keys(m).forEach((key) => {
+              m[key] = responseMatch[key];
+            });
             updated = true;
             this.groupSubjects.get(g.id).next(g);
             console.log(g);

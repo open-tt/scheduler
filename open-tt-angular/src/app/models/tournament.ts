@@ -28,16 +28,20 @@ export interface TournamentGroup {
 }
 
 export interface Match {
+  // Server side variables
   id: number;
   player1_id: number;
   player2_id: number;
   player1_count_sets_won: number;
   player2_count_sets_won: number;
+  player1_won: boolean;
   is_over: boolean;
   match_sets: {
     id: number;
     player1_score: number;
     player2_score: number;
   }[];
+
+  // Client side variables
   inverted: boolean;
 }

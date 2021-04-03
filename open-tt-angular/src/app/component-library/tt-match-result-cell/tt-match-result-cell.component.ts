@@ -3,13 +3,12 @@ import { Match } from '../../models/tournament';
 import { MatDialog } from '@angular/material/dialog';
 import { TtMatchResultDialogComponent } from '../tt-match-result-dialog/tt-match-result-dialog.component';
 import { environment } from '../../../environments/environment';
-import { GroupService } from '../../services/group.service';
 import { TournamentService } from '../../services/tournament.service';
 
 @Component({
   selector: 'app-tt-match-result-cell',
   templateUrl: './tt-match-result-cell.component.html',
-  styleUrls: ['./tt-match-result-cell.component.css'],
+  styleUrls: ['./tt-match-result-cell.component.scss'],
 })
 export class TtMatchResultCellComponent implements OnInit {
   @Input() match: Match;
@@ -28,6 +27,20 @@ export class TtMatchResultCellComponent implements OnInit {
     if (!this.match) {
       return;
     }
+  }
+
+  matchStyle(): string {
+    // debugger;
+    if (!this.match) {
+      return '';
+    }
+
+    if (this.match.is_over && this.match.player1_won) {
+      return this.match.inverted ? 'looserColorText' : 'winnerColorText';
+    } else if (this.match.is_over) {
+      return this.match.inverted ? 'winnerColorText' : 'looserColorText';
+    }
+    return '';
   }
 
   openDialog(): void {
