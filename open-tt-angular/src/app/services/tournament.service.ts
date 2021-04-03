@@ -2,22 +2,18 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import {
   HandicapTournament,
+  Match,
   TournamentGroup,
   TournamentStage,
 } from '../models/tournament';
-import {
-  FakeHandicapTournamentApi,
-  FakeTournamentData,
-  testRounds,
-} from './fake.data';
 import { Player } from '../models/player';
-import { NgttTournament } from 'ng-tournament-tree';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { PlayerService } from './player.service';
 import { catchError } from 'rxjs/operators';
 import { BaseApiService } from './base-api.service';
 import { GroupService } from './group.service';
+import { MatchService } from './match.service';
 
 @Injectable({
   providedIn: 'root',
@@ -50,7 +46,8 @@ export class TournamentService {
     private http2222: HttpClient,
     private playerService: PlayerService,
     private http: BaseApiService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private matchService: MatchService
   ) {
     this.tournamentHistorySubject = new Subject<HandicapTournament[]>();
     this.selectedTournamentSubject = new Subject<HandicapTournament>();
@@ -361,13 +358,34 @@ export class TournamentService {
 
   updateMatchResult(g: TournamentGroup): void {
     for (let i = 0; i < this.selectedTournament.groups.length; i++) {
-      if (
-        this.groupService.areSameGroup(g, this.selectedTournament.groups[i])
-      ) {
+      if (g.id === this.selectedTournament.groups[i].id) {
         this.selectedTournament.groups[i] = g;
         this.selectedTournamentSubject.next(this.selectedTournament);
       }
     }
+  }
+
+  updateSingleMatch(match: Match): void {
+    this.matchService
+      .updateMatchResult(match)
+      .subscribe((responseMatch: Match) => {
+        let updated = false;
+        this.selectedTournament.groups.forEach((g) => {
+          g.matches.forEach((m) => {
+            if (m.id !== responseMatch.id) {
+              return;
+            }
+            m.match_sets = responseMatch.match_sets;
+            m.player1_count_sets_won = responseMatch.player1_count_sets_won;
+            m.player2_count_sets_won = responseMatch.player2_count_sets_won;
+            updated = true;
+            this.groupSubjects.get(g.id).next(g);
+          });
+        });
+        if (updated) {
+          this.selectedTournamentSubject.next(this.selectedTournament);
+        }
+      });
   }
 
   //
@@ -381,51 +399,5 @@ export class TournamentService {
   //
   // selectedTournamentPlayers(): Player[] {
   //   return this.selectedTournament ? this.selectedTournament.players : [];
-  // }
-
-  // ------------------------- Notifiers --------------------- //
-  // --------------------------------------------------------- //
-  // notifySelectedTournamentUpdates(
-  //   shouldNotify: {
-  //     tournament?: true;
-  //     players?: true;
-  //     isClosed?: true;
-  //     group?: true;
-  //     groups?: true;
-  //     playoffs?: true;
-  //     history?: true;
-  //   } = {
-  //     tournament: true,
-  //     players: true,
-  //     isClosed: true,
-  //     group: true,
-  //     groups: true,
-  //     playoffs: true,
-  //     history: true,
-  //   },
-  //   g?: TournamentGroup
-  // ): void {
-  //   if (shouldNotify.tournament) {
-  //     this.selectedTournamentSubject.next(this.selectedTournament);
-  //   }
-  //   if (shouldNotify.players) {
-  //     this.selectedTournamentPlayersSubject.next(
-  //       this.selectedTournament.players
-  //     );
-  //   }
-  //   if (shouldNotify.group && !!g) {
-  //     this.selectedTournamentGroupSubject.next(g);
-  //   }
-  //   if (shouldNotify.groups) {
-  //     this.selectedTournamentGroupsSubject.next(this.selectedTournament.groups);
-  //   }
-  //   if (shouldNotify.playoffs) {
-  //     this.selectedTournamentPlayoffsSubject.next(
-  //       this.selectedTournament.playoff
-  //     );
-  //   }
-  //   if (shouldNotify.history) {
-  //     this.tournamentHistorySubject.next(this.tournamentHistory);
-  //   }
   // }
 }

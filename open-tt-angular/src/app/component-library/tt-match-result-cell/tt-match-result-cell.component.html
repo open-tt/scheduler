@@ -1,9 +1,9 @@
-<div *ngIf="player1 === player2">-</div>
+<div *ngIf="selfMatch">-</div>
 
-<div (click)="openDialog()" *ngIf="score">
-  {{ score[0] }} - {{ score[1] }}
+<div (click)="openDialog()" *ngIf="match">
+  {{ this.match.player1_count_sets_won }} - {{ this.match.player2_count_sets_won }}
 </div>
 
-<div (click)="openDialog()" *ngIf="!score && player1 !== player2">
+<div (click)="openDialog()" *ngIf="!match && !selfMatch">
   0 - 0
 </div>

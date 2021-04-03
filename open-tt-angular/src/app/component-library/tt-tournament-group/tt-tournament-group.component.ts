@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { TournamentGroup } from '../../models/tournament';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Match, TournamentGroup } from '../../models/tournament';
 import { Player } from '../../models/player';
 import { Subscription } from 'rxjs';
 import { TournamentService } from '../../services/tournament.service';
@@ -37,17 +37,20 @@ export class TtTournamentGroupComponent implements OnInit {
     this.subscription = this.tournamentService
       .getGroupSubscription(this.group.id)
       .subscribe((group: TournamentGroup) => {
-        if (this.groupService.areSameGroup(group, this.group)) {
+        if (group.id === this.group.id) {
           this.group = group;
-          this.dataSource = new MatTableDataSource<Player>(
-            this.tournamentService.groupPlayers(this.group)
-          );
+          const playersList = this.tournamentService.groupPlayers(this.group);
+          this.dataSource = new MatTableDataSource<Player>([...playersList]);
           this.displayedColumns = this.generateDisplayColumns();
           this.groupIsOver = this.groupService.isOver(this.group);
         }
       });
     this.displayedColumns = this.generateDisplayColumns();
     this.groupIsOver = this.groupService.isOver(this.group);
+  }
+
+  findMatch(p1: number, p2: number): Match {
+    return this.groupService.matchFor(this.group, p1, p2);
   }
 
   generateDisplayColumns(): string[] {

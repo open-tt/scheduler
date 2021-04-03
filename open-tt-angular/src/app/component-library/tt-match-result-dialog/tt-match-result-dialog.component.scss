@@ -1,3 +1,38 @@
-.mat-column-player {
-  flex: 0 0 70%;
+//.mat-column-player {
+//  flex: 0 0 70%;
+//}
+
+.mat-cell {
+  padding: 0;
+  justify-content: center;
 }
+
+input {
+  text-align: center;
+}
+
+.mat-header-cell {
+  min-width: 2em;
+  padding: 0;
+}
+
+.mat-column-set1 {
+  justify-content: center;
+}
+
+.mat-column-set2 {
+  justify-content: center;
+}
+
+.mat-column-set3 {
+  justify-content: center;
+}
+
+.mat-column-set4 {
+  justify-content: center;
+}
+
+.mat-column-set5 {
+  justify-content: center;
+}
+

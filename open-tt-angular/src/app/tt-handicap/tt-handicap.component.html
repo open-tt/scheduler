@@ -112,7 +112,7 @@
   </div>
 
   <!-- Tabs -->
-  <mat-tab-group mat-stretch-tabs selectedIndex="0">
+  <mat-tab-group mat-stretch-tabs [selectedIndex]="selectActiveTab()">
     <!-- Tab 1: Registration -->
     <mat-tab label="Registration">
       <app-tt-autocomplete-search

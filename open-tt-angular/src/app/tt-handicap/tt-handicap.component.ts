@@ -28,12 +28,11 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   tournamentHistorySubscription: Subscription;
   playerUniverseSubscription: Subscription;
   selectedTournamentGroupsSubscription: Subscription;
-
   tournamentHistory: HandicapTournament[];
   groups: TournamentGroup[];
-
   registeredPlayers: Player[];
   playerUniverse: Player[];
+  selectedTab = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -68,6 +67,17 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.tournamentHistorySubscription.unsubscribe();
     this.selectedTournamentSubscription.unsubscribe();
+  }
+
+  selectActiveTab(): number {
+    // Set the focused tab on load
+    if (!this.shouldDisablePlayoffs()) {
+      return 2;
+    } else if (!this.shouldDisableGroups()) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   inClassifiers(): boolean {

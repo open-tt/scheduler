@@ -1,32 +1,57 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <div>{{ playerName(match.player1_id) }}</div>
-  <div>V.S.</div>
-  <div>{{ playerName(match.player2_id) }}</div>
-</div>
+
 <div mat-dialog-content>
   <!--  <mat-form-field>-->
   <!--    <mat-label>Name</mat-label>-->
   <!--    <input matInput [(ngModel)]="player.name">-->
   <!--  </mat-form-field>-->
-  <mat-table [dataSource]="sets">
-    <ng-container matColumnDef="player">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let set"> {{ set.player.name }} </mat-cell>
-    </ng-container>
+  <div *ngIf="false">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div>{{ playerName(match.player1_id) }}</div>
+      <div>V.S.</div>
+      <div>{{ playerName(match.player2_id) }}</div>
+    </div>
 
-    <ng-container matColumnDef="sets">
-      <mat-header-cell *matHeaderCellDef>W</mat-header-cell>
-      <mat-cell *matCellDef="let set">
-        <mat-form-field>
-          <mat-label>Wins</mat-label>
-          <input matInput [(ngModel)]="set.score" />
-        </mat-form-field>
-      </mat-cell>
-    </ng-container>
+    <mat-table [dataSource]="sets">
+      <ng-container matColumnDef="player">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let set"> {{ set.player.name }} </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-  </mat-table>
+      <ng-container matColumnDef="sets">
+        <mat-header-cell *matHeaderCellDef>W</mat-header-cell>
+        <mat-cell *matCellDef="let set">
+          <mat-form-field>
+            <mat-label>Wins</mat-label>
+            <input matInput [(ngModel)]="set.score" />
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </div>
+
+  <div *ngIf="true">
+    <mat-table [dataSource]="scoreboard">
+      <ng-container matColumnDef="player">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let scoreRow"> {{ scoreRow.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container [matColumnDef]="column" *ngFor="let column of scoreboardColumns.slice(1); let i = index">
+        <mat-header-cell
+                *matHeaderCellDef>{{i+1}}</mat-header-cell>
+        <mat-cell *matCellDef="let scoreRow">
+          <input matInput type="number" [(ngModel)]="scoreRow[column]">
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="scoreboardColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: scoreboardColumns"></mat-row>
+    </mat-table>
+  </div>
+
 </div>
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center">
   <button mat-button mat-dialog-close>Cancel</button>
