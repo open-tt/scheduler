@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: postgresql
+  username: user
   password: password
   port: 5462
   host: localhost

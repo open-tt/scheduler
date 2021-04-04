@@ -22160,6 +22160,7 @@ Processing by TournamentsController#create_groups as */*
 Completed 201 Created in 43ms (Views: 6.2ms | ActiveRecord: 17.7ms)
 
 
+<<<<<<< HEAD
 Started GET "/tournaments/52" for 127.0.0.1 at 2021-03-14 17:55:53 -0400
 Processing by TournamentsController#show as */*
   Parameters: {"id"=>"52"}
@@ -33580,3 +33581,149 @@ Processing by TournamentsController#index as */*
 Completed 200 OK in 56ms (Views: 26.5ms | ActiveRecord: 29.3ms)
 
 
+=======
+Started GET "/" for 127.0.0.1 at 2021-03-14 17:41:15 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/amdev/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/amdev/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb (3.9ms)
+Completed 200 OK in 13ms (Views: 10.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-03-14 17:41:24 -0400
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-03-14 17:41:25 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-03-14 17:41:25 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-03-14 17:41:25 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-03-14 17:41:25 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-03-14 17:41:25 -0400
+Started GET "/" for 127.0.0.1 at 2021-03-14 17:42:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/amdev/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/amdev/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb (3.2ms)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-03-14 17:42:50 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-03-14 17:42:59 -0400
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 17:43:56 -0400
+Processing by TournamentsController#create as */*
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 21:43:56.734215"], ["updated_at", "2021-03-14 21:43:56.734215"]]
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mGroup Load (1.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 1]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (50.97ms)
+Completed 201 Created in 118ms (Views: 91.2ms | ActiveRecord: 23.2ms)
+
+
+Started GET "/tournaments" for 127.0.0.1 at 2021-03-14 17:44:25 -0400
+Processing by TournamentsController#index as */*
+[active_model_serializers]   [1m[36mTournament Load (2.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (3.8ms)
+Completed 200 OK in 9ms (Views: 6.4ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/tournaments/1" for 127.0.0.1 at 2021-03-14 17:44:36 -0400
+Processing by TournamentsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mTournament Load (2.7ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.8ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 1]]
+[active_model_serializers]   [1m[36mPlayoff Load (3.7ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (12.93ms)
+Completed 200 OK in 27ms (Views: 8.7ms | ActiveRecord: 13.1ms)
+
+
+Started GET "/groups/1/match?player1=2&player2=3&should_create=false" for 127.0.0.1 at 2021-03-14 19:19:19 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#find_match as */*
+  Parameters: {"player1"=>"2", "player2"=>"3", "should_create"=>"false", "id"=>"1"}
+  [1m[36mGroup Load (1.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 30ms (ActiveRecord: 12.3ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Group with 'id'=1):
+  
+app/controllers/groups_controller.rb:3:in `find_match'
+Started GET "/tournaments/1" for 127.0.0.1 at 2021-03-14 19:20:24 -0400
+Processing by TournamentsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mTournament Load (1.6ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers]   [1m[36mGroup Load (1.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 1]]
+[active_model_serializers]   [1m[36mPlayoff Load (1.6ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (40.08ms)
+Completed 200 OK in 113ms (Views: 79.1ms | ActiveRecord: 21.5ms)
+
+
+Started POST "/tournaments" for 127.0.0.1 at 2021-03-14 19:21:24 -0400
+Processing by TournamentsController#create as */*
+  Parameters: {"user_id"=>1, "org_id"=>1, "tournament"=>{}}
+Unpermitted parameter: tournament
+  [1m[35m (4.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.8ms)[0m  [1m[32mINSERT INTO "tournaments" ("scheduled_at", "stage", "creator", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["scheduled_at", "2021-03-14"], ["stage", 0], ["creator", "{\"user_id\":1,\"org_id\":1}"], ["created_at", "2021-03-14 23:21:24.554985"], ["updated_at", "2021-03-14 23:21:24.554985"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+[active_model_serializers]   [1m[36mGroup Load (1.9ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 2]]
+[active_model_serializers]   [1m[36mPlayoff Load (2.2ms)[0m  [1m[34mSELECT  "playoffs".* FROM "playoffs" WHERE "playoffs"."tournament_id" = $1 LIMIT $2[0m  [["tournament_id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered TournamentSerializer with ActiveModelSerializers::Adapter::Attributes (6.41ms)
+Completed 201 Created in 23ms (Views: 2.8ms | ActiveRecord: 15.5ms)
+
+
+Started POST "/tournaments/1/players" for 127.0.0.1 at 2021-03-14 19:23:42 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>44, "name"=>"dsfsdf", "rating"=>0}, {"player_id"=>46, "name"=>"dsfsdf", "rating"=>0}], "id"=>"1", "tournament"=>{"players"=>[{"player_id"=>44, "name"=>"dsfsdf", "rating"=>0}, {"player_id"=>46, "name"=>"dsfsdf", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (1.8ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.21ms)
+Completed 500 Internal Server Error in 12ms (Views: 7.8ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/tournaments/1/players" for 127.0.0.1 at 2021-03-14 19:23:53 -0400
+Processing by TournamentsController#add_players as */*
+  Parameters: {"players"=>[{"player_id"=>44, "name"=>"dsfsdf", "rating"=>0}], "id"=>"1", "tournament"=>{"players"=>[{"player_id"=>44, "name"=>"dsfsdf", "rating"=>0}]}}
+Unpermitted parameters: players, tournament
+  [1m[36mTournament Load (3.9ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 500 Internal Server Error in 9ms (Views: 0.9ms | ActiveRecord: 3.9ms)
+
+
+  [1m[36mTournament Load (7.7ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  [1m[35m (11.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "tournaments"[0m
+  [1m[36mTournament Load (7.9ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" ORDER BY "tournaments"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTournament Load (2.4ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTournament Load (2.3ms)[0m  [1m[34mSELECT  "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 44], ["LIMIT", 1]]
+  [1m[36mTournament Load (1.7ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1[0m  [["id", 44]]
+>>>>>>> 9e96eb10a0b9e890c41e284822e511b0b79b71b4
