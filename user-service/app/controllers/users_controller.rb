@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
   def index_players
     players = Player.all
-    render json: { success: true, players: players }, status: :ok
+    render json: players, status: :ok
   end
 
   def show_tournament_data

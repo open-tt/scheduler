@@ -34,9 +34,10 @@ class Group < ApplicationRecord
       data[player_id] = count_matches_won_for(player_id)
     end
 
-    data.sort_by do |_, player_score|
+    res = data.sort_by do |_, player_score|
       -1 * player_score # multiply by -1 to sort descending
-    end
+    end.map { |pair| pair[0] }
+    res
   end
 
   def get_first_n(nth)
@@ -60,6 +61,17 @@ class Group < ApplicationRecord
     c
   end
 
+  def count_matches_loss_for(player_id)
+    c = 0
+    matches.each do |match|
+      # Check if this player is on this match and if different from the winner
+      c += 1 if match.over? &&
+        [match.player1_id, match.player2_id].include?(player_id) &&
+        (match.winner != player_id)
+    end
+    c
+  end
+
   def result_between(player1_id, player2_id)
     match = matches.where(player1_id: player1_id, player2_id: player2_id).first
     return nil unless match
@@ -72,6 +84,13 @@ class Group < ApplicationRecord
 
   def add_player
 
+  end
+
+  def over?
+    matches.each do |m|
+      return false unless m.over?
+    end
+    true
   end
 
   private

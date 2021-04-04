@@ -1,6 +1,10 @@
 Rails.application.configure do
   # API Configs
-  config.tournament_service_host = 'http://localhost:3002'
+  # When running app in docker compose
+  # config.tournament_api = 'http://localhost:3005'
+
+  # When running app independently
+  config.tournament_api = 'http://localhost:3002'
 
   # Default Configs
   config.cache_classes = false

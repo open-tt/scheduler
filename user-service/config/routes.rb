@@ -44,6 +44,6 @@ Rails.application.routes.draw do
   put     '/tournaments/:id/groups' => 'tournaments#update_group' # todo
   post    '/tournaments/:id/playoffs' => 'tournaments#generate_playoffs'
   get     '/groups/:id' => 'tournaments#show_group' # todo
-  put     '/groups/:id/match' => 'tournaments#update_match' # todo
-  get     '/groups/:id/match' => 'tournaments#show_match' # todo
+  put     '/match/:id' => 'tournaments#update_match' # todo
+  get     '/match/:id' => 'tournaments#show_match' # todo
 end

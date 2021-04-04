@@ -479,7 +479,7 @@ paths:
         '201':
           description: Generate playoffs from register players
           content: {}
-  "/groups/{id}/match":
+  "/match/{id}":
     put:
       summary: Update a match for the group
       tags:
@@ -492,26 +492,30 @@ paths:
         required: true
         schema:
           type: integer
-      - name: player1
-        in: query
-        schema:
-          type: integer
-      - name: player1_score
-        in: query
-        schema:
-          type: integer
-      - name: player2
-        in: query
-        schema:
-          type: integer
-      - name: player2_score
-        in: query
-        schema:
-          type: integer
       responses:
-        '201':
+        '200':
           description: Update match
           content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sets:
+                  type: array
+                  items:
+                    properties:
+                      id:
+                        type: integer
+                      player1_id:
+                        type: integer
+                      player2_id:
+                        type: integer
+                      player1_score:
+                        type: integer
+                      player2_score:
+                        type: integer
   "/players/import":
     post:
       summary: Import batch of users

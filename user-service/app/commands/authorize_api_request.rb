@@ -17,7 +17,12 @@ class AuthorizeApiRequest
     return User.first if http_auth_header == '1' # TODO: @no_commit
 
     @user ||= User.find(decoded_auth_token[:user_id]) if decoded_auth_token
-    if @user && user_has_enough_permissions
+    if @user
+      unless user_has_enough_permissions
+        Rails.logger.error('Action is not permitted for this user')
+        errors.add(`Action is not permitted for this user`, @user.id)
+        return nil
+      end
       @user
     else
       errors.add(:token, 'Invalid token')
@@ -32,12 +37,14 @@ class AuthorizeApiRequest
     method = 'del' if method == 'delete'
     http_method_enum = Action.http_methods[method]
     actions = @user.actions.where(method: http_method_enum)
+
     return false if actions.empty?
 
     url_path = headers['PATH_INFO']
     actions.each do |action|
       return true if url_path.match(/^#{action.url_regex}$/)
     end
+    false
   end
 
   def decoded_auth_token

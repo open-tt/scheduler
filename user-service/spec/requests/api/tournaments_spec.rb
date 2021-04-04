@@ -133,7 +133,7 @@ RSpec.describe 'Tournaments API', type: :request do
     end
   end
 
-  path '/groups/{id}/match' do
+  path '/match/{id}' do
     put 'Update a match for the group' do
       tags 'Tournaments'
       security [{ bearer_auth: [] }]
@@ -141,12 +141,25 @@ RSpec.describe 'Tournaments API', type: :request do
       produces 'application/json'
 
       parameter name: :id, in: :path, type: :integer
-      parameter name: :player1, in: :query, type: :integer
-      parameter name: :player1_score, in: :query, type: :integer
-      parameter name: :player2, in: :query, type: :integer
-      parameter name: :player2_score, in: :query, type: :integer
+      parameter name: :body, in: :body, schema: {
+        type: :object,
+        properties: {
+          sets: {
+            type: :array,
+            items: {
+              properties: {
+                id: { type: :integer },
+                player1_id: { type: :integer },
+                player2_id: { type: :integer },
+                player1_score: { type: :integer },
+                player2_score: { type: :integer }
+              }
+            }
+          }
+        }
+      }
 
-      response '201', 'Update match' do
+      response '200', 'Update match' do
         run_test!
       end
     end

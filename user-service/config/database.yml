@@ -5,7 +5,10 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  username: userservice
+  password: userservice
+  host: localhost
   pool: 5
   timeout: 5000
 
@@ -13,10 +16,8 @@ development:
   <<: *default
   adapter: postgresql
   encoding: unicode
-  username: userservice
-  password: userservice
   database: userservice
-  host: localhost
+  port: 5552
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

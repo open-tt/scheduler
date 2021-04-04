@@ -46,13 +46,13 @@ paths:
     post:
       summary: Create user token
       tags:
-      - Authentication
+        - Authentication
       parameters: []
       responses:
-        '200':
+        "200":
           description: Get a token for user authentication
           content: {}
-        '401':
+        "401":
           description: Authorization failed with bad credentials
           content: {}
       requestBody:
@@ -69,16 +69,16 @@ paths:
     post:
       summary: Creates New User
       tags:
-      - Users
+        - Users
       parameters: []
       responses:
-        '201':
+        "201":
           description: User created successfully
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/registration_success"
-        '409':
+        "409":
           description: User creation failed with invalid email
           content:
             application/json:
@@ -101,47 +101,47 @@ paths:
                 is_enabled:
                   type: boolean
               required:
-              - name
-              - email
-              - password
-              - password_confirmation
+                - name
+                - email
+                - password
+                - password_confirmation
   "/users/{id}":
     get:
       summary: Get User by ID
       tags:
-      - Users
+        - Users
       security:
-      - bearer_auth: []
+        - bearer_auth: []
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: User profile retrieved successfully
           content: {}
     put:
       summary: Edits existing User
       tags:
-      - Users
+        - Users
       security:
-      - bearer_auth: []
+        - bearer_auth: []
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
       responses:
-        '204':
+        "204":
           description: Update User fields successfully
           content: {}
-        '404':
+        "404":
           description: Update User fails with non-existent user id
           content: {}
-        '422':
+        "422":
           description: Update User fails edit when no params passed
           content: {}
       requestBody:
@@ -160,72 +160,72 @@ paths:
     post:
       summary: Add Role
       tags:
-      - Users
+        - Users
       security:
-      - bearer_auth: []
+        - bearer_auth: []
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      - name: role
-        in: query
-        enum:
-          player: 0
-          admin: 1
-          owner: 2
-          systems_admin: 3
-        required: true
-        schema:
-          type: string
-      - name: org_id
-        in: query
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: role
+          in: query
+          enum:
+            player: 0
+            admin: 1
+            owner: 2
+            systems_admin: 3
+          required: true
+          schema:
+            type: string
+        - name: org_id
+          in: query
+          required: true
+          schema:
+            type: integer
       responses:
-        '204':
+        "204":
           description: Add Role
           content: {}
     delete:
       summary: Remove a Role
       tags:
-      - Users
+        - Users
       security:
-      - bearer_auth: []
+        - bearer_auth: []
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-      - name: role
-        in: query
-        enum:
-          player: 0
-          admin: 1
-          owner: 2
-          systems_admin: 3
-        required: true
-        schema:
-          type: string
-      - name: org_id
-        in: query
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: role
+          in: query
+          enum:
+            player: 0
+            admin: 1
+            owner: 2
+            systems_admin: 3
+          required: true
+          schema:
+            type: string
+        - name: org_id
+          in: query
+          required: true
+          schema:
+            type: integer
       responses:
-        '204':
+        "204":
           description: Remove a Role
           content: {}
 servers:
-- url: http://{defaultHost}
-  variables:
-    defaultHost:
-      default: localhost:3000
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: localhost:3000
-- url: https://nameless-spire-32644.herokuapp.com/
+  - url: http://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000
+  - url: https://{defaultHost}
+    variables:
+      defaultHost:
+        default: localhost:3000
+  - url: https://nameless-spire-32644.herokuapp.com/

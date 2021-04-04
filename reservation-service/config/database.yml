@@ -17,7 +17,6 @@ default: &default
   username: postgres
   password: postgres
 
-
 development:
   <<: *default
   database: db/development_reservations_service

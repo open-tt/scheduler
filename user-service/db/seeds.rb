@@ -20,11 +20,14 @@ admin_role          = Role.where(name: 'admin').first_or_create!
 owner_role          = Role.where(name: 'owner').first_or_create!
 systems_admin_role  = Role.where(name: 'systems_admin').first_or_create!
 
-users_create_action       = Action.where(url_regex: '/users',     method: POST).first_or_create!
+users_create_action       = Action.where(url_regex: '/users', method: POST).first_or_create!
+users_current_user_action = Action.where(url_regex: '/current_user', method: GET).first_or_create!
 users_get_one_action      = Action.where(url_regex: '/users/\d+', method: GET).first_or_create!
 users_update_one_action   = Action.where(url_regex: '/users/\d+', method: PUT).first_or_create!
 users_add_role_action     = Action.where(url_regex: '/users/\d+/roles', method: POST).first_or_create!
 users_delete_role_action  = Action.where(url_regex: '/users/\d+/roles', method: DELETE).first_or_create!
+
+players_get_all_action    = Action.where(url_regex: '/players', method: GET).first_or_create!
 
 orgs_create_action          = Action.where(url_regex: '/orgs', method: POST).first_or_create!
 orgs_list_action            = Action.where(url_regex: '/orgs', method: GET).first_or_create!
@@ -41,8 +44,21 @@ tournaments_create_action   = Action.where(url_regex: '/tournaments', method: PO
 tournaments_list_action     = Action.where(url_regex: '/tournaments', method: GET).first_or_create!
 tournaments_get_action      = Action.where(url_regex: '/tournaments/\d+', method: GET).first_or_create!
 tournaments_delete_action   = Action.where(url_regex: '/tournaments/\d+', method: DELETE).first_or_create!
+tournaments_add_players_action = Action.where(url_regex: '/tournaments/\d+/players', method: POST).first_or_create!
+tournaments_create_groups_action = Action.where(url_regex: '/tournaments/\d+/groups', method: POST).first_or_create!
+
+tour_groups_update_match = Action.where(url_regex: '/match/\d+', method: PUT).first_or_create!
 
 systems_admin_role.actions = [
+  # Tournament Group actions
+  tour_groups_update_match,
+
+  tournaments_create_groups_action,
+
+  tournaments_add_players_action,
+  players_get_all_action,
+
+  users_current_user_action,
   users_get_one_action,
   users_update_one_action,
   users_add_role_action,
@@ -61,7 +77,16 @@ systems_admin_role.actions = [
 ]
 
 owner_role.actions = [
+  # Tournament Group actions
+  tour_groups_update_match,
+
+  tournaments_create_groups_action,
+
+  tournaments_add_players_action,
+  players_get_all_action,
+
   users_get_one_action,
+  users_current_user_action,
   users_update_one_action,
   users_add_role_action,
   users_delete_role_action,
@@ -79,6 +104,15 @@ owner_role.actions = [
 ]
 
 admin_role.actions = [
+  # Tournament Group actions
+  tour_groups_update_match,
+
+  tournaments_create_groups_action,
+
+  tournaments_add_players_action,
+  players_get_all_action,
+
+  users_current_user_action,
   users_get_one_action,
   users_update_one_action,
   users_add_role_action,
@@ -97,6 +131,15 @@ admin_role.actions = [
 ]
 
 player_role.actions = [
+  # Tournament Group actions
+  tour_groups_update_match,
+
+  tournaments_create_groups_action,
+
+  tournaments_add_players_action,
+  players_get_all_action,
+
+  users_current_user_action,
   users_get_one_action,
   users_update_one_action,
 

@@ -1,6 +1,7 @@
 version: "3.8"
 services:
 
+  # ---------------------- USERS ------------------------ #
   # Users & Orgs DB
   pgsql_userservice:
     image: postgres:9.6-alpine
@@ -11,7 +12,7 @@ services:
       POSTGRES_PASSWORD: userservice
 
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - userservice_database:/var/lib/postgresql/data
 
@@ -19,7 +20,15 @@ services:
   api_userservice:
     depends_on:
       - pgsql_userservice
-    command: ["bash", "./wait-for-it.sh", "pgsql_userservice:5432", "--", "bash", "start.sh"]
+    command:
+      [
+        "bash",
+        "./wait-for-it.sh",
+        "pgsql_userservice:5432",
+        "--",
+        "bash",
+        "start.sh",
+      ]
     restart: always
     build:
       context: ./user-service
@@ -28,8 +37,45 @@ services:
       LENOMIR_DB_HOST: pgsql_userservice
       LENOMIR_DB_PORT: 5432
     ports:
-      - '3001:3000'
+      - "3001:3000"
 
+  # ---------------------- TOURNAMENTS ------------------------ #
+  # docker-compose up pgsql_tournamentservice api_tournamentservice
+  # Tournaments DB
+  pgsql_tournamentservice:
+    image: postgres:9.6-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: tournamentservice
+      POSTGRES_USER: tournamentservice
+      POSTGRES_PASSWORD: tournamentservice
+
+    ports:
+      - "5462:5432"
+    volumes:
+      - tournamentservice_database:/var/lib/postgresql/data
+
+  # Tournaments Service
+  api_tournamentservice:
+    depends_on:
+      - pgsql_tournamentservice
+    command:
+      [
+        "bash",
+        "./wait-for-it.sh",
+        "pgsql_tournamentservice:5462",
+        "--",
+        "bash",
+        "start.sh",
+      ]
+    restart: always
+    build:
+      context: ./tournament-service
+      dockerfile: Dockerfile
+    ports:
+      - "3005:3000"
+
+  # ---------------------- RESERVATIONS ------------------------ #
   # Reservations DB
   pgsql_reservationservice:
     image: postgres:9.6-alpine
@@ -40,7 +86,7 @@ services:
       POSTGRES_PASSWORD: reservationservice
 
     ports:
-      - '5442:5432'
+      - "5442:5432"
     volumes:
       - reservationservice_database:/var/lib/postgresql/data
 
@@ -48,7 +94,15 @@ services:
   api_reservationservice:
     depends_on:
       - pgsql_userservice
-    command: ["bash", "./wait-for-it.sh", "pgsql_reservationservice:5432", "--", "bash", "start.sh"]
+    command:
+      [
+        "bash",
+        "./wait-for-it.sh",
+        "pgsql_reservationservice:5432",
+        "--",
+        "bash",
+        "start.sh",
+      ]
     restart: always
     build:
       context: ./reservation-service
@@ -57,8 +111,9 @@ services:
       LENOMIR_DB_HOST: pgsql_reservationservice
       LENOMIR_DB_PORT: 5432
     ports:
-      - '3002:3000'
+      - "3002:3000"
 
 volumes:
   userservice_database:
+  tournamentservice_database:
   reservationservice_database:
