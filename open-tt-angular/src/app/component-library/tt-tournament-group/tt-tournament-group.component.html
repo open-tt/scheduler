@@ -10,7 +10,12 @@
 
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let player"> {{ player.name }} </mat-cell>
+      <mat-cell *matCellDef="let player">
+        <app-tt-group-player
+                [name]="player.name"
+                [summary]="group.players_summary[player.id.toString()]">
+        </app-tt-group-player>
+      </mat-cell>
     </ng-container>
 
     <!--   player2 iterates over group players which should be same as datasource  -->

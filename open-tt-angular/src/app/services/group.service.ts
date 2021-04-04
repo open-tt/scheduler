@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
 import { Match, TournamentGroup } from '../models/tournament';
 import { MatchService } from './match.service';
 

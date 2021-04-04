@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayoutGap="5px">
+  <div>{{name}}</div>
+  <div *ngIf="summary.place === 1">:: 1st Place</div>
+  <div *ngIf="summary.place === 2">:: 2nd Place</div>
+  <div>:: {{summary.wins}} - {{summary.loses}}</div>
+</div>

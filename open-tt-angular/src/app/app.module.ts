@@ -54,6 +54,7 @@ import { TtMatchResultCellComponent } from './component-library/tt-match-result-
 import { TtMatchResultDialogComponent } from './component-library/tt-match-result-dialog/tt-match-result-dialog.component';
 import { ResponseMappingInterceptor } from './interceptors/response-mapping.interceptor';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { TtGroupPlayerComponent } from './component-library/tt-group-player/tt-group-player.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { AuthenticationInterceptor } from './interceptors/authentication.interce
     CreatePlayerDialogComponent,
     TtMatchResultCellComponent,
     TtMatchResultDialogComponent,
+    TtGroupPlayerComponent,
   ],
   imports: [
     BrowserModule,

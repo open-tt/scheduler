@@ -21,10 +21,19 @@ export enum TournamentStage {
   END,
 }
 
+export interface GroupPlayerSummary {
+  wins: number;
+  loses: number;
+  place: number;
+}
+
 export interface TournamentGroup {
   id: number;
   players: number[];
   matches: Match[];
+
+  //
+  players_summary: Map<number, GroupPlayerSummary>;
 }
 
 export interface Match {
