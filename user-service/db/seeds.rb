@@ -46,12 +46,14 @@ tournaments_get_action      = Action.where(url_regex: '/tournaments/\d+', method
 tournaments_delete_action   = Action.where(url_regex: '/tournaments/\d+', method: DELETE).first_or_create!
 tournaments_add_players_action = Action.where(url_regex: '/tournaments/\d+/players', method: POST).first_or_create!
 tournaments_create_groups_action = Action.where(url_regex: '/tournaments/\d+/groups', method: POST).first_or_create!
+tournaments_create_playoffs_action = Action.where(url_regex: '/tournaments/\d+/playoffs', method: POST).first_or_create!
 
 tour_groups_update_match = Action.where(url_regex: '/match/\d+', method: PUT).first_or_create!
 
 systems_admin_role.actions = [
   # Tournament Group actions
   tour_groups_update_match,
+  tournaments_create_playoffs_action,
 
   tournaments_create_groups_action,
 
@@ -79,6 +81,7 @@ systems_admin_role.actions = [
 owner_role.actions = [
   # Tournament Group actions
   tour_groups_update_match,
+  tournaments_create_playoffs_action,
 
   tournaments_create_groups_action,
 
@@ -106,6 +109,7 @@ owner_role.actions = [
 admin_role.actions = [
   # Tournament Group actions
   tour_groups_update_match,
+  tournaments_create_playoffs_action,
 
   tournaments_create_groups_action,
 
@@ -133,6 +137,7 @@ admin_role.actions = [
 player_role.actions = [
   # Tournament Group actions
   tour_groups_update_match,
+  tournaments_create_playoffs_action,
 
   tournaments_create_groups_action,
 

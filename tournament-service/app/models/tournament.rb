@@ -139,18 +139,18 @@ class Tournament < ApplicationRecord
     r1
   end
 
-  def groups_stage_winners!
+  def create_playoffs!
     winners = []
     groups.each do |gro|
-      winners.push gro.get_first_n(2)
+      winners.push gro.standings.slice(0, 2)
     end
-    # winners
     create_initial_round!(
       first_places(winners),
       second_places(winners),
       []
     )
-    playoff.rounds
+    playoffs!
+    self
   end
 
   def reset
@@ -168,13 +168,13 @@ class Tournament < ApplicationRecord
   #               [  3, 1           ] ] ] # second place
   def first_places(winners_3d_arr)
     winners_3d_arr.map do |pair|
-      pair[0][0]
+      pair[0]
     end
   end
 
   def second_places(winners_3d_arr)
     winners_3d_arr.map do |pair|
-      pair[1][0]
+      pair[1]
     end
   end
 

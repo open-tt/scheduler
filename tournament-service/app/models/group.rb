@@ -44,8 +44,8 @@ class Group < ApplicationRecord
     ranks = standings
     return ranks if nth >= ranks.count
 
-    nth_player_score = ranks[nth - 1][1]
-    nth_1_player_score = ranks[nth][1]
+    nth_player_score = ranks[nth - 1]
+    nth_1_player_score = ranks[nth]
     return ranks[0...nth] if nth_player_score != nth_1_player_score
 
     # There is a tie between nth and nth + 1 and possibly more.

@@ -1,5 +1,5 @@
 class GroupSerializer < ActiveModel::Serializer
-  attributes :id, :players, :matches, :players_summary
+  attributes :id, :players, :matches, :players_summary, :is_over
 
   def matches
     @object.matches.map do |match|
@@ -19,5 +19,9 @@ class GroupSerializer < ActiveModel::Serializer
       }
     end
     summary
+  end
+
+  def is_over
+    @object.over?
   end
 end

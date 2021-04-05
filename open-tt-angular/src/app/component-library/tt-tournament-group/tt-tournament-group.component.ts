@@ -20,7 +20,6 @@ export class TtTournamentGroupComponent implements OnInit {
   dataSource: MatTableDataSource<Player>;
   subscription: Subscription;
   displayedColumns = [];
-  groupIsOver = false;
 
   constructor(
     private tournamentService: TournamentService,
@@ -42,11 +41,9 @@ export class TtTournamentGroupComponent implements OnInit {
           const playersList = this.tournamentService.groupPlayers(this.group);
           this.dataSource = new MatTableDataSource<Player>([...playersList]);
           this.displayedColumns = this.generateDisplayColumns();
-          this.groupIsOver = this.groupService.isOver(this.group);
         }
       });
     this.displayedColumns = this.generateDisplayColumns();
-    this.groupIsOver = this.groupService.isOver(this.group);
   }
 
   findMatch(p1: number, p2: number): Match {
@@ -68,6 +65,7 @@ export class TtTournamentGroupComponent implements OnInit {
         is_over: m.is_over,
         match_sets: m.match_sets,
         inverted: true,
+        fake: false,
       };
     }
 

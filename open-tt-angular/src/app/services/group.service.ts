@@ -42,21 +42,4 @@ export class GroupService {
     );
     return [match.player2_count_sets_won, match.player1_count_sets_won];
   }
-
-  //   return (
-  // ||
-  // ()
-  // );
-
-  isOver(g: TournamentGroup): boolean {
-    if (!g.matches || g.matches.length === 0) {
-      return false;
-    }
-    for (const match of g.matches) {
-      if (!match.is_over) {
-        return false;
-      }
-    }
-    return true;
-  }
 }

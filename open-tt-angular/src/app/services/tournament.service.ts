@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import {
-  HandicapTournament,
+  Tournament,
   Match,
   TournamentGroup,
   TournamentStage,
@@ -26,11 +26,11 @@ export class TournamentService {
   DEFAULT_MIN_PLAYERS_PER_GROUP = 3;
   DEFAULT_MAX_PLAYERS_PER_GROUP = 4;
 
-  private tournamentHistory: HandicapTournament[];
-  private tournamentHistorySubject: Subject<HandicapTournament[]>;
+  private tournamentHistory: Tournament[];
+  private tournamentHistorySubject: Subject<Tournament[]>;
 
-  private selectedTournament: HandicapTournament = null;
-  private selectedTournamentSubject: Subject<HandicapTournament>;
+  private selectedTournament: Tournament = null;
+  private selectedTournamentSubject: Subject<Tournament>;
 
   private groupSubjects: Map<number, Subject<TournamentGroup>>;
 
@@ -49,8 +49,8 @@ export class TournamentService {
     private groupService: GroupService,
     private matchService: MatchService
   ) {
-    this.tournamentHistorySubject = new Subject<HandicapTournament[]>();
-    this.selectedTournamentSubject = new Subject<HandicapTournament>();
+    this.tournamentHistorySubject = new Subject<Tournament[]>();
+    this.selectedTournamentSubject = new Subject<Tournament>();
     this.groupSubjects = new Map();
     // this.selectedTournamentPlayersSubject = new Subject<Player[]>();
     // this.selectedTournamentIsClosedSubject = new Subject<boolean>();
@@ -81,15 +81,15 @@ export class TournamentService {
   }
 
   // Getters and Setters
-  genTournamentHistory(): Observable<HandicapTournament[]> {
+  genTournamentHistory(): Observable<Tournament[]> {
     return this.tournamentHistorySubject.asObservable();
   }
 
-  genSelectedTournament(): Observable<HandicapTournament> {
+  genSelectedTournament(): Observable<Tournament> {
     return this.selectedTournamentSubject.asObservable();
   }
 
-  setSelectedTournament(tournament: HandicapTournament): void {
+  setSelectedTournament(tournament: Tournament): void {
     this.selectedTournament = tournament;
     if (this.selectedTournament.groups) {
       for (const g of this.selectedTournament.groups) {
@@ -149,7 +149,7 @@ export class TournamentService {
     }
 
     for (const g of this.selectedTournament.groups) {
-      if (!this.groupService.isOver(g)) {
+      if (!g.is_over) {
         return false;
       }
     }
@@ -186,16 +186,14 @@ export class TournamentService {
    */
   createNewHandicapTournament(): void {
     this.http
-      .post<HandicapTournament>('/tournaments')
+      .post<Tournament>('/tournaments')
       .pipe(catchError(this.handleError))
       .subscribe(() => {
-        this.http
-          .get<HandicapTournament[]>('/tournaments')
-          .subscribe((history) => {
-            this.tournamentHistory = history;
-            this.tournamentHistorySubject.next(history);
-            this.setSelectedTournament(history[0]);
-          });
+        this.http.get<Tournament[]>('/tournaments').subscribe((history) => {
+          this.tournamentHistory = history;
+          this.tournamentHistorySubject.next(history);
+          this.setSelectedTournament(history[0]);
+        });
       });
   }
 
@@ -227,9 +225,7 @@ export class TournamentService {
       );
     }
     this.http
-      .post<HandicapTournament>(
-        `/tournaments/${this.selectedTournament.id}/groups`
-      )
+      .post<Tournament>(`/tournaments/${this.selectedTournament.id}/groups`)
       .pipe(catchError(this.handleError))
       .subscribe((t) => this.setSelectedTournament(t));
   }
@@ -242,17 +238,14 @@ export class TournamentService {
       return;
     }
     this.http
-      .post<HandicapTournament>(
-        `${environment.tournament_api_url}/${this.TOURNAMENTS_PATH}/${this.selectedTournament.id}/${this.PLAYOFFS_PATH}`,
-        {}
-      )
+      .post<Tournament>(`/tournaments/${this.selectedTournament.id}/playoffs`)
       .pipe(catchError(this.handleError))
       .subscribe((t) => this.setSelectedTournament(t));
   }
 
-  addPlayerToTournament(t: HandicapTournament, p: Player): void {
+  addPlayerToTournament(t: Tournament, p: Player): void {
     this.http
-      .post<HandicapTournament>(`/tournaments/${t.id}/players`, {
+      .post<Tournament>(`/tournaments/${t.id}/players`, {
         player_ids: [p.id],
       })
       .pipe(catchError(this.handleError))
@@ -280,15 +273,13 @@ export class TournamentService {
    * intended to be a callback function.
    */
   private loadTournamentsCallback(context: TournamentService): void {
-    context.http
-      .get<HandicapTournament[]>('/tournaments')
-      .subscribe((history) => {
-        context.tournamentHistory = history;
-        context.tournamentHistorySubject.next(history);
-        if (history.length > 0) {
-          context.setSelectedTournament(history[0]);
-        }
-      });
+    context.http.get<Tournament[]>('/tournaments').subscribe((history) => {
+      context.tournamentHistory = history;
+      context.tournamentHistorySubject.next(history);
+      if (history.length > 0) {
+        context.setSelectedTournament(history[0]);
+      }
+    });
   }
 
   /**
@@ -297,6 +288,16 @@ export class TournamentService {
    */
   reloadTournamentsAsync(): void {
     this.loadTournamentsCallback(this);
+  }
+
+  reloadSelectedTournament(): void {
+    if (!this.selectedTournament || !this.selectedTournament.id) {
+      return;
+    }
+
+    this.http
+      .get<Tournament>(`/tournaments/${this.selectedTournament.id}`)
+      .subscribe((t: Tournament) => this.setSelectedTournament(t));
   }
 
   // /** Add players to selectedTournament and notify
@@ -369,23 +370,71 @@ export class TournamentService {
     this.matchService
       .updateMatchResult(match)
       .subscribe((responseMatch: Match) => {
-        console.log('responseMatch');
-        console.log(responseMatch);
         let updated = false;
+
+        // Update Groups
         this.selectedTournament.groups.forEach((g) => {
+          // Keep track of all matches finished state so we can reload
+          // the tournament in case all matches have finished
+          let allMatchesOver = true;
           g.matches.forEach((m) => {
             if (m.id !== responseMatch.id) {
+              // If match is over, check if group is also over
+              if (!m.is_over) {
+                allMatchesOver = false;
+              }
               return;
+            }
+            // If match is over, check if group is also over
+            if (!responseMatch.is_over) {
+              allMatchesOver = false;
             }
             // Update all the keys of this match with their updated values.
             Object.keys(m).forEach((key) => {
               m[key] = responseMatch[key];
             });
-            updated = true;
-            this.groupSubjects.get(g.id).next(g);
-            console.log(g);
+            // If we reload tournament, no need to notify groups
+            if (allMatchesOver) {
+              this.reloadSelectedTournament();
+            } else {
+              updated = true;
+              this.groupSubjects.get(g.id).next(g);
+            }
           });
         });
+
+        // Update Playoffs
+        this.selectedTournament.playoff.rounds.forEach((r) => {
+          if (r.over) {
+            return;
+          }
+
+          let allMatchesOver = true;
+          r.matches.forEach((m) => {
+            if (m.id !== responseMatch.id) {
+              // If match is over, check if group is also over
+              if (!m.is_over) {
+                allMatchesOver = false;
+              }
+              return;
+            }
+            // If match is over, check if group is also over
+            if (!responseMatch.is_over) {
+              allMatchesOver = false;
+            }
+            // Update all the keys of this match with their updated values.
+            Object.keys(m).forEach((key) => {
+              m[key] = responseMatch[key];
+            });
+            // If we reload tournament, no need to notify groups
+            if (allMatchesOver) {
+              this.reloadSelectedTournament();
+            } else {
+              updated = true;
+            }
+          });
+        });
+
         if (updated) {
           this.selectedTournamentSubject.next(this.selectedTournament);
         }

@@ -1,7 +1,7 @@
 class Playoff < ApplicationRecord
   belongs_to :tournament
-  has_many :matches
-  has_many :rounds
+  has_many :matches, dependent: :destroy
+  has_many :rounds, dependent: :destroy
 
   def update_match(player1, player1_score, player2, player2_score)
     match = rounds.last.matches.select do |mat|
@@ -20,13 +20,13 @@ class Playoff < ApplicationRecord
     )
   end
 
-  def is_over
-    rounds.last.is_final? && rounds.last.over?
+  def over?
+    rounds.last.final? && rounds.last.over?
   end
 
   def create_next_round
     prev_round = rounds.last
-    return if prev_round.is_final?
+    return if prev_round.final? || !prev_round.over?
 
     round = rounds.create!
 
@@ -41,5 +41,17 @@ class Playoff < ApplicationRecord
       )
       i += 2
     end
+  end
+
+  def winner
+    return nil unless over?
+
+    rounds.last.winners.last
+  end
+
+  def runnerup
+    return nil unless over?
+
+    rounds.last.losers.last
   end
 end

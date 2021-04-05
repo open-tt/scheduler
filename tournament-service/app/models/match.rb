@@ -11,7 +11,14 @@ class Match < ApplicationRecord
     return player1_id if player1_won?
     return player2_id if player2_won?
 
-    -1
+    nil
+  end
+
+  def loser
+    return player2_id if player1_won?
+    return player1_id if player2_won?
+
+    nil
   end
 
   def over?

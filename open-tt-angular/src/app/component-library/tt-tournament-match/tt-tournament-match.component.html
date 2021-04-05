@@ -1,27 +1,56 @@
 <div fxLayout="column" class="mat-elevation-z8 match-container">
-  <div
-    *ngIf="validPlayer1()"
-    fxLayout="row"
-    fxLayoutAlign="none center"
-    fxLayoutGap="5%"
-  >
-    <mat-icon>person</mat-icon>
-    <div class="player-name">{{ match.player1 }}</div>
-    <div class="score">
-      <div *ngIf="!isIncomplete()">3</div>
+  <!-- Real Match -->
+  <div *ngIf="!match.fake">
+    <div
+            *ngIf="!match.fake && validPlayer1()"
+            fxLayout="row"
+            fxLayoutAlign="none center"
+            fxLayoutGap="5%"
+    >
+      <mat-icon>person</mat-icon>
+      <div class="player-name">{{ playerService.playerName(match.player1_id) }}</div>
+      <div class="score">
+        <div *ngIf="!isIncomplete()" (click)="openDialog()"> {{match.player1_count_sets_won}} </div>
+      </div>
+    </div>
+
+    <div
+            *ngIf="!match.fake && validPlayer2()"
+            fxLayout="row"
+            fxLayoutAlign="none center"
+            fxLayoutGap="5%"
+    >
+      <mat-icon>person</mat-icon>
+      <div class="player-name">{{ playerService.playerName(match.player2_id) }}</div>
+      <div class="score">
+        <div *ngIf="!isIncomplete()" (click)="openDialog()"> {{match.player2_count_sets_won}} </div>
+      </div>
     </div>
   </div>
 
-  <div
-    *ngIf="validPlayer2()"
-    fxLayout="row"
-    fxLayoutAlign="none center"
-    fxLayoutGap="5%"
-  >
-    <mat-icon>person</mat-icon>
-    <div class="player-name">{{ match.player2 }}</div>
-    <div class="score">
-      <div *ngIf="!isIncomplete()">2</div>
+  <!-- Fake placeholder Match -->
+  <div *ngIf="match.fake">
+    <div
+            fxLayout="row"
+            fxLayoutAlign="none center"
+            fxLayoutGap="5%">
+      <mat-icon>person</mat-icon>
+      <div class="player-name"> Winner</div>
+      <div>
+        <div>0</div>
+      </div>
+    </div>
+
+    <div
+            fxLayout="row"
+            fxLayoutAlign="none center"
+            fxLayoutGap="5%"
+    >
+      <mat-icon>person</mat-icon>
+      <div class="player-name"> Winner</div>
+      <div>
+        <div>0</div>
+      </div>
     </div>
   </div>
 </div>

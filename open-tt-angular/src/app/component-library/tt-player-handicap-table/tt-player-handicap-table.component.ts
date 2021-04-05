@@ -13,7 +13,7 @@ import { MatSort } from '@angular/material/sort';
 import { Player } from '../../models/player';
 import { TournamentService } from '../../services/tournament.service';
 import { Observable, Subscription } from 'rxjs';
-import { HandicapTournament } from '../../models/tournament';
+import { Tournament } from '../../models/tournament';
 
 @Component({
   selector: 'app-tt-player-handicap-table',

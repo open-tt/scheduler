@@ -4,12 +4,12 @@ import { TournamentService } from '../services/tournament.service';
 import { environment } from '../../environments/environment';
 import { Observable, Subject } from 'rxjs';
 
-export interface HandicapTournament {
+export interface Tournament {
   id: number;
   scheduled_at: Date;
   players: Player[];
   groups: TournamentGroup[];
-  playoff: NgttTournament;
+  playoff: Playoff;
   stage: TournamentStage;
   waitingList?: Player[];
 }
@@ -31,6 +31,7 @@ export interface TournamentGroup {
   id: number;
   players: number[];
   matches: Match[];
+  is_over: boolean;
 
   //
   players_summary: Map<number, GroupPlayerSummary>;
@@ -50,7 +51,25 @@ export interface Match {
     player1_score: number;
     player2_score: number;
   }[];
+  fake: boolean; // Mark fake matches created for purpose of bracket completion
 
   // Client side variables
   inverted: boolean;
+}
+
+export interface PlayoffRound {
+  id: number;
+  matches: Match[];
+  players: Player[];
+  winners: Player[];
+  over: boolean;
+}
+
+export interface Playoff {
+  id: number;
+  rounds: PlayoffRound[];
+  over: boolean;
+  first: Player;
+  second: Player;
+  third: Player[];
 }

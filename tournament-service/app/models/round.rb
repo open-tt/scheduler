@@ -1,12 +1,12 @@
 class Round < ApplicationRecord
   belongs_to :playoff
-  has_many :matches
+  has_many :matches, dependent: :destroy
 
-  def is_final?
+  def final?
     !matches.nil? && matches.count == 1
   end
 
-  def is_over?
+  def over?
     matches.each do |mat|
       return false unless mat.over?
     end
@@ -14,6 +14,16 @@ class Round < ApplicationRecord
   end
 
   def winners
-    matches.map(&:winner)
+    matches.map(&:winner).compact
+  end
+
+  def losers
+    matches.map(&:loser).compact
+  end
+
+  def players
+    matches.each do |mat|
+      return [mat.player1_id, mat.player2_id]
+    end.flatten
   end
 end

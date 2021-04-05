@@ -150,13 +150,14 @@
               fxFlex="100%"
       >
         <ngtt-single-elimination-tree
-                [tournament]="selectedTournament.playoff"
+                [tournament]="buildNgttBrackets()"
                 [matchTemplate]="myMatchTemplate"
         ></ngtt-single-elimination-tree>
 
         <ng-template #myMatchTemplate let-match>
           <app-tt-tournament-match [match]="match"></app-tt-tournament-match>
         </ng-template>
+        test
       </div>
     </mat-tab>
   </mat-tab-group>

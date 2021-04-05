@@ -7,7 +7,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    render json:  Tournament.find(params[:id]), status: :ok
+    render json: Tournament.find(params[:id]), status: :ok
   end
 
   def create
@@ -82,7 +82,7 @@ class TournamentsController < ApplicationController
       }, status: :expectation_failed
       return
     end
-    tour.groups_stage_winners!
+    tour.create_playoffs!
     render json: tour, status: :created
   end
 
@@ -94,7 +94,7 @@ class TournamentsController < ApplicationController
       params[:player2],
       params[:player2_score]
     )
-    playoff.create_next_round if playoff.rounds.last.over? && !playoff.rounds.last.is_final?
+    playoff.create_next_round if playoff.rounds.last.over? && !playoff.rounds.last.final?
     render json: playoff.tournament
   end
 

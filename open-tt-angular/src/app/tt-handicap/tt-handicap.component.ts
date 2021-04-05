@@ -4,13 +4,15 @@ import { MatSelectChange } from '@angular/material/select';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatePlayerDialogComponent } from '../component-library/create-player-dialog/create-player-dialog.component';
 import {
-  HandicapTournament,
+  PlayoffRound,
+  Tournament,
   TournamentGroup,
   TournamentStage,
 } from '../models/tournament';
 import { TournamentService } from '../services/tournament.service';
 import { Subscription } from 'rxjs';
 import { PlayerService } from '../services/player.service';
+import { NgttRound, NgttTournament } from 'ng-tournament-tree';
 
 @Component({
   selector: 'app-tt-handicap',
@@ -21,14 +23,14 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   today: Date = new Date();
 
   // Selected tournament
-  selectedTournament: HandicapTournament;
+  selectedTournament: Tournament;
 
   // Subscriptions
   selectedTournamentSubscription: Subscription; // Listen to changes in service
   tournamentHistorySubscription: Subscription;
   playerUniverseSubscription: Subscription;
   selectedTournamentGroupsSubscription: Subscription;
-  tournamentHistory: HandicapTournament[];
+  tournamentHistory: Tournament[];
   groups: TournamentGroup[];
   registeredPlayers: Player[];
   playerUniverse: Player[];
@@ -51,7 +53,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
       });
     this.tournamentHistorySubscription = this.tournamentService
       .genTournamentHistory()
-      .subscribe((tournaments: HandicapTournament[]) => {
+      .subscribe((tournaments: Tournament[]) => {
         this.tournamentHistory = tournaments;
       });
     this.selectedTournamentSubscription = this.tournamentService
@@ -97,7 +99,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
     );
   }
 
-  firstTournament(): HandicapTournament {
+  firstTournament(): Tournament {
     if (!this.tournamentHistory || this.tournamentHistory.length === 0) {
       return;
     }
@@ -107,6 +109,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   canCreatePlayoffs(): boolean {
     return (
       this.selectedTournament &&
+      !this.selectedTournament.playoff &&
       this.tournamentService.isClassificationComplete()
     );
   }
@@ -136,7 +139,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
     }
   }
 
-  registerPlayer(tournament: HandicapTournament, player: Player): void {
+  registerPlayer(tournament: Tournament, player: Player): void {
     this.tournamentService.addPlayerToSelectedHandicapTournament(player);
   }
 
@@ -185,5 +188,16 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
       this.selectedTournament &&
       this.selectedTournament.stage < TournamentStage.CLASSIFICATION
     );
+  }
+
+  buildNgttBrackets(): NgttTournament {
+    const rounds: NgttRound[] = [];
+    this.selectedTournament.playoff.rounds.forEach((r: PlayoffRound) => {
+      rounds.push({
+        type: r.matches.length === 1 ? 'Final' : 'Winnerbracket',
+        matches: r.matches,
+      });
+    });
+    return { rounds };
   }
 }
