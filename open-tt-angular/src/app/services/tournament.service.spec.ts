@@ -1,5 +1,4 @@
 import { TournamentService } from './tournament.service';
-import { FakeHandicapTournamentApi } from './fake.data';
 import { TestBed } from '@angular/core/testing';
 
 describe('TournamentService', () => {
@@ -45,15 +44,6 @@ describe('TournamentService', () => {
         output: [3, 3],
       },
     ];
-    dataProvider.forEach((data) => {
-      expect(
-        FakeHandicapTournamentApi.decomposeInGroups(
-          data.input[0],
-          data.input[1],
-          data.input[2]
-        )
-      ).toEqual(data.output);
-    });
   });
 
   // it('should create handicap tournament', () => {
