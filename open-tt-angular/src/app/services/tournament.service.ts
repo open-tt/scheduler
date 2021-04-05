@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, throwError } from 'rxjs';
 import {
-  Tournament,
   Match,
+  Tournament,
   TournamentGroup,
   TournamentStage,
 } from '../models/tournament';
 import { Player } from '../models/player';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { PlayerService } from './player.service';
 import { catchError } from 'rxjs/operators';
 import { BaseApiService } from './base-api.service';
@@ -59,6 +58,13 @@ export class TournamentService {
     // this.selectedTournamentPlayoffsSubject = new Subject<NgttTournament>();
 
     // this.notifySelectedTournamentUpdates();
+  }
+
+  isGroupsEditable(): boolean {
+    return (
+      this.selectedTournament &&
+      this.selectedTournament.stage <= TournamentStage.CLASSIFICATION
+    );
   }
 
   groupPlayers(g: TournamentGroup): Player[] {
@@ -206,7 +212,7 @@ export class TournamentService {
       return;
     }
     this.playerService
-      .createNewPlayer(unsavedPlayer.name, unsavedPlayer.rating)
+      .createNewPlayer(unsavedPlayer.name, unsavedPlayer.tournamentrating)
       .subscribe((p: Player) => {
         this.addPlayerToTournament(this.selectedTournament, p);
       });

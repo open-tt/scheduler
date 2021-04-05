@@ -12,6 +12,8 @@ import { TournamentService } from '../../services/tournament.service';
 })
 export class TtTournamentMatchComponent implements OnInit {
   @Input() match: Match;
+  @Input() editable = true;
+
   constructor(
     public dialog: MatDialog,
     public playerService: PlayerService,
@@ -40,7 +42,7 @@ export class TtTournamentMatchComponent implements OnInit {
   }
 
   openDialog(): void {
-    if (!this.match) {
+    if (!this.match || !this.editable) {
       return;
     }
 

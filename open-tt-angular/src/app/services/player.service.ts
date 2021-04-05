@@ -38,6 +38,6 @@ export class PlayerService {
 
   playerName(id: number): string {
     const player = this.playerUniverse.find((p) => p.id === id);
-    return player.name;
+    return player ? player.name : '';
   }
 }

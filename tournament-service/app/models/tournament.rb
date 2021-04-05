@@ -4,7 +4,7 @@ class Tournament < ApplicationRecord
   has_many :groups, dependent: :destroy
   has_one :playoff, dependent: :destroy
 
-  enum stage: %i[registration classification playoffs end]
+  enum stage: %i[registration classification open_playoffs playoffs end]
   DEFAULT_MAX_PLAYERS_PER_GROUP = 4
   DEFAULT_MIN_PLAYERS_PER_GROUP = 3
 
@@ -49,44 +49,17 @@ class Tournament < ApplicationRecord
 
     return false unless g
 
+    g.players.each do |pl_id|
+      g.matches.create!(
+        best_of: 5,
+        player1_id: pl_id,
+        player2_id: player_hash[:id]
+      )
+    end
     g.players << player_hash[:id]
     g.save!
     true
   end
-
-  # //   return this.selectedTournament.groups.find(
-  #   //     (g) => g.players.length < this.DEFAULT_MAX_PLAYERS_PER_GROUP
-  # //   );
-  # // For tournaments already in the Classification Stage (Groups)
-  # // We need to add player to a group manually or to a waiting list
-  # // if all groups are full.
-  #   // Create new group if waitingList is at least the minimum players required
-  # if (this.selectedTournament.stage === TournamentStage.CLASSIFICATION) {
-  #   const g = this.findIncompleteGroup();
-  # if (!g) {
-  #   this.selectedTournament.waitingList.push(player);
-  # if (
-  #   this.selectedTournament.waitingList.length >=
-  #     this.DEFAULT_MIN_PLAYERS_PER_GROUP
-  # ) {
-  #   const newGroup = new TournamentGroup(
-  #                          this.selectedTournament.waitingList
-  #                        );
-  # this.selectedTournament.groups.push(newGroup);
-  # this.selectedTournament.waitingList = [];
-  # } else {
-  #   alert(
-  #     `All groups are full, added ${player.name} to the waiting list. ${this.selectedTournament.waitingList.length} Players waiting.`
-  #   );
-  # }
-  # this.notifySelectedTournamentUpdates({
-  #                                        tournament: true,
-  #                                      });
-  # } else {
-  #   g.players.push(player);
-  # this.notifySelectedTournamentUpdates({ group: true }, g);
-  # }
-  # }
 
   def remove_player(player_id)
     return if players.nil? || players.count.zero?

@@ -21,7 +21,7 @@ import { Tournament } from '../../models/tournament';
   styleUrls: ['./tt-player-handicap-table.component.scss'],
 })
 export class TtPlayerHandicapTableComponent implements OnInit {
-  displayedColumns: string[] = ['index', 'name', 'rating', 'handicap'];
+  displayedColumns: string[] = ['index', 'name', 'rating'];
   dataSource: MatTableDataSource<Player>;
   tournamentSubscription: Subscription;
 

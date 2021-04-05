@@ -1,8 +1,4 @@
-import { NgttTournament } from 'ng-tournament-tree';
 import { Player } from './player';
-import { TournamentService } from '../services/tournament.service';
-import { environment } from '../../environments/environment';
-import { Observable, Subject } from 'rxjs';
 
 export interface Tournament {
   id: number;
@@ -17,6 +13,7 @@ export interface Tournament {
 export enum TournamentStage {
   REGISTRATION,
   CLASSIFICATION,
+  OPEN_PLAYOFFS,
   PLAYOFFS,
   END,
 }
@@ -69,7 +66,7 @@ export interface Playoff {
   id: number;
   rounds: PlayoffRound[];
   over: boolean;
-  first: Player;
-  second: Player;
+  first: number;
+  second: number;
   third: Player[];
 }

@@ -6,6 +6,8 @@
             fxLayout="row"
             fxLayoutAlign="none center"
             fxLayoutGap="5%"
+            [class.primaryColorBG]="match.player1_won"
+            [class.spacing]="true"
     >
       <mat-icon>person</mat-icon>
       <div class="player-name">{{ playerService.playerName(match.player1_id) }}</div>
@@ -19,6 +21,8 @@
             fxLayout="row"
             fxLayoutAlign="none center"
             fxLayoutGap="5%"
+            [class.primaryColorBG]="match.is_over && !match.player1_won"
+            [class.spacing]="true"
     >
       <mat-icon>person</mat-icon>
       <div class="player-name">{{ playerService.playerName(match.player2_id) }}</div>

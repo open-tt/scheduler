@@ -89,6 +89,17 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
     );
   }
 
+  inOpenPlayoffs(): boolean {
+    return (
+      this.selectedTournament &&
+      this.selectedTournament.stage <= TournamentStage.OPEN_PLAYOFFS
+    );
+  }
+
+  isMatchEditable(): boolean {
+    return this.tournamentService.isGroupsEditable();
+  }
+
   canCreateGroups(): boolean {
     return (
       this.selectedTournament &&
@@ -165,7 +176,7 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
   shouldDisablePlayoffs(): boolean {
     return (
       !this.selectedTournament ||
-      this.selectedTournament.stage < TournamentStage.PLAYOFFS
+      this.selectedTournament.stage < TournamentStage.OPEN_PLAYOFFS
     );
   }
 
@@ -199,5 +210,13 @@ export class TtHandicapComponent implements OnInit, OnDestroy {
       });
     });
     return { rounds };
+  }
+
+  isTournamentOver(): boolean {
+    return (
+      this.selectedTournament &&
+      this.selectedTournament.playoff &&
+      this.selectedTournament.playoff.over
+    );
   }
 }

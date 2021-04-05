@@ -99,7 +99,7 @@ class UsersController < ApplicationController
 
   def validate_players(data)
     players = data.map do |player|
-      player_params = player.permit(:name, :usattid, :location, :homeclub, :tournament_rating, :league_rating)
+      player_params = player.permit(:name, :usattid, :location, :homeclub, :tournamentrating, :leaguerating)
       Player.new(player_params)
     end
     players.select(&:valid?)

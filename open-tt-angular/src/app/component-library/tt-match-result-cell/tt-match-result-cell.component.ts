@@ -14,6 +14,7 @@ export class TtMatchResultCellComponent implements OnInit {
   @Input() match: Match;
   @Input() selfMatch = false;
   @Input() winningScore = environment.default_winning_score;
+  @Input() editable = true;
 
   // Disables individual set scores
   simpleView = false;
@@ -44,7 +45,7 @@ export class TtMatchResultCellComponent implements OnInit {
   }
 
   openDialog(): void {
-    if (!this.match) {
+    if (!this.match || !this.editable) {
       return;
     }
 

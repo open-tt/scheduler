@@ -34,6 +34,7 @@
                 fxFlexFill
                 [match]="findMatch(+player1.id, player2_id)"
                 [selfMatch]="+player1.id === player2_id"
+                [editable]="isMatchEditable()"
         ></app-tt-match-result-cell>
       </mat-cell>
     </ng-container>

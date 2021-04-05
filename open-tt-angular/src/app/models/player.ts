@@ -2,9 +2,10 @@
 export interface Player {
   id: number;
   name: string;
-  rating: number;
+  tournamentrating: number;
   // email or phone number
   // Optional, when empty, users cannot log in, only view data
+  leaguerating?: number;
   userID?: string;
   USATTID?: string;
   handicap?: number;

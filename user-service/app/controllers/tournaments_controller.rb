@@ -28,7 +28,7 @@ class TournamentsController < ApplicationController
       {
         player_id: player.id,
         name: player.name,
-        rating: player.tournament_rating
+        rating: player.tournamentrating
       }
     end
     reroute(url, :post, { players: players })

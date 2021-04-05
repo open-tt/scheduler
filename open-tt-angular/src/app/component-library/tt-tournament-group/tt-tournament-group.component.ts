@@ -72,6 +72,10 @@ export class TtTournamentGroupComponent implements OnInit {
     return m;
   }
 
+  isMatchEditable(): boolean {
+    return this.tournamentService.isGroupsEditable();
+  }
+
   generateDisplayColumns(): string[] {
     const columns: string[] = [...TtTournamentGroupComponent.DEFAULT_COLUMNS];
     for (let i = 0; i < this.group.players.length; i++) {

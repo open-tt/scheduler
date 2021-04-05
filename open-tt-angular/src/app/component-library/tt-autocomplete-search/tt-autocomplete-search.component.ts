@@ -61,7 +61,7 @@ export class TtAutocompleteSearchComponent implements OnInit {
     } else {
       const p: Player = {
         id: undefined,
-        rating: undefined,
+        tournamentrating: undefined,
         name: this.searchString,
       };
       this.addPlayer.emit(p);

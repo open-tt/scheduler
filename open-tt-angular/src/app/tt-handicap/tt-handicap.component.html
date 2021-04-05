@@ -48,21 +48,21 @@
   <div fxLayout="row">
     <div fxFlex="15%"></div>
 
-    <div *ngIf="selectedTournament" fxLayout="column" fxFlex="35%">
+    <div *ngIf="isTournamentOver()" fxLayout="column" fxFlex="35%">
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
         <mat-icon>looks_one</mat-icon>
-        <div>Ricky McClure</div>
+        <div>{{playerService.playerName(selectedTournament.playoff.first)}}</div>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
         <mat-icon>looks_two</mat-icon>
-        <div>Hubert Block</div>
+        <div>{{playerService.playerName(selectedTournament.playoff.second)}}</div>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">
-        <mat-icon>looks_3</mat-icon>
-        <div>Miss Ana Franecki</div>
-      </div>
+<!--      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1%">-->
+<!--        <mat-icon>looks_3</mat-icon>-->
+<!--        <div>Miss Ana Franecki</div>-->
+<!--      </div>-->
     </div>
 
     <div fxFlex="15%"></div>
@@ -144,6 +144,11 @@
 
     <!--  Tab 3: Playoffs  -->
     <mat-tab label="Playoffs" [disabled]="shouldDisablePlayoffs()">
+      <app-tt-autocomplete-search
+              *ngIf="inOpenPlayoffs()"
+              [allPlayerNames]="playerUniverse"
+              (addPlayer)="addPlayer($event)"
+      ></app-tt-autocomplete-search>
       <div
               *ngIf="selectedTournament && selectedTournament.playoff"
               fxLayout="column"
@@ -155,9 +160,11 @@
         ></ngtt-single-elimination-tree>
 
         <ng-template #myMatchTemplate let-match>
-          <app-tt-tournament-match [match]="match"></app-tt-tournament-match>
+          <app-tt-tournament-match
+                  [match]="match"
+                  [editable]="isMatchEditable()"
+          ></app-tt-tournament-match>
         </ng-template>
-        test
       </div>
     </mat-tab>
   </mat-tab-group>

@@ -3,7 +3,7 @@
 class TournamentsController < ApplicationController
   def index
     # return an array of tournaments [{}, {}]
-    render json: Tournament.all, status: :ok
+    render json: Tournament.order('created_at DESC'), status: :ok
   end
 
   def show
