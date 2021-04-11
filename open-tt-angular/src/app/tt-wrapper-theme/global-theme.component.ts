@@ -15,17 +15,16 @@ export class GlobalThemeComponent implements OnInit {
   mode = ComponentMode.SHOW;
   enableHomePage = environment.enable_home_page;
   enableRegistrationPage = environment.enable_registration_page;
-  enableHandicapTournamentPage = environment.enable_handicap_page;
+  enableTournamentsPage = environment.enable_handicap_page;
   enableOrgPage = false;
   enableAdmissionsPage = false;
   enableMembershipPage = false;
   enableMembershipSummaryPage = false;
-  hasLoggedInUser = false;
 
-  handicapPageTitle = 'Handicap';
+  tournamentsPageTitle = 'Tournaments';
   homePageTitle = 'Home';
 
-  handicapPageRoute = TTRoute.TOURNAMENT_HANDICAP;
+  tournamentsPageRoute = TTRoute.TOURNAMENT_HANDICAP;
   homePageRoute = TTRoute.HOME;
 
   events: string[] = [];
@@ -40,9 +39,12 @@ export class GlobalThemeComponent implements OnInit {
   ngOnInit(): void {
     if (this.cookieService.hasLoggedInUser()) {
       this.userService.userApiToken = this.cookieService.getAuthTokenCookie();
-      this.hasLoggedInUser = true;
       this.userService.loadUser();
       this.router.navigate([TTRoute.TOURNAMENT_HANDICAP]);
     }
+  }
+
+  hasLoggedInUser(): boolean {
+    return this.cookieService.hasLoggedInUser();
   }
 }

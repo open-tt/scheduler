@@ -20,12 +20,12 @@
           [href]="homePageRoute"
         ></app-tt-navigation-button>
         <app-tt-navigation-button
-          *ngIf="enableHandicapTournamentPage"
-          [title]="handicapPageTitle"
-          [href]="handicapPageRoute"
+          *ngIf="enableTournamentsPage"
+          [title]="tournamentsPageTitle"
+          [href]="tournamentsPageRoute"
         ></app-tt-navigation-button>
         <app-tt-navigation-button
-          *ngIf="enableRegistrationPage && !hasLoggedInUser"
+          *ngIf="enableRegistrationPage && !hasLoggedInUser()"
           [title]="'registration'"
           [href]="'/registrations'"
         ></app-tt-navigation-button>
