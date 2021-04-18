@@ -26,7 +26,7 @@ export interface Player {
   play_style?: string;
   partner_min_rating?: number;
   partner_max_rating?: number;
-  img_url?: string;
+  profile_img?: string;
 }
 
 interface Membership {

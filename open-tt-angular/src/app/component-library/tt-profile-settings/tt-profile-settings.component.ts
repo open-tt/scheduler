@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-tt-profile-settings',
   templateUrl: './tt-profile-settings.component.html',
-  styleUrls: ['./tt-profile-settings.component.css'],
+  styleUrls: ['./tt-profile-settings.component.scss'],
 })
 export class TtProfileSettingsComponent implements OnInit {
   player: Player = {
@@ -34,7 +34,7 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   saveAccount(): void {
-    // this.userService.updatePlayer(this.player);
+    this.userService.updatePlayer(this.player);
     this.isUpdatingAccount = false;
   }
 

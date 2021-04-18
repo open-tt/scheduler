@@ -122,7 +122,7 @@ export class UserService {
   // TODO: This is not working yet
   updatePlayer(p: Player): void {
     this.http
-      .put<Player>(`/players/${this.loggedInUser.id}`, p)
+      .put<Player>(`/users/${this.loggedInUser.id}`, p)
       .subscribe((updatedPlayer) => {
         this.loggedInUser = updatedPlayer;
         this.loggedInUserSubject.next(updatedPlayer);

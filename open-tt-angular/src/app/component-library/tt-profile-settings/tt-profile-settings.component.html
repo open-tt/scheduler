@@ -6,22 +6,25 @@
       <mat-icon *ngIf="!isUpdatingAccount" (click)="editAccount()">edit</mat-icon>
       <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveAccount()">save</mat-icon>
     </div>
-    <img [src]='player.img_url' alt="Profile Image">
-    <div>
+    <img [src]='player.profile_img' alt="Profile Image">
+    <hr>
+
+    <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>person</mat-icon>
-      {{player.name}}
+      <div>{{player.name}}</div>
     </div>
-    <div>
+    <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>email</mat-icon>
-      {{player.email}}
+      <div>{{player.email}}</div>
     </div>
-    <div>
+    <div *ngIf="player.cell"
+             fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>phone</mat-icon>
-      {{player.cell}} 7868766542
+      <div>{{player.cell}}</div>
     </div>
-    <div>
+    <div *ngIf="player.address"
+             fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>local_shipping</mat-icon>
-      123 88st Palo Alto, CA 99909
       {{player.address}}
     </div>
     <hr>
