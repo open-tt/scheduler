@@ -1,13 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:register]
 
-  def import
-    players_batch = params[:batch]
-    validated_players = validate_players(players_batch)
-    Player.import validated_players
-    render json: { accepted_players: validated_players }, status: :accepted
-  end
-
   def show_current_user
     render json: { user: current_user }
   end
@@ -17,6 +10,10 @@ class UsersController < ApplicationController
     user.roles_users.new(role_id: Role.player.id)
 
     if user.save
+      if create_user_params[:player_id]
+        prof = TtProfile.find(create_user_params[:player_id])
+        prof&.update(user: user)
+      end
       token = AuthenticateUser.call(user.email, user.password).result
       render json: {
         success: true,
@@ -54,23 +51,15 @@ class UsersController < ApplicationController
     render json: { success: true, user: user.profile }, status: :ok
   end
 
-  def index_players
-    players = Player.all
-    render json: players, status: :ok
-  end
-
   def show_tournament_data
     user = User.find(params[:id])
     render json: user.tournament_data, status: :ok
   end
 
   def edit
-    user = User.find_by_id(edit_user_params[:id])
+    user = User.find_by_id(params[:id])
 
-    if edit_user_params.keys.count <= 1
-      # params of size 1 only contains the user id, no useful information to update
-      render json: { success: false, message: 'No fields to update' }, status: :unprocessable_entity
-    elsif user.nil?
+    if user.nil?
       render json: { success: false, message: 'User does not exist' }, status: 404
     elsif user.update(edit_user_params)
       render status: :no_content
@@ -100,22 +89,21 @@ class UsersController < ApplicationController
   def validate_players(data)
     players = data.map do |player|
       player_params = player.permit(:name, :usattid, :location, :homeclub, :tournamentrating, :leaguerating)
-      Player.new(player_params)
+      TtProfile.new(player_params)
     end
     players.select(&:valid?)
   end
 
   def create_user_params
-    params.permit(:name, :email, :password, :password_confirmation,
-                  :is_enabled, :usattid, :location, :homeclub, :rating)
+    params.permit(
+      :name, :email, :password, :password_confirmation,
+      :is_enabled, :usattid, :location, :homeclub, :rating,
+      :player_id
+    )
   end
 
   def create_user_soft_params
     params.permit(:name, :rating, :usattid)
-  end
-
-  def edit_user_params
-    params.permit(:id, :name, :is_enabled, :profile_img)
   end
 
   def generate_fake_email(stuff)

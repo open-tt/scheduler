@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   post 'authenticate' => 'authentication#authenticate'
 
   # Players
-  post    '/players/import'     => 'users#import'
-  get     '/players'            => 'users#index_players'
+  post    '/ttprofiles/import'     => 'tt_profile#import'
+  get     '/ttprofiles'           => 'tt_profile#index'
 
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'

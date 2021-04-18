@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210405032135) do
+ActiveRecord::Schema.define(version: 20210417225548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,17 +61,6 @@ ActiveRecord::Schema.define(version: 20210405032135) do
     t.index ["user_id"], name: "index_orgs_users_on_user_id", using: :btree
   end
 
-  create_table "players", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "tournamentrating", default: 0
-    t.integer  "leaguerating",     default: 0
-    t.string   "usattid"
-    t.string   "location"
-    t.string   "homeclub"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -89,16 +78,24 @@ ActiveRecord::Schema.define(version: 20210405032135) do
     t.index ["user_id"], name: "index_roles_users_on_user_id", using: :btree
   end
 
+  create_table "tt_profiles", force: :cascade do |t|
+    t.integer  "tournamentrating", default: 0
+    t.integer  "leaguerating",     default: 0
+    t.string   "usattid"
+    t.string   "homeclub"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "user_id"
+    t.string   "name"
+    t.index ["user_id"], name: "index_tt_profiles_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string  "email",           default: "",    null: false
     t.string  "name"
     t.string  "profile_img"
     t.boolean "is_enabled",      default: false
     t.string  "password_digest"
-    t.integer "rating"
-    t.string  "usattid"
-    t.string  "location"
-    t.string  "homeclub"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
@@ -110,4 +107,5 @@ ActiveRecord::Schema.define(version: 20210405032135) do
   add_foreign_key "orgs_users", "users"
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
+  add_foreign_key "tt_profiles", "users"
 end

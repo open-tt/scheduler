@@ -24,7 +24,7 @@ class TournamentsController < ApplicationController
 
   def add_players
     url = Rails.application.config.tournament_api + "/tournaments/#{params[:id]}/players"
-    players = Array(Player.find(params[:player_ids])).map do |player|
+    players = Array(TtProfile.find(params[:player_ids])).map do |player|
       {
         player_id: player.id,
         name: player.name,

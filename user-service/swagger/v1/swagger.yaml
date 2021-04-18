@@ -516,11 +516,11 @@ paths:
                         type: integer
                       player2_score:
                         type: integer
-  "/players/import":
+  "/ttprofiles/import":
     post:
-      summary: Import batch of users
+      summary: Import batch of tt profiles without users
       tags:
-      - Players
+      - TT Profiles
       security:
       - bearer_auth: []
       parameters: []
@@ -549,16 +549,16 @@ paths:
                         type: string
                       rating:
                         type: integer
-  "/players":
+  "/ttprofiles":
     get:
-      summary: Import batch of users
+      summary: Get all available profiles
       tags:
-      - Players
+      - TT Profiles
       security:
       - bearer_auth: []
       responses:
         '200':
-          description: Get all players
+          description: Get Profiles
           content: {}
   "/users":
     post:

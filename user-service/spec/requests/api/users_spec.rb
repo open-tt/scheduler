@@ -16,51 +16,6 @@ RSpec.describe 'Users API', type: :request do
     )
     @admin_user.roles_users.create!(role_id: Role.admin.id, org_id: 1)
   end
-  path '/players/import' do
-    post 'Import batch of users' do
-      tags 'Players'
-      security [{ bearer_auth: [] }]
-      consumes 'application/json'
-      produces 'application/json'
-
-      parameter name: :body, in: :body, schema: {
-        type: :object,
-        properties: {
-          batch: {
-            type: :array,
-            items: {
-              type: :object,
-              properties: {
-                name: { type: :string },
-                usattid: { type: :integer },
-                location: { type: :string },
-                homeclub: { type: :string },
-                rating: { type: :integer }
-              }
-            }
-          }
-        }
-      }
-
-      response '201', 'Imported batch of users' do
-        run_test!
-      end
-    end
-  end
-
-  path '/players' do
-    get 'Import batch of users' do
-      tags 'Players'
-      security [{ bearer_auth: [] }]
-      consumes 'application/json'
-      produces 'application/json'
-
-      response '200', 'Get all players' do
-        run_test!
-      end
-
-    end
-  end
 
   path '/users' do
     post 'Creates New User' do

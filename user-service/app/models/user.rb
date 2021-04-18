@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :actions, through: :roles
   has_many :roles_users, class_name: 'RolesUsers'
 
+  has_one :tt_profile, required: false
+
   validates_presence_of :name
   validates_uniqueness_of :email
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
