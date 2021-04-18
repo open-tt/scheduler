@@ -55,6 +55,14 @@ import { TtMatchResultDialogComponent } from './component-library/tt-match-resul
 import { ResponseMappingInterceptor } from './interceptors/response-mapping.interceptor';
 import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
 import { TtGroupPlayerComponent } from './component-library/tt-group-player/tt-group-player.component';
+import { MatCardModule } from '@angular/material/card';
+import { TtPlayerCardComponent } from './component-library/tt-player-card/tt-player-card.component';
+import { TtEntityCardComponent } from './component-library/tt-entity-card/tt-entity-card.component';
+import { TtCoachCardComponent } from './component-library/tt-coach-card/tt-coach-card.component';
+import { TtTournamentCardComponent } from './component-library/tt-tournament-card/tt-tournament-card.component';
+import { TtVenueCardComponent } from './component-library/tt-venue-card/tt-venue-card.component';
+import { TtProfileSettingsComponent } from './component-library/tt-profile-settings/tt-profile-settings.component';
+import { BaseApiInterceptor } from './interceptors/base-api.interceptor';
 
 @NgModule({
   declarations: [
@@ -89,6 +97,12 @@ import { TtGroupPlayerComponent } from './component-library/tt-group-player/tt-g
     TtMatchResultCellComponent,
     TtMatchResultDialogComponent,
     TtGroupPlayerComponent,
+    TtPlayerCardComponent,
+    TtEntityCardComponent,
+    TtCoachCardComponent,
+    TtTournamentCardComponent,
+    TtVenueCardComponent,
+    TtProfileSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,6 +127,7 @@ import { TtGroupPlayerComponent } from './component-library/tt-group-player/tt-g
     MatSelectModule,
     NgTournamentTreeModule,
     MatDialogModule,
+    MatCardModule,
   ],
   providers: [
     {
@@ -123,6 +138,11 @@ import { TtGroupPlayerComponent } from './component-library/tt-group-player/tt-g
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ResponseMappingInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseApiInterceptor,
       multi: true,
     },
   ],

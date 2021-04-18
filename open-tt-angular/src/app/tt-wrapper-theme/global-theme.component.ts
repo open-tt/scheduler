@@ -40,7 +40,7 @@ export class GlobalThemeComponent implements OnInit {
     if (this.cookieService.hasLoggedInUser()) {
       this.userService.userApiToken = this.cookieService.getAuthTokenCookie();
       this.userService.loadUser();
-      this.router.navigate([TTRoute.TOURNAMENT_HANDICAP]);
+      // this.router.navigate([TTRoute.TOURNAMENT_HANDICAP]);
     }
   }
 

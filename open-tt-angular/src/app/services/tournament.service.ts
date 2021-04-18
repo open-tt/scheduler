@@ -10,7 +10,6 @@ import { Player } from '../models/player';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PlayerService } from './player.service';
 import { catchError } from 'rxjs/operators';
-import { BaseApiService } from './base-api.service';
 import { GroupService } from './group.service';
 import { MatchService } from './match.service';
 
@@ -18,12 +17,7 @@ import { MatchService } from './match.service';
   providedIn: 'root',
 })
 export class TournamentService {
-  TOURNAMENTS_PATH = 'tournaments';
-  PLAYERS_PATH = 'players';
-  GROUPS_PATH = 'groups';
-  PLAYOFFS_PATH = 'playoffs';
   DEFAULT_MIN_PLAYERS_PER_GROUP = 3;
-  DEFAULT_MAX_PLAYERS_PER_GROUP = 4;
 
   private tournamentHistory: Tournament[];
   private tournamentHistorySubject: Subject<Tournament[]>;
@@ -42,9 +36,8 @@ export class TournamentService {
   // private selectedTournament: HandicapTournament;
 
   constructor(
-    private http2222: HttpClient,
+    private http: HttpClient,
     private playerService: PlayerService,
-    private http: BaseApiService,
     private groupService: GroupService,
     private matchService: MatchService
   ) {
@@ -192,7 +185,7 @@ export class TournamentService {
    */
   createNewHandicapTournament(): void {
     this.http
-      .post<Tournament>('/tournaments')
+      .post<Tournament>('/tournaments', {})
       .pipe(catchError(this.handleError))
       .subscribe(() => {
         this.http.get<Tournament[]>('/tournaments').subscribe((history) => {
@@ -231,7 +224,7 @@ export class TournamentService {
       );
     }
     this.http
-      .post<Tournament>(`/tournaments/${this.selectedTournament.id}/groups`)
+      .post<Tournament>(`/tournaments/${this.selectedTournament.id}/groups`, {})
       .pipe(catchError(this.handleError))
       .subscribe((t) => this.setSelectedTournament(t));
   }
@@ -244,7 +237,10 @@ export class TournamentService {
       return;
     }
     this.http
-      .post<Tournament>(`/tournaments/${this.selectedTournament.id}/playoffs`)
+      .post<Tournament>(
+        `/tournaments/${this.selectedTournament.id}/playoffs`,
+        {}
+      )
       .pipe(catchError(this.handleError))
       .subscribe((t) => this.setSelectedTournament(t));
   }

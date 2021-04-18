@@ -11,6 +11,22 @@ export interface Player {
   handicap?: number;
   // reservations: Reservation[];
   // memberships: Membership[];
+
+  email?: string;
+  cell?: string;
+  address?: string;
+  home_club?: string;
+  gender?: string;
+  age?: string;
+  racket_blade?: string;
+  forehand_rubber?: string;
+  backhand_rubber?: string;
+  grip?: string;
+  hand?: string;
+  play_style?: string;
+  partner_min_rating?: number;
+  partner_max_rating?: number;
+  img_url?: string;
 }
 
 interface Membership {

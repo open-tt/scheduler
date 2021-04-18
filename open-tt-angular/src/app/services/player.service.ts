@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Player } from '../models/player';
 import { Observable, Subject } from 'rxjs';
-import { BaseApiService } from './base-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +10,7 @@ export class PlayerService {
   playerUniverse: Player[];
   playerUniverseSubject: Subject<Player[]>;
 
-  constructor(private http2: HttpClient, private http: BaseApiService) {
+  constructor(private http2: HttpClient, private http: HttpClient) {
     this.playerUniverseSubject = new Subject<Player[]>();
     this.playerUniverse = [];
   }

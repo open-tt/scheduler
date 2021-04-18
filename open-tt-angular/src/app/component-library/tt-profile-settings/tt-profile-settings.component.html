@@ -1,0 +1,55 @@
+<div *ngIf="player" class="settings-container mat-elevation-z24" fxLayout="column" fxLayoutGap="40px">
+  <!--  User Profile -->
+  <div fxLayout="column">
+    <div>
+      <h2 fxFlex="80">Account Settings</h2>
+      <mat-icon *ngIf="!isUpdatingAccount" (click)="editAccount()">edit</mat-icon>
+      <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveAccount()">save</mat-icon>
+    </div>
+    <img [src]='player.img_url' alt="Profile Image">
+    <div>
+      <mat-icon>person</mat-icon>
+      {{player.name}}
+    </div>
+    <div>
+      <mat-icon>email</mat-icon>
+      {{player.email}}
+    </div>
+    <div>
+      <mat-icon>phone</mat-icon>
+      {{player.cell}} 7868766542
+    </div>
+    <div>
+      <mat-icon>local_shipping</mat-icon>
+      123 88st Palo Alto, CA 99909
+      {{player.address}}
+    </div>
+    <hr>
+    <div fxLayout="row">
+      <div fxFlex="80">Password Change</div>
+    </div>
+
+    <input type="password" name="current" placeholder="current password">
+    <input type="password" name="new" placeholder="new password">
+    <input type="password" name="confirm" placeholder="confirm password">
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+
+  <!--  TT Profile -->
+  <div fxLayout="column">
+    <div fxLayout="row">
+
+      <h2 fxFlex="80">TT Profile</h2>
+      <mat-icon *ngIf="!isUpdatingTtProfile" (click)="editTtProfile()">edit</mat-icon>
+      <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveTtProfile()">save</mat-icon>
+    </div>
+
+    <div>Blade: {{player.racket_blade}} HHH</div>
+    <div>Forehand Rubber: {{player.forehand_rubber}} CCC</div>
+    <div>Backhand Rubber: {{player.backhand_rubber}} VVV</div>
+
+    <div>Grip: {{player.hand}} {{player.grip}} Right Shakehand</div>
+    <div>Style: {{player.play_style}} Attacking </div>
+    <div>Partner Rating: {{player.partner_min_rating}}1500 - 1800{{player.partner_max_rating}}</div>
+  </div>
+</div>

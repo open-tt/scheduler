@@ -1,6 +1,84 @@
-<div fxFlex="column">
-  <app-tt-labeled-info-group
-    title="account info"
-    [pairs]="userInfo"
-  ></app-tt-labeled-info-group>
+<div class="home-container" fxLayout="row" fxLayoutGap="100px" fxLayoutAlign="center none">
+  <app-tt-profile-settings fxFlex="15"></app-tt-profile-settings>
+
+  <div fxLayout="column" fxLayoutGap="30px" fxFlex="70" fxFill>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1>Players</h1>
+      <input type="search" placeholder="search">
+    </div>
+
+    <div class="scrolling-wrapper" fxLayout="row" fxLayoutGap="20px">
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+      <app-tt-player-card></app-tt-player-card>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1>Coaches</h1>
+      <input type="search" placeholder="search">
+    </div>
+    <div class="scrolling-wrapper"
+         fxLayout="row"
+         fxLayoutGap="20px">
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+      <app-tt-coach-card></app-tt-coach-card>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1>Tournaments</h1>
+      <input type="search" placeholder="search">
+    </div>
+    <div class="scrolling-wrapper"
+         fxLayout="row"
+         fxLayoutGap="20px">
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+      <app-tt-tournament-card></app-tt-tournament-card>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <h1>Coaches</h1>
+      <input type="search" placeholder="search">
+    </div>
+    <div class="scrolling-wrapper"
+         fxLayout="row"
+         fxFlex="70"
+         fxLayoutGap="20px">
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+      <app-tt-venue-card></app-tt-venue-card>
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+<!--      <app-tt-player-card></app-tt-player-card>-->
+    </div>
+
+  </div>
 </div>

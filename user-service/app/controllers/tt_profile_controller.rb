@@ -1,0 +1,2 @@
+class TtProfileController < ApplicationController
+end

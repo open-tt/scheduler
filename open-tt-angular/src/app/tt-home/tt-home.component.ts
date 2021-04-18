@@ -6,10 +6,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-tt-home',
   templateUrl: './tt-home.component.html',
-  styleUrls: ['./tt-home.component.css'],
+  styleUrls: ['./tt-home.component.scss'],
 })
 export class TtHomeComponent implements OnInit {
   userInfo: LabeledContent[];
+  items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
+
   constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {

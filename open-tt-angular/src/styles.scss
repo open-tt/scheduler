@@ -8,6 +8,8 @@
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $green: mat-palette($mat-green);
+  $blue: mat-palette($mat-blue);
+  $purple: mat-palette($mat-purple);
 
   // Create theme specfic styles
   .primaryColorBG {
@@ -42,6 +44,12 @@
   }
   .winnerColorText {
     color: mat-color($green);
+  }
+  .purpleBG {
+    background-color: mat-color($purple);
+  }
+  .blueBG {
+    background-color: mat-color($blue);
   }
 
   //  Tournament Tree Borders

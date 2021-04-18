@@ -1,0 +1,26 @@
+<div>
+  <mat-card [ngClass]="
+    {
+      'blue': bg === 'blue',
+      'green': bg === 'green',
+      'purple': bg === 'purple',
+      'orange': bg === 'orange'
+    }
+  ">
+    <mat-card-header>
+  <!--    <div mat-card-avatar class="example-header-image"></div>-->
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image
+         [src]="imageUrl"
+         [alt]="alt">
+    <mat-card-content>
+      <ng-content></ng-content>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

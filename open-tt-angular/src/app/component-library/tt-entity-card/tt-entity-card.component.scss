@@ -1,0 +1,22 @@
+//@import "~src/styles";
+@import '~@angular/material/theming';
+
+.player-card {
+    max-width: 200px;
+}
+
+.mat-card.blue {
+    background-color: mat-color(mat-palette($mat-blue));
+}
+
+.mat-card.purple {
+    background-color: mat-color(mat-palette($mat-purple));
+}
+
+.mat-card.green {
+    background-color: mat-color(mat-palette($mat-green));
+}
+
+.mat-card.orange {
+    background-color: mat-color(mat-palette($mat-orange));
+}
