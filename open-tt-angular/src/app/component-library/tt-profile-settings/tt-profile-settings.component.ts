@@ -20,6 +20,10 @@ export class TtProfileSettingsComponent implements OnInit {
   isUpdatingAccount = false;
   isUpdatingTtProfile = false;
 
+  password: string;
+  newPassword: string;
+  passwordConfirmation: string;
+
   constructor(private userService: UserService) {
     this.signedInPlayerSubscription = this.userService
       .genLoggedInUser()
@@ -38,7 +42,16 @@ export class TtProfileSettingsComponent implements OnInit {
     this.isUpdatingAccount = false;
   }
 
-  savePassword(): void {}
+  savePassword(): void {
+    this.userService.changePassword(
+      this.password,
+      this.newPassword,
+      this.passwordConfirmation
+    );
+    this.password = '';
+    this.newPassword = '';
+    this.passwordConfirmation = '';
+  }
 
   editTtProfile(): void {
     this.isUpdatingTtProfile = true;

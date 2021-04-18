@@ -125,7 +125,27 @@ export class UserService {
       .put<Player>(`/users/${this.loggedInUser.id}`, p)
       .subscribe((updatedPlayer) => {
         this.loggedInUser = updatedPlayer;
+        console.log('Next Updated Player');
+        console.log(this.loggedInUser);
         this.loggedInUserSubject.next(updatedPlayer);
+      });
+  }
+
+  changePassword(
+    password: string,
+    newPassword: string,
+    passwordConfirmation: string
+  ): void {
+    const payload = {
+      password,
+      newPassword,
+      passwordConfirmation,
+    };
+
+    this.http
+      .patch(`/users/${this.loggedInUser.id}/password`, payload)
+      .subscribe((r) => {
+        console.log(r);
       });
   }
 }

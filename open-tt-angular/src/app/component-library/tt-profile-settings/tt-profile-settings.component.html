@@ -4,38 +4,43 @@
     <div>
       <h2 fxFlex="80">Account Settings</h2>
       <mat-icon *ngIf="!isUpdatingAccount" (click)="editAccount()">edit</mat-icon>
-      <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveAccount()">save</mat-icon>
+      <mat-icon *ngIf="isUpdatingAccount" (click)="saveAccount()">save</mat-icon>
     </div>
     <img [src]='player.profile_img' alt="Profile Image">
     <hr>
 
     <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>person</mat-icon>
-      <div>{{player.name}}</div>
+      <div *ngIf="!isUpdatingAccount">{{player.name}}</div>
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.name" />
     </div>
     <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>email</mat-icon>
-      <div>{{player.email}}</div>
+      <div *ngIf="!isUpdatingAccount">{{player.email}}</div>
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.email" />
     </div>
-    <div *ngIf="player.cell"
+    <div *ngIf="player.phone || isUpdatingAccount"
              fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>phone</mat-icon>
-      <div>{{player.cell}}</div>
+      <div *ngIf="!isUpdatingAccount">{{player.phone}}</div>
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.phone" />
     </div>
-    <div *ngIf="player.address"
+    <div *ngIf="player.address || isUpdatingAccount"
              fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>local_shipping</mat-icon>
-      {{player.address}}
+      <div *ngIf="!isUpdatingAccount">{{player.address}}</div>
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.address" />
     </div>
     <hr>
     <div fxLayout="row">
       <div fxFlex="80">Password Change</div>
     </div>
 
-    <input type="password" name="current" placeholder="current password">
-    <input type="password" name="new" placeholder="new password">
-    <input type="password" name="confirm" placeholder="confirm password">
-    <button mat-raised-button color="primary">Update</button>
+    <input type="password" name="current" placeholder="current password" [(ngModel)]="password">
+    <input type="password" name="new" placeholder="new password" [(ngModel)]="newPassword">
+    <input type="password" name="confirm" placeholder="confirm password" [(ngModel)]="passwordConfirmation">
+<!--    <div *ngIf="passwordErrors">{{passwordErrors}}</div>-->
+    <button mat-raised-button color="primary" (click)="savePassword()">Update</button>
   </div>
 
   <!--  TT Profile -->

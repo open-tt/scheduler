@@ -13,7 +13,7 @@ export interface Player {
   // memberships: Membership[];
 
   email?: string;
-  cell?: string;
+  phone?: string;
   address?: string;
   home_club?: string;
   gender?: string;
