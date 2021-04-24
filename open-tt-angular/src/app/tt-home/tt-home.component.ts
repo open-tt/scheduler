@@ -25,7 +25,7 @@ export class TtHomeComponent implements OnInit {
         if (loaded) {
           this.userInfo = [
             new LabeledContent('name', this.userService.loggedInUser.name),
-            new LabeledContent('email', this.userService.loggedInUser.userID),
+            new LabeledContent('email', this.userService.loggedInUser.id),
           ];
         } else {
           console.error('Failed to load user.');
@@ -34,7 +34,7 @@ export class TtHomeComponent implements OnInit {
     } else {
       this.userInfo = [
         new LabeledContent('name', this.userService.loggedInUser.name),
-        new LabeledContent('email', this.userService.loggedInUser.userID),
+        new LabeledContent('email', this.userService.loggedInUser.id),
       ];
     }
   }

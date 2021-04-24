@@ -13,7 +13,6 @@ export class TtProfileSettingsComponent implements OnInit {
   player: Player = {
     id: 0,
     name: '',
-    tournamentrating: 0,
   };
 
   signedInPlayerSubscription: Subscription;

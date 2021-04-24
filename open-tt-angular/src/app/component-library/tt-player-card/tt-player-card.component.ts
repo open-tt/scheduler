@@ -10,9 +10,6 @@ export class TtPlayerCardComponent implements OnInit {
   @Input() player: Player = {
     id: 1,
     name: 'Eriel Marimon',
-    tournamentrating: 1950,
-    handicap: -2,
-    home_club: 'BTTC, FL',
   };
 
   constructor() {}

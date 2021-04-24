@@ -205,7 +205,10 @@ export class TournamentService {
       return;
     }
     this.playerService
-      .createNewPlayer(unsavedPlayer.name, unsavedPlayer.tournamentrating)
+      .createNewPlayer(
+        unsavedPlayer.name,
+        unsavedPlayer.tt_profile.tournamentrating
+      )
       .subscribe((p: Player) => {
         this.addPlayerToTournament(this.selectedTournament, p);
       });
