@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../../models/player';
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-tt-profile-settings',
@@ -24,7 +25,10 @@ export class TtProfileSettingsComponent implements OnInit {
   newPassword: string;
   passwordConfirmation: string;
 
-  constructor(private userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private flashMessageService: FlashMessagesService
+  ) {
     this.signedInPlayerSubscription = this.userService
       .genLoggedInUser()
       .subscribe((p: Player) => (this.player = p));
@@ -33,6 +37,7 @@ export class TtProfileSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.player = this.userService.loggedInUser;
   }
+
   editAccount(): void {
     this.isUpdatingAccount = true;
   }
@@ -58,6 +63,11 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   saveTtProfile(): void {
+    this.userService.updatePlayer(this.player);
     this.isUpdatingTtProfile = false;
+  }
+
+  validPasswordChange(): boolean {
+    return !!this.password && !!this.newPassword && !!this.passwordConfirmation;
   }
 }

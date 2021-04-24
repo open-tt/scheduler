@@ -51,8 +51,7 @@
         ></app-tt-navigation-button>
       </div>
     </mat-sidenav>
-
-    <mat-sidenav-content>
+    <mat-sidenav-content fxLayout="column" fxLayoutGap="10px">
       <mat-toolbar color="primary">
         <mat-toolbar-row>
           <mat-icon
@@ -64,6 +63,10 @@
           <span>Open TT</span>
         </mat-toolbar-row>
       </mat-toolbar>
+
+      <div fxLayout="row" fxLayoutAlign="center space-around">
+        <flash-messages fxFlex="20"></flash-messages>
+      </div>
 
       <!-- Main Website Content -->
       <router-outlet></router-outlet>

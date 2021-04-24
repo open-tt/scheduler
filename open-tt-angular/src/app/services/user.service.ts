@@ -7,6 +7,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { ReservationService } from './reservation.service';
 import { CookieService } from './cookie.service';
 import { Tournament } from '../models/tournament';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +20,8 @@ export class UserService {
   constructor(
     private http: HttpClient,
     private reservationService: ReservationService,
-    private coockieService: CookieService
+    private coockieService: CookieService,
+    private flashMessageService: FlashMessagesService
   ) {
     this.loggedInUserSubject = new Subject<Player>();
   }
@@ -122,12 +124,16 @@ export class UserService {
   // TODO: This is not working yet
   updatePlayer(p: Player): void {
     this.http
-      .put<Player>(`/users/${this.loggedInUser.id}`, p)
+      .put<Player>(`/users/${this.loggedInUser.id}/tt_profile`, p)
       .subscribe((updatedPlayer) => {
         this.loggedInUser = updatedPlayer;
         console.log('Next Updated Player');
         console.log(this.loggedInUser);
         this.loggedInUserSubject.next(updatedPlayer);
+        this.flashMessageService.show('Updated Profile Info', {
+          cssClass: 'alert-success',
+          timeout: 4000,
+        });
       });
   }
 
@@ -144,8 +150,23 @@ export class UserService {
 
     this.http
       .patch(`/users/${this.loggedInUser.id}/password`, payload)
-      .subscribe((r) => {
-        console.log(r);
-      });
+      .subscribe(
+        (r) => {
+          this.flashMessageService.show('Updated Password', {
+            cssClass: 'alert-success',
+            timeout: 4000,
+          });
+        },
+        (response) => {
+          console.log(response);
+          this.flashMessageService.show(
+            'Failed password change: ' + response.error.errors,
+            {
+              cssClass: 'alert-danger',
+              timeout: 4000,
+            }
+          );
+        }
+      );
   }
 }

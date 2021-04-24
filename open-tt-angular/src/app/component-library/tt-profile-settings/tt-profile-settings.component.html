@@ -12,24 +12,24 @@
     <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>person</mat-icon>
       <div *ngIf="!isUpdatingAccount">{{player.name}}</div>
-      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.name" />
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.name"/>
     </div>
     <div fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>email</mat-icon>
       <div *ngIf="!isUpdatingAccount">{{player.email}}</div>
-      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.email" />
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.email"/>
     </div>
     <div *ngIf="player.phone || isUpdatingAccount"
-             fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>phone</mat-icon>
       <div *ngIf="!isUpdatingAccount">{{player.phone}}</div>
-      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.phone" />
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.phone"/>
     </div>
     <div *ngIf="player.address || isUpdatingAccount"
-             fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <mat-icon>local_shipping</mat-icon>
       <div *ngIf="!isUpdatingAccount">{{player.address}}</div>
-      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.address" />
+      <input *ngIf="isUpdatingAccount" matInput [(ngModel)]="player.address"/>
     </div>
     <hr>
     <div fxLayout="row">
@@ -39,8 +39,9 @@
     <input type="password" name="current" placeholder="current password" [(ngModel)]="password">
     <input type="password" name="new" placeholder="new password" [(ngModel)]="newPassword">
     <input type="password" name="confirm" placeholder="confirm password" [(ngModel)]="passwordConfirmation">
-<!--    <div *ngIf="passwordErrors">{{passwordErrors}}</div>-->
-    <button mat-raised-button color="primary" (click)="savePassword()">Update</button>
+    <!--    <div *ngIf="passwordErrors">{{passwordErrors}}</div>-->
+    <button mat-raised-button color="primary" [disabled]="!validPasswordChange()" (click)="savePassword()">Update
+    </button>
   </div>
 
   <!--  TT Profile -->
@@ -52,12 +53,69 @@
       <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveTtProfile()">save</mat-icon>
     </div>
 
-    <div>Blade: {{player.racket_blade}} HHH</div>
-    <div>Forehand Rubber: {{player.forehand_rubber}} CCC</div>
-    <div>Backhand Rubber: {{player.backhand_rubber}} VVV</div>
+    <div *ngIf="player.tt_profile.racket_blade || isUpdatingTtProfile"
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+      <!--      <mat-icon>phone</mat-icon>-->
+      <div>Blade:</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.racket_blade}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.racket_blade"/>
+    </div>
 
-    <div>Grip: {{player.hand}} {{player.grip}} Right Shakehand</div>
-    <div>Style: {{player.play_style}} Attacking </div>
-    <div>Partner Rating: {{player.partner_min_rating}}1500 - 1800{{player.partner_max_rating}}</div>
+    <div *ngIf="player.tt_profile.forehand_rubber || isUpdatingTtProfile"
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+      <!--      <mat-icon>phone</mat-icon>-->
+      <div>Forehand:</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.forehand_rubber}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.forehand_rubber"/>
+    </div>
+
+    <div *ngIf="player.tt_profile.backhand_rubber || isUpdatingTtProfile"
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+      <!--      <mat-icon>phone</mat-icon>-->
+      <div>backhand:</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.backhand_rubber}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.backhand_rubber"/>
+    </div>
+
+    <div *ngIf="player.tt_profile.hand || player.tt_profile.grip || isUpdatingTtProfile"
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+      <div>Grip:</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.hand}} {{player.tt_profile.grip}}</div>
+      <select
+              name="hand"
+              *ngIf="isUpdatingTtProfile"
+              [(ngModel)]="player.tt_profile.hand"
+              [value]="player.tt_profile.hand">
+        <option *ngFor="let method of ['right', 'left']" [value]="method">{{ method }}</option>
+      </select>
+      <select
+              name="grip"
+              *ngIf="isUpdatingTtProfile"
+              [(ngModel)]="player.tt_profile.grip">
+        <option *ngFor="let method of ['shakehand', 'penhold']" [value]="method">{{ method }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="player.tt_profile.partner_min_rating || player.tt_profile.partner_min_rating || isUpdatingTtProfile"
+         fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
+      <!--      <mat-icon>phone</mat-icon>-->
+      <div>Partner Rating:</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.partner_min_rating}}
+        - {{player.tt_profile.partner_max_rating}}</div>
+      <select
+              name="min"
+              *ngIf="isUpdatingTtProfile"
+              [(ngModel)]="player.tt_profile.partner_min_rating">
+        <option *ngFor="let method of ['any', 1000, 1300, 1600, 1900, 2100, 2300]"
+                [value]="method">{{ method }}</option>
+      </select>
+      <select
+              name="max"
+              *ngIf="isUpdatingTtProfile"
+              [(ngModel)]="player.tt_profile.partner_max_rating">
+        <option *ngFor="let method of ['any', 1000, 1300, 1600, 1900, 2100, 2300]"
+                [value]="method">{{ method }}</option>
+      </select>
+    </div>
   </div>
 </div>

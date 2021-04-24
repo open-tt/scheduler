@@ -63,6 +63,7 @@ import { TtTournamentCardComponent } from './component-library/tt-tournament-car
 import { TtVenueCardComponent } from './component-library/tt-venue-card/tt-venue-card.component';
 import { TtProfileSettingsComponent } from './component-library/tt-profile-settings/tt-profile-settings.component';
 import { BaseApiInterceptor } from './interceptors/base-api.interceptor';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { BaseApiInterceptor } from './interceptors/base-api.interceptor';
     NgTournamentTreeModule,
     MatDialogModule,
     MatCardModule,
+    FlashMessagesModule.forRoot(),
   ],
   providers: [
     {
