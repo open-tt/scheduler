@@ -565,6 +565,8 @@ paths:
       summary: Get all player profiles
       tags:
       - Users
+      security:
+      - bearer_auth: []
       responses:
         '200':
           description: Get all users with tt profiles
@@ -609,6 +611,21 @@ paths:
               - email
               - password
               - password_confirmation
+    get:
+      summary: Search Users
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: query
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Search
+          content: {}
   "/users/partial":
     post:
       summary: Creates New User without username and password requirements

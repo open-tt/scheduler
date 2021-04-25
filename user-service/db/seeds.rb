@@ -22,6 +22,7 @@ owner_role          = Role.where(name: 'owner').first_or_create!
 systems_admin_role  = Role.where(name: 'systems_admin').first_or_create!
 
 users_create_action       = Action.where(url_regex: '/users', method: POST).first_or_create!
+users_search_action       = Action.where(url_regex: '/users', method: GET).first_or_create!
 users_current_user_action = Action.where(url_regex: '/current_user', method: GET).first_or_create!
 users_get_one_action      = Action.where(url_regex: '/users/\d+', method: GET).first_or_create!
 users_update_one_action   = Action.where(url_regex: '/users/\d+', method: PUT).first_or_create!
@@ -30,7 +31,7 @@ users_delete_role_action  = Action.where(url_regex: '/users/\d+/roles', method: 
 users_change_password_action = Action.where(url_regex: '/users/\d+/password', method: PATCH).first_or_create!
 users_edit_tt_profile_action = Action.where(url_regex: '/users/\d+/tt_profile', method: PUT).first_or_create!
 
-players_get_all_action    = Action.where(url_regex: '/players', method: GET).first_or_create!
+players_get_all_action     = Action.where(url_regex: '/players', method: GET).first_or_create!
 
 orgs_create_action          = Action.where(url_regex: '/orgs', method: POST).first_or_create!
 orgs_list_action            = Action.where(url_regex: '/orgs', method: GET).first_or_create!
@@ -63,6 +64,7 @@ systems_admin_role.actions = [
   tournaments_add_players_action,
   players_get_all_action,
 
+  users_search_action,
   users_current_user_action,
   users_get_one_action,
   users_update_one_action,
@@ -93,6 +95,7 @@ owner_role.actions = [
   tournaments_add_players_action,
   players_get_all_action,
 
+  users_search_action,
   users_get_one_action,
   users_current_user_action,
   users_update_one_action,
@@ -123,6 +126,7 @@ admin_role.actions = [
   tournaments_add_players_action,
   players_get_all_action,
 
+  users_search_action,
   users_current_user_action,
   users_get_one_action,
   users_update_one_action,
@@ -153,6 +157,7 @@ player_role.actions = [
   tournaments_add_players_action,
   players_get_all_action,
 
+  users_search_action,
   users_current_user_action,
   users_get_one_action,
   users_update_one_action,

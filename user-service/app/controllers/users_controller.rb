@@ -1,8 +1,14 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:register, :index_with_tt_profiles]
+  skip_before_action :authenticate_request, only: :register
 
   def show_current_user
     render json: { user: current_user.account_tt_profile }
+  end
+
+  def search_users
+    search_term = params[:query].downcase
+    users = User.where('lower(name) LIKE ?', "%#{search_term}%")
+    render json: users.map(&:account_tt_profile)
   end
 
   def register
@@ -52,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def index_with_tt_profiles
-    render json: User.all.map{ |u| u.account_tt_profile }
+    render json: User.all.map(&:account_tt_profile)
   end
 
   def show_tournament_data

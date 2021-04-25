@@ -20,6 +20,7 @@ RSpec.describe 'Users API', type: :request do
   path '/players' do
     get 'Get all player profiles' do
       tags 'Users'
+      security [{ bearer_auth: [] }]
       consumes 'application/json'
       produces 'application/json'
 
@@ -81,6 +82,19 @@ RSpec.describe 'Users API', type: :request do
           expect(data['success']).to eq(false)
           expect(data['messages']).to include('Email is invalid')
         end
+      end
+    end
+
+    get 'Search Users' do
+      tags 'Users'
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :query, in: :query, type: :string
+
+      response '200', 'Search' do
+        run_test!
       end
     end
   end

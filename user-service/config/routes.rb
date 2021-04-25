@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'
+  get     '/users'            => 'users#search_users'
   post    '/users/partial'    => 'users#soft_register'
   get     '/current_user'     => 'users#show_current_user'
   get     '/users/:id'        => 'users#show'
