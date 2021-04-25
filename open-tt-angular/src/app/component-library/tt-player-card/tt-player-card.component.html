@@ -6,4 +6,8 @@
   <div>Rating: {{player?.tt_profile?.tournamentrating}}</div>
   <div>Handicap: {{player?.tt_profile?.handicap}}</div>
   <div>Club: {{player?.tt_profile?.home_club}}</div>
+
+  <mat-card-actions>
+    <button mat-button (click)="openDialog()">INVITE</button>
+  </mat-card-actions>
 </app-tt-entity-card>

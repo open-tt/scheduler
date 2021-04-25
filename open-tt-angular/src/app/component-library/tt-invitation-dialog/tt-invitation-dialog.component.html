@@ -1,0 +1,46 @@
+<form
+        #invitationForm="ngForm"
+        (ngSubmit)="sendInvite(invitationForm.value)"
+        fxLayout="column"
+        fxLayoutGap="20px"
+        fxLayoutAlign="none center">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <h1 fxFlex="80">Inviting {{recipient.name}} to</h1>
+    <mat-form-field fxFlex="15">
+      <mat-select #activity value="play">
+        <mat-option *ngFor="let act of ['play', 'train']" [value]="act">{{act}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
+    <mat-form-field appearance="fill" fxFlex="30">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="datepicker">
+      <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" fxFlex="20">
+      <mat-label>From</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" fxFlex="20">
+      <mat-label>To</mat-label>
+      <input matInput type="time">
+    </mat-form-field>
+  </div>
+
+  <textarea fxFill matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="2"
+            cdkAutosizeMaxRows="10"
+            placeholder="Add a note"
+            class="mat-elevation-z8"
+  ></textarea>
+
+  <button mat-raised-button color="primary" type="button" (click)="sendInvite(invitationForm.value)">Send Invite</button>
+</form>
+

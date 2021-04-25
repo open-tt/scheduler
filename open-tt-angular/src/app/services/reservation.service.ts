@@ -3,13 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ReservationApi } from '../utils/reservation_api';
 import { map } from 'rxjs/operators';
-import { Reservation } from '../models/player';
+import { Reservation } from '../models/reservation';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
-  constructor(private http: HttpClient) {}
+  reservations: Reservation[] = [];
+
+  constructor(
+    private http: HttpClient,
+    private flashMessagesService: FlashMessagesService
+  ) {}
 
   loadReservationsForUser(
     apiToken: string,
@@ -32,5 +38,21 @@ export class ReservationService {
           return reservationResponse.reservations;
         })
       );
+  }
+
+  playerInvitation(reservation: Reservation): void {
+    this.reservations.push(reservation);
+    this.flashMessagesService.show('Reservation created successfully.', {
+      cssClass: 'alert-success',
+      timeout: 4000,
+    });
+    // this.http.post<Reservation>('/reservations', reservation).subscribe(
+    //   () => {
+    //     this.flashMessagesService.show('Reservation created successfully.');
+    //   },
+    //   (error) => {
+    //     this.flashMessagesService.show('Fail to create reservation: ' + error);
+    //   }
+    // );
   }
 }

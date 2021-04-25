@@ -16,7 +16,7 @@
           *ngFor="let option of filteredPlayerNames | async"
           [value]="option.name"
         >
-          {{ option.name | titlecase }} [{{ option.tournamentrating }}]
+          {{ option.name | titlecase }} [{{ option.tt_profile.tournamentrating }}]
         </mat-option>
       </mat-autocomplete>
       <mat-icon matSuffix>person_search</mat-icon>

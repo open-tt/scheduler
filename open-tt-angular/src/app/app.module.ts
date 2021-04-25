@@ -64,6 +64,10 @@ import { TtVenueCardComponent } from './component-library/tt-venue-card/tt-venue
 import { TtProfileSettingsComponent } from './component-library/tt-profile-settings/tt-profile-settings.component';
 import { BaseApiInterceptor } from './interceptors/base-api.interceptor';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { TtInvitationDialogComponent } from './component-library/tt-invitation-dialog/tt-invitation-dialog.component';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -104,6 +108,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     TtTournamentCardComponent,
     TtVenueCardComponent,
     TtProfileSettingsComponent,
+    TtInvitationDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +135,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
     MatDialogModule,
     MatCardModule,
     FlashMessagesModule.forRoot(),
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     {

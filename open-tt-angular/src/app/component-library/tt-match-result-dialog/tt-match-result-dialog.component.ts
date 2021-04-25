@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Match } from '../../models/tournament';
 import { PlayerService } from '../../services/player.service';
-import { DataSource } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-tt-match-result-dialog',

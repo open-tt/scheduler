@@ -24,7 +24,7 @@ export class TtUserRegistrationComponent implements OnInit {
   ) {
     this.loginLabels = [
       ['UserID', 'Phone or Email', 'erieljr1@gmail.com'],
-      ['PIN', 'ex: 123456', '123123'],
+      ['PIN', 'ex: 123456', '1111'],
     ];
 
     this.signupLabels = [
