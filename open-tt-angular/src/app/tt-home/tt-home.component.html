@@ -5,7 +5,7 @@
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <h1>Players</h1>
-      <input type="search" placeholder="search">
+      <input type="search" placeholder="search" [(ngModel)]="playerQuery" (change)="searchPlayers()">
     </div>
 
     <div class="scrolling-wrapper" fxLayout="row" fxLayoutGap="20px">

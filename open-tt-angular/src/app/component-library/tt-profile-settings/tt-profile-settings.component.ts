@@ -52,6 +52,9 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   private updateNgModels(player: Player): void {
+    if (!player) {
+      return;
+    }
     this.blade = player.tt_profile.blade;
     this.forehand = player.tt_profile.forehand;
     this.backhand = player.tt_profile.backhand;

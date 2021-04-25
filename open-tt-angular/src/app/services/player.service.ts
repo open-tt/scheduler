@@ -39,4 +39,10 @@ export class PlayerService {
     const player = this.playerUniverse.find((p) => p.id === id);
     return player ? player.name : '';
   }
+
+  searchByName(playerQuery: string): Observable<Player[]> {
+    return this.http.get<Player[]>('/users', {
+      params: { query: playerQuery },
+    });
+  }
 }
