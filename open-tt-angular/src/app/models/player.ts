@@ -12,6 +12,7 @@ export interface Player {
     // email or phone number
     // Optional, when empty, users cannot log in, only view data
     leaguerating?: number;
+    homeclub?: string;
     userID?: string;
     USATTID?: string;
     handicap?: number;
@@ -20,9 +21,9 @@ export interface Player {
 
     home_club?: string;
 
-    racket_blade?: string;
-    forehand_rubber?: string;
-    backhand_rubber?: string;
+    blade?: string;
+    forehand?: string;
+    backhand?: string;
     grip?: string;
     hand?: string;
     play_style?: string;

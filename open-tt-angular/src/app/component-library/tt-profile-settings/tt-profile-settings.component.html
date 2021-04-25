@@ -53,66 +53,66 @@
       <mat-icon *ngIf="isUpdatingTtProfile" (click)="saveTtProfile()">save</mat-icon>
     </div>
 
-    <div *ngIf="player.tt_profile.racket_blade || isUpdatingTtProfile"
+    <div *ngIf="player.tt_profile?.blade || isUpdatingTtProfile"
          fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <!--      <mat-icon>phone</mat-icon>-->
       <div>Blade:</div>
-      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.racket_blade}}</div>
-      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.racket_blade"/>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile?.blade}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="blade"/>
     </div>
 
-    <div *ngIf="player.tt_profile.forehand_rubber || isUpdatingTtProfile"
+    <div *ngIf="player.tt_profile?.forehand || isUpdatingTtProfile"
          fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <!--      <mat-icon>phone</mat-icon>-->
       <div>Forehand:</div>
-      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.forehand_rubber}}</div>
-      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.forehand_rubber"/>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile?.forehand}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="forehand"/>
     </div>
 
-    <div *ngIf="player.tt_profile.backhand_rubber || isUpdatingTtProfile"
+    <div *ngIf="player.tt_profile?.backhand || isUpdatingTtProfile"
          fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <!--      <mat-icon>phone</mat-icon>-->
       <div>backhand:</div>
-      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.backhand_rubber}}</div>
-      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="player.tt_profile.backhand_rubber"/>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile?.backhand}}</div>
+      <input *ngIf="isUpdatingTtProfile" matInput [(ngModel)]="backhand"/>
     </div>
 
-    <div *ngIf="player.tt_profile.hand || player.tt_profile.grip || isUpdatingTtProfile"
+    <div *ngIf="player.tt_profile?.hand || player.tt_profile?.grip || isUpdatingTtProfile"
          fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <div>Grip:</div>
-      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.hand}} {{player.tt_profile.grip}}</div>
+      <div *ngIf="!isUpdatingTtProfile">{{hand}} {{grip}}</div>
       <select
               name="hand"
               *ngIf="isUpdatingTtProfile"
-              [(ngModel)]="player.tt_profile.hand"
-              [value]="player.tt_profile.hand">
+              [(ngModel)]="hand"
+              [value]="player.tt_profile?.hand">
         <option *ngFor="let method of ['right', 'left']" [value]="method">{{ method }}</option>
       </select>
       <select
               name="grip"
               *ngIf="isUpdatingTtProfile"
-              [(ngModel)]="player.tt_profile.grip">
+              [(ngModel)]="grip">
         <option *ngFor="let method of ['shakehand', 'penhold']" [value]="method">{{ method }}</option>
       </select>
     </div>
 
-    <div *ngIf="player.tt_profile.partner_min_rating || player.tt_profile.partner_min_rating || isUpdatingTtProfile"
+    <div *ngIf="player.tt_profile?.partner_min_rating || player.tt_profile?.partner_min_rating || isUpdatingTtProfile"
          fxLayout="row" fxLayoutAlign="left center" fxLayoutGap="10px">
       <!--      <mat-icon>phone</mat-icon>-->
       <div>Partner Rating:</div>
-      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile.partner_min_rating}}
-        - {{player.tt_profile.partner_max_rating}}</div>
+      <div *ngIf="!isUpdatingTtProfile">{{player.tt_profile?.partner_min_rating}}
+        - {{player.tt_profile?.partner_max_rating}}</div>
       <select
               name="min"
               *ngIf="isUpdatingTtProfile"
-              [(ngModel)]="player.tt_profile.partner_min_rating">
+              [(ngModel)]="minRating">
         <option *ngFor="let method of ['any', 1000, 1300, 1600, 1900, 2100, 2300]"
                 [value]="method">{{ method }}</option>
       </select>
       <select
               name="max"
               *ngIf="isUpdatingTtProfile"
-              [(ngModel)]="player.tt_profile.partner_max_rating">
+              [(ngModel)]="maxRating">
         <option *ngFor="let method of ['any', 1000, 1300, 1600, 1900, 2100, 2300]"
                 [value]="method">{{ method }}</option>
       </select>

@@ -3,6 +3,7 @@ import { Player } from '../../models/player';
 import { UserService } from '../../services/user.service';
 import { Subscription } from 'rxjs';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-tt-profile-settings',
@@ -15,6 +16,14 @@ export class TtProfileSettingsComponent implements OnInit {
     name: '',
   };
 
+  blade: string;
+  forehand: string;
+  backhand: string;
+  hand: string;
+  grip: string;
+  minRating: number;
+  maxRating: number;
+
   signedInPlayerSubscription: Subscription;
 
   isUpdatingAccount = false;
@@ -26,15 +35,30 @@ export class TtProfileSettingsComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private playerService: PlayerService,
     private flashMessageService: FlashMessagesService
   ) {
     this.signedInPlayerSubscription = this.userService
       .genLoggedInUser()
-      .subscribe((p: Player) => (this.player = p));
+      .subscribe((p: Player) => {
+        this.player = p;
+        this.updateNgModels(this.player);
+      });
   }
 
   ngOnInit(): void {
     this.player = this.userService.loggedInUser;
+    this.updateNgModels(this.player);
+  }
+
+  private updateNgModels(player: Player): void {
+    this.blade = player.tt_profile.blade;
+    this.forehand = player.tt_profile.forehand;
+    this.backhand = player.tt_profile.backhand;
+    this.hand = player.tt_profile.hand;
+    this.grip = player.tt_profile.grip;
+    this.minRating = player.tt_profile.partner_min_rating;
+    this.maxRating = player.tt_profile.partner_max_rating;
   }
 
   editAccount(): void {
@@ -62,6 +86,18 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   saveTtProfile(): void {
+    this.player.tt_profile.blade = this.blade;
+    console.log(this.player.tt_profile.blade);
+
+    this.player.tt_profile.forehand = this.forehand;
+    this.player.tt_profile.backhand = this.backhand;
+    this.player.tt_profile.hand = this.hand;
+    this.player.tt_profile.grip = this.grip;
+    this.player.tt_profile.partner_min_rating = this.minRating;
+    this.player.tt_profile.partner_max_rating = this.maxRating;
+
+    console.log(this.player);
+
     this.userService.updatePlayer(this.player);
     this.isUpdatingTtProfile = false;
   }
