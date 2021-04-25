@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210417225548) do
+ActiveRecord::Schema.define(version: 20210424192021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,14 +79,21 @@ ActiveRecord::Schema.define(version: 20210417225548) do
   end
 
   create_table "tt_profiles", force: :cascade do |t|
-    t.integer  "tournamentrating", default: 0
-    t.integer  "leaguerating",     default: 0
+    t.integer  "tournamentrating",   default: 0
+    t.integer  "leaguerating",       default: 0
     t.string   "usattid"
     t.string   "homeclub"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.string   "name"
+    t.string   "blade"
+    t.string   "forehand"
+    t.string   "backhand"
+    t.string   "hand"
+    t.string   "grip"
+    t.integer  "partner_min_rating"
+    t.integer  "partner_max_rating"
     t.index ["user_id"], name: "index_tt_profiles_on_user_id", using: :btree
   end
 
@@ -96,7 +103,11 @@ ActiveRecord::Schema.define(version: 20210417225548) do
     t.string  "profile_img"
     t.boolean "is_enabled",      default: false
     t.string  "password_digest"
+    t.string  "phone"
+    t.string  "address"
+    t.integer "tt_profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["tt_profile_id"], name: "index_users_on_tt_profile_id", using: :btree
   end
 
   add_foreign_key "actions_roles", "actions"
@@ -108,4 +119,5 @@ ActiveRecord::Schema.define(version: 20210417225548) do
   add_foreign_key "roles_users", "roles"
   add_foreign_key "roles_users", "users"
   add_foreign_key "tt_profiles", "users"
+  add_foreign_key "users", "tt_profiles"
 end

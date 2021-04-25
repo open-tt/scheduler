@@ -17,6 +17,18 @@ RSpec.describe 'Users API', type: :request do
     @admin_user.roles_users.create!(role_id: Role.admin.id, org_id: 1)
   end
 
+  path '/players' do
+    get 'Get all player profiles' do
+      tags 'Users'
+      consumes 'application/json'
+      produces 'application/json'
+
+      response '200', 'Get all users with tt profiles' do
+        run_test!
+      end
+    end
+  end
+
   path '/users' do
     post 'Creates New User' do
       tags 'Users'
@@ -72,7 +84,6 @@ RSpec.describe 'Users API', type: :request do
       end
     end
   end
-
 
   path '/users/partial' do
     post 'Creates New User without username and password requirements' do
@@ -179,9 +190,11 @@ RSpec.describe 'Users API', type: :request do
       parameter name: :user_update, in: :body, schema: {
         type: :object,
         properties: {
-          name: { type: :string },
           is_enabled: { type: :boolean },
-          profile_image: { type: :string }
+          profile_image: { type: :string },
+          name: { type: :string },
+          phone: { type: :string },
+          address: { type: :email }
         }
       }
 
@@ -198,7 +211,7 @@ RSpec.describe 'Users API', type: :request do
       end
 
       response '404', 'Update User fails with non-existent user id' do
-        let(:user_update) { {name: 'updated jon'} }
+        let(:user_update) { { name: 'updated jon' } }
         let(:id) { 999 }
         let(:Authorization) { "Bearer #{JsonWebToken.encode(user_id: @user.id)}" }
 
@@ -231,6 +244,34 @@ RSpec.describe 'Users API', type: :request do
           expect(data['success']).to eq(false)
           expect(data['message']).to eq('No fields to update')
         end
+      end
+    end
+  end
+
+  path '/users/{id}/tt_profile' do
+    put 'Edit TT Profile' do
+      tags 'Users'
+
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :user_update, in: :body, schema: {
+        type: :object,
+        properties: {
+          blade: { type: :string },
+          forehand: { type: :string },
+          backhand: { type: :string },
+          hand: { type: :string },
+          grip: { type: :string },
+          partner_min_rating: { type: :integer },
+          partner_max_rating: { type: :integer }
+        }
+      }
+
+      response '200', 'Update tt_profile' do
+        run_test!
       end
     end
   end
@@ -332,6 +373,30 @@ RSpec.describe 'Users API', type: :request do
         run_test! do
           expect(@user.roles.pluck(:name)).to_not include(@role.name)
         end
+      end
+    end
+  end
+
+  path '/users/{id}/password' do
+    patch 'Change Password' do
+      tags 'Users'
+
+      security [{ bearer_auth: [] }]
+      consumes 'application/json'
+      produces 'application/json'
+
+      parameter name: :id, in: :path, type: :integer
+      parameter name: :password_update, in: :body, schema: {
+        type: :object,
+        properties: {
+          password: { type: :string },
+          newPassword: { type: :string },
+          passwordConfirmation: { type: :string }
+        }
+      }
+
+      response '204', 'Password changed successfully' do
+        run_test!
       end
     end
   end

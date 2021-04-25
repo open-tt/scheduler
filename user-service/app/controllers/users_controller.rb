@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:register]
+  skip_before_action :authenticate_request, only: [:register, :index_with_tt_profiles]
 
   def show_current_user
-    render json: { user: current_user }
+    render json: { user: current_user.account_tt_profile }
   end
 
   def register
@@ -48,7 +48,11 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: { success: true, user: user.profile }, status: :ok
+    render json: { success: true, user: user.account_tt_profile }, status: :ok
+  end
+
+  def index_with_tt_profiles
+    render json: User.all.map{ |u| u.account_tt_profile }
   end
 
   def show_tournament_data
@@ -56,13 +60,28 @@ class UsersController < ApplicationController
     render json: user.tournament_data, status: :ok
   end
 
+  def edit_tt_profile
+    user = User.find_by_id(params[:id])
+    if user.nil?
+      render json: { error: 'User does not exist' }, status: :expectation_failed
+      return
+    end
+
+    tt_profile = user.tt_profile
+    if tt_profile.nil?
+      user.create_tt_profile!(edit_tt_profile_params)
+    else
+      tt_profile.update!(edit_tt_profile_params)
+    end
+    render json: user.account_tt_profile
+  end
+
   def edit
     user = User.find_by_id(params[:id])
-
     if user.nil?
       render json: { success: false, message: 'User does not exist' }, status: 404
     elsif user.update(edit_user_params)
-      render status: :no_content
+      render json: user.account_tt_profile
     else
       render json: { success: false, messages: user.errors.full_messages }, status: :unprocessable_entity
     end
@@ -84,7 +103,46 @@ class UsersController < ApplicationController
     user.roles_users.find_by(org_id: org_id, role_id: role.id)&.delete
   end
 
+  def change_password
+    user = User.find(params[:id])
+    call = AuthenticateUser.call(user.email, params[:password])
+    if call.result.nil?
+      render json: { errors: call.errors.full_messages }, status: :expectation_failed
+      return
+    end
+
+    user.password = params[:newPassword]
+    user.password_confirmation = params[:passwordConfirmation]
+    if user.valid? && user.save!
+      render status: :no_content
+    else
+      render json: user.errors.full_messages, status: :expectation_failed
+    end
+  end
+
   private
+
+  def validate_profiles(batch)
+    profiles = batch.map do |profile|
+      profile_params = profile.permit(
+        :name,
+        :usattid,
+        :homeclub,
+        :tournamentrating,
+        :leaguerating
+      )
+      TtProfile.new(profile_params)
+    end
+    profiles.select(&:valid?)
+  end
+
+  def edit_user_params
+    params.permit(:name, :email, :profile_img, :phone, :is_enabled, :address)
+  end
+
+  def edit_tt_profile_params
+    params.require(:tt_profile).permit(:blade, :forehand, :backhand, :hand, :grip, :partner_min_rating, :partner_max_rating)
+  end
 
   def validate_players(data)
     players = data.map do |player|

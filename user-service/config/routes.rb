@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Players
   post    '/ttprofiles/import'     => 'tt_profile#import'
   get     '/ttprofiles'           => 'tt_profile#index'
+  get     '/players'              => 'users#index_with_tt_profiles'
 
   # Users (Code in this Project user-service)
   post    '/users'            => 'users#register'
@@ -20,6 +21,8 @@ Rails.application.routes.draw do
   put     '/users/:id'        => 'users#edit'
   post    '/users/:id/roles'  => 'users#add_role'
   delete  '/users/:id/roles'  => 'users#remove_role'
+  patch   '/users/:id/password' => 'users#change_password'
+  put     '/users/:id/tt_profile' => 'users#edit_tt_profile'
 
   # Org (Code in this Project user-service)
   post    '/orgs' => 'org#create'

@@ -23,6 +23,18 @@ class User < ApplicationRecord
     end
   end
 
+  def account_tt_profile
+    {
+      id: id,
+      name: name,
+      email: email,
+      profile_img: profile_img,
+      phone: phone,
+      address: address,
+      tt_profile: tt_profile
+    }
+  end
+
   def profile
     {
       name: name,

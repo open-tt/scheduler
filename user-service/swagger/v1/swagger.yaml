@@ -560,6 +560,15 @@ paths:
         '200':
           description: Get Profiles
           content: {}
+  "/players":
+    get:
+      summary: Get all player profiles
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Get all users with tt profiles
+          content: {}
   "/users":
     post:
       summary: Creates New User
@@ -687,12 +696,53 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
                 is_enabled:
                   type: boolean
                 profile_image:
                   type: string
+                name:
+                  type: string
+                phone:
+                  type: string
+                address:
+                  type: email
+  "/users/{id}/tt_profile":
+    put:
+      summary: Edit TT Profile
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Update tt_profile
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                blade:
+                  type: string
+                forehand:
+                  type: string
+                backhand:
+                  type: string
+                hand:
+                  type: string
+                grip:
+                  type: string
+                partner_min_rating:
+                  type: integer
+                partner_max_rating:
+                  type: integer
   "/users/{id}/tournament_data":
     get:
       summary: Get User by ID
@@ -773,6 +823,35 @@ paths:
         '204':
           description: Remove a Role
           content: {}
+  "/users/{id}/password":
+    patch:
+      summary: Change Password
+      tags:
+      - Users
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Password changed successfully
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                newPassword:
+                  type: string
+                passwordConfirmation:
+                  type: string
 servers:
 - url: http://{defaultHost}
   variables:

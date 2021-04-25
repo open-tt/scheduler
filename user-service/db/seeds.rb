@@ -11,6 +11,7 @@ POST = Action.http_methods[:post]
 GET  = Action.http_methods[:get]
 PUT  = Action.http_methods[:put]
 DELETE = Action.http_methods[:del]
+PATCH = Action.http_methods[:patch]
 
 # Role.destroy_all
 # Action.destroy_all
@@ -26,6 +27,8 @@ users_get_one_action      = Action.where(url_regex: '/users/\d+', method: GET).f
 users_update_one_action   = Action.where(url_regex: '/users/\d+', method: PUT).first_or_create!
 users_add_role_action     = Action.where(url_regex: '/users/\d+/roles', method: POST).first_or_create!
 users_delete_role_action  = Action.where(url_regex: '/users/\d+/roles', method: DELETE).first_or_create!
+users_change_password_action = Action.where(url_regex: '/users/\d+/password', method: PATCH).first_or_create!
+users_edit_tt_profile_action = Action.where(url_regex: '/users/\d+/tt_profile', method: PUT).first_or_create!
 
 players_get_all_action    = Action.where(url_regex: '/players', method: GET).first_or_create!
 
@@ -65,6 +68,8 @@ systems_admin_role.actions = [
   users_update_one_action,
   users_add_role_action,
   users_delete_role_action,
+  users_change_password_action,
+  users_edit_tt_profile_action,
 
   orgs_create_action,
   orgs_list_action,
@@ -93,6 +98,8 @@ owner_role.actions = [
   users_update_one_action,
   users_add_role_action,
   users_delete_role_action,
+  users_change_password_action,
+  users_edit_tt_profile_action,
 
   orgs_create_action,
   orgs_list_action,
@@ -121,6 +128,8 @@ admin_role.actions = [
   users_update_one_action,
   users_add_role_action,
   users_delete_role_action,
+  users_change_password_action,
+  users_edit_tt_profile_action,
 
   orgs_create_action,
   orgs_list_action,
@@ -147,6 +156,8 @@ player_role.actions = [
   users_current_user_action,
   users_get_one_action,
   users_update_one_action,
+  users_change_password_action,
+  users_edit_tt_profile_action,
 
   orgs_create_action,
   orgs_list_action,

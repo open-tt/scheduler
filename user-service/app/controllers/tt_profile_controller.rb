@@ -1,9 +1,19 @@
 class TtProfileController < ApplicationController
   def import
     batch = params[:batch]
-    profiles = validate_profiles(batch)
-    TtProfile.import profiles
-    render json: { accepted_profiles: profiles.count }
+    cnt = 0
+    batch.each do |profile|
+      profile_params = profile.permit(
+        :name,
+        :usattid,
+        :homeclub,
+        :tournamentrating,
+        :leaguerating
+      )
+      obj = TtProfile.create(profile_params)
+      cnt += 1 if obj.valid?
+    end
+    render json: { accepted_profiles: cnt }
   end
 
   def index
