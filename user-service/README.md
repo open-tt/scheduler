@@ -1,5 +1,14 @@
 ## Overview (TODO)
 
+## How to add new endpoint
+
+1. Add route to `routes.rb`
+1. Create swagger spec in `spec/requests/api`
+1. Update Swagger Docs: `rails rswag:specs:swaggerize RAILS_ENV=development`
+    - Note the RAILS_ENV could be `test` if database.yaml has proper test setup
+1. Create corresponding action and add the action to the intended Roles in `seeds.rb`
+1. Reseed the DB: `rails db:seed`.
+
 ## How to Run
 
 #### Using Docker

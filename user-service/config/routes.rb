@@ -50,4 +50,11 @@ Rails.application.routes.draw do
   get     '/groups/:id' => 'tournaments#show_group' # todo
   put     '/match/:id' => 'tournaments#update_match' # todo
   get     '/match/:id' => 'tournaments#show_match' # todo
+
+  # Reservations
+  post   '/reservations' => 'reservations#create'
+  get    '/reservations' => 'reservations#index'
+  put    '/reservations/:id' => 'reservations#update'
+  get    '/reservations/:id' => 'reservations#show'
+  delete '/reservations/:id' => 'reservations#delete'
 end

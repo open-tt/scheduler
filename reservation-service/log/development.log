@@ -995,3 +995,697 @@ Unpermitted parameter: reservation
 Completed 200 OK in 17ms (Views: 1.9ms | ActiveRecord: 1.7ms)
 
 
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2768923621775991330);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to UpdateReservations (20210425231031)
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.1ms)[0m  [1m[35mALTER TABLE "reservations" DROP "location_id"[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "reservations" DROP "user_id"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" DROP "coach_id"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" DROP "duration_in_minutes"[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "reservations" DROP "size"[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "reservations" ADD "host" integer[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "reservations" ADD "recipient" integer[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "reservations" ADD "recipient_rsvp" integer[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "reservations" ADD "kind" integer[0m
+  [1m[35m (1.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2768923621775991330)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2768923621775991330);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to UpdateReservations (20210425231031)
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" DROP "location_id"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" DROP "user_id"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "reservations" DROP "coach_id"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "reservations" DROP "duration_in_minutes"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "reservations" DROP "size"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "reservations" ADD "host" integer[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "reservations" ADD "recipient" integer[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "reservations" ADD "recipient_rsvp" integer[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "reservations" ADD "end_timestamp" timestamp[0m
+  [1m[35m (10.0ms)[0m  [1m[35mALTER TABLE "reservations" ADD "note" character varying[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210425231031"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "development"], ["updated_at", "2021-04-28 02:19:58.512444"], ["key", "environment"]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2768923621775991330)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2021-04-28 00:12:59 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Parameters: {"internal"=>true}
+  Rendering /Users/dibu2018/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/dibu2018/.rvm/gems/ruby-2.5.1/gems/railties-5.0.7.2/lib/rails/templates/rails/welcome/index.html.erb (3.4ms)
+Completed 200 OK in 13ms (Views: 10.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-04-28 00:13:00 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (5.0.7.2) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.7.2) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.7.2) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.7.2) lib/rails/rack/logger.rb:24:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.7.2) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.7.2) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (5.0.7.2) lib/rails/engine.rb:522:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-04-28 00:13:07 -0400
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-04-28 00:13:07 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-04-28 00:13:07 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-04-28 00:13:07 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-04-28 00:13:08 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-04-28 00:13:08 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-04-28 00:18:26 -0400
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-04-28 00:18:26 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-04-28 00:18:26 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-04-28 00:18:26 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-04-28 00:18:26 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-04-28 00:18:27 -0400
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 00:21:02 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>1, "recipient"=>2, "start_timestamp"=>1619583548, "end_timestamp"=>1619587148, "kind"=>"play", "note"=>"Hey Yo", "reservation"=>{"start_timestamp"=>1619583548, "kind"=>"play", "host"=>1, "recipient"=>2, "end_timestamp"=>1619587148, "note"=>"Hey Yo"}}
+Unpermitted parameter: reservation
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["start_timestamp", 1619583548], ["kind", 0], ["created_at", "2021-04-28 04:21:02.863102"], ["updated_at", "2021-04-28 04:21:02.863102"], ["host", 1], ["recipient", 2], ["note", "Hey Yo"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 15ms (Views: 0.3ms | ActiveRecord: 13.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 00:22:32 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>1, "recipient"=>2, "start_timestamp"=>1619583548, "end_timestamp"=>1619587148, "kind"=>"play", "note"=>"Hey Yo", "reservation"=>{"start_timestamp"=>1619583548, "kind"=>"play", "host"=>1, "recipient"=>2, "end_timestamp"=>1619587148, "note"=>"Hey Yo"}}
+Unpermitted parameter: reservation
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["start_timestamp", 1619583548], ["kind", 0], ["created_at", "2021-04-28 04:22:32.965706"], ["updated_at", "2021-04-28 04:22:32.965706"], ["host", 1], ["recipient", 2], ["note", "Hey Yo"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 13ms (Views: 0.4ms | ActiveRecord: 9.6ms)
+
+
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2768923621775991330);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeEndTimestampOnReservation (20210428042353)
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "reservations" ALTER COLUMN "end_timestamp" TYPE integer[0m
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(2768923621775991330)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2768923621775991330);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to ChangeEndTimestampOnReservation (20210428042353)
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "reservations" DROP "end_timestamp"[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "reservations" ADD "end_timestamp" integer[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210428042353"]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_advisory_unlock(2768923621775991330)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 00:25:09 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>1, "recipient"=>2, "start_timestamp"=>1619583548, "end_timestamp"=>1619587148, "kind"=>"play", "note"=>"Hey Yo", "reservation"=>{"start_timestamp"=>1619583548, "kind"=>"play", "host"=>1, "recipient"=>2, "end_timestamp"=>1619587148, "note"=>"Hey Yo"}}
+Unpermitted parameter: reservation
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["start_timestamp", 1619583548], ["kind", 0], ["created_at", "2021-04-28 04:25:09.539788"], ["updated_at", "2021-04-28 04:25:09.539788"], ["host", 1], ["recipient", 2], ["note", "Hey Yo"]]
+  [1m[35m (1.5ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 12ms (Views: 0.3ms | ActiveRecord: 4.6ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 00:25:45 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>1, "recipient"=>2, "start_timestamp"=>1619583548, "end_timestamp"=>1619587148, "kind"=>"play", "note"=>"Hey Yo", "reservation"=>{"start_timestamp"=>1619583548, "kind"=>"play", "host"=>1, "recipient"=>2, "note"=>"Hey Yo", "end_timestamp"=>1619587148}}
+Unpermitted parameter: reservation
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note", "end_timestamp") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["start_timestamp", 1619583548], ["kind", 0], ["created_at", "2021-04-28 04:25:46.291643"], ["updated_at", "2021-04-28 04:25:46.291643"], ["host", 1], ["recipient", 2], ["note", "Hey Yo"], ["end_timestamp", 1619587148]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 15ms (Views: 0.4ms | ActiveRecord: 11.7ms)
+
+
+Started GET "/reservations?host=1" for 127.0.0.1 at 2021-04-28 00:26:21 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1"}
+Unpermitted parameter: host
+Unpermitted parameter: host
+Unpermitted parameter: host
+  [1m[36mReservation Load (2.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 6ms (Views: 0.4ms | ActiveRecord: 2.7ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 00:26:32 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>1, "recipient"=>3, "start_timestamp"=>1619583548, "end_timestamp"=>1619587148, "kind"=>"play", "note"=>"Hey Yo", "reservation"=>{"start_timestamp"=>1619583548, "kind"=>"play", "host"=>1, "recipient"=>3, "note"=>"Hey Yo", "end_timestamp"=>1619587148}}
+Unpermitted parameter: reservation
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note", "end_timestamp") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["start_timestamp", 1619583548], ["kind", 0], ["created_at", "2021-04-28 04:26:32.043075"], ["updated_at", "2021-04-28 04:26:32.043075"], ["host", 1], ["recipient", 3], ["note", "Hey Yo"], ["end_timestamp", 1619587148]]
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.5ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:26:40 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:30:22 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms)
+
+
+  
+NameError (undefined local variable or method `host' for #<FilterReservations:0x00007fca20b94dc0>
+Did you mean?  @host):
+  
+app/commands/filter_reservations.rb:24:in `gen_filter_hash'
+app/commands/filter_reservations.rb:14:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:31:20 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 17ms (Views: 0.6ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:31:43 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+Unpermitted parameters: host, recipient
+  [1m[36mReservation Load (2.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 20992ms (Views: 1.3ms | ActiveRecord: 13.0ms)
+
+
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:32:40 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+  [1m[36mReservation Load (0.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 3]]
+Completed 200 OK in 19ms (Views: 0.3ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/reservations?host=1&recipient=2" for 127.0.0.1 at 2021-04-28 00:32:45 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/reservations?host=4&recipient=2" for 127.0.0.1 at 2021-04-28 00:32:52 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"4", "recipient"=>"2"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 4], ["recipient", 2]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/reservations?host=1&recipient=2" for 127.0.0.1 at 2021-04-28 00:33:04 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2"}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?host=1&recipient=2" for 127.0.0.1 at 2021-04-28 00:34:05 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 18ms (Views: 0.5ms | ActiveRecord: 7.7ms)
+
+
+Started GET "/reservations?host=1&recipient=3" for 127.0.0.1 at 2021-04-28 00:34:12 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 3]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=true" for 127.0.0.1 at 2021-04-28 00:34:17 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"true"}
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", 0]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=true" for 127.0.0.1 at 2021-04-28 00:34:21 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"true"}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 2], ["recipient_rsvp", 0]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/reservations?host=1&recipient=2" for 127.0.0.1 at 2021-04-28 00:34:32 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2"}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/reservations/1" for 127.0.0.1 at 2021-04-28 00:34:57 -0400
+Processing by ReservationsController#update as */*
+  Parameters: {"recipient_rsvp"=>true, "id"=>"1", "reservation"=>{"recipient_rsvp"=>true}}
+  [1m[36mReservation Load (0.9ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[33mUPDATE "reservations" SET "recipient_rsvp" = $1, "updated_at" = $2 WHERE "reservations"."id" = $3[0m  [["recipient_rsvp", 1], ["updated_at", "2021-04-28 04:34:57.517810"], ["id", 1]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=true" for 127.0.0.1 at 2021-04-28 00:35:17 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"true"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 2], ["recipient_rsvp", 0]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=true" for 127.0.0.1 at 2021-04-28 00:39:55 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"true"}
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 2], ["recipient_rsvp", "true"]]
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: "true"
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/api-docs/index.html" for 127.0.0.1 at 2021-04-28 00:40:15 -0400
+Started GET "/api-docs/swagger-ui.css" for 127.0.0.1 at 2021-04-28 00:40:15 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for 127.0.0.1 at 2021-04-28 00:40:15 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for 127.0.0.1 at 2021-04-28 00:40:15 -0400
+Started GET "/api-docs/v1/swagger.yaml" for 127.0.0.1 at 2021-04-28 00:40:16 -0400
+Started GET "/api-docs/favicon-32x32.png" for 127.0.0.1 at 2021-04-28 00:40:16 -0400
+Started GET "/reservations?host=1&recipient=2" for 127.0.0.1 at 2021-04-28 00:40:38 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2"}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 12ms (Views: 0.5ms | ActiveRecord: 5.1ms)
+
+
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=maybe" for 127.0.0.1 at 2021-04-28 00:40:53 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"maybe"}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 2], ["recipient_rsvp", 2]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=2" for 127.0.0.1 at 2021-04-28 00:40:57 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"2"}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3[0m  [["host", 1], ["recipient", 2], ["recipient_rsvp", "2"]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?recipient_rsvp=2" for 127.0.0.1 at 2021-04-28 00:41:04 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"2"}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", "2"]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/reservations?recipient_rsvp=maybe" for 127.0.0.1 at 2021-04-28 00:41:10 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"maybe"}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 2]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?recipient_rsvp=maybe" for 127.0.0.1 at 2021-04-28 00:41:33 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"maybe"}
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 2]]
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "reservations"."recipient_rsvp" FROM "reservations"[0m
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 1]]
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 2]]
+Completed 200 OK in 117036ms (Views: 0.5ms | ActiveRecord: 17.2ms)
+
+
+Started GET "/reservations?recipient_rsvp=no" for 127.0.0.1 at 2021-04-28 00:43:37 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"no"}
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 1]]
+Completed 200 OK in 3431ms (Views: 0.3ms | ActiveRecord: 1.7ms)
+
+
+Started PUT "/reservations/2" for 127.0.0.1 at 2021-04-28 00:45:09 -0400
+Processing by ReservationsController#update as */*
+  Parameters: {"recipient_rsvp"=>"yes", "id"=>"2", "reservation"=>{"recipient_rsvp"=>"yes"}}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Unpermitted parameters: id, reservation
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE "reservations" SET "recipient_rsvp" = $1, "updated_at" = $2 WHERE "reservations"."id" = $3[0m  [["recipient_rsvp", 0], ["updated_at", "2021-04-28 04:45:09.599298"], ["id", 2]]
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 6.9ms)
+
+
+Started GET "/reservations?recipient_rsvp=yes" for 127.0.0.1 at 2021-04-28 00:45:27 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"yes"}
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 0]]
+Completed 200 OK in 4342ms (Views: 0.3ms | ActiveRecord: 1.7ms)
+
+
+Started DELETE "/reservations/2" for 127.0.0.1 at 2021-04-28 00:45:42 -0400
+Processing by ReservationsController#delete as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 2]]
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 204 No Content in 8ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/reservations?recipient_rsvp=yes" for 127.0.0.1 at 2021-04-28 00:45:45 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"yes"}
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 0]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.9ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/reservations?recipient_rsvp=yes" for 127.0.0.1 at 2021-04-28 12:33:39 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"recipient_rsvp"=>"yes"}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 0]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2021-04-28 12:34:04 -0400
+Processing by ReservationsController#index as */*
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 4ms (Views: 0.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2021-04-28 12:34:18 -0400
+Processing by ReservationsController#index as */*
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 4ms (Views: 0.6ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2021-04-28 12:35:36 -0400
+Processing by ReservationsController#index as */*
+  [1m[36mReservation Load (2.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 45907ms (Views: 0.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2021-04-28 12:36:44 -0400
+Processing by ReservationsController#index as */*
+  [1m[36mReservation Load (2.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 10901ms (Views: 0.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/reservations" for 127.0.0.1 at 2021-04-28 12:38:06 -0400
+Processing by ReservationsController#index as */*
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 2252ms (Views: 0.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:38:16 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:45:12 -0400
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:45:12 -0400
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:45:12 -0400
+  [1m[36mReservation Load (4.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 416152ms (ActiveRecord: 4.0ms)
+
+
+  
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+  [1m[36mReservation Load (35.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 35.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Processing by ReservationsController#index as */*
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (3.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 3.3ms)
+
+
+  [1m[36mReservation Load (3.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+  
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 3.0ms)
+
+
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:45:20 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 2.3ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:45:33 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+  [1m[36mReservation Load (2.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+  [1m[36mReservation Load (4.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+  [1m[36mReservation Load (3.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:46:48 -0400
+  [1m[36mReservation Load (2.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 75013ms (ActiveRecord: 16.7ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (3.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", nil]]
+Completed 500 Internal Server Error in 2778ms (ActiveRecord: 3.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:47:16 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", 0]]
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.9ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:47:31 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (4.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", 0]]
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:48:48 -0400
+  [1m[36mReservation Load (3.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", 0]]
+Completed 500 Internal Server Error in 76684ms (ActiveRecord: 7.3ms)
+
+
+  
+Processing by ReservationsController#index as */*
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4[0m  [["host", 1], ["recipient", 3], ["recipient_rsvp", ""], ["start_timestamp", 0]]
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 1.4ms)
+
+
+  
+ActiveRecord::StatementInvalid (PG::InvalidTextRepresentation: ERROR:  invalid input syntax for integer: ""
+: SELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2 AND "reservations"."recipient_rsvp" = $3 AND "reservations"."start_timestamp" = $4):
+  
+app/commands/filter_reservations.rb:15:in `call'
+app/controllers/reservations_controller.rb:44:in `index'
+Started GET "/reservations?host=1&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:49:40 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 3]]
+Completed 200 OK in 18ms (Views: 0.3ms | ActiveRecord: 7.6ms)
+
+
+Started GET "/reservations?host=1&recipient=2&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:49:46 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"1", "recipient"=>"2", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.9ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1 AND "reservations"."recipient" = $2[0m  [["host", 1], ["recipient", 2]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/reservations?host=&recipient=3&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:49:55 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"3", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient" = $1[0m  [["recipient", 3]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?host=&recipient=&recipient_rsvp=yes&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:50:02 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"", "recipient_rsvp"=>"yes", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 0]]
+Completed 200 OK in 3ms (Views: 0.1ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/reservations?host=&recipient=&recipient_rsvp=no&start_timestamp=" for 127.0.0.1 at 2021-04-28 12:50:06 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"", "recipient_rsvp"=>"no", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."recipient_rsvp" = $1[0m  [["recipient_rsvp", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/reservations?host=&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 13:05:43 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started PUT "/reservations/3" for 127.0.0.1 at 2021-04-28 13:06:13 -0400
+Processing by ReservationsController#update as */*
+  Parameters: {"note"=>"A LONGER NOTE FOR RECOGNITION", "id"=>"3"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Unpermitted parameter: id
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[33mUPDATE "reservations" SET "note" = $1, "updated_at" = $2 WHERE "reservations"."id" = $3[0m  [["note", "A LONGER NOTE FOR RECOGNITION"], ["updated_at", "2021-04-28 17:06:13.868437"], ["id", 3]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 200 OK in 15ms (Views: 0.3ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/reservations?host=&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-04-28 13:06:21 -0400
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+Completed 200 OK in 4ms (Views: 0.5ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/reservations/3" for 127.0.0.1 at 2021-04-28 13:30:17 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mReservation Load (1.1ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/reservations/1" for 127.0.0.1 at 2021-04-28 13:30:22 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/reservations/1" for 127.0.0.1 at 2021-04-28 13:30:30 -0400
+Processing by ReservationsController#delete as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mReservation Load (1.2ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "reservations" WHERE "reservations"."id" = $1[0m  [["id", 1]]
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+Completed 204 No Content in 7ms (ActiveRecord: 5.7ms)
+
+
+Started GET "/reservations/1" for 127.0.0.1 at 2021-04-28 13:30:34 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 13:31:05 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"1", "recipient"=>"2", "kind"=>"play", "start_timestamp"=>"0", "end_timestamp"=>"1", "note"=>"LETS PLAY"}}
+Unpermitted parameter: body
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.8ms)[0m  [1m[32mINSERT INTO "reservations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2021-04-28 17:31:05.301862"], ["updated_at", "2021-04-28 17:31:05.301862"]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.4ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/reservations/6" for 127.0.0.1 at 2021-04-28 13:31:12 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+

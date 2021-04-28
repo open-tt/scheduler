@@ -338,6 +338,132 @@ paths:
         '204':
           description: Delete address
           content: {}
+  "/reservations":
+    post:
+      summary: Create Reservation
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters: []
+      responses:
+        '201':
+          description: Tournament Created
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recipient:
+                  type: integer
+                start_timestamp:
+                  type: integer
+                  description: UNIX EPOCH date time
+                end_timestamp:
+                  type: integer
+                  description: UNIX EPOCH date time
+                kind:
+                  type: string
+                recipient_rsvp:
+                  type: string
+                note:
+                  type: string
+    get:
+      summary: Search Reservations
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: host
+        in: query
+        schema:
+          type: integer
+      - name: recipient
+        in: query
+        schema:
+          type: integer
+      - name: recipient_rsvp
+        in: query
+        schema:
+          type: string
+      - name: start_timestamp
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Search
+          content: {}
+  "/reservations/{id}":
+    put:
+      summary: Update Reservation
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Update Reservation
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                start_timestamp:
+                  type: integer
+                  description: UNIX EPOCH date time
+                end_timestamp:
+                  type: integer
+                  description: UNIX EPOCH date time
+                kind:
+                  type: string
+                recipient_rsvp:
+                  type: string
+                note:
+                  type: string
+    get:
+      summary: Get Reservation with ID
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Get Reservation
+          content: {}
+    delete:
+      summary: Delete Reservation
+      tags:
+      - Reservations
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Delete Reservation
+          content: {}
   "/tournaments":
     post:
       summary: Creates New Tournament

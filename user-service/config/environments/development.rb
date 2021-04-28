@@ -5,6 +5,7 @@ Rails.application.configure do
 
   # When running app independently
   config.tournament_api = 'http://localhost:3002'
+  config.reservations_api = 'http://localhost:3010'
 
   # Default Configs
   config.cache_classes = false

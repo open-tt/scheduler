@@ -4,7 +4,7 @@ class ReservationsController < ApplicationController
   def create
     reservation = Reservation.new(create_reservation_params)
     if reservation.save!
-      render_created_object reservation
+      render json: reservation, status: :created
     else
       render_failed_create_new_object reservation
     end
@@ -28,6 +28,7 @@ class ReservationsController < ApplicationController
   def delete
     reservation = Reservation.find_by_id(params[:id])
     reservation&.destroy
+    # renders 204
   end
 
   def show
@@ -41,8 +42,9 @@ class ReservationsController < ApplicationController
 
   def index
     reservations = FilterReservations.call(
-      index_params[:user_id],
-      index_params[:location_id],
+      index_params[:host],
+      index_params[:recipient],
+      index_params[:recipient_rsvp],
       index_params[:start_timestamp]
     )
     render_object_array reservations.result
@@ -51,14 +53,17 @@ class ReservationsController < ApplicationController
   private
 
   def create_reservation_params
-    params.permit(:location_id, :user_id, :coach_id, :start_timestamp, :duration_in_minutes, :size, :kind)
+    params.permit(:start_timestamp, :kind, :host,
+                  :recipient, :recipient_rsvp, :end_timestamp, :note)
   end
 
   def update_reservation_params
-    params.permit(:start_timestamp, :duration_in_minutes, :size)
+    params.permit(
+      :start_timestamp, :end_timestamp, :recipient_rsvp, :kind, :note
+    )
   end
 
   def index_params
-    params.permit(:user_id, :location_id, :start_timestamp)
+    params.permit(:host, :recipient, :recipient_rsvp, :start_timestamp)
   end
 end

@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: userservice
 
     ports:
-      - "5432:5432"
+      - "5552:5432"
     volumes:
       - userservice_database:/var/lib/postgresql/data
 
@@ -84,9 +84,8 @@ services:
       POSTGRES_DB: reservationservice
       POSTGRES_USER: reservationservice
       POSTGRES_PASSWORD: reservationservice
-
     ports:
-      - "5442:5432"
+      - "5433:5432"
     volumes:
       - reservationservice_database:/var/lib/postgresql/data
 

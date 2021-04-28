@@ -5,8 +5,7 @@ module RenderingHelper
   end
 
   def render_created_object(obj)
-    name = obj.class.name.downcase
-    render json: { success: true, "#{name}": obj.attributes }, status: :created
+    render json: obj.attributes, status: :created
   end
 
   def render_failed_create_new_object(obj)
@@ -28,10 +27,9 @@ module RenderingHelper
 
   def render_object_array(arr)
     if arr.empty?
-      render json: { success: false, message: 'No matches'}, status: :ok
+      render json: { message: 'No matches' }, status: :ok
     else
-      name = arr[0].class.name.downcase.pluralize
-      render json: { success: true, "#{name}": arr.map(&:attributes) }, status: :ok
+      render json: arr.map(&:attributes), status: :ok
     end
   end
 end

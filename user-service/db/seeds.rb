@@ -44,6 +44,12 @@ orgs_list_addresses_action  = Action.where(url_regex: '/orgs/\d+/addresses', met
 orgs_update_address_action  = Action.where(url_regex: '/orgs/\d+/addresses/\d+', method: PUT).first_or_create!
 orgs_delete_address_action  = Action.where(url_regex: '/orgs/\d+/addresses/\d+', method: DELETE).first_or_create!
 
+reservations_create_action  = Action.where(url_regex: '/reservations', method: POST).first_or_create!
+reservations_search_action  = Action.where(url_regex: '/reservations', method: GET).first_or_create!
+reservations_update_action  = Action.where(url_regex: '/reservations/\d+', method: PUT).first_or_create!
+reservations_delete_action  = Action.where(url_regex: '/reservations/\d+', method: DELETE).first_or_create!
+reservations_show_action    = Action.where(url_regex: '/reservations/\d+', method: GET).first_or_create!
+
 tournaments_create_action   = Action.where(url_regex: '/tournaments', method: POST).first_or_create!
 tournaments_list_action     = Action.where(url_regex: '/tournaments', method: GET).first_or_create!
 tournaments_get_action      = Action.where(url_regex: '/tournaments/\d+', method: GET).first_or_create!
@@ -55,6 +61,13 @@ tournaments_create_playoffs_action = Action.where(url_regex: '/tournaments/\d+/p
 tour_groups_update_match = Action.where(url_regex: '/match/\d+', method: PUT).first_or_create!
 
 systems_admin_role.actions = [
+  # Reservations
+  reservations_create_action,
+  reservations_search_action,
+  reservations_update_action,
+  reservations_delete_action,
+  reservations_show_action,
+
   # Tournament Group actions
   tour_groups_update_match,
   tournaments_create_playoffs_action,
@@ -86,6 +99,13 @@ systems_admin_role.actions = [
 ]
 
 owner_role.actions = [
+  # Reservations
+  reservations_create_action,
+  reservations_search_action,
+  reservations_update_action,
+  reservations_delete_action,
+  reservations_show_action,
+
   # Tournament Group actions
   tour_groups_update_match,
   tournaments_create_playoffs_action,
@@ -117,6 +137,13 @@ owner_role.actions = [
 ]
 
 admin_role.actions = [
+  # Reservations
+  reservations_create_action,
+  reservations_search_action,
+  reservations_update_action,
+  reservations_delete_action,
+  reservations_show_action,
+
   # Tournament Group actions
   tour_groups_update_match,
   tournaments_create_playoffs_action,
@@ -148,6 +175,13 @@ admin_role.actions = [
 ]
 
 player_role.actions = [
+  # Reservations
+  reservations_create_action,
+  reservations_search_action,
+  reservations_update_action,
+  reservations_delete_action,
+  reservations_show_action,
+
   # Tournament Group actions
   tour_groups_update_match,
   tournaments_create_playoffs_action,
