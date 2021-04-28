@@ -3,12 +3,13 @@
 class ReservationsController < ApplicationController
   def create
     url = Rails.application.config.reservations_api + '/reservations'
-    reroute(url, :post, body: {
+    reroute(url, :post, {
       host: current_user.id,
       recipient: params[:recipient],
       kind: params[:kind],
-      start_timestamp: params[:start_timestamp],
-      end_timestamp: params[:end_timestamp],
+      event_date: params[:event_date],
+      start_time: params[:start_time],
+      end_time: params[:end_time],
       note: params[:note]
     })
   end

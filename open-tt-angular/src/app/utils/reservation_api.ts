@@ -1,8 +1,8 @@
 // tslint:disable-next-line:no-namespace
 
-import { Reservation } from '../models/player';
-
 // tslint:disable-next-line:no-namespace
+import { Reservation } from '../models/reservation';
+
 export namespace ReservationApi {
   export class Paths {
     // private static BASE_URL = 'http://35.239.173.45:3002';

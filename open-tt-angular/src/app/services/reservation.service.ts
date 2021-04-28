@@ -46,13 +46,14 @@ export class ReservationService {
       cssClass: 'alert-success',
       timeout: 4000,
     });
-    // this.http.post<Reservation>('/reservations', reservation).subscribe(
-    //   () => {
-    //     this.flashMessagesService.show('Reservation created successfully.');
-    //   },
-    //   (error) => {
-    //     this.flashMessagesService.show('Fail to create reservation: ' + error);
-    //   }
-    // );
+    this.http.post<Reservation>('/reservations', reservation).subscribe(
+      (r: Reservation) => {
+        console.log(r);
+        this.flashMessagesService.show('Reservation created successfully.');
+      },
+      (error) => {
+        this.flashMessagesService.show('Fail to create reservation: ' + error);
+      }
+    );
   }
 }

@@ -53,8 +53,21 @@ class ReservationsController < ApplicationController
   private
 
   def create_reservation_params
-    params.permit(:start_timestamp, :kind, :host,
-                  :recipient, :recipient_rsvp, :end_timestamp, :note)
+    raw_params = params.permit(:event_date, :start_time, :end_time,
+                               :kind, :host,
+                               :recipient, :recipient_rsvp, :note)
+
+    # We need to transform Date, Time, Time into start and end timestamps
+    ev_date = DateTime.parse(raw_params[:event_date])
+    s_time = Time.parse(raw_params[:start_time])
+    e_time = Time.parse(raw_params[:start_time])
+
+    raw_params[:start_timestamp] = ev_date.midnight + s_time.hour.hours + s_time.min.minutes
+    raw_params[:end_timestamp] = ev_date.midnight + e_time.hour.hours + e_time.min.minutes
+    raw_params.delete(:event_date)
+    raw_params.delete(:start_time)
+    raw_params.delete(:end_time)
+    raw_params
   end
 
   def update_reservation_params

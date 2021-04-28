@@ -12,8 +12,9 @@ RSpec.describe 'Reservations API', type: :request do
         type: :object,
         properties: {
           recipient: { type: :integer },
-          start_timestamp: { type: :integer, description: 'UNIX EPOCH date time' },
-          end_timestamp: { type: :integer, description: 'UNIX EPOCH date time' },
+          event_date: { type: :string },
+          start_time: { type: :string, description: '24 h time. Ex 16:35 to represent 4:35pm' },
+          end_time: { type: :string, description: '24 h time. Ex 16:35 to represent 4:35pm' },
           kind: { type: :string },
           recipient_rsvp: { type: :string },
           note: { type: :string }
@@ -52,8 +53,9 @@ RSpec.describe 'Reservations API', type: :request do
       parameter name: :data, in: :body, schema: {
         type: :object,
         properties: {
-          start_timestamp: { type: :integer, description: 'UNIX EPOCH date time' },
-          end_timestamp: { type: :integer, description: 'UNIX EPOCH date time' },
+          event_date: { type: :string },
+          start_time: { type: :string, description: '24 h time. Ex 16:35 to represent 4:35pm' },
+          end_time: { type: :string, description: '24 h time. Ex 16:35 to represent 4:35pm' },
           kind: { type: :string },
           recipient_rsvp: { type: :string },
           note: { type: :string }

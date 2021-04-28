@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Player } from '../../models/player';
-import { TtMatchResultDialogComponent } from '../tt-match-result-dialog/tt-match-result-dialog.component';
-import { Match } from '../../models/tournament';
 import { MatDialog } from '@angular/material/dialog';
 import { TtInvitationDialogComponent } from '../tt-invitation-dialog/tt-invitation-dialog.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-tt-player-card',
@@ -16,7 +15,7 @@ export class TtPlayerCardComponent implements OnInit {
     name: 'Eriel Marimon',
   };
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private userService: UserService) {}
 
   ngOnInit(): void {}
 
@@ -38,7 +37,7 @@ export class TtPlayerCardComponent implements OnInit {
     const dialogRef = this.dialog.open(TtInvitationDialogComponent, {
       width: '30%',
       data: {
-        host: this.player,
+        host: this.userService.loggedInUser,
         recipient: this.player,
       },
     });

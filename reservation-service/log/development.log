@@ -1689,3 +1689,128 @@ Processing by ReservationsController#show as */*
 Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 1.3ms)
 
 
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 14:08:57 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"6", "recipient"=>"2", "kind"=>"", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>""}}
+Unpermitted parameter: body
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "reservations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2021-04-28 18:08:57.474749"], ["updated_at", "2021-04-28 18:08:57.474749"]]
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 13ms (Views: 1.3ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/reservations/7" for 127.0.0.1 at 2021-04-28 14:09:45 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 14:12:11 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"6", "recipient"=>"2", "kind"=>"", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>""}}
+Unpermitted parameter: body
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "reservations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2021-04-28 18:12:11.933307"], ["updated_at", "2021-04-28 18:12:11.933307"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 7ms (Views: 0.4ms | ActiveRecord: 5.2ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 14:14:44 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"6", "recipient"=>"2", "kind"=>"", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>""}}
+Unpermitted parameter: body
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "reservations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2021-04-28 18:14:44.089334"], ["updated_at", "2021-04-28 18:14:44.089334"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.4ms | ActiveRecord: 6.7ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 14:33:12 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"6", "recipient"=>"2", "kind"=>"", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>"fffffffffffff"}}
+Unpermitted parameter: body
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.1ms)[0m  [1m[32mINSERT INTO "reservations" ("created_at", "updated_at") VALUES ($1, $2) RETURNING "id"[0m  [["created_at", "2021-04-28 18:33:12.628146"], ["updated_at", "2021-04-28 18:33:12.628146"]]
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.5ms | ActiveRecord: 6.3ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:15:06 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"2", "recipient"=>"9", "kind"=>"play", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>"HAHAHAHAHAHAHHAHHAA"}}
+Unpermitted parameter: body
+Completed 422 Unprocessable Entity in 7ms (Views: 0.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:15:42 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"2", "recipient"=>"9", "kind"=>"play", "start_timestamp"=>"", "end_timestamp"=>"", "note"=>"HAHAHAHAHAHAHHAHHAA"}}
+Unpermitted parameter: body
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:16:53 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"body"=>{"host"=>"2", "recipient"=>"9", "kind"=>"play", "event_date"=>"2021-04-29T04:00:00.000Z", "start_time"=>"17:50", "end_time"=>"18:50", "note"=>"HAHAHAHAHAHAHHAHHAA"}}
+Unpermitted parameter: body
+Completed 422 Unprocessable Entity in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:17:35 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>"2", "recipient"=>"9", "kind"=>"play", "event_date"=>"2021-04-29T04:00:00.000Z", "start_time"=>"17:50", "end_time"=>"18:50", "note"=>"HAHAHAHAHAHAHHAHHAA"}
+Completed 422 Unprocessable Entity in 15ms (Views: 0.2ms | ActiveRecord: 7.7ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:18:57 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>"2", "recipient"=>"9", "kind"=>"play", "event_date"=>"2021-04-29T04:00:00.000Z", "start_time"=>"17:50", "end_time"=>"18:50", "note"=>"HAHAHAHAHAHAHHAHHAA"}
+Completed 422 Unprocessable Entity in 4ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:19:26 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>"2", "recipient"=>"9", "kind"=>"play", "event_date"=>"2021-04-29T04:00:00.000Z", "start_time"=>"17:50", "end_time"=>"18:50", "note"=>"HAHAHAHAHAHAHHAHHAA"}
+  [1m[35m (1.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note", "end_timestamp") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["start_timestamp", 1619718600], ["kind", 0], ["created_at", "2021-04-28 19:19:26.495644"], ["updated_at", "2021-04-28 19:19:26.495644"], ["host", 2], ["recipient", 9], ["note", "HAHAHAHAHAHAHHAHHAA"], ["end_timestamp", 1619718600]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 22ms (Views: 0.4ms | ActiveRecord: 11.5ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:20:31 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>"6", "recipient"=>"2", "kind"=>"play", "event_date"=>"2021-04-29T04:00:00.000Z", "start_time"=>"16:20", "end_time"=>"16:24", "note"=>"jjjjjjjjjjjjjjjj"}
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note", "end_timestamp") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["start_timestamp", 1619713200], ["kind", 0], ["created_at", "2021-04-28 19:20:31.916091"], ["updated_at", "2021-04-28 19:20:31.916091"], ["host", 6], ["recipient", 2], ["note", "jjjjjjjjjjjjjjjj"], ["end_timestamp", 1619713200]]
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 9ms (Views: 0.3ms | ActiveRecord: 6.4ms)
+
+
+Started GET "/reservations/12" for 127.0.0.1 at 2021-04-28 15:21:05 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"12"}
+  [1m[36mReservation Load (1.8ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 12], ["LIMIT", 1]]
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 3.5ms)
+
+
+Started POST "/reservations" for 127.0.0.1 at 2021-04-28 15:21:35 -0400
+Processing by ReservationsController#create as */*
+  Parameters: {"host"=>"6", "recipient"=>"3", "kind"=>"train", "event_date"=>"2021-04-30T04:00:00.000Z", "start_time"=>"22:21", "end_time"=>"12:21", "note"=>"yyyyyyyy"}
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "reservations" ("start_timestamp", "kind", "created_at", "updated_at", "host", "recipient", "note", "end_timestamp") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["start_timestamp", 1619821260], ["kind", 2], ["created_at", "2021-04-28 19:21:35.471384"], ["updated_at", "2021-04-28 19:21:35.471384"], ["host", 6], ["recipient", 3], ["note", "yyyyyyyy"], ["end_timestamp", 1619821260]]
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+Completed 201 Created in 8ms (Views: 0.3ms | ActiveRecord: 6.1ms)
+
+
+Started GET "/reservations/13" for 127.0.0.1 at 2021-04-28 15:21:41 -0400
+Processing by ReservationsController#show as */*
+  Parameters: {"id"=>"13"}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT  "reservations".* FROM "reservations" WHERE "reservations"."id" = $1 LIMIT $2[0m  [["id", 13], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+

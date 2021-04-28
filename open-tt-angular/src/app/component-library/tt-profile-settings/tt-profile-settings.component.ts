@@ -52,7 +52,7 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   private updateNgModels(player: Player): void {
-    if (!player) {
+    if (!player || !player.tt_profile) {
       return;
     }
     this.blade = player.tt_profile.blade;
@@ -89,8 +89,10 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   saveTtProfile(): void {
+    if (!this.player || this.player.tt_profile) {
+      return;
+    }
     this.player.tt_profile.blade = this.blade;
-    console.log(this.player.tt_profile.blade);
 
     this.player.tt_profile.forehand = this.forehand;
     this.player.tt_profile.backhand = this.backhand;
@@ -98,8 +100,6 @@ export class TtProfileSettingsComponent implements OnInit {
     this.player.tt_profile.grip = this.grip;
     this.player.tt_profile.partner_min_rating = this.minRating;
     this.player.tt_profile.partner_max_rating = this.maxRating;
-
-    console.log(this.player);
 
     this.userService.updatePlayer(this.player);
     this.isUpdatingTtProfile = false;

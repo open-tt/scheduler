@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Player } from '../../models/player';
-import { PlayerService } from '../../services/player.service';
 import { ReservationService } from '../../services/reservation.service';
 import { Reservation, ReservationType } from '../../models/reservation';
 import { Time } from '@angular/common';
@@ -16,6 +15,11 @@ export class TtInvitationDialogComponent implements OnInit {
   times = [1, 2, 3, 4];
   host: Player;
   recipient: Player;
+  activity: ReservationType;
+  date: Date;
+  start: Time;
+  end: Time;
+  note: string;
   reservation: Reservation;
 
   constructor(
@@ -38,18 +42,13 @@ export class TtInvitationDialogComponent implements OnInit {
     };
   }
 
-  sendInvite(data: {
-    date: Date;
-    start: Time;
-    end: Time;
-    kind: ReservationType;
-    note: string;
-  }): void {
-    this.reservation.event_date = data.date;
-    this.reservation.start_time = data.start;
-    this.reservation.end_time = data.end;
-    this.reservation.kind = data.kind;
-    this.reservation.note = data.note;
+  sendInvite(): void {
+    this.reservation.event_date = this.date;
+    this.reservation.start_time = this.start;
+    this.reservation.end_time = this.end;
+    this.reservation.kind = this.activity;
+    this.reservation.note = this.note;
+    console.log(this.reservation);
 
     this.reservationService.playerInvitation(this.reservation);
 

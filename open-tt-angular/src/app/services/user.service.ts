@@ -127,8 +127,6 @@ export class UserService {
       .put<Player>(`/users/${this.loggedInUser.id}/tt_profile`, p)
       .subscribe((updatedPlayer) => {
         this.loggedInUser = updatedPlayer;
-        console.log('Next Updated Player');
-        console.log(this.loggedInUser);
         this.loggedInUserSubject.next(updatedPlayer);
         this.flashMessageService.show('Updated Profile Info', {
           cssClass: 'alert-success',
@@ -158,7 +156,6 @@ export class UserService {
           });
         },
         (response) => {
-          console.log(response);
           this.flashMessageService.show(
             'Failed password change: ' + response.error.errors,
             {

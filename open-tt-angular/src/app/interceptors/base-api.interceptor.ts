@@ -16,14 +16,12 @@ export class BaseApiInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    console.log(`OLD url = ${request.url}`);
     const modified = request.clone({
       setHeaders: {
         'Content-Type': 'application/json',
       },
       url: environment.tournament_api_url + request.url,
     });
-    console.log(`NEW url = ${modified.url}`);
     return next.handle(modified);
   }
 }
