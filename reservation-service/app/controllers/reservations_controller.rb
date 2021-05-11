@@ -15,9 +15,9 @@ class ReservationsController < ApplicationController
   def update
     reservation = Reservation.find_by_id(params[:id])
     if reservation.nil?
-      render_not_found(Reservation.class.name, params[:id])
+      render_not_found(Reservation.name, params[:id])
     elsif reservation.update!(update_reservation_params)
-      render_object reservation
+      render json: reservation
     else
       render_failed_update_object reservation
     end
@@ -28,15 +28,14 @@ class ReservationsController < ApplicationController
   def delete
     reservation = Reservation.find_by_id(params[:id])
     reservation&.destroy
-    # renders 204
   end
 
   def show
     reservation = Reservation.find_by_id(params[:id])
     if reservation.nil?
-      render_not_found(Reservation.class, params[:id])
+      render_not_found(Reservation.name, params[:id])
     else
-      render_object reservation
+      render json: reservation, status: :ok
     end
   end
 
@@ -47,7 +46,9 @@ class ReservationsController < ApplicationController
       index_params[:recipient_rsvp],
       index_params[:start_timestamp]
     )
-    render_object_array reservations.result
+
+    # render json: reservations.result, status: :ok
+    render json: reservations.result, status: :ok
   end
 
   private

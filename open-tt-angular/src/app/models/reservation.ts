@@ -20,7 +20,7 @@ export enum ReservationType {
   Train,
 }
 
-enum RSVP {
+export enum RSVP {
   YES,
   NO,
   MAYBE,

@@ -7,4 +7,5 @@ export class TTRoute {
   static ADMISSIONS = 'admissions';
   static MEMBERSHIP = 'membership';
   static MEMBERSHIPS_ACTIVE = 'memberships/active';
+  static RESERVATIONS = 'reservations';
 }

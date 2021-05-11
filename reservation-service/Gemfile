@@ -56,3 +56,5 @@ gem "simple_command", "~> 0.1.0"
 gem "stripe", "~> 5.22"
 
 gem "rspec-mocks", "~> 3.9"
+
+gem "active_model_serializers", "~> 0.10.12"

@@ -68,6 +68,7 @@ import { TtInvitationDialogComponent } from './component-library/tt-invitation-d
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TtReservationsComponent } from './tt-reservations/tt-reservations.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     TtVenueCardComponent,
     TtProfileSettingsComponent,
     TtInvitationDialogComponent,
+    TtReservationsComponent,
   ],
   imports: [
     BrowserModule,

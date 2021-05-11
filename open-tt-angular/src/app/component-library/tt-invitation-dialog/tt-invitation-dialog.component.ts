@@ -48,7 +48,6 @@ export class TtInvitationDialogComponent implements OnInit {
     this.reservation.end_time = this.end;
     this.reservation.kind = this.activity;
     this.reservation.note = this.note;
-    console.log(this.reservation);
 
     this.reservationService.playerInvitation(this.reservation);
 

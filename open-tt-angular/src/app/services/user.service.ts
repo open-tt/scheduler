@@ -34,19 +34,18 @@ export class UserService {
     return !!this.userApiToken && this.userApiToken !== '';
   }
 
-  login(userID: string, pin: number): Observable<boolean> {
+  login(userID: string, pin: number): void {
     const data = {
       email: userID,
       password: pin,
     };
-    const loggin$ = this.http.post<UserApi.AuthResponse>('/authenticate', data);
-    return loggin$.pipe(
-      switchMap((authResponse) => {
-        this.userApiToken = authResponse.auth_token;
+    this.http
+      .post<UserApi.AuthResponse>('/authenticate', data)
+      .subscribe((a) => {
+        this.userApiToken = a.auth_token;
         this.coockieService.setAuthTokenCookie(this.userApiToken);
-        return this.loadUser();
-      })
-    );
+        this.loadUser();
+      });
   }
 
   logout(): void {
@@ -56,7 +55,7 @@ export class UserService {
     // TODO: Should I reload or re-route?
   }
 
-  signup(name: string, userID: string, pin: number): Observable<boolean> {
+  signup(name: string, userID: string, pin: number): void {
     const data = {
       name,
       email: userID,
@@ -64,61 +63,28 @@ export class UserService {
       password_confirmation: pin.toString(),
       is_enabled: true,
     };
-    const signup$ = this.http.post<UserApi.CreateUserResponse>('/users', data);
-    return signup$.pipe(
-      switchMap((createUserResponse) => {
-        this.userApiToken = createUserResponse.token;
+
+    this.http
+      .post<UserApi.CreateUserResponse>('/users', data)
+      .subscribe((user) => {
+        this.userApiToken = user.token;
         this.coockieService.setAuthTokenCookie(this.userApiToken);
-        return this.loadUser();
-      })
-    );
+        this.loadUser();
+      });
   }
 
-  public loadUser(): Observable<boolean> {
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${this.userApiToken}`)
-      .set('Content-Type', 'application/json');
-    const httpOptions = {
-      headers,
-    };
-
-    return this.http
-      .get<UserApi.GetCurrentUserResponse>('/current_user', httpOptions)
-      .pipe(
-        map((resp) => {
-          this.loggedInUser = resp.user;
-          this.loggedInUserSubject.next(this.loggedInUser);
-
-          // const forkJoinRequests = [];
-          // const forkJoinResponse = {
-          //   requestreservations$: undefined,
-          // };
-          // let indexCounter = 0;
-          // if (environment.enable_reservations_service){
-          //   const requestreservations$ =
-          //     this.reservationService.loadReservationsForUser(
-          //       this.userApiToken,
-          //       this.loggedInUser.id
-          //     );
-          //   forkJoinRequests.push(requestreservations$);
-          //   forkJoinResponse.requestreservations$ = indexCounter;
-          //   indexCounter += 1;
-          // }
-          // const requestmemberships$ = TODO implement this request
-          // if (forkJoinRequests.length > 0){
-          //   forkJoin(forkJoinRequests).subscribe(
-          //     results => {
-          //
-          //       // @ts-ignore TODO: Need to test this
-          //       this.loggedInUser.reservations = results[forkJoinResponse.requestreservations$];
-          //     },
-          //     error => {
-          //       this.loggedInUser.reservations = [];
-          //     });
-          // }
-          return true;
-        })
-      );
+  public loadUser(): void {
+    console.log('Loading User...');
+    this.http.get<UserApi.GetCurrentUserResponse>('/current_user').subscribe(
+      (resp) => {
+        this.loggedInUser = resp.user;
+        this.loggedInUserSubject.next(this.loggedInUser);
+        console.log('User Loaded---');
+      },
+      (e) => {
+        console.error(e);
+      }
+    );
   }
 
   // TODO: This is not working yet

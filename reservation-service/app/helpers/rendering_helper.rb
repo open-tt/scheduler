@@ -9,7 +9,7 @@ module RenderingHelper
   end
 
   def render_failed_create_new_object(obj)
-    render json: { success: false, errors: obj.errors.full_messages }, status: :unprocessable_entity
+    render json: { messages: obj.errors.full_messages }, status: :unprocessable_entity
   end
 
   def render_failed_update_object(obj)
@@ -17,7 +17,7 @@ module RenderingHelper
   end
 
   def render_not_found(class_name, id)
-    render json: { success: false, errors: "#{class_name} not found with ID #{id}" }, status: :not_found
+    render json: { message: "#{class_name} not found with ID #{id}" }, status: :not_found
   end
 
   def render_object(obj)
@@ -26,10 +26,6 @@ module RenderingHelper
   end
 
   def render_object_array(arr)
-    if arr.empty?
-      render json: { message: 'No matches' }, status: :ok
-    else
-      render json: arr.map(&:attributes), status: :ok
-    end
+    render json: arr.map(&:attributes), status: :ok
   end
 end

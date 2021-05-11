@@ -30,7 +30,6 @@ RSpec.describe 'Reservations', type: :request do
       tags 'Reservations'
 
       consumes 'application/json'
-      consumes 'application/json'
       produces 'application/json'
 
       parameter name: :data, in: :body, schema: {
@@ -63,7 +62,6 @@ RSpec.describe 'Reservations', type: :request do
       tags 'Reservations'
 
       consumes 'application/json'
-      consumes 'application/json'
       produces 'application/json'
 
       parameter name: :host, in: :query, type: :integer
@@ -90,7 +88,6 @@ RSpec.describe 'Reservations', type: :request do
     put 'Update Reservation' do
       tags 'Reservations'
 
-      consumes 'application/json'
       consumes 'application/json'
       produces 'application/json'
 
@@ -157,7 +154,6 @@ RSpec.describe 'Reservations', type: :request do
     get 'Get a reservation by its ID' do
       tags 'Reservations'
 
-      consumes 'application/json'
       consumes 'application/json'
       produces 'application/json'
 

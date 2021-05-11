@@ -14,36 +14,56 @@
       <!--   Navigation Section   -->
       <div fxLayout="column" class="navigation" fxFlex="25">
         <h1 style="padding-left: 10px">Menu</h1>
+        <!--    Homepage    -->
         <app-tt-navigation-button
           *ngIf="enableHomePage"
           [title]="homePageTitle"
           [href]="homePageRoute"
         ></app-tt-navigation-button>
+
+        <!--    Tournaments    -->
         <app-tt-navigation-button
           *ngIf="enableTournamentsPage"
           [title]="tournamentsPageTitle"
           [href]="tournamentsPageRoute"
         ></app-tt-navigation-button>
+
+        <!--    Reservations    -->
+        <app-tt-navigation-button
+          *ngIf="enableReservationsPage"
+          [title]="reservationsPageTitle"
+          [href]="reservationsPageRoute"
+        ></app-tt-navigation-button>
+
+        <!--    Registration    -->
         <app-tt-navigation-button
           *ngIf="enableRegistrationPage && !hasLoggedInUser()"
           [title]="'registration'"
           [href]="'/registrations'"
         ></app-tt-navigation-button>
+
+        <!--    Org    -->
         <app-tt-navigation-button
           *ngIf="enableOrgPage"
           [title]="'org'"
           [href]="'/org'"
         ></app-tt-navigation-button>
+
+        <!--    Admissions    -->
         <app-tt-navigation-button
           *ngIf="enableAdmissionsPage"
           [title]="'admissions service'"
           [href]="'/admissions'"
         ></app-tt-navigation-button>
+
+        <!--    Membership    -->
         <app-tt-navigation-button
           *ngIf="enableMembershipPage"
           [title]="'buy membership'"
           [href]="'/membership'"
         ></app-tt-navigation-button>
+
+        <!--    Membership Summary    -->
         <app-tt-navigation-button
           *ngIf="enableMembershipSummaryPage"
           [title]="'active memberships'"

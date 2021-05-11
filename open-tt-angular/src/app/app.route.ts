@@ -8,11 +8,13 @@ import { TtUserRegistrationComponent } from './single-use-components/tt-user-reg
 import { TtHomeComponent } from './tt-home/tt-home.component';
 import { TtHandicapComponent } from './tt-handicap/tt-handicap.component';
 import { TTRoute } from './routing.constants';
+import { TtReservationsComponent } from './tt-reservations/tt-reservations.component';
 
 const routes: Routes = [
   { path: TTRoute.ROOT, redirectTo: TTRoute.HOME, pathMatch: 'full' },
   { path: TTRoute.HOME, component: TtHomeComponent },
   { path: TTRoute.TOURNAMENT_HANDICAP, component: TtHandicapComponent },
+  { path: TTRoute.RESERVATIONS, component: TtReservationsComponent },
   { path: TTRoute.ORG, component: TtOrgComponent },
   { path: TTRoute.REGISTRATIONS, component: TtUserRegistrationComponent },
   { path: TTRoute.ADMISSIONS, component: TtAdmissionsComponent },

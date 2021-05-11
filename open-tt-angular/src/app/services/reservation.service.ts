@@ -1,43 +1,40 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { ReservationApi } from '../utils/reservation_api';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { Reservation } from '../models/reservation';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Player } from '../models/player';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ReservationService {
   reservations: Reservation[] = [];
+  reservationsSubject: Subject<Reservation[]>;
 
   constructor(
     private http: HttpClient,
     private flashMessagesService: FlashMessagesService
-  ) {}
+  ) {
+    this.reservationsSubject = new Subject<Reservation[]>();
+  }
 
-  loadReservationsForUser(
-    apiToken: string,
-    userId: number
-  ): Observable<Reservation[]> {
-    const url = ReservationApi.Paths.getManyReservations();
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${apiToken}`)
-      .set('Content-Type', 'application/json');
+  genReservations(): Observable<Reservation[]> {
+    return this.reservationsSubject.asObservable();
+  }
+
+  loadReservationsForUser(userId: number): void {
     const httpOptions = {
-      headers,
       params: {
-        user_id: userId.toString(),
+        host: userId.toString(),
       },
     };
-    return this.http
-      .get<ReservationApi.ReservationResponse>(url, httpOptions)
-      .pipe(
-        map((reservationResponse) => {
-          return reservationResponse.reservations;
-        })
-      );
+    this.http
+      .get<Reservation[]>('/reservations', httpOptions)
+      .subscribe((reservations: Reservation[]) => {
+        this.reservations = reservations;
+        this.reservationsSubject.next(reservations);
+      });
   }
 
   playerInvitation(reservation: Reservation): void {
@@ -48,7 +45,6 @@ export class ReservationService {
     });
     this.http.post<Reservation>('/reservations', reservation).subscribe(
       (r: Reservation) => {
-        console.log(r);
         this.flashMessagesService.show('Reservation created successfully.');
       },
       (error) => {

@@ -28,7 +28,9 @@ export class TtPlayerCardComponent implements OnInit {
 
   image(): string {
     if (this.player?.profile_img) {
-      return this.player?.profile_img;
+      // debugger;
+      return 'https://www.kindpng.com/picc/m/429-4291136_table-tennis-png-download-ping-pong-icon-png.png';
+      // return this.player?.profile_img;
     }
     return 'https://www.kindpng.com/picc/m/429-4291136_table-tennis-png-download-ping-pong-icon-png.png';
   }
