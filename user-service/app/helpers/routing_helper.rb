@@ -1,5 +1,14 @@
 module RoutingHelper
   def reroute(url, method = :get, body = {}, query = {})
+    success, response_or_error = proxy(url, method, body, query)
+    if success
+      render json: response_or_error.body.as_json, status: response_or_error.code
+    else
+      render json: response_or_error
+    end
+  end
+
+  def proxy(url, method = :get, body = {}, query = {})
     expected_response_codes = {
       get: [200],
       post: [201],
@@ -19,19 +28,20 @@ module RoutingHelper
 
       resp_json = response.as_json
       if expected_response_codes[method.to_sym].include?(response.code)
-        render json: response.body.as_json, status: response.code
+        # return
+        [true, response]
       else
         begin
           error = resp_json['exception'].remove("\t").split("\n")
         rescue StandardError
           error = resp_json
         end
-        render json: {
-          error: error
-        }, status: :internal_server_error
+        # return
+        [false, error]
       end
     rescue StandardError => e
-      render json: { error: e.message }, status: :internal_server_error
+      # return
+      [false, e.message]
     end
   end
 end

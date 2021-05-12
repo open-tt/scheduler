@@ -11,15 +11,14 @@ import { Time } from '@angular/common';
   styleUrls: ['./tt-invitation-dialog.component.scss'],
 })
 export class TtInvitationDialogComponent implements OnInit {
-  inviteTime: number;
   times = [1, 2, 3, 4];
   host: Player;
   recipient: Player;
-  activity: ReservationType;
-  date: Date;
-  start: Time;
-  end: Time;
-  note: string;
+  kind = 'play';
+  date: Date = new Date();
+  start = '18:00:00';
+  end = '20:00:00';
+  note = 'Let play some TT!';
   reservation: Reservation;
 
   constructor(
@@ -33,23 +32,27 @@ export class TtInvitationDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.reservation = {
-      host: this.host.id,
-      recipient: this.recipient.id,
+      host: this.host.name,
+      recipient: this.recipient.name,
       kind: ReservationType.Play,
-      event_date: new Date(),
+      event_date: new Date().toDateString(),
       start_time: null,
       end_time: null,
+      note: this.note,
     };
   }
 
   sendInvite(): void {
-    this.reservation.event_date = this.date;
-    this.reservation.start_time = this.start;
-    this.reservation.end_time = this.end;
-    this.reservation.kind = this.activity;
-    this.reservation.note = this.note;
-
-    this.reservationService.playerInvitation(this.reservation);
+    const data = {
+      host: this.host.id,
+      recipient: this.recipient.id,
+      kind: this.kind,
+      event_date: this.date,
+      start_time: this.start,
+      end_time: this.end,
+      note: this.note,
+    };
+    this.reservationService.playerInvitation(data);
 
     this.dialogRef.close();
   }

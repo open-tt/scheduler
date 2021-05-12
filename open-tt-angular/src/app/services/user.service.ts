@@ -8,6 +8,7 @@ import { ReservationService } from './reservation.service';
 import { CookieService } from './cookie.service';
 import { Tournament } from '../models/tournament';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class UserService {
     private http: HttpClient,
     private reservationService: ReservationService,
     private coockieService: CookieService,
-    private flashMessageService: FlashMessagesService
+    private flashMessageService: FlashMessagesService,
+    private router: Router
   ) {
     this.loggedInUserSubject = new Subject<Player>();
   }
@@ -45,6 +47,7 @@ export class UserService {
         this.userApiToken = a.auth_token;
         this.coockieService.setAuthTokenCookie(this.userApiToken);
         this.loadUser();
+        this.router.navigate(['/home']);
       });
   }
 

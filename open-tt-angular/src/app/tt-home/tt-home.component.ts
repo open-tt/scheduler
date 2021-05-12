@@ -32,21 +32,7 @@ export class TtHomeComponent implements OnInit {
     }
 
     if (this.userService.loggedInUser === undefined) {
-      this.userService.loadUser().subscribe((loaded) => {
-        if (loaded) {
-          this.userInfo = [
-            new LabeledContent('name', this.userService.loggedInUser.name),
-            new LabeledContent('email', this.userService.loggedInUser.id),
-          ];
-        } else {
-          console.error('Failed to load user.');
-        }
-      });
-    } else {
-      this.userInfo = [
-        new LabeledContent('name', this.userService.loggedInUser.name),
-        new LabeledContent('email', this.userService.loggedInUser.id),
-      ];
+      this.userService.loadUser();
     }
     this.playerUniverseSubscription = this.playerService
       .genPlayerUniverse()

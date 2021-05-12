@@ -1,32 +1,32 @@
 <mat-table [dataSource]="reservations">
   <ng-container matColumnDef="host">
     <mat-header-cell *matHeaderCellDef>Host</mat-header-cell>
-    <mat-cell *matCellDef="let r"> {{ host(r) }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.host }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="recipient">
     <mat-header-cell *matHeaderCellDef>Recipient</mat-header-cell>
-    <mat-cell *matCellDef="let r"> {{ recipient(r) }} - {{ recipientRsvp(r) }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.recipient }} - {{ recipientRsvp(r) }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="date">
     <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-    <mat-cell *matCellDef="let r"> {{ date(r) }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.event_date }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="start">
     <mat-header-cell *matHeaderCellDef>Start</mat-header-cell>
-    <mat-cell *matCellDef="let reservation"> {{ start(reservation) }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.start_time }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="end">
     <mat-header-cell *matHeaderCellDef>End</mat-header-cell>
-    <mat-cell *matCellDef="let reservation"> {{ end(reservation) }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.end_time }} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="note">
     <mat-header-cell *matHeaderCellDef>Note</mat-header-cell>
-    <mat-cell *matCellDef="let reservation"> {{ reservation.note }} </mat-cell>
+    <mat-cell *matCellDef="let r"> {{ r.note }} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

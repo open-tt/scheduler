@@ -44,36 +44,13 @@ export class TtUserRegistrationComponent implements OnInit {
   login(): void {
     const userId = this.loginLabels[0][2];
     const pin = +this.loginLabels[1][2];
-    this.userService.login(userId, pin).subscribe(
-      (success) => {
-        if (!success) {
-          console.error('Log In Failed');
-          return;
-        }
-        this.router.navigate(['/home']);
-      },
-      (error) => console.error('API Error: ', error)
-    );
+    this.userService.login(userId, pin);
   }
 
   signup(): void {
     const name = this.signupLabels[0][2];
     const userId = this.signupLabels[1][2];
     const pin = +this.signupLabels[2][2];
-    this.userService.signup(name, userId, pin).subscribe(
-      (success) => {
-        if (!success) {
-          console.error(
-            `Failed to create user with ${name}, ${userId}, ${pin}`
-          );
-        }
-      },
-      (error) => {
-        console.error(
-          `Create User(${name}, ${userId}, ${pin}) request failed: `,
-          error
-        );
-      }
-    );
+    this.userService.signup(name, userId, pin);
   }
 }

@@ -51,25 +51,13 @@ export class TtReservationsComponent implements OnInit {
     }
   }
 
-  date(r: Reservation): string {
-    return r.event_date.toDateString();
-  }
-
-  start(r: Reservation): string {
-    return `${r.start_time.hours}:${r.start_time.minutes}`;
-  }
-
-  end(r: Reservation): string {
-    return `${r.end_time.hours}:${r.end_time.minutes}`;
-  }
-
-  host(r: Reservation): string {
-    return this.playerService.playerName(r.host);
-  }
-
-  recipient(r: Reservation): string {
-    return this.playerService.playerName(r.recipient);
-  }
+  // host(r: Reservation): string {
+  //   return this.playerService.playerName(r.host);
+  // }
+  //
+  // recipient(r: Reservation): string {
+  //   return this.playerService.playerName(r.recipient);
+  // }
 
   recipientRsvp(r: Reservation): string {
     return RSVP[r.recipient_rsvp];

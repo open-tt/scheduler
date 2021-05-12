@@ -37,13 +37,14 @@ export class ReservationService {
       });
   }
 
-  playerInvitation(reservation: Reservation): void {
-    this.reservations.push(reservation);
-    this.flashMessagesService.show('Reservation created successfully.', {
-      cssClass: 'alert-success',
-      timeout: 4000,
-    });
-    this.http.post<Reservation>('/reservations', reservation).subscribe(
+  playerInvitation(data: any): void {
+    // this.reservations.push(reservation);
+    // this.flashMessagesService.show('Reservation created successfully.', {
+    //   cssClass: 'alert-success',
+    //   timeout: 4000,
+    // });
+    console.log(data);
+    this.http.post<Reservation>('/reservations', data).subscribe(
       (r: Reservation) => {
         this.flashMessagesService.show('Reservation created successfully.');
       },

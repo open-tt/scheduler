@@ -2,14 +2,13 @@ import { Time } from '@angular/common';
 
 export interface Reservation {
   id?: number;
-  host: number;
-  recipient: number;
+  host: string;
+  recipient: string;
   recipient_rsvp?: RSVP;
   kind: ReservationType;
-  event_date: Date;
-  start_time: Time;
-  end_time: Time;
-  created_at?: Date;
+  event_date: string;
+  start_time: string;
+  end_time: string;
   note?: string;
   duration_in_minutes?: number;
 }

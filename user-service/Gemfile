@@ -60,3 +60,5 @@ gem "rspec-mocks", "~> 3.9"
 gem "httparty", "~> 0.18.1"
 
 gem "activerecord-import", "~> 1.0"
+
+gem "active_model_serializers", "~> 0.10.12"

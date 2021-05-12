@@ -6,7 +6,7 @@
 
     <!--  Activity  -->
     <mat-form-field fxFlex="15">
-      <mat-select value="play" [(ngModel)]="activity">
+      <mat-select [(ngModel)]="kind">
         <mat-option *ngFor="let act of ['play', 'train']" [value]="act">{{act}}</mat-option>
       </mat-select>
     </mat-form-field>
