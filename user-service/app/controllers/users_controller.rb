@@ -57,7 +57,7 @@ class UsersController < ApplicationController
   end
 
   def index_with_tt_profiles
-    render json: User.all.map(&:account_tt_profile)
+    render json: User.all
   end
 
   def show_tournament_data
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
     else
       tt_profile.update!(edit_tt_profile_params)
     end
-    render json: user.account_tt_profile
+    render json: user
   end
 
   def edit
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
     if user.nil?
       render json: { success: false, message: 'User does not exist' }, status: 404
     elsif user.update(edit_user_params)
-      render json: user.account_tt_profile
+      render json: user
     else
       render json: { success: false, messages: user.errors.full_messages }, status: :unprocessable_entity
     end
