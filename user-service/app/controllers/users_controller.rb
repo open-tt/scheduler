@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: :register
 
   def show_current_user
-    render json: { user: current_user.account_tt_profile }
+    render json: { user: current_user }
   end
 
   def search_users
     users = User.search_by_fields(search_params)
-    render json: users.map(&:account_tt_profile)
+    render json: users
   end
 
   def register
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find(params[:id])
-    render json: { success: true, user: user.account_tt_profile }, status: :ok
+    render json: user, status: :ok
   end
 
   def index_with_tt_profiles
