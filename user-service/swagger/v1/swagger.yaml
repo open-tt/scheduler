@@ -748,7 +748,15 @@ paths:
       security:
       - bearer_auth: []
       parameters:
-      - name: query
+      - name: name
+        in: query
+        schema:
+          type: string
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: club
         in: query
         schema:
           type: string

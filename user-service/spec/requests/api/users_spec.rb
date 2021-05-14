@@ -91,7 +91,9 @@ RSpec.describe 'Users API', type: :request do
       consumes 'application/json'
       produces 'application/json'
 
-      parameter name: :query, in: :query, type: :string
+      parameter name: :name, in: :query, type: :string
+      parameter name: :city, in: :query, type: :string
+      parameter name: :club, in: :query, type: :string
 
       response '200', 'Search' do
         run_test!

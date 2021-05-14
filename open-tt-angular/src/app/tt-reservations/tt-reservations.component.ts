@@ -5,14 +5,19 @@ import { ReservationService } from '../services/reservation.service';
 import { UserService } from '../services/user.service';
 import { Player } from '../models/player';
 import { Subscription } from 'rxjs';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-tt-reservations',
   templateUrl: './tt-reservations.component.html',
-  styleUrls: ['./tt-reservations.component.css'],
+  styleUrls: ['./tt-reservations.component.scss'],
 })
 export class TtReservationsComponent implements OnInit {
   reservations: Reservation[];
+  recipientRsvp = '...';
+  RSVP_YES = RSVP.YES;
+  RSVP_NO = RSVP.NO;
+  RSVP_MAYBE = RSVP.MAYBE;
 
   displayedColumns = ['host', 'recipient', 'date', 'start', 'end', 'note'];
   reservationsSubscription: Subscription;
@@ -59,11 +64,16 @@ export class TtReservationsComponent implements OnInit {
   //   return this.playerService.playerName(r.recipient);
   // }
 
-  recipientRsvp(r: Reservation): string {
-    return RSVP[r.recipient_rsvp];
+  rsvpName(i: number): string {
+    return RSVP[i];
   }
 
   hasReservations(): boolean {
     return this.reservations && this.reservations.length > 0;
+  }
+
+  onRsvpChange(r: Reservation, $event: MatSelectChange): void {
+    r.recipient_rsvp = $event.source.value;
+    this.reservationService.updateReservation(r);
   }
 }

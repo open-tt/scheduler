@@ -6,8 +6,7 @@ class UsersController < ApplicationController
   end
 
   def search_users
-    search_term = params[:query].downcase
-    users = User.where('lower(name) LIKE ?', "%#{search_term}%")
+    users = User.search_by_fields(search_params)
     render json: users.map(&:account_tt_profile)
   end
 
@@ -127,6 +126,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def search_params
+    params.permit(:name, :city, :club)
+  end
 
   def validate_profiles(batch)
     profiles = batch.map do |profile|

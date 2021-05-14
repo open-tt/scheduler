@@ -38,12 +38,6 @@ export class ReservationService {
   }
 
   playerInvitation(data: any): void {
-    // this.reservations.push(reservation);
-    // this.flashMessagesService.show('Reservation created successfully.', {
-    //   cssClass: 'alert-success',
-    //   timeout: 4000,
-    // });
-    console.log(data);
     this.http.post<Reservation>('/reservations', data).subscribe(
       (r: Reservation) => {
         this.flashMessagesService.show('Reservation created successfully.');
@@ -52,5 +46,23 @@ export class ReservationService {
         this.flashMessagesService.show('Fail to create reservation: ' + error);
       }
     );
+  }
+
+  updateReservation(reservation: Reservation): void {
+    this.http
+      .put<Reservation>(`/reservations/${reservation.id}`, reservation)
+      .subscribe(
+        (updatedRes: Reservation) => {
+          this.flashMessagesService.show('Updated Reservation.');
+          this.reservations.forEach((r, index, arr) => {
+            if (r.id === updatedRes.id) {
+              arr[index] = updatedRes;
+            }
+          });
+        },
+        (error) => {
+          this.flashMessagesService.show('Failed to update Reservation.');
+        }
+      );
   }
 }

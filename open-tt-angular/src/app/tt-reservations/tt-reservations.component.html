@@ -6,7 +6,24 @@
 
   <ng-container matColumnDef="recipient">
     <mat-header-cell *matHeaderCellDef>Recipient</mat-header-cell>
-    <mat-cell *matCellDef="let r"> {{ r.recipient }} - {{ recipientRsvp(r) }} </mat-cell>
+    <mat-cell *matCellDef="let r">
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex>
+        <div>
+          {{ r.recipient }}
+        </div>
+
+        <div>
+          <mat-form-field>
+            <mat-label>rsvp</mat-label>
+            <mat-select [(ngModel)]="r.recipient_rsvp" (selectionChange)="onRsvpChange(r, $event)">
+              <mat-option *ngFor="let v of [RSVP_YES, RSVP_NO, RSVP_MAYBE]" [value]="v">{{ v }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </div>
+
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="date">

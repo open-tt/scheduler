@@ -14,13 +14,13 @@ export interface Reservation {
 }
 
 export enum ReservationType {
-  Lesson,
-  Play,
-  Train,
+  Lesson = 'lesson',
+  Play = 'play',
+  Train = 'train',
 }
 
 export enum RSVP {
-  YES,
-  NO,
-  MAYBE,
+  YES = 'yes',
+  NO = 'no',
+  MAYBE = 'maybe',
 }

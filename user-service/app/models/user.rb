@@ -13,6 +13,12 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
+  def self.search_by_fields(params)
+    sql = params.map { |k, _| "lower(#{k}) LIKE ?" }.join(' AND ')
+    values = params.map { |_, v| "%#{v}%" }
+    where(sql, *values)
+  end
+
   def roles_summary
     roles_users.joins(:role).select('roles_users.id, roles_users.org_id, roles.name').map do |obj|
       {

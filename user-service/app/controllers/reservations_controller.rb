@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
 
   def update_reservation_params
     params.permit(
-      :start_timestamp, :end_timestamp, :recipient_rsvp, :kind, :note
+      :recipient_rsvp, :kind, :note
     )
   end
 

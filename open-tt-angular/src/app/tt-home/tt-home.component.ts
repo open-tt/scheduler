@@ -15,7 +15,11 @@ export class TtHomeComponent implements OnInit {
   userInfo: LabeledContent[];
   items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
   allPlayers: Player[];
-  playerQuery: string;
+  playerNameQuery: string;
+  cityQuery: string;
+  zipcodeQuery: string;
+  clubQuery: string;
+  ratingQuery: string;
 
   playerUniverseSubscription: Subscription;
 
@@ -44,7 +48,7 @@ export class TtHomeComponent implements OnInit {
 
   searchPlayers(): void {
     this.playerService
-      .searchByName(this.playerQuery)
+      .searchByName(this.playerNameQuery)
       .subscribe((players: Player[]) => {
         this.allPlayers = players;
       });
