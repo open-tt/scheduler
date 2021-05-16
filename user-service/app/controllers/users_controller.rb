@@ -164,8 +164,8 @@ class UsersController < ApplicationController
   def create_user_params
     params.permit(
       :name, :email, :password, :password_confirmation,
-      :is_enabled, :usattid, :location, :homeclub, :rating,
-      :player_id
+      :is_enabled, :usattid, :location, :club, :rating,
+      :player_id, :city, :state, :zipcode
     )
   end
 

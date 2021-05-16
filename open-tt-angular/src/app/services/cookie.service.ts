@@ -22,7 +22,11 @@ export class CookieService {
   }
 
   getAuthTokenCookie(): string {
-    if (this.authToken !== null) {
+    if (
+      this.authToken !== null &&
+      this.authToken !== '' &&
+      this.authToken !== undefined
+    ) {
       return this.authToken;
     }
     this.authToken = this.getCookie(Cookie.USER_AUTH_TOKEN);
@@ -72,6 +76,11 @@ export class CookieService {
 
     // Set it
     document.cookie = name + '=; expires=' + date.toUTCString() + '; path=/';
+  }
+
+  removeUserToken(): void {
+    this.deleteCookie(Cookie.USER_AUTH_TOKEN);
+    this.authToken = '';
   }
 }
 

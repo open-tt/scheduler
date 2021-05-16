@@ -22,6 +22,7 @@ export class GlobalThemeComponent implements OnInit {
   enableAdmissionsPage = false;
   enableMembershipPage = false;
   enableMembershipSummaryPage = false;
+  enableLogout = true;
 
   tournamentsPageTitle = 'Tournaments';
   homePageTitle = 'Home';
@@ -42,17 +43,26 @@ export class GlobalThemeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log('Global Theme');
     if (this.cookieService.hasLoggedInUser()) {
-      console.log('A');
-      this.userService.userApiToken = this.cookieService.getAuthTokenCookie();
       this.userService.loadUser();
+      this.playerService.loadAllPlayers();
     }
-    console.log('B');
-    this.playerService.loadAllPlayers();
+  }
+
+  shouldEnableLogout(): boolean {
+    return this.enableLogout && this.userService.hasLoggedInUser();
+  }
+
+  shouldEnableReservationsButton(): boolean {
+    return this.enableReservationsPage && this.hasLoggedInUser();
   }
 
   hasLoggedInUser(): boolean {
     return this.cookieService.hasLoggedInUser();
+  }
+
+  logout(): void {
+    this.cookieService.removeUserToken();
+    this.router.navigate(['/registrations']);
   }
 }

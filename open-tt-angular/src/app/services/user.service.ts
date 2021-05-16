@@ -33,56 +33,64 @@ export class UserService {
   }
 
   hasLoggedInUser(): boolean {
-    return !!this.userApiToken && this.userApiToken !== '';
+    const token = this.coockieService.getAuthTokenCookie();
+    return !!token && token !== '';
   }
 
-  login(userID: string, pin: number): void {
+  login(email: string, password: string): void {
     const data = {
-      email: userID,
-      password: pin,
+      email,
+      password,
     };
     this.http
       .post<UserApi.AuthResponse>('/authenticate', data)
       .subscribe((a) => {
-        this.userApiToken = a.auth_token;
-        this.coockieService.setAuthTokenCookie(this.userApiToken);
+        this.coockieService.setAuthTokenCookie(a.auth_token);
         this.loadUser();
         this.router.navigate(['/home']);
       });
   }
 
   logout(): void {
-    this.userApiToken = '';
-    this.coockieService.setAuthTokenCookie(this.userApiToken);
+    this.coockieService.setAuthTokenCookie('');
     this.loggedInUser = undefined;
     // TODO: Should I reload or re-route?
   }
 
-  signup(name: string, userID: string, pin: number): void {
+  signup(
+    name: string,
+    email: string,
+    password: string,
+    city: string,
+    state: string,
+    zipcode: string,
+    club: string
+  ): void {
     const data = {
       name,
-      email: userID,
-      password: pin.toString(),
-      password_confirmation: pin.toString(),
+      email,
+      password,
+      password_confirmation: password,
+      city,
+      state,
+      zipcode,
+      club,
       is_enabled: true,
     };
 
     this.http
       .post<UserApi.CreateUserResponse>('/users', data)
       .subscribe((user) => {
-        this.userApiToken = user.token;
-        this.coockieService.setAuthTokenCookie(this.userApiToken);
+        this.coockieService.setAuthTokenCookie(user.token);
         this.loadUser();
       });
   }
 
   public loadUser(): void {
-    console.log('Loading User...');
     this.http.get<UserApi.GetCurrentUserResponse>('/current_user').subscribe(
       (resp) => {
         this.loggedInUser = resp.user;
         this.loggedInUserSubject.next(this.loggedInUser);
-        console.log('User Loaded---');
       },
       (e) => {
         console.error(e);

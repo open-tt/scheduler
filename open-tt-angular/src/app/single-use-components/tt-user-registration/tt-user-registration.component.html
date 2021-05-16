@@ -8,26 +8,122 @@
     >
       <!--   Log In Tab   -->
       <mat-tab label="Log In">
-        <div fxLayout="column" fxLayoutGap="20px">
-          <div fxFlex="20px"></div>
-          <app-tt-labeled-edit-group
-            [labels]="loginLabels"
-          ></app-tt-labeled-edit-group>
-          <button mat-raised-button (click)="login()">Sign In</button>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <!-- email -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Email</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="userEmail"
+            />
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Password</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="password"
+                    [(ngModel)]="userPassword"
+            />
+          </mat-form-field>
+
+          <!-- Button Log In -->
+          <button mat-raised-button color="primary" type="button" (click)="login()">
+            Log In
+          </button>
         </div>
       </mat-tab>
 
+
+
       <!--   Sign Up Tab   -->
       <mat-tab label="Sign Up">
-        <div fxLayout="column" fxLayoutGap="20px">
-          <div fxFlex="20px"></div>
-          <app-tt-labeled-edit-group
-            [labels]="signupLabels"
-          ></app-tt-labeled-edit-group>
-          <app-tt-simple-button
-            title="Sign Up"
-            (action)="signup()"
-          ></app-tt-simple-button>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <!-- Full Name -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Full Name</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="userFullName"
+            />
+          </mat-form-field>
+
+          <!-- Email -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Email</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="userEmail"
+            />
+          </mat-form-field>
+
+          <!-- Password -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Password</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="password"
+                    [(ngModel)]="userPassword"
+            />
+          </mat-form-field>
+
+          <!-- City -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>City</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="locationCity"
+            />
+          </mat-form-field>
+
+          <!-- State -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>State</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="locationState"
+            />
+          </mat-form-field>
+
+          <!-- Zipcode -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Zipcode</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="locationZipcode"
+            />
+          </mat-form-field>
+
+          <!-- Club -->
+          <mat-form-field appearance="fill" fxFlex="20">
+            <mat-label>Club</mat-label>
+            <input
+                    matInput
+                    fxFlex
+                    type="text"
+                    [(ngModel)]="club"
+            />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="button" (click)="signup()">
+            Sign Up
+          </button>
+
         </div>
       </mat-tab>
     </mat-tab-group>

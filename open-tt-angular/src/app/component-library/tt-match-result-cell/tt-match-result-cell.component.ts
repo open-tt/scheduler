@@ -31,7 +31,6 @@ export class TtMatchResultCellComponent implements OnInit {
   }
 
   matchStyle(): string {
-    // debugger;
     if (!this.match) {
       return '';
     }

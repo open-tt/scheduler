@@ -10,8 +10,6 @@ export namespace UserApi {
   }
 
   export class CreateUserResponse {
-    success: boolean;
-    newUserID: number;
     enabled: boolean;
     token: string;
   }

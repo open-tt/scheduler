@@ -10,14 +10,23 @@ export class PlayerService {
   playerUniverse: Player[];
   playerUniverseSubject: Subject<Player[]>;
 
+  displayablePlayers: Player[];
+  displayablePlayersSubject: Subject<Player[]>;
+
   constructor(private http2: HttpClient, private http: HttpClient) {
     this.playerUniverseSubject = new Subject<Player[]>();
+    this.displayablePlayersSubject = new Subject<Player[]>();
     this.playerUniverse = [];
+    this.displayablePlayers = [];
   }
 
   // Getters and Setters
   genPlayerUniverse(): Observable<Player[]> {
     return this.playerUniverseSubject.asObservable();
+  }
+
+  genDisplayablePlayersSubject(): Observable<Player[]> {
+    return this.displayablePlayersSubject.asObservable();
   }
 
   createNewPlayer(name: string, rating: number): Observable<Player> {
@@ -31,7 +40,9 @@ export class PlayerService {
   loadAllPlayers(): void {
     this.http.get<Player[]>('/players').subscribe((players: Player[]) => {
       this.playerUniverse = players;
+      this.displayablePlayers = players;
       this.playerUniverseSubject.next(this.playerUniverse);
+      this.displayablePlayersSubject.next(this.displayablePlayers);
     });
   }
 
@@ -40,9 +51,22 @@ export class PlayerService {
     return player ? player.name : '';
   }
 
-  searchByName(playerQuery: string): Observable<Player[]> {
-    return this.http.get<Player[]>('/users', {
-      params: { query: playerQuery },
-    });
+  search(terms: any): void {
+    this.http
+      .get<Player[]>('/users', {
+        params: terms,
+      })
+      .subscribe((players) => {
+        this.displayablePlayers = players;
+        this.displayablePlayersSubject.next(players);
+      });
+  }
+
+  searchByName(playerQuery: string): void {
+    this.http
+      .get<Player[]>('/users', {
+        params: { query: playerQuery },
+      })
+      .subscribe((players) => {});
   }
 }

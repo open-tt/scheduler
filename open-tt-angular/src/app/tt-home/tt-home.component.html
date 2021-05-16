@@ -5,16 +5,16 @@
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <h1>Players</h1>
-      <input type="search" placeholder="name" [(ngModel)]="playerNameQuery" (change)="searchPlayers()">
-      <input type="search" placeholder="club" [(ngModel)]="clubQuery" (change)="searchPlayers()">
-      <input type="search" placeholder="zipcode" [(ngModel)]="zipcodeQuery" (change)="searchPlayers()">
-      <input type="search" placeholder="city" [(ngModel)]="cityQuery" (change)="searchPlayers()">
-      <input type="search" placeholder="min rating" [(ngModel)]="ratingQuery" (change)="searchPlayers()">
+      <input type="search" placeholder="name" [(ngModel)]="playerNameQuery" (change)="searchPlayers($event)">
+      <input type="search" placeholder="club" [(ngModel)]="clubQuery" (change)="searchPlayers($event)">
+      <input type="search" placeholder="zipcode" [(ngModel)]="zipcodeQuery" (change)="searchPlayers($event)">
+      <input type="search" placeholder="city" [(ngModel)]="cityQuery" (change)="searchPlayers($event)">
+      <input type="search" placeholder="min rating" [(ngModel)]="ratingQuery" (change)="searchPlayers($event)">
 
     </div>
 
     <div class="scrolling-wrapper" fxLayout="row" fxLayoutGap="20px">
-      <div *ngFor="let player of allPlayers" class="player-card-container">
+      <div *ngFor="let player of players" class="player-card-container">
         <app-tt-player-card [player]="player"></app-tt-player-card>
       </div>
     </div>

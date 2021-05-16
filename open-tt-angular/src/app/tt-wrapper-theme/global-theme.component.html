@@ -30,7 +30,7 @@
 
         <!--    Reservations    -->
         <app-tt-navigation-button
-          *ngIf="enableReservationsPage"
+          *ngIf="shouldEnableReservationsButton()"
           [title]="reservationsPageTitle"
           [href]="reservationsPageRoute"
         ></app-tt-navigation-button>
@@ -69,12 +69,24 @@
           [title]="'active memberships'"
           [href]="'/memberships/active'"
         ></app-tt-navigation-button>
+
+        <button fxFlex
+                disableRipple
+                mat-button
+                fxLayoutAlign="left"
+                *ngIf="shouldEnableLogout()"
+                (click)="logout()"
+                [color]="false ? 'primary' : ''">
+          LOGOUT
+        </button>
+
       </div>
     </mat-sidenav>
     <mat-sidenav-content fxLayout="column" fxLayoutGap="10px">
       <mat-toolbar color="primary">
         <mat-toolbar-row>
           <mat-icon
+            id="hamburger"
             aria-hidden="false"
             aria-label="Example home icon"
             (click)="sidenav.toggle()"

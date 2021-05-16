@@ -37,19 +37,15 @@ export class TtReservationsComponent implements OnInit {
       .genReservations()
       .subscribe((reservations: Reservation[]) => {
         this.reservations = reservations;
-        console.log('Updated res');
-        console.log(this.reservations);
       });
 
     this.loggedInUserSubscription = this.userService
       .genLoggedInUser()
       .subscribe((user) => {
-        console.log('User changed');
         this.reservationService.loadReservationsForUser(user.id);
       });
 
     if (this.userService.loggedInUser) {
-      console.log('User exists');
       this.reservationService.loadReservationsForUser(
         this.userService.loggedInUser.id
       );

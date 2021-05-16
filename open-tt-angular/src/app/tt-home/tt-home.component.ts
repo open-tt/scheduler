@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
 export class TtHomeComponent implements OnInit {
   userInfo: LabeledContent[];
   items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
-  allPlayers: Player[];
+  players: Player[];
   playerNameQuery: string;
   cityQuery: string;
   zipcodeQuery: string;
@@ -35,22 +35,20 @@ export class TtHomeComponent implements OnInit {
       return;
     }
 
+    this.playerUniverseSubscription = this.playerService
+      .genDisplayablePlayersSubject()
+      .subscribe((players: Player[]) => {
+        this.players = players;
+      });
     if (this.userService.loggedInUser === undefined) {
       this.userService.loadUser();
     }
-    this.playerUniverseSubscription = this.playerService
-      .genPlayerUniverse()
-      .subscribe((players: Player[]) => {
-        this.allPlayers = players;
-      });
     this.playerService.loadAllPlayers();
   }
 
-  searchPlayers(): void {
-    this.playerService
-      .searchByName(this.playerNameQuery)
-      .subscribe((players: Player[]) => {
-        this.allPlayers = players;
-      });
+  searchPlayers($event: Event): void {
+    // @ts-ignore
+    const name = $event.target.value;
+    this.playerService.search({ name });
   }
 }
