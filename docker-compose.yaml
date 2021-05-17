@@ -33,9 +33,6 @@ services:
     build:
       context: ./user-service
       dockerfile: Dockerfile
-    environment:
-      LENOMIR_DB_HOST: pgsql_userservice
-      LENOMIR_DB_PORT: 5432
     ports:
       - "3001:3000"
 
@@ -63,7 +60,7 @@ services:
       [
         "bash",
         "./wait-for-it.sh",
-        "pgsql_tournamentservice:5462",
+        "pgsql_tournamentservice:5432",
         "--",
         "bash",
         "start.sh",
@@ -106,9 +103,6 @@ services:
     build:
       context: ./reservation-service
       dockerfile: Dockerfile
-    environment:
-      LENOMIR_DB_HOST: pgsql_reservationservice
-      LENOMIR_DB_PORT: 5432
     ports:
       - "3002:3000"
 

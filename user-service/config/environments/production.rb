@@ -1,7 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   # API Configs
-  config.tournament_service_host = 'http://api_tournamentservice:3000'
+  config.tournament_api = 'http://api_tournamentservice:3000'
+  config.reservations_api = 'http://api_reservationservice:3000'
 
   # Code is not reloaded between requests.
   config.cache_classes = true

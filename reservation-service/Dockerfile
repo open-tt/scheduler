@@ -1,5 +1,6 @@
 FROM ruby:2.5.1
 
+# libpq-dev -> for postgress, needs apt-get update
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
 RUN apt-get install -y dos2unix
 
@@ -22,4 +23,8 @@ RUN dos2unix wait-for-it.sh
 RUN dos2unix start.sh
 RUN dos2unix bin/*
 
-CMD ["bash", "start.sh"]
+RUN chmod 777 start.sh
+RUN chmod 777 wait-for-it.sh
+RUN chmod 777 bin/*
+
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
