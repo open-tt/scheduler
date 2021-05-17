@@ -1,22 +1,25 @@
-<div>
-  <mat-card [ngClass]="
-    {
-      'blue': bg === 'blue',
-      'green': bg === 'green',
-      'purple': bg === 'purple',
-      'orange': bg === 'orange'
-    }
-  ">
-    <mat-card-header class="text-oneline">
-  <!--    <div mat-card-avatar class="example-header-image"></div>-->
-      <mat-card-title>{{title}}</mat-card-title>
-      <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image
-         [src]="imageUrl"
-         [alt]="alt">
-    <mat-card-content>
-      <ng-content></ng-content>
-    </mat-card-content>
-  </mat-card>
-</div>
+<mat-card
+  fxLayout="column"
+  [ngClass]="{
+    'blue': bg === 'blue',
+    'green': bg === 'green',
+    'purple': bg === 'purple',
+    'orange': bg === 'orange'
+  }">
+
+  <mat-card-header>
+    <mat-card-title>{{title}}</mat-card-title>
+    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <img
+      fxFlex
+      mat-card-image
+      [src]="imageUrl"
+      [alt]="alt">
+
+  <mat-card-content>
+    <ng-content></ng-content>
+  </mat-card-content>
+
+</mat-card>
