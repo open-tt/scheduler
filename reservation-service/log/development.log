@@ -4092,3 +4092,171 @@ Processing by ReservationsController#index as */*
 Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 2.7ms)
 
 
+Started GET "/reservations?host=&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:11:51 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (7.73ms)
+Completed 200 OK in 25ms (Views: 12.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:28:30 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (3.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.94ms)
+Completed 200 OK in 20ms (Views: 4.4ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:28:35 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.2ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.77ms)
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:47:17 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.1ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.33ms)
+Completed 200 OK in 8ms (Views: 3.6ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:47:22 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.25ms)
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:47:23 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.93ms)
+Completed 200 OK in 5ms (Views: 1.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:51:48 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.01ms)
+Completed 200 OK in 6ms (Views: 1.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:51:49 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (15.37ms)
+Completed 200 OK in 22ms (Views: 16.9ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:51:53 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.81ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:51:53 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.4ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.66ms)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:54:45 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.94ms)
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:55:05 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (5.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.77ms)
+Completed 200 OK in 10ms (Views: 2.7ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:55:10 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.78ms)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:55:12 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.5ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.04ms)
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:56:14 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.7ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.14ms)
+Completed 200 OK in 5ms (Views: 1.7ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:58:16 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.85ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:58:20 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.69ms)
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:59:09 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (1.8ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.78ms)
+Completed 200 OK in 4ms (Views: 1.2ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:59:14 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (3.6ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.76ms)
+Completed 200 OK in 6ms (Views: 1.3ms | ActiveRecord: 3.6ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 11:59:39 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.0ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.82ms)
+Completed 200 OK in 5ms (Views: 1.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/reservations?host=8&recipient=&recipient_rsvp=&start_timestamp=" for 127.0.0.1 at 2021-05-17 12:00:07 -0700
+Processing by ReservationsController#index as */*
+  Parameters: {"host"=>"8", "recipient"=>"", "recipient_rsvp"=>"", "start_timestamp"=>""}
+  [1m[36mReservation Load (2.3ms)[0m  [1m[34mSELECT "reservations".* FROM "reservations" WHERE "reservations"."host" = $1[0m  [["host", 8]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.81ms)
+Completed 200 OK in 5ms (Views: 1.3ms | ActiveRecord: 2.3ms)
+
+
