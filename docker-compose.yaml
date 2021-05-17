@@ -34,7 +34,7 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     ports:
-      - "3001:3000"
+      - "80:3000"
 
   # ---------------------- TOURNAMENTS ------------------------ #
   # docker-compose up pgsql_tournamentservice api_tournamentservice
