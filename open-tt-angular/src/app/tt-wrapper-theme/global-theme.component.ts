@@ -32,7 +32,6 @@ export class GlobalThemeComponent implements OnInit {
   homePageRoute = TTRoute.HOME;
   reservationsPageRoute = TTRoute.RESERVATIONS;
 
-  events: string[] = [];
   opened: boolean;
 
   constructor(
@@ -63,6 +62,15 @@ export class GlobalThemeComponent implements OnInit {
 
   logout(): void {
     this.cookieService.removeUserToken();
-    this.router.navigate(['/registrations']);
+    this.goto('/registrations');
+  }
+
+  goto(homePageRoute: string): void {
+    this.router.navigate([homePageRoute]);
+  }
+
+  isPageSelected(pagePath: string): boolean {
+    debugger;
+    return this.router.url === pagePath;
   }
 }
