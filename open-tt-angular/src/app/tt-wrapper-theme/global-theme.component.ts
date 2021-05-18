@@ -32,7 +32,7 @@ export class GlobalThemeComponent implements OnInit {
   homePageRoute = TTRoute.HOME;
   reservationsPageRoute = TTRoute.RESERVATIONS;
 
-  opened: boolean;
+  opened = true;
 
   constructor(
     private cookieService: CookieService,
