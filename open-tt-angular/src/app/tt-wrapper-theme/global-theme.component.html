@@ -1,27 +1,22 @@
-
-
-<div fxLayout="column" fxLayoutAlign="stretch">
-<!--  <div fxLayout="row" fxLayoutAlign="center">-->
-<!--    <p>Header</p>-->
-<!--  </div>-->
-
+<div fxLayout="column" class="sidenav-drawer">
   <mat-sidenav-container>
     <mat-sidenav
-      #sidenav
       mode="side"
+      #sidenav
       [(opened)]="opened"
-      (opened)="events.push('open!')"
-      (closed)="events.push('close!')"
     >
       <!--   Navigation Section   -->
-      <div fxLayout="column" class="navigation" fxFlex="25">
-        <h1 style="padding-left: 10px">Menu</h1>
+      <div fxLayout="column">
+        <h1>Menu</h1>
         <!--    Homepage    -->
-        <app-tt-navigation-button
-          *ngIf="enableHomePage"
-          [title]="homePageTitle"
-          [href]="homePageRoute"
-        ></app-tt-navigation-button>
+        <button disableRipple
+                mat-button
+                fxLayoutAlign="left"
+                *ngIf="enableHomePage"
+                (click)="goto('/'+homePageRoute)"
+                [color]="isPageSelected('/'+homePageRoute) ? 'primary' : ''">
+          {{homePageTitle}}
+        </button>
 
         <!--    Tournaments    -->
         <app-tt-navigation-button
@@ -31,11 +26,14 @@
         ></app-tt-navigation-button>
 
         <!--    Reservations    -->
-        <app-tt-navigation-button
-          *ngIf="shouldEnableReservationsButton()"
-          [title]="reservationsPageTitle"
-          [href]="reservationsPageRoute"
-        ></app-tt-navigation-button>
+        <button disableRipple
+                mat-button
+                fxLayoutAlign="left"
+                *ngIf="shouldEnableReservationsButton()"
+                (click)="goto('/'+reservationsPageRoute)"
+                [color]="isPageSelected('/'+reservationsPageRoute) ? 'primary' : ''">
+          {{reservationsPageTitle}}
+        </button>
 
         <!--    Registration    -->
         <app-tt-navigation-button
@@ -72,14 +70,14 @@
           [href]="'/memberships/active'"
         ></app-tt-navigation-button>
 
-        <button fxFlex
-                disableRipple
+        <!--    Logout    -->
+        <button disableRipple
                 mat-button
                 fxLayoutAlign="left"
                 *ngIf="shouldEnableLogout()"
                 (click)="logout()"
                 [color]="false ? 'primary' : ''">
-          LOGOUT
+          Logout
         </button>
 
       </div>
@@ -106,8 +104,8 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-
   <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="space-around center" >
+  <!-- Footer -->
     <div>©2021 Open TT.</div>
     <div>
       <mat-icon>facebook</mat-icon>
@@ -119,6 +117,7 @@
       [href]="homePageRoute"
     ></app-tt-navigation-button>
   </div>
+
 </div>
 
 

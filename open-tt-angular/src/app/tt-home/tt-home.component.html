@@ -14,7 +14,7 @@
     </div>
 
     <div class="scrolling-wrapper" fxLayout="row" fxLayoutGap="20px">
-      <div *ngFor="let player of players" class="player-card-container">
+      <div *ngFor="let player of players" fxFlex="20">
         <app-tt-player-card [player]="player"></app-tt-player-card>
       </div>
     </div>
