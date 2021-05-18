@@ -107,14 +107,17 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 
-  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="space-around center" class="footer">
+  <div fxLayout="row" fxLayoutAlign="center" fxLayoutAlign="space-around center" >
     <div>©2021 Open TT.</div>
-    <div fxLayout="row">
-      <a href="https://www.instagram.com/"><div class="instagram-icon"></div></a>
-      <a href="https://www.facebook.com/"><div class="facebook-icon"></div></a>
+    <div>
+      <mat-icon>facebook</mat-icon>
+      <mat-icon>instagram</mat-icon>
     </div>
-    <a href=""><p>HOME</p></a>
-
+    <app-tt-navigation-button
+      *ngIf="enableHomePage"
+      [title]="homePageTitle"
+      [href]="homePageRoute"
+    ></app-tt-navigation-button>
   </div>
 </div>
 
