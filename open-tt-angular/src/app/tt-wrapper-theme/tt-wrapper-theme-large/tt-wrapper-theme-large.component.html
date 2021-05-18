@@ -1,0 +1,104 @@
+
+<mat-sidenav-container>
+  <!--   Navigation Section   -->
+  <mat-sidenav
+          mode="side"
+          #sidenav
+          [(opened)]="opened">
+    <div fxLayout="column" fxFlexAlign="left stretch">
+      <h1>Menu</h1>
+      <!--    Homepage    -->
+      <button disableRipple
+              mat-button
+              fxLayoutAlign="left"
+              *ngIf="enableHomePage"
+              (click)="goto('/'+homePageRoute)"
+              [color]="isPageSelected('/'+homePageRoute) ? 'primary' : ''">
+        {{homePageTitle}}
+      </button>
+
+      <!--    Tournaments    -->
+      <app-tt-navigation-button
+              *ngIf="enableTournamentsPage"
+              [title]="tournamentsPageTitle"
+              [href]="tournamentsPageRoute"
+      ></app-tt-navigation-button>
+
+      <!--    Reservations    -->
+      <button disableRipple
+              mat-button
+              fxLayoutAlign="left"
+              *ngIf="shouldEnableReservationsButton()"
+              (click)="goto('/'+reservationsPageRoute)"
+              [color]="isPageSelected('/'+reservationsPageRoute) ? 'primary' : ''">
+        {{reservationsPageTitle}}
+      </button>
+
+      <!--    Registration    -->
+      <app-tt-navigation-button
+              *ngIf="enableRegistrationPage && !hasLoggedInUser()"
+              [title]="'registration'"
+              [href]="'/registrations'"
+      ></app-tt-navigation-button>
+
+      <!--    Org    -->
+      <app-tt-navigation-button
+              *ngIf="enableOrgPage"
+              [title]="'org'"
+              [href]="'/org'"
+      ></app-tt-navigation-button>
+
+      <!--    Admissions    -->
+      <app-tt-navigation-button
+              *ngIf="enableAdmissionsPage"
+              [title]="'admissions service'"
+              [href]="'/admissions'"
+      ></app-tt-navigation-button>
+
+      <!--    Membership    -->
+      <app-tt-navigation-button
+              *ngIf="enableMembershipPage"
+              [title]="'buy membership'"
+              [href]="'/membership'"
+      ></app-tt-navigation-button>
+
+      <!--    Membership Summary    -->
+      <app-tt-navigation-button
+              *ngIf="enableMembershipSummaryPage"
+              [title]="'active memberships'"
+              [href]="'/memberships/active'"
+      ></app-tt-navigation-button>
+
+      <!--    Logout    -->
+      <button disableRipple
+              mat-button
+              fxLayoutAlign="left"
+              *ngIf="shouldEnableLogout()"
+              (click)="logout()">
+        Logout
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column" fxLayoutGap="10px">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <mat-icon
+                id="hamburger"
+                aria-hidden="false"
+                aria-label="Example home icon"
+                (click)="sidenav.toggle()"
+        >menu</mat-icon
+        >
+        <span>Open TT</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div fxLayout="row" fxLayoutAlign="center space-around">
+      <flash-messages fxFlex="20"></flash-messages>
+    </div>
+
+    <!-- Main Website Content -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

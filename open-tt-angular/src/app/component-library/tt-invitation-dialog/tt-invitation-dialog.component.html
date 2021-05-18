@@ -1,42 +1,41 @@
 <div   fxLayout="column"
         fxLayoutGap="20px"
         fxLayoutAlign="none center">
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <h1 fxFlex="80">Inviting {{recipient.name}} to</h1>
 
+    <h1>Inviting {{recipient.name}}</h1>
+
+  <div fxLayout="row" fxLayoutAlign="space-around center">
     <!--  Activity  -->
-    <mat-form-field fxFlex="15">
+    <mat-form-field class="short-select" fxFlex="35">
+      <mat-label>Play or Train?</mat-label>
       <mat-select [(ngModel)]="kind">
         <mat-option *ngFor="let act of ['play', 'train']" [value]="act">{{act}}</mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-
-  <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="center">
 
     <!--  Date  -->
-    <mat-form-field appearance="fill" fxFlex="30">
+    <mat-form-field appearance="fill" fxFlex="50">
       <mat-label>Choose a date</mat-label>
       <input matInput [matDatepicker]="datepicker" [(ngModel)]="date">
       <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
       <mat-datepicker #datepicker></mat-datepicker>
     </mat-form-field>
+  </div>
 
-    <!--  Start Time  -->
-    <mat-form-field appearance="fill" fxFlex="20">
-      <mat-label>From</mat-label>
-      <input matInput type="time" [(ngModel)]="start">
-    </mat-form-field>
+  <!--  Start Time  -->
+  <mat-form-field class="time-select" appearance="fill" fxFlex="30">
+    <mat-label>From</mat-label>
+    <input matInput type="time" [(ngModel)]="start">
+  </mat-form-field>
 
-    <!--  End Time  -->
-    <mat-form-field appearance="fill" fxFlex="20">
+  <!--  End Time  -->
+  <mat-form-field class="time-select" appearance="fill" fxFlex="30">
       <mat-label>To</mat-label>
       <input matInput type="time" [(ngModel)]="end">
     </mat-form-field>
-  </div>
 
   <!--  Note  -->
-  <textarea fxFill matInput
+  <textarea  matInput
             cdkTextareaAutosize
             #autosize="cdkTextareaAutosize"
             cdkAutosizeMinRows="2"

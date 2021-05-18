@@ -1,0 +1,17 @@
+<mat-card fxLayout="row" fxFlexAlign="left center">
+  <mat-card-header fxLayout="row" fxLayoutAlign="start center">
+    <img
+        mat-card-avatar
+        [src]="player.profile_img"
+        [alt]="'Profile Image'">
+    <mat-card-title>{{player.name}}</mat-card-title>
+    <mat-card-subtitle>
+      <div>Rating: {{playerRating()}}</div>
+      <div>Play At: {{playsAt()}}</div>
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <button mat-button (click)="openDialog()">INVITE</button>
+  </mat-card-content>
+</mat-card>

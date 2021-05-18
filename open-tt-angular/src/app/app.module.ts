@@ -69,6 +69,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TtReservationsComponent } from './tt-reservations/tt-reservations.component';
+import { TtHomeSmallComponent } from './tt-home/tt-home-small/tt-home-small.component';
+import { TtHomeLargeComponent } from './tt-home/tt-home-large/tt-home-large.component';
+import { TtWrapperThemeSmallComponent } from './tt-wrapper-theme/tt-wrapper-theme-small/tt-wrapper-theme-small.component';
+import { TtWrapperThemeLargeComponent } from './tt-wrapper-theme/tt-wrapper-theme-large/tt-wrapper-theme-large.component';
+import { TopNavigationBarComponent } from './tt-wrapper-theme/top-navigation-bar/top-navigation-bar.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { TtPlayerCardSmallComponent } from './component-library/tt-player-card-small/tt-player-card-small.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +118,12 @@ import { TtReservationsComponent } from './tt-reservations/tt-reservations.compo
     TtProfileSettingsComponent,
     TtInvitationDialogComponent,
     TtReservationsComponent,
+    TtHomeSmallComponent,
+    TtHomeLargeComponent,
+    TtWrapperThemeSmallComponent,
+    TtWrapperThemeLargeComponent,
+    TopNavigationBarComponent,
+    TtPlayerCardSmallComponent,
   ],
   imports: [
     BrowserModule,
@@ -140,6 +153,7 @@ import { TtReservationsComponent } from './tt-reservations/tt-reservations.compo
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    ScrollingModule,
   ],
   providers: [
     {

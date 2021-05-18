@@ -1,0 +1,29 @@
+
+  <div fxLayout="column" fxLayoutGap="10px" fxFlexAlign="none center">
+
+    <h1 fxFlexAlign="center">Players</h1>
+
+    <div fxLayout="column" fxLayoutAlign="space-between center">
+      <!--   Search by All   -->
+      <mat-form-field appearance="fill">
+        <mat-label>Search by Name, Club, City or Zip</mat-label>
+        <input matInput type="text" [(ngModel)]="query" (change)="searchPlayers($event)">
+        <button mat-button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                *ngIf="query"
+                (click)="query=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <cdk-virtual-scroll-viewport itemSize="1" class="example-viewport">
+      <div fxLayout="column" fxLayoutGap="10px">
+        <div *cdkVirtualFor="let player of players">
+            <app-tt-player-card-small [player]="player"></app-tt-player-card-small>
+        </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>

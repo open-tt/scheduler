@@ -1,0 +1,29 @@
+<div fxLayout="row" fxFlexAlign="space-around center" class="primaryColorBG">
+  <!--    Homepage    -->
+  <button disableRipple
+          mat-button
+          fxLayoutAlign="left"
+          *ngIf="enableHomePage"
+          (click)="goto('/'+homePageRoute)"
+  >
+    {{homePageTitle}}
+  </button>
+
+  <!--    Reservations    -->
+  <button disableRipple
+          mat-button
+          fxLayoutAlign="left"
+          *ngIf="shouldEnableReservationsButton()"
+          (click)="goto('/'+reservationsPageRoute)">
+    {{reservationsPageTitle}}
+  </button>
+
+  <!--    Logout    -->
+  <button disableRipple
+          mat-button
+          fxLayoutAlign="left"
+          *ngIf="shouldEnableLogout()"
+          (click)="logout()">
+    Logout
+  </button>
+</div>

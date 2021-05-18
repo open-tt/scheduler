@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentMode } from '../utils/enums';
-import { environment } from '../../environments/environment';
-import { CookieService } from '../services/cookie.service';
-import { UserService } from '../services/user.service';
+import { ComponentMode } from '../../utils/enums';
+import { environment } from '../../../environments/environment';
+import { TTRoute } from '../../routing.constants';
+import { CookieService } from '../../services/cookie.service';
+import { UserService } from '../../services/user.service';
+import { PlayerService } from '../../services/player.service';
 import { Router } from '@angular/router';
-import { TTRoute } from '../routing.constants';
-import { PlayerService } from '../services/player.service';
 
 @Component({
-  selector: 'app-global-theme',
-  templateUrl: './global-theme.component.html',
-  styleUrls: ['./global-theme.component.scss'],
+  selector: 'app-tt-wrapper-theme-large',
+  templateUrl: './tt-wrapper-theme-large.component.html',
+  styleUrls: ['./tt-wrapper-theme-large.component.css'],
 })
-export class GlobalThemeComponent implements OnInit {
+export class TtWrapperThemeLargeComponent implements OnInit {
   mode = ComponentMode.SHOW;
   enableHomePage = environment.enable_home_page;
   enableRegistrationPage = environment.enable_registration_page;

@@ -21,9 +21,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     const token = this.cookieService.getAuthTokenCookie();
-
-    console.log('token');
-    console.log(token);
     if (token !== null) {
       request = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`),
