@@ -3,12 +3,12 @@
   <app-top-navigation-bar></app-top-navigation-bar>
 
   <!-- Show Flash Messages -->
-  <div fxLayout="row" fxLayoutAlign="center space-around">
-    <flash-messages fxFlex="80"></flash-messages>
+  <div fxLayout="column">
+    <flash-messages></flash-messages>
+    <!-- Main Website Content -->
+    <router-outlet></router-outlet>
   </div>
 
-  <!-- Main Website Content -->
-  <router-outlet></router-outlet>
 
   <!-- Footer -->
   <app-tt-footer></app-tt-footer>
