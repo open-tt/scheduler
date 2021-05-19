@@ -18,6 +18,15 @@
     {{reservationsPageTitle}}
   </button>
 
+  <!--    Profile    -->
+  <button disableRipple
+          mat-button
+          fxLayoutAlign="left"
+          *ngIf="shouldEnableProfileButton()"
+          (click)="goto('/'+profilePageRoute)">
+    {{profilePageTitle}}
+  </button>
+
   <!--    Logout    -->
   <button disableRipple
           mat-button

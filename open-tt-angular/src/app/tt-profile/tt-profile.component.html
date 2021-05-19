@@ -1,0 +1,32 @@
+<mat-card fxLayout="column" fxLayoutAlign="center left" fxLayoutGap="30px">
+  <img mat-card-image [src]="'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg'">
+
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex="50">Name:</div>
+    <div>{{player?.name}}</div>
+  </div>
+
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex="50"> Rating:</div>
+    <div>{{player?.tt_profile?.tournamentrating}} 1700</div>
+  </div>
+
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex="50"> Partner Min Rating:</div>
+    <div>{{player?.tt_profile?.partner_min_rating}} 1600</div>
+  </div>
+
+  <div fxLayout="row" fxFlexFill>
+    <div fxFlex="50"> Current City:</div>
+    <div>{{player?.city | titlecase}}, {{player?.state | uppercase}}</div>
+  </div>
+
+  <button
+          disableRipple
+          mat-raised-button
+          (click)="saveChanges()"
+          [color]="true ? 'primary' : ''">
+    Save
+  </button>
+
+</mat-card>

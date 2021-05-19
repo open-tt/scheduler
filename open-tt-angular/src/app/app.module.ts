@@ -77,6 +77,7 @@ import { TopNavigationBarComponent } from './tt-wrapper-theme/top-navigation-bar
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TtPlayerCardSmallComponent } from './component-library/tt-player-card-small/tt-player-card-small.component';
 import { TtReservationCardSmallComponent } from './component-library/tt-reservation-card-small/tt-reservation-card-small.component';
+import { TtProfileComponent } from './tt-profile/tt-profile.component';
 
 @NgModule({
   declarations: [
@@ -126,6 +127,7 @@ import { TtReservationCardSmallComponent } from './component-library/tt-reservat
     TopNavigationBarComponent,
     TtPlayerCardSmallComponent,
     TtReservationCardSmallComponent,
+    TtProfileComponent,
   ],
   imports: [
     BrowserModule,

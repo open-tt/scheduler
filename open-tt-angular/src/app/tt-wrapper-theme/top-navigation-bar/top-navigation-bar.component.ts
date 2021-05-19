@@ -16,6 +16,8 @@ export class TopNavigationBarComponent implements OnInit {
   homePageTitle = 'Home';
   enableReservationsPage = environment.enable_reservations_page;
   reservationsPageRoute = TTRoute.RESERVATIONS;
+  profilePageRoute = TTRoute.PROFILE;
+  profilePageTitle = 'Profile';
   reservationsPageTitle = 'Invitations';
 
   constructor(
@@ -35,6 +37,10 @@ export class TopNavigationBarComponent implements OnInit {
   }
 
   shouldEnableLogout(): boolean {
+    return this.userService.hasLoggedInUser();
+  }
+
+  shouldEnableProfileButton(): boolean {
     return this.userService.hasLoggedInUser();
   }
 

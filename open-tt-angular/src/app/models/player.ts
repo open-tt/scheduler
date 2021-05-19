@@ -7,6 +7,8 @@ export interface Player {
   email?: string;
   phone?: string;
   address?: string;
+  city?: string;
+  state?: string;
   tt_profile?: {
     tournamentrating: number;
     // email or phone number

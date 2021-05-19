@@ -18,19 +18,13 @@ export class GlobalThemeComponent implements OnInit {
   enableRegistrationPage = environment.enable_registration_page;
   enableTournamentsPage = environment.enable_handicap_page;
   enableReservationsPage = environment.enable_reservations_page;
-  enableOrgPage = false;
   enableAdmissionsPage = false;
   enableMembershipPage = false;
-  enableMembershipSummaryPage = false;
   enableLogout = true;
 
-  tournamentsPageTitle = 'Tournaments';
   homePageTitle = 'Home';
-  reservationsPageTitle = 'Invitations';
 
-  tournamentsPageRoute = TTRoute.TOURNAMENT_HANDICAP;
   homePageRoute = TTRoute.HOME;
-  reservationsPageRoute = TTRoute.RESERVATIONS;
 
   opened = true;
 
