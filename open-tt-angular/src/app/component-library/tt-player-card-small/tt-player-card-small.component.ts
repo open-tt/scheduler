@@ -23,7 +23,7 @@ export class TtPlayerCardSmallComponent implements OnInit {
 
   playerRating(): string {
     return this.player.tt_profile?.tournamentrating
-      ? this.player.tt_profile.tournamentrating
+      ? this.player.tt_profile.tournamentrating.toString()
       : 'No Rating';
   }
 

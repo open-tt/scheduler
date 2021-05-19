@@ -3,8 +3,11 @@ import { Time } from '@angular/common';
 export interface Reservation {
   id?: number;
   host: string;
+  host_rsvp?: RSVP;
+  host_profile_image?: string;
   recipient: string;
   recipient_rsvp?: RSVP;
+  recipient_profile_image?: string;
   kind: ReservationType;
   event_date: string;
   start_time: string;

@@ -3,3 +3,12 @@
     border: 5px blue;
     margin-right: 50px;
 }
+
+.example-viewport {
+    min-height: 78vh;
+}
+
+cdk-virtual-scroll-viewport {
+    margin-left: 10px;
+    margin-right: 10px;
+}
