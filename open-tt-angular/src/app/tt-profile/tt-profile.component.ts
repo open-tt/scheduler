@@ -3,6 +3,7 @@ import { Player } from '../models/player';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-tt-profile',
@@ -12,6 +13,10 @@ import { Observable, Subscription } from 'rxjs';
 export class TtProfileComponent implements OnInit {
   player: Player;
   loggedInUserSubscription: Subscription;
+  ratings = [1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400];
+  editMode = false;
+  partnerMinRating: number;
+  playerRating: number;
 
   constructor(private userService: UserService, private router: Router) {}
 
@@ -20,13 +25,32 @@ export class TtProfileComponent implements OnInit {
       this.router.navigate(['/registration']);
     }
 
-    this.player = this.userService.loggedInUser;
+    this.setValues(this.userService.loggedInUser);
     this.loggedInUserSubscription = this.userService
       .genLoggedInUser()
-      .subscribe((p) => {
-        this.player = p;
-      });
+      .subscribe((p) => this.setValues(p));
   }
 
   saveChanges(): void {}
+
+  toggleEditMode(): void {
+    if (this.editMode) {
+      // todo: need to save any changes
+      if (!this.player.tt_profile) {
+        this.player.tt_profile = {};
+      }
+      this.player.tt_profile.partner_min_rating = this.partnerMinRating;
+      this.player.tt_profile.tournamentrating = this.playerRating;
+
+      this.userService.updatePlayerProfile(this.player);
+      this.userService.updateUserProfile(this.player);
+    }
+    this.editMode = !this.editMode;
+  }
+
+  private setValues(p: Player): void {
+    this.player = p;
+    this.partnerMinRating = this.player?.tt_profile?.partner_min_rating;
+    this.playerRating = this.player?.tt_profile?.tournamentrating;
+  }
 }

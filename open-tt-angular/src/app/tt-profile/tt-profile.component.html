@@ -6,27 +6,66 @@
     <div>{{player?.name}}</div>
   </div>
 
-  <div fxLayout="row" fxFlexFill>
-    <div fxFlex="50"> Rating:</div>
-    <div>{{player?.tt_profile?.tournamentrating}} 1700</div>
+  <div fxLayout="row" fxFlexFill fxLayoutAlign="left center">
+    <div fxFlex="50">Your Current Rating:</div>
+
+    <div *ngIf="!editMode">{{player?.tt_profile?.tournamentrating}}</div>
+
+    <mat-form-field appearance="legacy" *ngIf="editMode" fxFlex="20" >
+      <mat-label>rating</mat-label>
+      <input matInput [(ngModel)]="playerRating" />
+    </mat-form-field>
   </div>
 
-  <div fxLayout="row" fxFlexFill>
+  <div fxLayout="row" fxFlexFill *ngIf="!editMode">
     <div fxFlex="50"> Partner Min Rating:</div>
-    <div>{{player?.tt_profile?.partner_min_rating}} 1600</div>
+    <div>{{player?.tt_profile?.partner_min_rating}}</div>
   </div>
 
-  <div fxLayout="row" fxFlexFill>
+  <div fxLayout="row" fxLayoutAlign="center center" fxFlexFill *ngIf="editMode">
+    <div fxFlex="50">Partner Min Rating:</div>
+    <mat-form-field appearance="legacy">
+      <mat-select [value]="ratings[0]" [(ngModel)]="partnerMinRating">
+        <mat-option *ngFor="let r of ratings" [value]="r">
+          {{r}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+  <div fxLayout="row" fxFlexFill fxLayoutGap="10px" fxLayoutAlign="none center">
+
     <div fxFlex="50"> Current City:</div>
-    <div>{{player?.city | titlecase}}, {{player?.state | uppercase}}</div>
+
+    <mat-form-field *ngIf="player && editMode" fxFlex="20">
+      <mat-label>City</mat-label>
+      <input matInput [(ngModel)]="player.city" />
+    </mat-form-field>
+
+    <mat-form-field *ngIf="player && editMode" fxFlex="20">
+      <mat-label>State</mat-label>
+      <input matInput [(ngModel)]="player.state" />
+    </mat-form-field>
+
+    <div *ngIf="!editMode">{{player?.city | titlecase}}, {{player?.state | uppercase}}</div>
   </div>
 
-  <button
-          disableRipple
-          mat-raised-button
-          (click)="saveChanges()"
-          [color]="true ? 'primary' : ''">
-    Save
-  </button>
+  <div fxLayout="row" fxFlexFill fxLayoutAlign="space-around">
+    <button mat-raised-button
+            color="primary"
+            aria-label="Enable edit Mode"
+            (click)="toggleEditMode()"
+            [disabled]="editMode">
+      <mat-icon>edit</mat-icon>
+    </button>
 
+    <button mat-raised-button
+            color="primary"
+            aria-label="Save edits and disable edit mode"
+            (click)="toggleEditMode()"
+            [disabled]="!editMode">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
 </mat-card>

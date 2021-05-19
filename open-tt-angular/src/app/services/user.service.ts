@@ -87,9 +87,9 @@ export class UserService {
   }
 
   public loadUser(): void {
-    this.http.get<UserApi.GetCurrentUserResponse>('/current_user').subscribe(
-      (resp) => {
-        this.loggedInUser = resp.user;
+    this.http.get<Player>('/current_user').subscribe(
+      (player) => {
+        this.loggedInUser = player;
         this.loggedInUserSubject.next(this.loggedInUser);
       },
       (e) => {
@@ -98,14 +98,26 @@ export class UserService {
     );
   }
 
-  // TODO: This is not working yet
-  updatePlayer(p: Player): void {
+  updatePlayerProfile(p: Player): void {
     this.http
       .put<Player>(`/users/${this.loggedInUser.id}/tt_profile`, p)
       .subscribe((updatedPlayer) => {
         this.loggedInUser = updatedPlayer;
         this.loggedInUserSubject.next(updatedPlayer);
-        this.flashMessageService.show('Updated Profile Info', {
+        this.flashMessageService.show('Updated Player Info', {
+          cssClass: 'alert-success',
+          timeout: 4000,
+        });
+      });
+  }
+
+  updateUserProfile(p: Player): void {
+    this.http
+      .put<Player>(`/users/${this.loggedInUser.id}`, p)
+      .subscribe((updatedPlayer) => {
+        this.loggedInUser = updatedPlayer;
+        this.loggedInUserSubject.next(updatedPlayer);
+        this.flashMessageService.show('Updated User Info', {
           cssClass: 'alert-success',
           timeout: 4000,
         });

@@ -1,10 +1,11 @@
 ### TODO
 
-- Convert all long Service calls to Observables
+- Save profile changes
+- Invitations, Save RSVP changes
+
 
 ### TODO P2
 
-- Disallow creating multiple tournaments same day
 
 ### DONE
 

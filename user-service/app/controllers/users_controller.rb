@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: :register
 
   def show_current_user
-    render json: { user: current_user }
+    render json: current_user
   end
 
   def search_users
@@ -146,11 +146,12 @@ class UsersController < ApplicationController
   end
 
   def edit_user_params
-    params.permit(:name, :email, :profile_img, :phone, :is_enabled, :address)
+    params.permit(:name, :email, :profile_img, :phone, :is_enabled, :address, :city, :state)
   end
 
   def edit_tt_profile_params
-    params.require(:tt_profile).permit(:blade, :forehand, :backhand, :hand, :grip, :partner_min_rating, :partner_max_rating)
+    params.require(:tt_profile).permit(:blade, :forehand, :backhand, :hand, :grip, :partner_min_rating,
+                                       :partner_max_rating, :tournamentrating)
   end
 
   def validate_players(data)

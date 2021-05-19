@@ -69,7 +69,7 @@ export class TtProfileSettingsComponent implements OnInit {
   }
 
   saveAccount(): void {
-    this.userService.updatePlayer(this.player);
+    this.userService.updatePlayerProfile(this.player);
     this.isUpdatingAccount = false;
   }
 
@@ -101,7 +101,7 @@ export class TtProfileSettingsComponent implements OnInit {
     this.player.tt_profile.partner_min_rating = this.minRating;
     this.player.tt_profile.partner_max_rating = this.maxRating;
 
-    this.userService.updatePlayer(this.player);
+    this.userService.updatePlayerProfile(this.player);
     this.isUpdatingTtProfile = false;
   }
 

@@ -10,7 +10,7 @@ export interface Player {
   city?: string;
   state?: string;
   tt_profile?: {
-    tournamentrating: number;
+    tournamentrating?: number;
     // email or phone number
     // Optional, when empty, users cannot log in, only view data
     leaguerating?: number;
