@@ -6,11 +6,11 @@ import { CookieService } from '../../services/cookie.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-top-navigation-bar',
-  templateUrl: './top-navigation-bar.component.html',
-  styleUrls: ['./top-navigation-bar.component.css'],
+  selector: 'app-tt-footer',
+  templateUrl: './tt-footer.component.html',
+  styleUrls: ['./tt-footer.component.scss'],
 })
-export class TopNavigationBarComponent implements OnInit {
+export class TtFooterComponent implements OnInit {
   enableHomePage = environment.enable_home_page;
   homePageRoute = TTRoute.HOME;
   homePageTitle = 'Home';
@@ -32,6 +32,15 @@ export class TopNavigationBarComponent implements OnInit {
     return this.cookieService.hasLoggedInUser();
   }
 
+  goto(homePageRoute: string): void {
+    this.router.navigate([homePageRoute]);
+  }
+
+  logout(): void {
+    this.cookieService.removeUserToken();
+    this.goto('/registrations');
+  }
+
   shouldEnableReservationsButton(): boolean {
     return this.enableReservationsPage && this.hasLoggedInUser();
   }
@@ -42,14 +51,5 @@ export class TopNavigationBarComponent implements OnInit {
 
   shouldEnableProfileButton(): boolean {
     return this.userService.hasLoggedInUser();
-  }
-
-  goto(homePageRoute: string): void {
-    this.router.navigate([homePageRoute]);
-  }
-
-  logout(): void {
-    this.cookieService.removeUserToken();
-    this.goto('/registrations');
   }
 }

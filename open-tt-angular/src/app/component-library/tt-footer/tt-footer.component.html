@@ -1,0 +1,50 @@
+<!-- Footer -->
+<div fxLayout="row" fxLayoutAlign="space-around" class="primaryColorBG">
+
+  <!-- Social Media -->
+  <div fxLayout="row" fxFlex="20">
+    <button disableRipple
+            mat-button>
+      <mat-icon>facebook</mat-icon>
+    </button>
+  </div>
+
+
+<!-- Navigation -->
+  <div fxLayout="row" fxLayoutAlign="center" fxFlex="60">
+    <!--    Homepage    -->
+    <button disableRipple
+            mat-button
+            *ngIf="enableHomePage"
+            (click)="goto('/'+homePageRoute)"
+    >
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <!--    Reservations    -->
+    <button disableRipple
+            mat-button
+            *ngIf="shouldEnableReservationsButton()"
+            (click)="goto('/'+reservationsPageRoute)">
+      <mat-icon>menu_book</mat-icon>
+    </button>
+
+    <!--    Profile    -->
+    <button disableRipple
+            mat-button
+            *ngIf="shouldEnableProfileButton()"
+            (click)="goto('/'+profilePageRoute)">
+      <mat-icon>face</mat-icon>
+    </button>
+  </div>
+
+
+  <!--    Logout    -->
+  <button fxFlex="20"
+          disableRipple
+          mat-button
+          *ngIf="shouldEnableLogout()"
+          (click)="logout()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</div>

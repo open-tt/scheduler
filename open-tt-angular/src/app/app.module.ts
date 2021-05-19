@@ -78,6 +78,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { TtPlayerCardSmallComponent } from './component-library/tt-player-card-small/tt-player-card-small.component';
 import { TtReservationCardSmallComponent } from './component-library/tt-reservation-card-small/tt-reservation-card-small.component';
 import { TtProfileComponent } from './tt-profile/tt-profile.component';
+import { TtFooterComponent } from './component-library/tt-footer/tt-footer.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { TtProfileComponent } from './tt-profile/tt-profile.component';
     TtPlayerCardSmallComponent,
     TtReservationCardSmallComponent,
     TtProfileComponent,
+    TtFooterComponent,
   ],
   imports: [
     BrowserModule,
