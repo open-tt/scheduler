@@ -43,4 +43,9 @@ export class TtHomeSmallComponent implements OnInit {
     const name = $event.target.value;
     this.playerService.search({ name });
   }
+
+  clearQuery(): void {
+    this.query = '';
+    this.playerService.search({});
+  }
 }
