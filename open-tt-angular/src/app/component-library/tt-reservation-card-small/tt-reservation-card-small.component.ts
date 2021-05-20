@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Reservation, RSVP } from '../../models/reservation';
+import { MatRadioChange } from '@angular/material/radio';
+import { ReservationService } from '../../services/reservation.service';
 
 @Component({
   selector: 'app-tt-reservation-card-small',
@@ -8,9 +10,9 @@ import { Reservation, RSVP } from '../../models/reservation';
 })
 export class TtReservationCardSmallComponent implements OnInit {
   @Input() reservation: Reservation;
-  @Input() locked = false;
+  @Input() hostMode = false;
 
-  constructor() {}
+  constructor(private reservationService: ReservationService) {}
 
   ngOnInit(): void {}
 
@@ -18,7 +20,34 @@ export class TtReservationCardSmallComponent implements OnInit {
     return Object.values(RSVP);
   }
 
-  recipientFirstName(recipient: string): string {
-    return recipient.split(' ')[0];
+  recipientFirstName(): string {
+    let name;
+    if (this.hostMode) {
+      name = this.reservation.recipient;
+    } else {
+      name = this.reservation.host;
+    }
+    return name.split(' ')[0];
+  }
+
+  recipientRating(): string {
+    if (this.hostMode) {
+      return this.reservation.recipient_rating.toString();
+    } else {
+      return this.reservation.host_rating.toString();
+    }
+  }
+
+  recipientProfileImage(): string {
+    if (this.hostMode) {
+      return this.reservation.recipient_profile_image;
+    } else {
+      return this.reservation.host_profile_image;
+    }
+  }
+
+  updateRsvp($event: MatRadioChange): void {
+    this.reservation.recipient_rsvp = $event.value;
+    this.reservationService.updateReservation(this.reservation);
   }
 }

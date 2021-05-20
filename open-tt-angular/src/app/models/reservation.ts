@@ -5,9 +5,11 @@ export interface Reservation {
   host: string;
   host_rsvp?: RSVP;
   host_profile_image?: string;
+  host_rating?: number;
   recipient: string;
   recipient_rsvp?: RSVP;
   recipient_profile_image?: string;
+  recipient_rating?: number;
   kind: ReservationType;
   event_date: string;
   start_time: string;

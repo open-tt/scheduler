@@ -61,7 +61,16 @@ class ReservationsController < ApplicationController
   private
 
   def inflate_user_info(reservation)
-    reservation['host'] = User.find(reservation['host']).name
-    reservation['recipient'] = User.find(reservation['recipient']).name
+    host = User.find(reservation['host'])
+    recipient = User.find(reservation['recipient'])
+
+    reservation['host'] = host.name
+    reservation['host_profile_image'] = host.profile_img
+    reservation['host_rating'] = host.tt_profile.nil? ? 0 : host.tt_profile.tournamentrating
+
+
+    reservation['recipient'] = recipient.name
+    reservation['recipient_profile_image'] = recipient.profile_img
+    reservation['recipient_rating'] = recipient.tt_profile.nil? ? 0 : recipient.tt_profile.tournamentrating
   end
 end

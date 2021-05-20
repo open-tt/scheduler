@@ -4,9 +4,9 @@
     <mat-card-content>
       <div fxLayout="row" fxLayoutGap="5px" fxLayoutAlign="space-around center">
         <div fxLayout="column" fxLayoutAlign="none center">
-          <div>{{recipientFirstName(reservation.recipient)}}</div>
-          <img mat-card-avatar [src]="'https://images.sftcdn.net/images/t_app-cover-l,f_auto/p/ce2ece60-9b32-11e6-95ab-00163ed833e7/260663710/the-test-fun-for-friends-screenshot.jpg'">
-          <div> 1700</div>
+          <div>{{recipientFirstName()}}</div>
+          <img mat-card-avatar [src]="recipientProfileImage()">
+          <div>{{recipientRating()}}</div>
         </div>
 
         <div fxLayout="column">
@@ -16,14 +16,21 @@
           <div>{{reservation.note}}</div>
         </div>
 
-        <mat-form-field fxFlex="20" *ngIf="!locked">
-          <mat-label>RSVP</mat-label>
-          <mat-select [(ngModel)]="reservation.recipient_rsvp">
-            <mat-option *ngFor="let act of rsvpOptions()" [value]="act">{{act}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div fxLayout="column" *ngIf="!hostMode">
+          <label id="example-radio-group-label">RSVP</label>
+          <mat-radio-group
+                  fxLayout="column"
+                  aria-labelledby="example-radio-group-label"
+                  class="example-radio-group"
+                  (change)="updateRsvp($event)"
+                  [(ngModel)]="reservation.recipient_rsvp">
+            <mat-radio-button class="example-radio-button" *ngFor="let opt of rsvpOptions()" [value]="opt">
+              {{opt}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </div>
 
-        <div *ngIf="locked">{{reservation.recipient_rsvp ? reservation.recipient_rsvp : 'No Reply'}}</div>
+        <div *ngIf="hostMode">{{reservation.recipient_rsvp ? reservation.recipient_rsvp : 'No Reply'}}</div>
 
       </div>
     </mat-card-content>

@@ -13,30 +13,38 @@ import { MatSelectChange } from '@angular/material/select';
   styleUrls: ['./tt-reservations.component.scss'],
 })
 export class TtReservationsComponent implements OnInit {
-  reservations: Reservation[];
+  sentInvitations: Reservation[] = [];
+  receivedInvitations: Reservation[] = [];
   recipientRsvp = '...';
   RSVP_YES = RSVP.YES;
   RSVP_NO = RSVP.NO;
   RSVP_MAYBE = RSVP.MAYBE;
 
   displayedColumns = ['host', 'recipient', 'date', 'start', 'end', 'note'];
-  reservationsSubscription: Subscription;
+  invitationSubscription: Subscription;
   loggedInUserSubscription: Subscription;
 
   constructor(
     private playerService: PlayerService,
     private userService: UserService,
     private reservationService: ReservationService
-  ) {
-    this.reservations = [];
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.reservations = [];
-    this.reservationsSubscription = this.reservationService
+    this.invitationSubscription = this.reservationService
       .genReservations()
       .subscribe((reservations: Reservation[]) => {
-        this.reservations = reservations;
+        const sent: Reservation[] = [];
+        const received: Reservation[] = [];
+        reservations.forEach((r) => {
+          if (r.host === this.userService.loggedInUser.name) {
+            sent.push(r);
+          } else {
+            received.push(r);
+          }
+        });
+        this.receivedInvitations = received;
+        this.sentInvitations = sent;
       });
 
     this.loggedInUserSubscription = this.userService
@@ -52,20 +60,12 @@ export class TtReservationsComponent implements OnInit {
     }
   }
 
-  // host(r: Reservation): string {
-  //   return this.playerService.playerName(r.host);
-  // }
-  //
-  // recipient(r: Reservation): string {
-  //   return this.playerService.playerName(r.recipient);
-  // }
-
   rsvpName(i: number): string {
     return RSVP[i];
   }
 
   hasReservations(): boolean {
-    return this.reservations && this.reservations.length > 0;
+    return this.sentInvitations && this.sentInvitations.length > 0;
   }
 
   onRsvpChange(r: Reservation, $event: MatSelectChange): void {
