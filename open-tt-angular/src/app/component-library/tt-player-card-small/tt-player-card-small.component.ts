@@ -48,4 +48,11 @@ export class TtPlayerCardSmallComponent implements OnInit {
       // this.tournamentService.updateSingleMatch(updatedMatch);
     });
   }
+
+  profileImage(): string {
+    if (this.player.profile_img) {
+      return this.player.profile_img;
+    }
+    return '/assets/tt-icon.png';
+  }
 }

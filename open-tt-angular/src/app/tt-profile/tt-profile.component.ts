@@ -53,4 +53,11 @@ export class TtProfileComponent implements OnInit {
     this.partnerMinRating = this.player?.tt_profile?.partner_min_rating;
     this.playerRating = this.player?.tt_profile?.tournamentrating;
   }
+
+  profileImage(): string {
+    if (this.player?.profile_img) {
+      return this.player?.profile_img;
+    }
+    return '/assets/tt-icon.png';
+  }
 }
