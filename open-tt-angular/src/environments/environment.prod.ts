@@ -7,5 +7,6 @@ export const environment = {
   enable_reservations_service: false,
   default_winning_score: 3,
   // tournament_api_url: 'http://localhost:3001',
-  tournament_api_url: 'http://35.239.215.87',
+  tournament_api_url:
+    (window as any).envconfig?.apiurl || 'https://35.239.215.87',
 };

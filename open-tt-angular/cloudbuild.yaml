@@ -1,0 +1,16 @@
+steps:
+
+  # Install node packages
+  - name: "gcr.io/cloud-builders/npm:latest"
+    args: ["install"]
+    dir: "open-tt"
+
+  # Build production package
+  - name: "gcr.io/opentt-314013/ng"
+    args: ["build", "--prod"]
+    dir: "open-tt"
+
+  # Deploy to google cloud app engine
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy", "--version=prod"]
+    dir: "open-tt"

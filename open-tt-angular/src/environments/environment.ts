@@ -10,7 +10,8 @@ export const environment = {
   enable_reservations_page: true,
   enable_reservations_service: false,
   default_winning_score: 3,
-  tournament_api_url: 'http://localhost:3000',
+  tournament_api_url:
+    (window as any).envconfig?.apiurl || 'http://localhost:3000',
 };
 
 /*
